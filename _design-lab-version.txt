@@ -1,4 +1,0 @@
-BestieBoys preview design lab v1
-Themes: Atelier / Coldwave / Archive
-Logo trial: assets/bestieboys-logo.webp
-Garment mockups: CSS/HTML development shells
