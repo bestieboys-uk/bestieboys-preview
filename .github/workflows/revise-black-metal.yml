@@ -1,0 +1,61 @@
+name: Revise Black Metal briefs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/revise-black-metal.yml
+
+permissions:
+  contents: write
+
+jobs:
+  revise:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Revise Black Metal briefs and likeness lock
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          path = Path("index.html")
+          text = path.read_text()
+
+          text = text.replace(
+              "Gerrard is the development example while we build a proper underground-merch design system — three distinct concepts for every scene.",
+              "Gerrard — a Shar Pei — is the development example while we build a proper underground-merch design system. Likeness is locked to his broad wrinkled muzzle, small folded ears, forehead folds and fawn colouring."
+          )
+
+          text = text.replace(
+              '<div class="matrix-intro"><span>21 concepts</span><span>7 scenes</span><span>Artwork pending</span></div>',
+              '<div class="matrix-intro"><span>21 concepts</span><span>7 scenes</span><span>Artwork pending</span><span>Gerrard: Shar Pei likeness locked</span></div>'
+          )
+
+          text = text.replace(
+              "Hostile monochrome, frostbitten atmosphere, ritual composition and raw second-wave print language.",
+              "Three deliberately different Black Metal systems: raw xerox, ritual artefact and atmospheric minimalism. No shared logo treatment."
+          )
+
+          replacements = {
+              "Frostbite Portrait": "Shar Pei likeness locked: preserve Gerrard’s broad wrinkled muzzle, small folded ears and forehead folds. Use a blown-out one-colour portrait with an asymmetric hand-drawn branch/root GERRARD mark — thin, scratchy and crude, with no drips and no generic thorn-metal font. Sparse dead-tree/frost texture, toner loss and imperfect screenprint reproduction.",
+              "Ritual Hound": "Shar Pei portrait used as the icon. No conventional extreme-metal logo: set GERRARD small in a crude medieval serif beneath an original BestieBoys sigil. Use asymmetric hand-built marks, specimen numbering and a sparse back crest; avoid mirrored rune decoration and avoid reusing the Frostbite lettering system.",
+              "Northern Apparition": "Shar Pei silhouette emerging from fog and ruined woodland with large areas of negative space. Set GERRARD in restrained narrow serif or primitive hand lettering rather than an extreme-metal logo. Use worn halftone, faint landscape texture and a minimal back mark; the atmosphere should carry the design, not decorative symbols."
+          }
+
+          for title, replacement in replacements.items():
+              pattern = rf'(<h4>{re.escape(title)}</h4>.*?<div class="concept-body"><p>)(.*?)(</p>)'
+              text, count = re.subn(pattern, rf'\1{replacement}\3', text, count=1, flags=re.S)
+              if count != 1:
+                  raise SystemExit(f"Could not update {title}")
+
+          path.write_text(text)
+      - name: Commit revision
+        run: |
+          git config user.name "bestieboys-uk"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Lock Gerrard Shar Pei likeness and diversify Black Metal typography"
+          git push
