@@ -1,0 +1,29 @@
+name: Bust preview cache
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/bust-preview-cache.yml]
+permissions:
+  contents: write
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Version preview assets
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          s=s.replace('href="theme-lab.css"','href="theme-lab.css?v=3"')
+          s=s.replace('src="theme-lab.js"','src="theme-lab.js?v=3"')
+          p.write_text(s)
+          PY
+      - name: Commit cache bust
+        run: |
+          git config user.name "bestieboys-uk"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Bust cached preview theme assets"
+          git push
