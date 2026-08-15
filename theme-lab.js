@@ -8,10 +8,12 @@
   const saved = localStorage.getItem('bestieboys-preview-theme');
   body.dataset.theme = themes.some(([id]) => id === saved) ? saved : 'atelier';
 
-  // Use the supplied BestieBoys wordmark everywhere the old text brand appears.
+  // Robust CSS wordmark based on the supplied BestieBoys logo trial.
+  // This avoids the broken raster asset while preserving the intended bold sans wordmark direction.
   document.querySelectorAll('a.brand').forEach(link => {
-    link.classList.add('brand-image');
-    link.innerHTML = '<img src="assets/bestieboys-logo.webp" alt="BestieBoys">';
+    link.classList.remove('brand-image');
+    link.classList.add('brand-wordmark');
+    link.textContent = 'BestieBoys';
     link.setAttribute('aria-label','BestieBoys');
   });
 
@@ -64,7 +66,7 @@
       </article>
       <article class="product product-mockup">
         <div class="product-mockup__stage"><div class="garment garment-hoodie zip"><div class="zip-line"></div><div class="print-zone"><img src="${img}" alt=""></div><span class="hood-word">SPLIT / SLEEVE / BACK</span></div></div>
-        <div class="product-mockup__copy"><small>04 / TECHNICAL FORMAT</small><strong>Zip hoodie</strong><p>Split-front artwork, sleeve treatments and a bigger back graphic. Best reserved for concepts that genuinely benefit from the construction.</p><span class="mockup-note">Not every design belongs here</span></div>
+        <div class="product-mockup__copy"><small>04 / TECHNICAL FORMAT</small><strong>Zip hoodie</strong><p>Split-front artwork, sleeve treatments and a larger back graphic. Best reserved for concepts that benefit from the construction.</p><span class="mockup-note">Not every design belongs here</span></div>
       </article>
       <article class="product product-mockup">
         <div class="product-mockup__stage"><div class="garment garment-fitted"><div class="print-zone"><img src="${img}" alt=""></div></div></div>
@@ -75,7 +77,7 @@
         <div class="product-mockup__copy"><small>06 / MARK FORMAT</small><strong>Cap</strong><p>Embroidery-scale marks, initials and reduced pet iconography. No full rectangular T-shirt artwork on a cap.</p><span class="mockup-note">Small-format identity piece</span></div>
       </article>
       <article class="product product-mockup">
-        <div class="product-mockup__stage"><div class="garment garment-sticker"><div class="print-zone"><img src="${img}" alt=""></div><span class="sticker-name">BESTIEBOYS</span></div></div>
+        <div class="product-mockup__stage"><div class="garment garment-sticker"><div class="print-zone"><img src="${img}" alt=""></div><span class="sticker-name">BestieBoys</span></div></div>
         <div class="product-mockup__copy"><small>07 / ADD-ON FORMAT</small><strong>Sticker</strong><p>Scene logos, pet heads and compact art fragments. A low-ticket extension of the clothing system, not generic pet stationery.</p><span class="mockup-note">Die-cut visual trial</span></div>
       </article>`;
   }
