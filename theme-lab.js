@@ -81,4 +81,19 @@
         <div class="product-mockup__copy"><small>07 / ADD-ON FORMAT</small><strong>Sticker</strong><p>Scene logos, pet heads and compact art fragments. A low-ticket extension of the clothing system, not generic pet stationery.</p><span class="mockup-note">Die-cut visual trial</span></div>
       </article>`;
   }
+
+  // Load the more realistic inline-SVG garment presentation after the theme lab has initialised.
+  if (!document.querySelector('link[data-garment-v2]')) {
+    const garmentCss = document.createElement('link');
+    garmentCss.rel = 'stylesheet';
+    garmentCss.href = 'garment-lab-v2.css?v=1';
+    garmentCss.dataset.garmentV2 = 'true';
+    document.head.appendChild(garmentCss);
+  }
+  if (!document.querySelector('script[data-garment-v2]')) {
+    const garmentJs = document.createElement('script');
+    garmentJs.src = 'garment-lab-v2.js?v=1';
+    garmentJs.dataset.garmentV2 = 'true';
+    document.body.appendChild(garmentJs);
+  }
 })();
