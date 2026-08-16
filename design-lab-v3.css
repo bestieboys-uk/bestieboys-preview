@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@700;800;900&family=Road+Rage&family=Rubik+Dirt&family=Rubik+Glitch&display=swap');
+
+/* BestieBoys Design Lab v3 — rough merch typography + slate/silver/xerox trials */
+
+body[data-theme="slategrind"]{
+  --lab-bg:#42484f;
+  --lab-panel:#505860;
+  --lab-panel-2:#30363b;
+  --lab-text:#f3f1e9;
+  --lab-muted:#c2c7c9;
+  --lab-accent:#d7ff38;
+  --lab-accent-2:#ff5b3c;
+  --lab-line:rgba(243,241,233,.22);
+  --lab-shadow:rgba(5,8,10,.34);
+  --font-body:"Helvetica Neue",Arial,sans-serif;
+  --font-head:"Archivo Black","Arial Black",Arial,sans-serif;
+  --font-editorial:"Rubik Dirt","Arial Black",Impact,sans-serif;
+  background:
+    radial-gradient(circle at 14% 8%,rgba(255,255,255,.08),transparent 24%),
+    linear-gradient(145deg,#555d65 0%,#42484f 38%,#32383e 100%)!important;
+  background-attachment:fixed!important;
+}
+
+body[data-theme="silvernoise"]{
+  --lab-bg:#c5c8c9;
+  --lab-panel:rgba(242,242,238,.88);
+  --lab-panel-2:#aeb3b6;
+  --lab-text:#111315;
+  --lab-muted:#4d555a;
+  --lab-accent:#c73d27;
+  --lab-accent-2:#292e33;
+  --lab-line:rgba(17,19,21,.22);
+  --lab-shadow:rgba(44,48,51,.20);
+  --font-body:"Helvetica Neue",Arial,sans-serif;
+  --font-head:"Archivo Black","Arial Black",Arial,sans-serif;
+  --font-editorial:"Rubik Glitch","Arial Black",Impact,sans-serif;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.055) 0,rgba(255,255,255,.055) 1px,rgba(0,0,0,.018) 1px,rgba(0,0,0,.018) 3px),
+    linear-gradient(128deg,#ebebe7 0%,#aeb3b7 23%,#dedfdd 47%,#969ca0 72%,#e1e2de 100%)!important;
+  background-attachment:fixed!important;
+}
+
+body[data-theme="xerox"]{
+  --lab-bg:#d8d6cf;
+  --lab-panel:#ece9e1;
+  --lab-panel-2:#c5c1b7;
+  --lab-text:#0a0a0a;
+  --lab-muted:#4c4a46;
+  --lab-accent:#d63c26;
+  --lab-accent-2:#111;
+  --lab-line:rgba(10,10,10,.22);
+  --lab-shadow:rgba(20,18,14,.16);
+  --font-body:"Helvetica Neue",Arial,sans-serif;
+  --font-head:"Archivo Black","Arial Black",Arial,sans-serif;
+  --font-editorial:"Road Rage","Rubik Dirt",Impact,sans-serif;
+  background:
+    radial-gradient(circle at 17% 14%,rgba(0,0,0,.035) 0 1px,transparent 1.4px),
+    radial-gradient(circle at 74% 31%,rgba(0,0,0,.028) 0 1px,transparent 1.6px),
+    linear-gradient(160deg,#e5e2da 0%,#d4d1c8 55%,#c9c5bb 100%)!important;
+  background-size:13px 13px,19px 19px,100% 100%!important;
+  background-attachment:fixed!important;
+}
+
+/* New trials deliberately reject the previous fashion-serif/italic headline system. */
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .hero h1,
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .section h2{
+  font-family:var(--font-editorial)!important;
+  font-style:normal!important;
+  font-weight:400!important;
+  text-transform:uppercase!important;
+  letter-spacing:-.025em!important;
+  line-height:.82!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .hero h1 em,
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .section h2 em{
+  font-family:var(--font-editorial)!important;
+  font-style:normal!important;
+  font-weight:400!important;
+  color:var(--lab-accent)!important;
+  letter-spacing:-.025em!important;
+}
+
+/* Utility and small typography becomes intentionally heavy/merch-like. */
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) :is(
+  .announcement,.header nav a,.header-cta,.theme-lab,.eyebrow,.kicker,.concept-code,.status,
+  .chip,.matrix-intro span,.genre-meta small,.genre-count,.product small,.step span,
+  .mockup-note,.garment-v2-copy small,.garment-v2-note,.early-card-link
+){
+  font-family:"Archivo Black","Arial Black",Arial,sans-serif!important;
+  font-weight:400!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) :is(
+  .genre-meta h3,.concept h4,.product strong,.step h3,.garment-v2-copy strong
+){
+  font-family:"Archivo Black","Arial Black",Arial,sans-serif!important;
+  font-weight:400!important;
+  letter-spacing:-.045em!important;
+}
+
+/* Header / lab treatment */
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .header{
+  border-radius:2px!important;
+  box-shadow:0 14px 34px var(--lab-shadow)!important;
+  backdrop-filter:blur(8px);
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .theme-lab{
+  border-radius:0!important;
+  box-shadow:0 12px 28px var(--lab-shadow)!important;
+}
+body[data-theme="slategrind"] .header,
+body[data-theme="slategrind"] .theme-lab{background:rgba(48,54,59,.90)!important}
+body[data-theme="silvernoise"] .header,
+body[data-theme="silvernoise"] .theme-lab{background:rgba(239,239,235,.86)!important}
+body[data-theme="xerox"] .header,
+body[data-theme="xerox"] .theme-lab{background:rgba(236,233,225,.94)!important}
+
+body[data-theme="slategrind"] .announcement{background:#202529!important;color:#d7ff38!important}
+body[data-theme="silvernoise"] .announcement{background:#16191c!important;color:#efefea!important}
+body[data-theme="xerox"] .announcement{background:#0b0b0b!important;color:#eeeae0!important}
+
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .brand-wordmark{
+  font-family:"Archivo Black","Arial Black",Arial,sans-serif!important;
+  font-weight:400!important;
+  letter-spacing:-.085em!important;
+}
+
+/* Hero top should feel more like a merch campaign and less like a magazine cover. */
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .hero{
+  align-items:center!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .hero h1{
+  font-size:clamp(4.5rem,9.2vw,9rem)!important;
+  max-width:8.4ch;
+}
+body[data-theme="slategrind"] .hero h1{
+  text-shadow:2px 1px 0 rgba(0,0,0,.24),-1px 0 0 rgba(255,255,255,.10);
+}
+body[data-theme="silvernoise"] .hero h1{
+  text-shadow:1px 1px 0 rgba(255,255,255,.68),2px 2px 0 rgba(17,19,21,.08);
+}
+body[data-theme="xerox"] .hero h1{
+  text-shadow:1px 0 0 rgba(0,0,0,.10);
+  transform:rotate(-.35deg);
+  transform-origin:left center;
+}
+
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .intro{
+  font-size:1rem!important;
+  font-weight:550!important;
+  line-height:1.55!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .button{
+  border-radius:2px!important;
+  text-transform:uppercase!important;
+  font-family:"Archivo Black","Arial Black",Arial,sans-serif!important;
+  font-size:.66rem!important;
+  letter-spacing:.035em!important;
+}
+
+/* Theme-specific accents */
+body[data-theme="slategrind"] .button.primary{background:#d7ff38!important;color:#15191c!important}
+body[data-theme="slategrind"] .button.ghost{border-color:rgba(243,241,233,.42)!important}
+body[data-theme="silvernoise"] .button.primary{background:#15181b!important;color:#f2f2ed!important}
+body[data-theme="xerox"] .button.primary{background:#090909!important;color:#eeeae1!important}
+
+body[data-theme="slategrind"] .genre,
+body[data-theme="slategrind"] .concept,
+body[data-theme="slategrind"] .product{background:rgba(67,74,81,.82)!important}
+body[data-theme="silvernoise"] .genre,
+body[data-theme="silvernoise"] .concept,
+body[data-theme="silvernoise"] .product{background:rgba(239,239,235,.84)!important}
+body[data-theme="xerox"] .genre,
+body[data-theme="xerox"] .concept,
+body[data-theme="xerox"] .product{background:rgba(238,235,226,.92)!important}
+
+body[data-theme="slategrind"] .garment-v2-stage{background:linear-gradient(145deg,#616a73,#363d43)!important}
+body[data-theme="silvernoise"] .garment-v2-stage{background:linear-gradient(135deg,#ecece8,#a8adb1 52%,#d7d8d5)!important}
+body[data-theme="xerox"] .garment-v2-stage{background:linear-gradient(145deg,#e6e2d8,#c7c1b6)!important}
+
+/* In the rough trials the Black Metal feature should inherit the active lab, not Archive's cream card look. */
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .blackmetal-dev-note{
+  background:var(--lab-panel)!important;
+  color:var(--lab-muted)!important;
+  border-color:var(--lab-line)!important;
+}
+
+@media(max-width:620px){
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .hero h1{
+    font-size:clamp(3.3rem,16vw,4.9rem)!important;
+    max-width:9ch;
+    line-height:.84!important;
+  }
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .theme-lab__options{
+    gap:6px!important;
+  }
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .theme-lab button{
+    font-size:.52rem!important;
+    padding:7px 8px!important;
+  }
+}
