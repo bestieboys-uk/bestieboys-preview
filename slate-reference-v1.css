@@ -1,0 +1,155 @@
+/* Bestie Boys — Slate Grind reference pass v1
+   Structural match to the selected dark charcoal / bone / rust website reference. */
+
+body[data-theme="slategrind"]{
+  background:
+    radial-gradient(circle at 18% 7%,rgba(255,255,255,.035),transparent 18%),
+    radial-gradient(circle at 81% 24%,rgba(157,48,31,.055),transparent 23%),
+    repeating-linear-gradient(18deg,rgba(255,255,255,.008) 0 1px,transparent 1px 8px),
+    radial-gradient(circle at 12% 22%,rgba(255,255,255,.022) 0 1px,transparent 1.4px),
+    linear-gradient(145deg,#1a1c1e 0%,#0e1011 47%,#070809 100%)!important;
+  background-size:100% 100%,100% 100%,100% 100%,17px 17px,100% 100%!important;
+  background-attachment:fixed!important;
+}
+body[data-theme="slategrind"] .announcement{display:none!important}
+
+/* Logo-led masthead like the chosen reference. */
+body[data-theme="slategrind"] .header{
+  width:min(calc(100% - 34px),1280px)!important;
+  min-height:clamp(260px,61vw,520px)!important;
+  margin:8px auto 0!important;
+  padding:0!important;
+  display:grid!important;
+  place-items:center!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+body[data-theme="slategrind"] .header nav,
+body[data-theme="slategrind"] .header-cta{display:none!important}
+body[data-theme="slategrind"] .header .brand-wordmark{
+  width:min(82vw,790px)!important;
+  height:clamp(220px,54vw,465px)!important;
+  margin:auto!important;
+  background:#eee9df!important;
+  -webkit-mask-image:var(--bb-logo-splatter)!important;
+  mask-image:var(--bb-logo-splatter)!important;
+  -webkit-mask-size:contain!important;
+  mask-size:contain!important;
+  -webkit-mask-repeat:no-repeat!important;
+  mask-repeat:no-repeat!important;
+  -webkit-mask-position:center!important;
+  mask-position:center!important;
+  filter:drop-shadow(0 9px 13px rgba(0,0,0,.58))!important;
+}
+
+/* Dark glassy merch-panel rather than generic UI. */
+body[data-theme="slategrind"] .theme-lab{
+  width:min(calc(100% - 72px),1180px)!important;
+  margin:-8px auto 28px!important;
+  padding:25px 28px 24px!important;
+  border:1px solid rgba(227,220,209,.32)!important;
+  border-radius:14px!important;
+  background:
+    repeating-linear-gradient(16deg,rgba(255,255,255,.009) 0 1px,transparent 1px 9px),
+    linear-gradient(180deg,rgba(37,39,40,.91),rgba(17,19,20,.94))!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.045),0 18px 45px rgba(0,0,0,.44)!important;
+}
+body[data-theme="slategrind"] .theme-lab__label{margin-bottom:18px!important}
+body[data-theme="slategrind"] .theme-lab__label b{
+  color:#ede8df!important;
+  font-family:"Arial Black",Arial,sans-serif!important;
+  font-size:clamp(1.08rem,3.1vw,1.55rem)!important;
+  letter-spacing:.14em!important;
+}
+body[data-theme="slategrind"] .theme-lab__label span{display:none!important}
+body[data-theme="slategrind"] .theme-lab__options{gap:12px 14px!important}
+body[data-theme="slategrind"] .theme-lab button{
+  min-width:155px!important;
+  padding:12px 22px!important;
+  border:1.5px solid rgba(237,232,223,.72)!important;
+  color:#ede8df!important;
+  background:rgba(8,9,10,.16)!important;
+  box-shadow:none!important;
+}
+body[data-theme="slategrind"] .theme-lab button[aria-pressed="true"]{
+  background:#9f3524!important;
+  color:#f5eee6!important;
+  border-color:#b64a35!important;
+}
+
+/* Hero directly below the lab, no competing mockup image. */
+body[data-theme="slategrind"] .hero{
+  width:min(calc(100% - 72px),1180px)!important;
+  display:block!important;
+  padding:5px 0 62px!important;
+}
+body[data-theme="slategrind"] .hero>div:first-child{max-width:970px!important}
+body[data-theme="slategrind"] .hero-card{display:none!important}
+body[data-theme="slategrind"] .eyebrow{
+  color:#a43a28!important;
+  font-size:.72rem!important;
+  letter-spacing:.14em!important;
+  margin:0 0 13px!important;
+}
+body[data-theme="slategrind"] .hero h1{
+  font-family:Impact,Haettenschweiler,"Arial Narrow Bold",sans-serif!important;
+  font-size:clamp(4.8rem,13.7vw,9.9rem)!important;
+  line-height:.82!important;
+  letter-spacing:-.045em!important;
+  max-width:7.2ch!important;
+  margin:0!important;
+  color:#ebe6dc!important;
+}
+body[data-theme="slategrind"] .hero h1 em{color:#a43a28!important;font:inherit!important;font-style:normal!important}
+body[data-theme="slategrind"] .intro{
+  max-width:870px!important;
+  color:#e3ddd2!important;
+  font-family:"Arial Black","Helvetica Neue",Arial,sans-serif!important;
+  font-weight:800!important;
+  line-height:1.25!important;
+  font-size:clamp(.96rem,2.1vw,1.16rem)!important;
+  margin:14px 0 18px!important;
+}
+body[data-theme="slategrind"] .hero .buttons{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:10px!important;
+  max-width:920px!important;
+}
+body[data-theme="slategrind"] .hero .button{
+  min-height:57px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border-radius:4px!important;
+  font-size:.82rem!important;
+  letter-spacing:.055em!important;
+}
+body[data-theme="slategrind"] .hero .button.primary{background:#a43a28!important;color:#f5eee6!important;border-color:#b94a35!important}
+body[data-theme="slategrind"] .hero .button.ghost{background:rgba(8,9,10,.22)!important;color:#ece7de!important;border-color:rgba(236,231,221,.72)!important}
+
+/* Lower content stays within the same dark physical material. */
+body[data-theme="slategrind"] :is(.scene-card,.genre,.concept,.product,.garment-v3-card,.scene-storefront__proof,.storefront-final-cta){
+  background:
+    repeating-linear-gradient(17deg,rgba(255,255,255,.008) 0 1px,transparent 1px 9px),
+    rgba(24,26,27,.94)!important;
+  border-color:rgba(231,224,213,.24)!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.025)!important;
+}
+body[data-theme="slategrind"] :is(.section p,.scene-card p,.concept-body p,.garment-v3-copy p,.step p){color:#d6cfc4!important}
+body[data-theme="slategrind"] :is(.section h2,.scene-storefront__head h2,.storefront-final-cta h2){color:#eee9df!important}
+body[data-theme="slategrind"] :is(.section h2 em,.scene-storefront__head h2 span,.storefront-final-cta h2 span){color:#a43a28!important}
+
+@media(max-width:620px){
+  body[data-theme="slategrind"] .header{width:calc(100% - 16px)!important;min-height:53vw!important}
+  body[data-theme="slategrind"] .header .brand-wordmark{width:86vw!important;height:51vw!important}
+  body[data-theme="slategrind"] .theme-lab{width:calc(100% - 26px)!important;margin:-5px auto 22px!important;padding:21px 20px 19px!important;border-radius:12px!important}
+  body[data-theme="slategrind"] .theme-lab__options{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important}
+  body[data-theme="slategrind"] .theme-lab button{min-width:0!important;width:100%!important;padding:11px 7px!important;font-size:.64rem!important}
+  body[data-theme="slategrind"] .theme-lab button:last-child:nth-child(odd){grid-column:1 / -1!important;width:50%!important;justify-self:start!important}
+  body[data-theme="slategrind"] .hero{width:calc(100% - 26px)!important}
+  body[data-theme="slategrind"] .hero h1{font-size:clamp(3.9rem,17vw,5.25rem)!important;max-width:6.4ch!important}
+  body[data-theme="slategrind"] .intro{font-size:.97rem!important}
+  body[data-theme="slategrind"] .hero .button{min-height:54px!important;font-size:.71rem!important}
+}
