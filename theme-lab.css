@@ -74,3 +74,10 @@ body[data-theme="archive"] .product-mockup__stage{background:radial-gradient(cir
 
 @media(max-width:900px){#formats .product-strip{grid-template-columns:1fr!important}.theme-lab{align-items:flex-start;flex-direction:column}.theme-lab__options{justify-content:flex-start}}
 @media(max-width:620px){.theme-lab{margin-top:9px;padding:10px}.theme-lab__label span{display:none}.theme-lab button{padding:7px 9px;font-size:.57rem}body .hero{grid-template-columns:1fr!important}.brand-wordmark{font-size:1.7rem!important}.header-cta{font-size:.68rem!important}#formats .product{grid-template-columns:44% 56%!important;min-height:250px!important}.product-mockup__stage{min-height:250px}.product-mockup__copy{padding:18px 14px}.product-mockup__copy strong{font-size:1.38rem!important;line-height:.98!important}.product-mockup__copy p{font-size:.72rem}.mockup-note{font-size:.49rem!important}.garment-tee{width:132px;height:151px}.garment-long{width:137px;height:162px}.garment-hoodie{width:134px;height:151px;border-radius:30px 30px 13px 13px}.garment-hoodie:before{width:56px;height:44px;top:-27px;left:38px}.garment-fitted{width:112px;height:151px}.garment-cap{width:134px;height:74px;transform:translateX(-12px)}.garment-cap:before{width:82px;height:25px;right:-52px}.garment-sticker{width:112px}.sleeve-word{font-size:.36rem}.cap-mark{font-size:.82rem}}
+
+
+/* Existing Black Metal early-board previews */
+.bm-early-thumb{display:block;width:100%;height:auto;aspect-ratio:5/4;object-fit:cover;margin:16px 0 2px;border:1px solid var(--lab-line);background:#0b0b0b}
+.genre.blackmetal .concept-body .art-slot{display:none!important}
+body[data-theme="archive"] .bm-early-thumb{box-shadow:0 14px 32px rgba(63,47,32,.10)}
+@media(max-width:620px){.bm-early-thumb{margin-top:14px}}
