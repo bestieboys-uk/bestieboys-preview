@@ -1,0 +1,21 @@
+name: Apply Design Lab v6
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-design-lab-v6.yml'
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply Design Lab v6 patch
+        run: python .tmp/apply_designlab6.py
+      - name: Commit Design Lab v6
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Use only Slate Grind, Silver Noise and Xerox themes"
+          git push
