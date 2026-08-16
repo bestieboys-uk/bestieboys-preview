@@ -2,6 +2,21 @@
   const blackmetal = document.querySelector('.genre.blackmetal');
   if (!blackmetal) return;
 
+  // Mobile QA fix: long scene names must never clip outside their cards.
+  if (!document.querySelector('#bb-mobile-scene-heading-fix')) {
+    const style = document.createElement('style');
+    style.id = 'bb-mobile-scene-heading-fix';
+    style.textContent = `
+      @media (max-width:620px){
+        .genre>summary{grid-template-columns:70px minmax(0,1fr)!important}
+        .genre-meta{min-width:0!important}
+        .genre-meta h3{max-width:100%!important;overflow-wrap:anywhere!important;word-break:normal!important}
+        .genre.power .genre-meta h3{font-size:1.55rem!important;letter-spacing:-.055em!important;line-height:.92!important}
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   blackmetal.open = true;
 
   const captions = {
