@@ -81,3 +81,8 @@ body[data-theme="archive"] .product-mockup__stage{background:radial-gradient(cir
 .genre.blackmetal .concept-body .art-slot{display:none!important}
 body[data-theme="archive"] .bm-early-thumb{box-shadow:0 14px 32px rgba(63,47,32,.10)}
 @media(max-width:620px){.bm-early-thumb{margin-top:14px}}
+
+
+/* Compact Tour Issue caption */
+body .badge{width:auto!important;max-width:55%!important;white-space:normal!important;line-height:1.15!important;text-align:left!important}
+@media(max-width:620px){body .badge{max-width:58%!important;font-size:.48rem!important;padding:7px 9px!important}}
