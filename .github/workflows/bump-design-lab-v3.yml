@@ -1,0 +1,30 @@
+name: Bump Design Lab v3
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/bump-design-lab-v3.yml'
+permissions:
+  contents: write
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump Design Lab script and self-clean
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          s=s.replace('theme-lab.js?v=6','theme-lab.js?v=7')
+          p.write_text(s)
+          PY
+          rm -f .github/workflows/bump-design-lab-v3.yml
+      - name: Commit Design Lab v3
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html .github/workflows/bump-design-lab-v3.yml
+          git commit -m 'Load expanded Design Lab typography and background trials' || exit 0
+          git push
