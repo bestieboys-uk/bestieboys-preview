@@ -1,0 +1,30 @@
+name: Bump Design Lab v4
+on:
+  push:
+    paths:
+      - '.github/workflows/bump-design-lab-v4.yml'
+permissions:
+  contents: write
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump preview script and self-clean
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          import re
+          s=re.sub(r'theme-lab\.js\?v=\d+', 'theme-lab.js?v=7', s)
+          p.write_text(s)
+          PY
+          rm .github/workflows/bump-design-lab-v4.yml
+      - name: Commit Design Lab v4
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html .github/workflows/bump-design-lab-v4.yml
+          git commit -m 'Load Bestie Boys merch-led Design Lab v4' || exit 0
+          git push
