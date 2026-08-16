@@ -106,7 +106,7 @@
   }
   if (!document.querySelector('script[data-archive-target]')) {
     const targetJs = document.createElement('script');
-    targetJs.src = 'archive-target.js?v=1';
+    targetJs.src = 'archive-target.js?v=2';
     targetJs.dataset.archiveTarget = 'true';
     document.body.appendChild(targetJs);
   }
