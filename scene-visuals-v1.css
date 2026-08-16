@@ -62,4 +62,9 @@
   .scene-card__visual .scene-visual__type{font-size:.82rem}
   .scene-card--power .scene-visual__type{font-size:.98rem}
   .scene-card__visual .scene-visual__micro{font-size:.34rem}
+  .scene-card--power h3{
+    font-size:1.28rem!important;
+    letter-spacing:-.055em!important;
+    white-space:nowrap!important;
+  }
 }
