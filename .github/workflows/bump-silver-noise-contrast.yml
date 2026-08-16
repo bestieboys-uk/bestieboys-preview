@@ -1,0 +1,30 @@
+name: Bump Silver Noise contrast
+on:
+  push:
+    paths:
+      - '.github/workflows/bump-silver-noise-contrast.yml'
+permissions:
+  contents: write
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump preview script and self-clean
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+          import re
+          s = re.sub(r'theme-lab\.js\?v=[^"\']+', 'theme-lab.js?v=silvercontrast1', s)
+          p.write_text(s)
+          PY
+          rm -f .github/workflows/bump-silver-noise-contrast.yml
+      - name: Commit Silver Noise refresh
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m "Load refined Silver Noise typography and contrast" || exit 0
+          git push
