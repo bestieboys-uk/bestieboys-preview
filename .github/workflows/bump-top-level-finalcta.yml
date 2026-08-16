@@ -1,0 +1,32 @@
+name: Bump top-level final CTA
+on:
+  push:
+    paths:
+      - '.github/workflows/bump-top-level-finalcta.yml'
+permissions:
+  contents: write
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump top-level theme script and self-clean
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+          old = 'theme-lab.js?v=storefront2'
+          new = 'theme-lab.js?v=finalcta2'
+          if old not in s:
+              raise SystemExit(f'Expected cache token not found: {old}')
+          p.write_text(s.replace(old, new, 1))
+          Path('.github/workflows/bump-top-level-finalcta.yml').unlink()
+          PY
+      - name: Commit top-level cache refresh
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Force fresh top-level storefront scripts'
+          git push
