@@ -1,0 +1,29 @@
+name: Bump scene heading v2
+on:
+  push:
+    paths:
+      - '.github/workflows/bump-scene-heading-v2.yml'
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump scene stylesheet and self-clean
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          s=s.replace('scene-visuals-v1.css?v=1','scene-visuals-v1.css?v=2')
+          p.write_text(s)
+          PY
+          rm .github/workflows/bump-scene-heading-v2.yml
+      - name: Commit mobile heading fix
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Load Powerviolence scene heading mobile fix' || exit 0
+          git push
