@@ -2,7 +2,7 @@
   const blackmetal = document.querySelector('.genre.blackmetal');
   if (!blackmetal) return;
 
-  // Mobile QA fix: long scene names must never clip outside their cards.
+  // Mobile QA fix: long scene names must stay inside their cards without ugly word splitting.
   if (!document.querySelector('#bb-mobile-scene-heading-fix')) {
     const style = document.createElement('style');
     style.id = 'bb-mobile-scene-heading-fix';
@@ -10,8 +10,15 @@
       @media (max-width:620px){
         .genre>summary{grid-template-columns:70px minmax(0,1fr)!important}
         .genre-meta{min-width:0!important}
-        .genre-meta h3{max-width:100%!important;overflow-wrap:anywhere!important;word-break:normal!important}
-        .genre.power .genre-meta h3{font-size:1.55rem!important;letter-spacing:-.055em!important;line-height:.92!important}
+        .genre-meta h3{max-width:100%!important;word-break:normal!important}
+        .genre.power .genre-meta h3{
+          font-size:1.5rem!important;
+          letter-spacing:-.06em!important;
+          line-height:.92!important;
+          white-space:nowrap!important;
+          overflow-wrap:normal!important;
+          word-break:keep-all!important;
+        }
       }
     `;
     document.head.appendChild(style);
