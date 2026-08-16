@@ -1,0 +1,37 @@
+name: Load Silver Noise reference v1
+on:
+  push:
+    paths:
+      - '.github/workflows/load-silver-reference-v1.yml'
+jobs:
+  load:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wire Silver Noise reference styling
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          p = Path('index.html')
+          s = p.read_text()
+          link = '<link rel="stylesheet" href="silver-reference-v1.css?v=1">'
+          if 'silver-reference-v1.css' not in s:
+              s = s.replace('</head>', link + '\n</head>', 1)
+          s = re.sub(r'theme-lab\.js\?v=[^"\']+', 'theme-lab.js?v=silverref1', s, count=1)
+          p.write_text(s)
+
+          w = Path('.github/workflows/load-silver-reference-v1.yml')
+          if w.exists():
+              w.unlink()
+          PY
+      - name: Commit Silver Noise reference pass
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Load reference-led Silver Noise layout"
+          git push
