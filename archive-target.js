@@ -127,13 +127,13 @@
   if (!document.querySelector('link[data-storefront-pass-v1]')) {
     const css = document.createElement('link');
     css.rel = 'stylesheet';
-    css.href = 'storefront-pass-v1.css?v=1';
+    css.href = 'storefront-pass-v1.css?v=2';
     css.dataset.storefrontPassV1 = 'true';
     document.head.appendChild(css);
   }
   if (!document.querySelector('script[data-storefront-pass-v1]')) {
     const js = document.createElement('script');
-    js.src = 'storefront-pass-v1.js?v=2';
+    js.src = 'storefront-pass-v1.js?v=3';
     js.dataset.storefrontPassV1 = 'true';
     document.body.appendChild(js);
   }
