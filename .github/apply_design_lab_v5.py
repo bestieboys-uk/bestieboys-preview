@@ -1,0 +1,53 @@
+from pathlib import Path
+import re
+
+p = Path('theme-lab.js')
+s = p.read_text()
+new_themes = """const themes = [
+    ['coldwave','Coldwave','Icy blue-black / cinematic / high contrast'],
+    ['xerox','Xerox','Dirty copier paper / black ink / ripped print'],
+    ['silvernoise','Silver Noise','Brushed steel / industrial plate / black'],
+    ['slategrind','Slate Grind','Charcoal / dirty bone / rust / low light']
+  ];"""
+s, n = re.subn(r"const themes = \[.*?\n  \];", new_themes, s, count=1, flags=re.S)
+if n != 1:
+    raise SystemExit('theme list replacement failed')
+
+marker = """  if (!document.querySelector('link[data-design-lab-v4]')) {
+    const designLabCss4 = document.createElement('link');
+    designLabCss4.rel = 'stylesheet';
+    designLabCss4.href = 'design-lab-v4.css?v=1';
+    designLabCss4.dataset.designLabV4 = 'true';
+    document.head.appendChild(designLabCss4);
+  }
+"""
+addition = marker + """  if (!document.querySelector('link[data-design-lab-v5]')) {
+    const designLabCss5 = document.createElement('link');
+    designLabCss5.rel = 'stylesheet';
+    designLabCss5.href = 'design-lab-v5.css?v=1';
+    designLabCss5.dataset.designLabV5 = 'true';
+    document.head.appendChild(designLabCss5);
+  }
+"""
+if 'data-design-lab-v5' not in s:
+    if marker not in s:
+        raise SystemExit('v4 loader marker missing')
+    s = s.replace(marker, addition, 1)
+
+s = s.replace('Live colour + logo trials', 'Four website reference directions')
+p.write_text(s)
+
+idx = Path('index.html')
+h = idx.read_text()
+h, n = re.subn(r'theme-lab\.js\?v=[^\"\']+', 'theme-lab.js?v=designlab5', h, count=1)
+if n != 1:
+    raise SystemExit('top-level theme script bump failed')
+idx.write_text(h)
+
+for temp in [
+    Path('.github/apply_design_lab_v5.py'),
+    Path('.github/workflows/apply-design-lab-v5.yml'),
+    Path('.github/workflows/apply-design-lab-v5-fix.yml'),
+]:
+    if temp.exists():
+        temp.unlink()
