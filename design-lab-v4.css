@@ -1,0 +1,172 @@
+/* Bestie Boys Design Lab v4 — merch-led palettes + actual experimental logo assets */
+
+:root{
+  --bb-logo-splatter:url('assets/brand/bestie-boys-splatter.png');
+  --bb-logo-spike:url('assets/brand/bestie-boys-spike.png');
+  --bb-logo-brush:url('assets/brand/bestie-boys-brush.png');
+}
+
+/* -------------------- MERCH-LED THEME VARIABLES -------------------- */
+body[data-theme="slategrind"]{
+  --lab-bg:#17191b;--lab-panel:#232629;--lab-panel-2:#303438;
+  --lab-text:#ece8df;--lab-muted:#d1ccc3;--lab-accent:#c9472e;--lab-accent-2:#ece8df;
+  --lab-line:rgba(236,232,223,.28);--lab-shadow:rgba(0,0,0,.42);
+  --bb-logo-image:var(--bb-logo-splatter);--bb-logo-color:#ece8df;
+  background:radial-gradient(circle at 18% 12%,rgba(255,255,255,.055),transparent 23%),linear-gradient(150deg,#272a2d 0%,#17191b 48%,#101214 100%)!important;
+  background-attachment:fixed!important;
+}
+body[data-theme="silvernoise"]{
+  --lab-bg:#c7c9c8;--lab-panel:rgba(244,244,240,.94);--lab-panel-2:#aeb2b3;
+  --lab-text:#0b0d0e;--lab-muted:#24282a;--lab-accent:#b93527;--lab-accent-2:#111315;
+  --lab-line:rgba(9,11,12,.30);--lab-shadow:rgba(30,34,36,.20);
+  --bb-logo-image:var(--bb-logo-spike);--bb-logo-color:#0b0d0e;
+  background:repeating-linear-gradient(90deg,rgba(255,255,255,.055) 0,rgba(255,255,255,.055) 1px,rgba(0,0,0,.018) 1px,rgba(0,0,0,.018) 3px),linear-gradient(128deg,#ededeb 0%,#b7bbbd 23%,#dedfdd 47%,#9ba0a3 72%,#e5e5e1 100%)!important;
+  background-attachment:fixed!important;
+}
+body[data-theme="xerox"]{
+  --lab-bg:#d9d5ca;--lab-panel:#eeeae0;--lab-panel-2:#c7c1b5;
+  --lab-text:#080808;--lab-muted:#292724;--lab-accent:#8f3025;--lab-accent-2:#111;
+  --lab-line:rgba(8,8,8,.30);--lab-shadow:rgba(22,18,14,.15);
+  --bb-logo-image:var(--bb-logo-brush);--bb-logo-color:#080808;
+  background:radial-gradient(circle at 17% 14%,rgba(0,0,0,.04) 0 1px,transparent 1.4px),radial-gradient(circle at 74% 31%,rgba(0,0,0,.03) 0 1px,transparent 1.6px),linear-gradient(160deg,#e6e2d8 0%,#d6d1c6 55%,#c9c3b7 100%)!important;
+  background-size:13px 13px,19px 19px,100% 100%!important;
+  background-attachment:fixed!important;
+}
+body[data-theme="surgical"]{
+  --lab-bg:#0c110e;--lab-panel:#151c18;--lab-panel-2:#26342b;
+  --lab-text:#edf0e9;--lab-muted:#c9d1ca;--lab-accent:#55d27d;--lab-accent-2:#a5ffbe;
+  --lab-line:rgba(207,239,216,.24);--lab-shadow:rgba(0,0,0,.48);
+  --font-body:"Helvetica Neue",Arial,sans-serif;--font-head:"Archivo Black","Arial Black",Arial,sans-serif;
+  --bb-logo-image:var(--bb-logo-splatter);--bb-logo-color:#55d27d;
+  background:radial-gradient(circle at 80% 8%,rgba(85,210,125,.12),transparent 28%),linear-gradient(145deg,#172019,#0c110e 56%,#080b09)!important;
+  background-attachment:fixed!important;
+}
+body[data-theme="bloodgrind"]{
+  --lab-bg:#171313;--lab-panel:#241b1a;--lab-panel-2:#38211f;
+  --lab-text:#eee7dc;--lab-muted:#d7c8bf;--lab-accent:#d44234;--lab-accent-2:#ff765f;
+  --lab-line:rgba(238,231,220,.24);--lab-shadow:rgba(0,0,0,.50);
+  --font-body:"Helvetica Neue",Arial,sans-serif;--font-head:"Archivo Black","Arial Black",Arial,sans-serif;
+  --bb-logo-image:var(--bb-logo-spike);--bb-logo-color:#d44234;
+  background:radial-gradient(circle at 14% 9%,rgba(212,66,52,.10),transparent 24%),linear-gradient(145deg,#2c201f 0%,#171313 48%,#0e0b0b 100%)!important;
+  background-attachment:fixed!important;
+}
+body[data-theme="coldsteel"]{
+  --lab-bg:#08111a;--lab-panel:#101c27;--lab-panel-2:#243746;
+  --lab-text:#e8eef2;--lab-muted:#c6d2da;--lab-accent:#9ebfd5;--lab-accent-2:#d8e7f0;
+  --lab-line:rgba(211,228,239,.25);--lab-shadow:rgba(0,0,0,.48);
+  --font-body:"Helvetica Neue",Arial,sans-serif;--font-head:"Archivo Black","Arial Black",Arial,sans-serif;
+  --bb-logo-image:var(--bb-logo-brush);--bb-logo-color:#c5dae8;
+  background:radial-gradient(circle at 70% 0%,rgba(145,185,210,.14),transparent 27%),linear-gradient(150deg,#132535 0%,#08111a 58%,#05090d 100%)!important;
+  background-attachment:fixed!important;
+}
+
+/* -------------------- REAL BESTIE BOYS LOGO TRIALS -------------------- */
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .brand-wordmark{
+  display:block!important;
+  width:clamp(150px,23vw,235px)!important;
+  height:clamp(54px,8vw,84px)!important;
+  font-size:0!important;
+  letter-spacing:0!important;
+  background:var(--bb-logo-color)!important;
+  -webkit-mask-image:var(--bb-logo-image);
+  mask-image:var(--bb-logo-image);
+  -webkit-mask-size:contain;
+  mask-size:contain;
+  -webkit-mask-repeat:no-repeat;
+  mask-repeat:no-repeat;
+  -webkit-mask-position:left center;
+  mask-position:left center;
+  flex:0 0 auto;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .footer .brand-wordmark{
+  width:145px!important;height:52px!important;
+}
+
+/* Header must give the logo enough room instead of crushing it into a text-sized slot. */
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .header{
+  min-height:92px!important;padding:10px 18px!important;align-items:center!important;border-radius:2px!important;
+  background:color-mix(in srgb,var(--lab-panel) 92%,transparent)!important;
+  border-color:var(--lab-line)!important;box-shadow:0 12px 34px var(--lab-shadow)!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .header-cta{
+  flex:0 0 auto!important;font-family:"Archivo Black","Arial Black",Arial,sans-serif!important;font-size:.63rem!important;
+  text-transform:uppercase!important;letter-spacing:.04em!important;border-radius:2px!important;
+}
+
+/* -------------------- HERO: LARGE, HEAVY, NO OVERLAP -------------------- */
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .hero h1,
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .section h2{
+  font-family:"Archivo Black","Arial Black",Arial,sans-serif!important;
+  font-style:normal!important;font-weight:400!important;text-transform:uppercase!important;
+  letter-spacing:-.065em!important;line-height:.90!important;color:var(--lab-text)!important;
+  text-shadow:none!important;transform:none!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .hero h1{
+  font-size:clamp(4.2rem,7.6vw,7.7rem)!important;max-width:9.2ch!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .hero h1 em,
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .section h2 em{
+  font:inherit!important;font-style:normal!important;color:var(--lab-accent)!important;letter-spacing:inherit!important;
+}
+
+/* -------------------- SMALL TEXT: BIGGER + HIGHER CONTRAST -------------------- */
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) :is(.intro,.section p,.genre-meta p,.concept-body p,.garment-v2-copy p,.notice,.footer){
+  color:var(--lab-muted)!important;font-family:"Helvetica Neue",Arial,sans-serif!important;font-weight:650!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .intro{
+  font-size:1.02rem!important;line-height:1.55!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) :is(.announcement,.header nav a,.header-cta,.theme-lab,.eyebrow,.kicker,.concept-code,.status,.chip,.matrix-intro span,.genre-meta small,.genre-count,.product small,.step span,.mockup-note,.garment-v2-copy small,.garment-v2-note,.early-card-link){
+  font-family:"Archivo Black","Arial Black",Arial,sans-serif!important;font-weight:400!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) :is(.eyebrow,.kicker){
+  font-size:.68rem!important;letter-spacing:.13em!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) :is(.genre-meta h3,.concept h4,.product strong,.step h3,.garment-v2-copy strong){
+  font-family:"Archivo Black","Arial Black",Arial,sans-serif!important;font-weight:400!important;color:var(--lab-text)!important;
+}
+
+/* -------------------- LAB + BUTTONS -------------------- */
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .theme-lab{
+  background:color-mix(in srgb,var(--lab-panel) 94%,transparent)!important;border-color:var(--lab-line)!important;
+  box-shadow:0 10px 28px var(--lab-shadow)!important;border-radius:0!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .theme-lab button{
+  color:var(--lab-text)!important;border-color:var(--lab-line)!important;background:transparent!important;border-radius:999px!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .theme-lab button[aria-pressed="true"]{
+  background:var(--lab-text)!important;color:var(--lab-bg)!important;border-color:var(--lab-text)!important;
+}
+body[data-theme="slategrind"] .theme-lab button[aria-pressed="true"],body[data-theme="bloodgrind"] .theme-lab button[aria-pressed="true"]{background:var(--lab-accent)!important;color:#fff!important;border-color:var(--lab-accent)!important}
+body[data-theme="surgical"] .theme-lab button[aria-pressed="true"]{background:#55d27d!important;color:#071009!important;border-color:#55d27d!important}
+body[data-theme="coldsteel"] .theme-lab button[aria-pressed="true"]{background:#b8d2e2!important;color:#07111a!important;border-color:#b8d2e2!important}
+
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .button{
+  border-radius:2px!important;text-transform:uppercase!important;font-family:"Archivo Black","Arial Black",Arial,sans-serif!important;font-size:.67rem!important;letter-spacing:.035em!important;
+}
+body[data-theme="slategrind"] .button.primary,body[data-theme="bloodgrind"] .button.primary{background:var(--lab-accent)!important;color:#fff!important}
+body[data-theme="surgical"] .button.primary{background:#55d27d!important;color:#071009!important}
+body[data-theme="silvernoise"] .button.primary,body[data-theme="xerox"] .button.primary{background:#0b0d0e!important;color:#f1f0eb!important}
+body[data-theme="coldsteel"] .button.primary{background:#b8d2e2!important;color:#07111a!important}
+
+/* Cards follow the active merch world instead of reverting to generic cream. */
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) :is(.genre,.concept,.product,.blackmetal-dev-note){
+  background:var(--lab-panel)!important;color:var(--lab-text)!important;border-color:var(--lab-line)!important;box-shadow:none!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) :is(.chip,.matrix-intro span,.spec span){color:var(--lab-muted)!important;border-color:var(--lab-line)!important}
+
+body[data-theme="slategrind"] .garment-v2-stage,body[data-theme="bloodgrind"] .garment-v2-stage{background:linear-gradient(145deg,#35383b,#1b1e20)!important}
+body[data-theme="silvernoise"] .garment-v2-stage{background:linear-gradient(135deg,#efefeb,#a9aeb1 52%,#d9dad7)!important}
+body[data-theme="xerox"] .garment-v2-stage{background:linear-gradient(145deg,#e6e1d7,#c8c1b4)!important}
+body[data-theme="surgical"] .garment-v2-stage{background:linear-gradient(145deg,#243329,#0e1611)!important}
+body[data-theme="coldsteel"] .garment-v2-stage{background:linear-gradient(145deg,#294155,#0a1620)!important}
+
+@media(max-width:620px){
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .header{min-height:78px!important;padding:8px 13px!important}
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .brand-wordmark{width:154px!important;height:58px!important}
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .hero h1{font-size:clamp(3.05rem,13vw,4.15rem)!important;line-height:.91!important;letter-spacing:-.065em!important;max-width:none!important}
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .hero h1 em{display:block!important;margin-top:.04em!important}
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .intro{font-size:.96rem!important;font-weight:700!important;line-height:1.52!important}
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .theme-lab__options{gap:6px!important}
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"],[data-theme="surgical"],[data-theme="bloodgrind"],[data-theme="coldsteel"]) .theme-lab button{font-size:.50rem!important;padding:7px 8px!important}
+}
