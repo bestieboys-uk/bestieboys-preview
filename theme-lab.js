@@ -6,10 +6,9 @@
     ['archive','Archive']
   ];
   const saved = localStorage.getItem('bestieboys-preview-theme');
-  body.dataset.theme = themes.some(([id]) => id === saved) ? saved : 'atelier';
+  body.dataset.theme = themes.some(([id]) => id === saved) ? saved : 'archive';
 
   // Robust CSS wordmark based on the supplied BestieBoys logo trial.
-  // This avoids the broken raster asset while preserving the intended bold sans wordmark direction.
   document.querySelectorAll('a.brand').forEach(link => {
     link.classList.remove('brand-image');
     link.classList.add('brand-wordmark');
@@ -95,5 +94,20 @@
     garmentJs.src = 'garment-lab-v2.js?v=1';
     garmentJs.dataset.garmentV2 = 'true';
     document.body.appendChild(garmentJs);
+  }
+
+  // Archive target pass: translates the approved generated page direction into the real preview.
+  if (!document.querySelector('link[data-archive-target]')) {
+    const targetCss = document.createElement('link');
+    targetCss.rel = 'stylesheet';
+    targetCss.href = 'archive-target.css?v=1';
+    targetCss.dataset.archiveTarget = 'true';
+    document.head.appendChild(targetCss);
+  }
+  if (!document.querySelector('script[data-archive-target]')) {
+    const targetJs = document.createElement('script');
+    targetJs.src = 'archive-target.js?v=1';
+    targetJs.dataset.archiveTarget = 'true';
+    document.body.appendChild(targetJs);
   }
 })();
