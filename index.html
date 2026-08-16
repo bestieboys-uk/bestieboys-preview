@@ -84,7 +84,7 @@ function loadConceptArt(concept){
     if(i>=exts.length){img.hidden=true;placeholder.hidden=false;return;}
     img.onload=()=>{img.hidden=false;placeholder.hidden=true;};
     img.onerror=()=>{i+=1;next();};
-    img.src=slot.dataset.artBase+exts[i];
+    img.src=slot.dataset.artBase+exts[i]+'?v=earlybm1';
   }
   next();
 }
