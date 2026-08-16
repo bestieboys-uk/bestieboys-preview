@@ -1,0 +1,40 @@
+name: Bump storefront cleanup v2
+on:
+  push:
+    paths:
+      - '.github/workflows/bump-storefront-cleanup-v2.yml'
+permissions:
+  contents: write
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump nested storefront assets and self-clean
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          replacements = {
+              'archive-target.js': [("storefront-pass-v1.js?v=1", "storefront-pass-v1.js?v=2")],
+              'theme-lab.js': [("archive-target.js?v=5", "archive-target.js?v=6")],
+          }
+          for filename, pairs in replacements.items():
+              p = Path(filename)
+              s = p.read_text()
+              for old, new in pairs:
+                  s = s.replace(old, new)
+              p.write_text(s)
+          p = Path('index.html')
+          s = p.read_text()
+          import re
+          s = re.sub(r'theme-lab\.js\?v=[^\"\']+', 'theme-lab.js?v=storefront2', s)
+          p.write_text(s)
+          Path('.github/workflows/bump-storefront-cleanup-v2.yml').unlink()
+          PY
+      - name: Commit storefront cleanup
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add archive-target.js theme-lab.js index.html .github/workflows/bump-storefront-cleanup-v2.yml
+          git commit -m 'Load customer-facing storefront cleanup v2'
+          git push
