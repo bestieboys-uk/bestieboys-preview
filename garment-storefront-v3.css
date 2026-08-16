@@ -1,0 +1,34 @@
+/* Bestie Boys garment storefront presentation v3 */
+#formats .product-strip{display:grid!important;grid-template-columns:1fr!important;gap:24px!important}
+#formats .product.garment-v3-card{display:grid!important;grid-template-columns:minmax(0,1.18fr) minmax(280px,.82fr)!important;min-height:500px!important;padding:0!important;border:1px solid var(--lab-line)!important;background:color-mix(in srgb,var(--lab-panel) 96%,transparent)!important;overflow:hidden!important}
+.garment-v3-stage{position:relative;min-height:500px;display:grid;place-items:center;padding:24px;background:linear-gradient(145deg,#e6e6e2 0%,#c9cac8 46%,#f1f1ed 100%);border-right:1px solid var(--lab-line);overflow:hidden}
+.garment-v3-stage:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(0,0,0,.025) 0 1px,transparent 1px 5px),linear-gradient(125deg,rgba(255,255,255,.3),transparent 28%,transparent 68%,rgba(0,0,0,.08));pointer-events:none}
+.garment-v3-stage:after{content:"DEVELOPMENT GARMENT STUDY";position:absolute;left:16px;bottom:13px;font-family:"Arial Black",Arial,sans-serif;font-size:.47rem;letter-spacing:.13em;color:#5f6060;z-index:4}
+.garment-v3-photo{display:block;position:relative;z-index:2;width:min(92%,520px);max-height:455px;object-fit:contain;filter:drop-shadow(0 22px 22px rgba(0,0,0,.2))}
+.garment-v3-views{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:end}
+.garment-v3-view{display:grid;justify-items:center;gap:8px;min-width:0}
+.garment-v3-view>span{font-family:"Arial Black",Arial,sans-serif;font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;color:#565858}
+.garment-v3-svg{display:block;width:100%;max-width:300px;height:auto;overflow:visible;filter:drop-shadow(0 21px 18px rgba(0,0,0,.2))}
+.garment-v3-svg .fabric{fill:url(#fabric);stroke:#383a3d;stroke-width:1.5}
+.garment-v3-svg .fabric2{fill:url(#fabric2);stroke:#383a3d;stroke-width:1.5}
+.garment-v3-svg .seam{fill:none;stroke:#77797c;stroke-width:1;opacity:.55}
+.garment-v3-svg .rib{fill:none;stroke:#77797c;stroke-width:1.5;opacity:.75}
+.garment-v3-svg .print-bg{fill:#0a0a0b;opacity:.28}
+.garment-v3-svg .print-img{filter:grayscale(1) contrast(1.1)}
+.garment-v3-svg .sleeve-type{fill:#ece9e2;font:700 9px Arial,sans-serif;letter-spacing:2px}
+.garment-v3-svg .micro{fill:#e7e3dc;font:700 8px Arial,sans-serif;letter-spacing:1.4px}
+.garment-v3-svg .zipline{stroke:#a3a4a6;stroke-width:1.5}
+.garment-v3-logo{max-width:150px;max-height:62px;object-fit:contain;filter:brightness(0) invert(1)}
+.garment-v3-copy{padding:34px 30px;display:flex;flex-direction:column;justify-content:flex-end;min-width:0}
+.garment-v3-copy small{margin-bottom:auto;color:var(--lab-accent)!important;font-family:"Arial Black",Arial,sans-serif;font-size:.58rem!important;letter-spacing:.13em!important;text-transform:uppercase}
+.garment-v3-copy strong{display:block!important;margin:0 0 14px!important;font-family:var(--font-head)!important;font-size:clamp(2rem,3.1vw,3.45rem)!important;line-height:.9!important;letter-spacing:-.055em!important;text-transform:uppercase!important;color:var(--lab-text)!important}
+.garment-v3-copy p{margin:0!important;max-width:34ch;color:var(--lab-muted)!important;font-size:.9rem!important;line-height:1.55!important}
+.garment-v3-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+.garment-v3-tags span{border:1px solid var(--lab-line);padding:6px 8px;font-family:"Arial Black",Arial,sans-serif;font-size:.48rem;letter-spacing:.08em;text-transform:uppercase;color:var(--lab-text)}
+.garment-v3-note{margin-top:21px;padding-top:14px;border-top:1px solid var(--lab-line);font-size:.56rem;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;color:var(--lab-accent);font-weight:800}
+.garment-v3-note b{color:var(--lab-text)}
+body[data-theme="slategrind"] .garment-v3-stage,body[data-theme="bloodgrind"] .garment-v3-stage,body[data-theme="surgical"] .garment-v3-stage{background:linear-gradient(145deg,#c9c9c4,#ecece7 58%,#bdbebc)}
+body[data-theme="coldsteel"] .garment-v3-stage{background:linear-gradient(145deg,#c8d0d6,#eef1f2 55%,#aeb8bf)}
+body[data-theme="xerox"] .garment-v3-stage{background:linear-gradient(145deg,#ddd7ce,#f1ece4 60%,#cbc4b9)}
+@media(max-width:900px){#formats .product.garment-v3-card{grid-template-columns:1fr!important}.garment-v3-stage{border-right:0;border-bottom:1px solid var(--lab-line)}}
+@media(max-width:620px){#formats .product.garment-v3-card{min-height:0!important}.garment-v3-stage{min-height:390px;padding:20px 14px}.garment-v3-photo{width:96%;max-height:350px}.garment-v3-views{gap:8px}.garment-v3-svg{max-width:210px}.garment-v3-copy{padding:22px 20px 25px}.garment-v3-copy small{margin-bottom:30px}.garment-v3-copy strong{font-size:2.05rem!important}.garment-v3-copy p{font-size:.84rem!important}.garment-v3-stage:after{font-size:.4rem;left:12px}.garment-v3-view>span{font-size:.4rem}}
