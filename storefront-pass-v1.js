@@ -52,7 +52,6 @@
 
   concepts.insertAdjacentElement('beforebegin', section);
 
-  // Make the rest of the homepage read like a storefront journey rather than an internal matrix.
   const heroIntro = document.querySelector('.hero .intro');
   if (heroIntro) heroIntro.textContent = 'Bestie Boys turns real pets into scene-authentic merchandise. Start with the music scene, choose the art direction, then build the garment around the artwork. Gerrard — a Shar Pei — is the development example.';
 
@@ -78,20 +77,50 @@
 
   const process = document.querySelector('#process');
   const processKicker = process?.querySelector('.section-head .kicker');
+  const processCopy = process?.querySelector('.section-head p');
   if (processKicker) processKicker.textContent = '04 / HOW IT WORKS';
+  if (processCopy) processCopy.textContent = 'Pick the scene. Choose the direction. Add your pet. Review the proof before anything goes further.';
 
-  // Remove the internal build-status section from the customer-facing flow.
+  const processSteps = process ? [...process.querySelectorAll('.step')] : [];
+  const processText = [
+    ['SCENE','Pick the music world that feels right.'],
+    ['DESIGN','Choose one of three art directions inside that scene.'],
+    ['PET','Add a clear source photo, name and any details worth working into the piece.'],
+    ['PROOF','Review the artwork for likeness, layout and print fit before anything goes further.']
+  ];
+  processSteps.forEach((step,index) => {
+    const title = step.querySelector('h3');
+    const copy = step.querySelector('p');
+    if (title && processText[index]) title.textContent = processText[index][0];
+    if (copy && processText[index]) copy.textContent = processText[index][1];
+  });
+
   [...document.querySelectorAll('main > .section.shell')].forEach(candidate => {
     const kicker = candidate.querySelector(':scope > .kicker');
     if (kicker?.textContent?.toUpperCase().includes('BUILD STATUS')) candidate.remove();
   });
 
-  // Keep development state visible, but discreetly in the footer rather than as a sales-page section.
   const footer = document.querySelector('.footer');
   const footerStatus = footer?.querySelector('span');
   if (footerStatus) footerStatus.textContent = 'DEVELOPMENT PREVIEW / NOT FOR SALE';
 
-  // Clicking a scene card opens the matching detail group after navigating to it.
+  if (process && footer && !document.querySelector('.storefront-final-cta')) {
+    const finalCta = document.createElement('section');
+    finalCta.className = 'storefront-final-cta shell';
+    finalCta.innerHTML = `
+      <div class="storefront-final-cta__copy">
+        <div class="kicker">05 / START HERE</div>
+        <h2>FIND THE SCENE.<br><span>BUILD FROM THERE.</span></h2>
+        <p>Start with the music world that feels right, then compare the three art directions inside it.</p>
+      </div>
+      <div class="storefront-final-cta__actions">
+        <a class="button primary" href="#scenes">Choose your scene →</a>
+        <a class="button ghost" href="#concepts">See all 21 directions</a>
+        <small>Development preview — no orders are taken on this page.</small>
+      </div>`;
+    process.insertAdjacentElement('afterend', finalCta);
+  }
+
   section.querySelectorAll('[data-scene-target]').forEach(link => {
     link.addEventListener('click', () => {
       const target = document.getElementById(link.dataset.sceneTarget);
