@@ -1,60 +1,67 @@
-name: Install existing Black Metal mockups
+name: Apply existing Black Metal boards
 
 on:
   push:
-    branches: [main]
-    paths: [.github/workflows/install-existing-black-metal.yml]
+    branches:
+      - preview/black-metal-existing-v2
+    paths:
+      - .github/workflows/install-existing-black-metal.yml
 
 permissions:
   contents: write
 
 jobs:
-  install:
+  apply:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Decode existing Black Metal boards and update preview
+      - name: Update Black Metal preview and clean staging
         shell: python
         run: |
           from pathlib import Path
-          import base64, re
-
-          assets = {
-              'bm1': ('assets/concepts/black-metal-frostbite-portrait.webp', 65340),
-              'bm2': ('assets/concepts/black-metal-ritual-hound.webp', 60316),
-              'bm3': ('assets/concepts/black-metal-northern-apparition.webp', 72404),
-          }
-          for key, (dest, expected) in assets.items():
-              parts = sorted(Path('.tmp').glob(f'{key}.part*'), key=lambda p: int(p.name.split('part')[1]))
-              joined = ''.join(p.read_text().strip() for p in parts)
-              raw = base64.b64decode(joined, validate=True)
-              if len(raw) != expected:
-                  raise SystemExit(f'{key}: expected {expected} bytes, got {len(raw)}')
-              out = Path(dest)
-              out.parent.mkdir(parents=True, exist_ok=True)
-              out.write_bytes(raw)
 
           p = Path('index.html')
           html = p.read_text()
-          for title in ('Frostbite Portrait','Ritual Hound','Northern Apparition'):
-              pattern = rf'(<details class="concept"><summary><div class="concept-top"><span class="concept-code">.*?</span><span class="status">)ARTWORK PENDING(</span></div><h4>{re.escape(title)}</h4>)'
-              html, count = re.subn(pattern, r'\1EARLY MOCKUP / REWORK PENDING\2', html, count=1)
-              if count != 1:
-                  raise SystemExit(f'Could not update status for {title}')
-          html = html.replace('theme-lab.css?v=3','theme-lab.css?v=5')
-          html = html.replace('theme-lab.css?v=4','theme-lab.css?v=5')
+
+          html = html.replace('<div class="badge">GERRARD / DEVELOPMENT 001 / TOUR ISSUE</div>', '')
+
+          replacements = {
+            '<details class="concept"><summary><div class="concept-top"><span class="concept-code">BM-A / LAUNCH PICK</span><span class="status">ARTWORK PENDING</span></div><h4>Frostbite Portrait</h4><div class="quick"><span class="chip">Tee / Longsleeve</span><span class="chip">Black + Bone</span><span class="chip">Launch</span></div></summary>':
+            '<details class="concept"><summary><div class="concept-top"><span class="concept-code">BM-A / LAUNCH PICK</span><span class="status">EARLY VISUAL MOCKUP</span></div><h4>Frostbite Portrait</h4><div class="quick"><span class="chip">Tee / Longsleeve</span><span class="chip">Black + Bone</span><span class="chip">Launch</span></div><img class="bm-early-thumb" src="assets/concepts/black-metal-frostbite-portrait.webp" alt="Frostbite Portrait early Gerrard Black Metal visual mockup" loading="lazy"></summary>',
+
+            '<details class="concept"><summary><div class="concept-top"><span class="concept-code">BM-B</span><span class="status">ARTWORK PENDING</span></div><h4>Ritual Hound</h4><div class="quick"><span class="chip">Longsleeve / Hoodie</span><span class="chip">Bone + Oxblood</span><span class="chip">Collector</span></div></summary>':
+            '<details class="concept"><summary><div class="concept-top"><span class="concept-code">BM-B</span><span class="status">EARLY VISUAL MOCKUP</span></div><h4>Ritual Hound</h4><div class="quick"><span class="chip">Longsleeve / Hoodie</span><span class="chip">Bone + Oxblood</span><span class="chip">Collector</span></div><img class="bm-early-thumb" src="assets/concepts/black-metal-ritual-hound.webp" alt="Ritual Hound early Gerrard Black Metal visual mockup" loading="lazy"></summary>',
+
+            '<details class="concept"><summary><div class="concept-top"><span class="concept-code">BM-C</span><span class="status">ARTWORK PENDING</span></div><h4>Northern Apparition</h4><div class="quick"><span class="chip">Oversized / Hoodie</span><span class="chip">Cool Grey</span><span class="chip">Fashion</span></div></summary>':
+            '<details class="concept"><summary><div class="concept-top"><span class="concept-code">BM-C</span><span class="status">EARLY VISUAL MOCKUP</span></div><h4>Northern Apparition</h4><div class="quick"><span class="chip">Oversized / Hoodie</span><span class="chip">Cool Grey</span><span class="chip">Fashion</span></div><img class="bm-early-thumb" src="assets/concepts/black-metal-northern-apparition.webp" alt="Northern Apparition early Gerrard Black Metal visual mockup" loading="lazy"></summary>',
+          }
+
+          for old, new in replacements.items():
+              if old not in html:
+                  raise SystemExit('Expected Black Metal concept markup not found')
+              html = html.replace(old, new, 1)
+
+          html = html.replace('theme-lab.css?v=3', 'theme-lab.css?v=6')
+          html = html.replace('theme-lab.css?v=4', 'theme-lab.css?v=6')
+          html = html.replace('theme-lab.css?v=5', 'theme-lab.css?v=6')
           p.write_text(html)
 
-          css = Path('theme-lab.css')
-          text = css.read_text()
-          marker = '/* Archive hero badge correction */'
-          if marker not in text:
-              text += '''\n\n/* Archive hero badge correction */\nbody .badge{background:color-mix(in srgb,var(--lab-panel) 92%,transparent)!important;color:var(--lab-text)!important;border:1px solid var(--lab-line)!important;border-radius:999px!important;padding:8px 11px!important;backdrop-filter:blur(8px);box-shadow:0 8px 24px rgba(0,0,0,.12)!important}\nbody[data-theme="archive"] .badge{background:rgba(244,239,231,.94)!important;color:#111214!important;border-color:rgba(212,77,44,.42)!important;box-shadow:0 8px 24px rgba(63,47,32,.12)!important}\n'''
-              css.write_text(text)
-      - name: Commit installed boards
+          css_path = Path('theme-lab.css')
+          css = css_path.read_text()
+          marker = '/* Existing Black Metal early-board previews */'
+          if marker not in css:
+              css += '''\n\n/* Existing Black Metal early-board previews */\n.bm-early-thumb{display:block;width:100%;height:auto;aspect-ratio:5/4;object-fit:cover;margin:16px 0 2px;border:1px solid var(--lab-line);background:#0b0b0b}\n.genre.blackmetal .concept-body .art-slot{display:none!important}\nbody[data-theme="archive"] .bm-early-thumb{box-shadow:0 14px 32px rgba(63,47,32,.10)}\n@media(max-width:620px){.bm-early-thumb{margin-top:14px}}\n'''
+              css_path.write_text(css)
+      - name: Remove temporary recovery files
+        run: |
+          rm -rf .tmp
+          rm -f _bm-assets-note.txt
+          rm -f assets/concepts/black-metal-frostbite-portrait.txt
+          rm -f .github/workflows/install-existing-black-metal.yml
+      - name: Commit clean Black Metal preview
         run: |
           git config user.name "bestieboys-uk"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html theme-lab.css assets/concepts/black-metal-*.webp
-          git commit -m "Reuse early Black Metal boards and fix hero badge"
+          git add -A
+          git commit -m "Show existing Black Metal mockups and remove hero badge"
           git push
