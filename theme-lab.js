@@ -5,14 +5,14 @@
     ['coldwave','Coldwave','Blue-black / steel / restrained editorial'],
     ['archive','Archive','Warm paper / rust / fashion editorial'],
     ['slategrind','Slate Grind','Slate grey / scratch header / acid utility'],
-    ['silvernoise','Silver Noise','Brushed silver / broken type / hard black'],
+    ['silvernoise','Silver Noise','Brushed silver / condensed sans / hard black'],
     ['xerox','Xerox','Dirty copier paper / raw header / black + red']
   ];
 
   if (!document.querySelector('link[data-design-lab-v3]')) {
     const designLabCss = document.createElement('link');
     designLabCss.rel = 'stylesheet';
-    designLabCss.href = 'design-lab-v3.css?v=1';
+    designLabCss.href = 'design-lab-v3.css?v=2';
     designLabCss.dataset.designLabV3 = 'true';
     document.head.appendChild(designLabCss);
   }
@@ -20,7 +20,6 @@
   const saved = localStorage.getItem('bestieboys-preview-theme');
   body.dataset.theme = themes.some(([id]) => id === saved) ? saved : 'archive';
 
-  // Robust CSS wordmark based on the supplied BestieBoys logo trial.
   document.querySelectorAll('a.brand').forEach(link => {
     link.classList.remove('brand-image');
     link.classList.add('brand-wordmark');
@@ -51,7 +50,7 @@
     });
   }
   document.querySelectorAll('[data-theme-choice]').forEach(btn => {
-    btn.addEventListener('click', () => applyTheme(btn.dataset.themeChoice));
+    btn.addEventListener('click', () => applyTheme(btn.datasetThemeChoice || btn.dataset.themeChoice));
   });
   applyTheme(body.dataset.theme);
 
@@ -96,7 +95,6 @@
       </article>`;
   }
 
-  // Load the more realistic inline-SVG garment presentation after the theme lab has initialised.
   if (!document.querySelector('link[data-garment-v2]')) {
     const garmentCss = document.createElement('link');
     garmentCss.rel = 'stylesheet';
@@ -111,7 +109,6 @@
     document.body.appendChild(garmentJs);
   }
 
-  // Archive target pass: translates the approved generated page direction into the real preview.
   if (!document.querySelector('link[data-archive-target]')) {
     const targetCss = document.createElement('link');
     targetCss.rel = 'stylesheet';
