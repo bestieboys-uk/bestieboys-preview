@@ -1,0 +1,30 @@
+name: Bump mobile scene fix
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/bump-mobile-scene-fix.yml]
+permissions:
+  contents: write
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump preview script and self-clean
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('index.html')
+          s=p.read_text()
+          s=re.sub(r'theme-lab\.js\?v=\d+', 'theme-lab.js?v=6', s)
+          p.write_text(s)
+          PY
+          rm .github/workflows/bump-mobile-scene-fix.yml
+      - name: Commit mobile QA fix
+        run: |
+          git config user.name "bestieboys-uk"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/bump-mobile-scene-fix.yml
+          git commit -m "Load mobile scene heading fix"
+          git push
