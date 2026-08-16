@@ -9,7 +9,8 @@
   // Load only the current reference-specific theme layers.
   const referenceSheets = [
     ['slate-reference','slate-reference-v1.css?v=1'],
-    ['xerox-reference','xerox-reference-v1.css?v=1']
+    ['xerox-reference','xerox-reference-v1.css?v=1'],
+    ['garment-rendered','garment-storefront-v3.css?v=rendered1']
   ];
   referenceSheets.forEach(([key,href]) => {
     if (document.querySelector(`link[data-${key}]`)) return;
@@ -19,6 +20,26 @@
     link.setAttribute(`data-${key}`,'true');
     document.head.appendChild(link);
   });
+
+  // Force the rendered garment board to replace the old SVG placeholder system.
+  const garmentScripts = [
+    'garment-board-part1.js?v=1',
+    'garment-board-part2.js?v=1',
+    'garment-board-part3.js?v=1',
+    'garment-board-part4.js?v=1',
+    'garment-storefront-v3.js?v=rendered1'
+  ];
+  let garmentIndex = 0;
+  function loadNextGarmentScript(){
+    if (garmentIndex >= garmentScripts.length) return;
+    const src = garmentScripts[garmentIndex++];
+    const script = document.createElement('script');
+    script.src = src;
+    script.async = false;
+    script.onload = loadNextGarmentScript;
+    document.body.appendChild(script);
+  }
+  loadNextGarmentScript();
 
   const saved = localStorage.getItem('bestieboys-preview-theme');
   body.dataset.theme = themes.some(([id]) => id === saved) ? saved : 'slategrind';
