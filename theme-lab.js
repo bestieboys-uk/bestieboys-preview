@@ -4,27 +4,66 @@
     ['atelier','Atelier','Dark editorial / oxblood / serif-led'],
     ['coldwave','Coldwave','Blue-black / steel / restrained editorial'],
     ['archive','Archive','Warm paper / rust / fashion editorial'],
-    ['slategrind','Slate Grind','Slate grey / scratch header / acid utility'],
-    ['silvernoise','Silver Noise','Brushed silver / condensed sans / hard black'],
-    ['xerox','Xerox','Dirty copier paper / raw header / black + red']
+    ['slategrind','Slate Grind','Washed black / rust / splatter logo'],
+    ['silvernoise','Silver Noise','Brushed silver / black / spike logo'],
+    ['xerox','Xerox','Dirty bone / oxblood / brush logo'],
+    ['surgical','Surgical Rot','Black / surgical green / splatter logo'],
+    ['bloodgrind','Blood Grind','Washed black / blood red / spike logo'],
+    ['coldsteel','Cold Steel','Blue-black / icy silver / brush logo']
   ];
 
   if (!document.querySelector('link[data-design-lab-v3]')) {
     const designLabCss = document.createElement('link');
     designLabCss.rel = 'stylesheet';
-    designLabCss.href = 'design-lab-v3.css?v=2';
+    designLabCss.href = 'design-lab-v3.css?v=4';
     designLabCss.dataset.designLabV3 = 'true';
     document.head.appendChild(designLabCss);
   }
+  if (!document.querySelector('link[data-design-lab-v4]')) {
+    const designLabCss4 = document.createElement('link');
+    designLabCss4.rel = 'stylesheet';
+    designLabCss4.href = 'design-lab-v4.css?v=1';
+    designLabCss4.dataset.designLabV4 = 'true';
+    document.head.appendChild(designLabCss4);
+  }
 
   const saved = localStorage.getItem('bestieboys-preview-theme');
-  body.dataset.theme = themes.some(([id]) => id === saved) ? saved : 'archive';
+  body.dataset.theme = themes.some(([id]) => id === saved) ? saved : 'slategrind';
+
+  // Visible brand naming is now always spaced: Bestie Boys.
+  const replaceBrandText = (root = document.body) => {
+    if (!root) return;
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      if (node.nodeValue && node.nodeValue.includes('BestieBoys')) {
+        node.nodeValue = node.nodeValue.replaceAll('BestieBoys','Bestie Boys');
+      }
+    });
+    root.querySelectorAll?.('[aria-label],[alt],[title]').forEach(el => {
+      ['aria-label','alt','title'].forEach(attr => {
+        const val = el.getAttribute(attr);
+        if (val && val.includes('BestieBoys')) el.setAttribute(attr, val.replaceAll('BestieBoys','Bestie Boys'));
+      });
+    });
+  };
+  replaceBrandText();
+  new MutationObserver(records => {
+    records.forEach(record => record.addedNodes.forEach(node => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        if (node.nodeValue?.includes('BestieBoys')) node.nodeValue = node.nodeValue.replaceAll('BestieBoys','Bestie Boys');
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        replaceBrandText(node);
+      }
+    }));
+  }).observe(document.body,{childList:true,subtree:true});
 
   document.querySelectorAll('a.brand').forEach(link => {
     link.classList.remove('brand-image');
     link.classList.add('brand-wordmark');
-    link.textContent = 'BestieBoys';
-    link.setAttribute('aria-label','BestieBoys');
+    link.textContent = 'Bestie Boys';
+    link.setAttribute('aria-label','Bestie Boys');
   });
 
   const header = document.querySelector('.header');
@@ -32,8 +71,8 @@
     const lab = document.createElement('div');
     lab.className = 'theme-lab';
     lab.innerHTML = `
-      <div class="theme-lab__label"><b>Design Lab</b><span data-theme-note>Live colour + type trials</span></div>
-      <div class="theme-lab__options" role="group" aria-label="Preview colour and type themes">
+      <div class="theme-lab__label"><b>Design Lab</b><span data-theme-note>Live colour + logo trials</span></div>
+      <div class="theme-lab__options" role="group" aria-label="Preview colour, type and logo themes">
         ${themes.map(([id,label]) => `<button type="button" data-theme-choice="${id}">${label}</button>`).join('')}
       </div>`;
     header.insertAdjacentElement('afterend', lab);
@@ -50,7 +89,7 @@
     });
   }
   document.querySelectorAll('[data-theme-choice]').forEach(btn => {
-    btn.addEventListener('click', () => applyTheme(btn.datasetThemeChoice || btn.dataset.themeChoice));
+    btn.addEventListener('click', () => applyTheme(btn.dataset.themeChoice));
   });
   applyTheme(body.dataset.theme);
 
@@ -70,11 +109,11 @@
         <div class="product-mockup__copy"><small>01 / HERO FORMAT</small><strong>Short-sleeve tee</strong><p>Large front composition. The strongest entry product and the cleanest canvas for scene artwork.</p><span class="mockup-note">Tour Issue shown as scale reference</span></div>
       </article>
       <article class="product product-mockup">
-        <div class="product-mockup__stage"><div class="garment garment-long"><span class="sleeve-word left">BESTIEBOYS</span><span class="sleeve-word right">GERRARD</span><div class="print-zone"><img src="${img}" alt=""></div></div></div>
+        <div class="product-mockup__stage"><div class="garment garment-long"><span class="sleeve-word left">BESTIE BOYS</span><span class="sleeve-word right">GERRARD</span><div class="print-zone"><img src="${img}" alt=""></div></div></div>
         <div class="product-mockup__copy"><small>02 / SCENE FORMAT</small><strong>Longsleeve</strong><p>Narrower front art plus asymmetric sleeve language. More credible for black metal, grind and gore-led drops.</p><span class="mockup-note">Sleeves treated as design space</span></div>
       </article>
       <article class="product product-mockup">
-        <div class="product-mockup__stage"><div class="garment garment-hoodie"><span class="chest-mark">BB</span><div class="print-zone"><img src="${img}" alt=""></div><span class="hood-word">BESTIEBOYS</span></div></div>
+        <div class="product-mockup__stage"><div class="garment garment-hoodie"><span class="chest-mark">BB</span><div class="print-zone"><img src="${img}" alt=""></div><span class="hood-word">BESTIE BOYS</span></div></div>
         <div class="product-mockup__copy"><small>03 / HEAVY FORMAT</small><strong>Pullover hoodie</strong><p>Large tonal front or back work with a restrained chest mark. Designed to feel like merch, not POD placement.</p><span class="mockup-note">Front/back hierarchy trial</span></div>
       </article>
       <article class="product product-mockup">
@@ -90,7 +129,7 @@
         <div class="product-mockup__copy"><small>06 / MARK FORMAT</small><strong>Cap</strong><p>Embroidery-scale marks, initials and reduced pet iconography. No full rectangular T-shirt artwork on a cap.</p><span class="mockup-note">Small-format identity piece</span></div>
       </article>
       <article class="product product-mockup">
-        <div class="product-mockup__stage"><div class="garment garment-sticker"><div class="print-zone"><img src="${img}" alt=""></div><span class="sticker-name">BestieBoys</span></div></div>
+        <div class="product-mockup__stage"><div class="garment garment-sticker"><div class="print-zone"><img src="${img}" alt=""></div><span class="sticker-name">Bestie Boys</span></div></div>
         <div class="product-mockup__copy"><small>07 / ADD-ON FORMAT</small><strong>Sticker</strong><p>Scene logos, pet heads and compact art fragments. A low-ticket extension of the clothing system, not generic pet stationery.</p><span class="mockup-note">Die-cut visual trial</span></div>
       </article>`;
   }
