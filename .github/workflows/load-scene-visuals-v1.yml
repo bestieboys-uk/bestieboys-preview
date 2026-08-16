@@ -1,0 +1,32 @@
+name: Load scene visuals v1
+on:
+  push:
+    paths:
+      - '.github/workflows/load-scene-visuals-v1.yml'
+jobs:
+  wire:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wire scene visual assets and self-clean
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          if 'scene-visuals-v1.css' not in s:
+              s=s.replace('</head>','<link rel="stylesheet" href="scene-visuals-v1.css?v=1">\n</head>')
+          if 'scene-visuals-v1.js' not in s:
+              s=s.replace('</body>','<script src="scene-visuals-v1.js?v=1"></script>\n</body>')
+          p.write_text(s)
+          PY
+          rm .github/workflows/load-scene-visuals-v1.yml
+      - name: Commit scene visual loader
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Load distinct scene storefront visuals' || exit 0
+          git push
