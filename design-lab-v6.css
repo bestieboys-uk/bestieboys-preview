@@ -1,0 +1,319 @@
+/* Bestie Boys Design Lab v6 — ONLY the three selected website directions
+   Slate Grind / Silver Noise / Xerox
+   Reference-led website styling; garment content remains separate. */
+
+:root{
+  --bb-logo-splatter:url('assets/brand/bestie-boys-splatter.png');
+  --bb-logo-spike:url('assets/brand/bestie-boys-spike.png');
+  --bb-logo-brush:url('assets/brand/bestie-boys-brush.png');
+}
+
+/* =========================================================
+   01 / SLATE GRIND — charcoal / bone / rust / rough surface
+   ========================================================= */
+body[data-theme="slategrind"]{
+  --lab-bg:#0f1112;
+  --lab-panel:#1a1d1f;
+  --lab-panel-2:#25292c;
+  --lab-text:#e9e4da;
+  --lab-muted:#d2cbc0;
+  --lab-accent:#a93a27;
+  --lab-accent-2:#f2eee7;
+  --lab-line:rgba(235,228,216,.28);
+  --lab-shadow:rgba(0,0,0,.62);
+  --bb-logo-image:var(--bb-logo-splatter);
+  --bb-logo-color:#f1ede5;
+  background:
+    radial-gradient(circle at 15% 6%,rgba(255,255,255,.045),transparent 20%),
+    radial-gradient(circle at 82% 30%,rgba(169,58,39,.055),transparent 24%),
+    repeating-linear-gradient(115deg,rgba(255,255,255,.012) 0 1px,transparent 1px 7px),
+    linear-gradient(145deg,#1c1f21 0%,#101214 52%,#08090a 100%)!important;
+  background-attachment:fixed!important;
+}
+body[data-theme="slategrind"] .theme-lab{
+  background:linear-gradient(180deg,rgba(30,33,35,.97),rgba(13,15,16,.98))!important;
+  border:1px solid rgba(235,228,216,.26)!important;
+  box-shadow:0 22px 52px rgba(0,0,0,.46)!important;
+}
+body[data-theme="slategrind"] .theme-lab button[aria-pressed="true"],
+body[data-theme="slategrind"] .button.primary{
+  background:#a93a27!important;
+  color:#f7f0e8!important;
+  border-color:#c0523d!important;
+}
+
+/* =========================================================
+   02 / SILVER NOISE — brushed steel / industrial plate
+   ========================================================= */
+body[data-theme="silvernoise"]{
+  --lab-bg:#b9bdbd;
+  --lab-panel:#d7d9d7;
+  --lab-panel-2:#a4a9aa;
+  --lab-text:#07090a;
+  --lab-muted:#202426;
+  --lab-accent:#a42f22;
+  --lab-accent-2:#101213;
+  --lab-line:rgba(6,8,9,.46);
+  --lab-shadow:rgba(25,29,31,.28);
+  --bb-logo-image:var(--bb-logo-spike);
+  --bb-logo-color:#080a0b;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.11) 0 1px,rgba(0,0,0,.026) 1px 3px,transparent 3px 7px),
+    linear-gradient(115deg,#dedfdd 0%,#a4a9aa 23%,#e0e1df 45%,#959a9c 70%,#dbdcda 100%)!important;
+  background-attachment:fixed!important;
+}
+body[data-theme="silvernoise"] .theme-lab{
+  position:relative;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.09) 0 1px,rgba(0,0,0,.023) 1px 4px),
+    linear-gradient(135deg,#d8dad8,#aeb2b3 48%,#d4d6d4)!important;
+  border:1px solid #4c5153!important;
+  box-shadow:inset 0 0 0 3px rgba(255,255,255,.16),0 16px 38px rgba(27,31,33,.24)!important;
+}
+body[data-theme="silvernoise"] .theme-lab:before,
+body[data-theme="silvernoise"] .theme-lab:after{
+  content:"";
+  position:absolute;
+  width:8px;height:8px;border-radius:50%;
+  background:#303436;
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.55),0 1px 2px rgba(0,0,0,.55);
+}
+body[data-theme="silvernoise"] .theme-lab:before{left:9px;top:9px}
+body[data-theme="silvernoise"] .theme-lab:after{right:9px;bottom:9px}
+body[data-theme="silvernoise"] .theme-lab button[aria-pressed="true"],
+body[data-theme="silvernoise"] .button.primary{
+  background:#0a0c0d!important;
+  color:#f3f3ef!important;
+  border-color:#0a0c0d!important;
+}
+
+/* =========================================================
+   03 / XEROX — dirty copier paper / toner / ripped flyer
+   ========================================================= */
+body[data-theme="xerox"]{
+  --lab-bg:#ded9cd;
+  --lab-panel:#efebe0;
+  --lab-panel-2:#cec7b9;
+  --lab-text:#080808;
+  --lab-muted:#26231f;
+  --lab-accent:#873026;
+  --lab-accent-2:#111;
+  --lab-line:rgba(8,8,8,.42);
+  --lab-shadow:rgba(28,22,15,.16);
+  --bb-logo-image:var(--bb-logo-brush);
+  --bb-logo-color:#080808;
+  background:
+    radial-gradient(circle at 12% 18%,rgba(0,0,0,.13) 0 1px,transparent 1.4px),
+    radial-gradient(circle at 72% 32%,rgba(0,0,0,.09) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 42% 80%,rgba(0,0,0,.07) 0 1px,transparent 1.7px),
+    repeating-linear-gradient(6deg,rgba(0,0,0,.014) 0 1px,transparent 1px 6px),
+    linear-gradient(145deg,#eee9dd 0%,#dad4c8 53%,#c8c1b4 100%)!important;
+  background-size:9px 9px,17px 17px,23px 23px,100% 100%,100% 100%!important;
+  background-attachment:fixed!important;
+}
+body[data-theme="xerox"] .theme-lab{
+  background:rgba(240,236,225,.96)!important;
+  border:2px solid #101010!important;
+  box-shadow:7px 8px 0 rgba(0,0,0,.075)!important;
+}
+body[data-theme="xerox"] .theme-lab button{border:2px solid #111!important}
+body[data-theme="xerox"] .theme-lab button[aria-pressed="true"],
+body[data-theme="xerox"] .button.primary{
+  background:#101010!important;
+  color:#f4f0e7!important;
+  border-color:#101010!important;
+}
+
+/* =========================================================
+   SHARED THREE-THEME BRAND SYSTEM
+   ========================================================= */
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]){
+  --font-body:"Helvetica Neue",Arial,sans-serif;
+  --font-head:"Arial Black","Helvetica Neue",Arial,sans-serif;
+  color:var(--lab-text)!important;
+}
+
+/* Extreme Bestie Boys logo, prominent like the chosen references. */
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .brand-wordmark{
+  display:block!important;
+  width:clamp(190px,30vw,315px)!important;
+  height:clamp(72px,10vw,118px)!important;
+  flex:0 0 auto!important;
+  font-size:0!important;
+  letter-spacing:0!important;
+  background:var(--bb-logo-color)!important;
+  -webkit-mask-image:var(--bb-logo-image);
+  mask-image:var(--bb-logo-image);
+  -webkit-mask-size:contain;mask-size:contain;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:left center;mask-position:left center;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .footer .brand-wordmark{
+  width:155px!important;height:58px!important;
+}
+
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .header{
+  min-height:112px!important;
+  border-radius:0!important;
+  padding:10px 18px!important;
+  align-items:center!important;
+  background:color-mix(in srgb,var(--lab-panel) 93%,transparent)!important;
+  border-color:var(--lab-line)!important;
+  box-shadow:0 12px 35px var(--lab-shadow)!important;
+}
+body[data-theme="slategrind"] .header{background:rgba(14,16,17,.92)!important}
+body[data-theme="silvernoise"] .header{
+  background:linear-gradient(180deg,rgba(226,228,226,.94),rgba(183,187,188,.94))!important;
+  box-shadow:inset 0 -1px rgba(0,0,0,.28),0 10px 28px rgba(30,34,36,.18)!important;
+}
+body[data-theme="xerox"] .header{background:rgba(238,233,222,.93)!important;border-width:0 0 2px!important}
+
+/* Design Lab panel */
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .theme-lab{
+  width:min(calc(100% - 28px),1280px)!important;
+  margin:20px auto 32px!important;
+  padding:22px!important;
+  border-radius:2px!important;
+  color:var(--lab-text)!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .theme-lab__label b{
+  font-family:"Arial Black",Arial,sans-serif!important;
+  font-size:1.08rem!important;
+  letter-spacing:.12em!important;
+  text-transform:uppercase!important;
+  color:var(--lab-text)!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .theme-lab__label span{
+  color:var(--lab-muted)!important;
+  font-size:.7rem!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .theme-lab button{
+  font-family:"Arial Black",Arial,sans-serif!important;
+  text-transform:uppercase!important;
+  font-size:.7rem!important;
+  letter-spacing:.035em!important;
+  padding:11px 18px!important;
+  border:1px solid var(--lab-line)!important;
+  color:var(--lab-text)!important;
+  background:transparent!important;
+  border-radius:999px!important;
+}
+
+/* Typography: brutal sans, no italics. */
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) :is(.hero h1,.section h2,.scene-storefront__head h2,.storefront-final-cta h2){
+  font-family:"Arial Black","Helvetica Neue",Arial,sans-serif!important;
+  font-style:normal!important;
+  font-weight:900!important;
+  text-transform:uppercase!important;
+  letter-spacing:-.065em!important;
+  line-height:.88!important;
+  color:var(--lab-text)!important;
+  text-shadow:none!important;
+  transform:none!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) :is(.hero h1 em,.section h2 em,.scene-storefront__head h2 span,.storefront-final-cta h2 span){
+  font:inherit!important;
+  font-style:normal!important;
+  color:var(--lab-accent)!important;
+}
+
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) :is(.intro,.section p,.genre-meta p,.concept-body p,.scene-card p,.scene-storefront__copy,.garment-v2-copy p,.garment-v3-copy p,.step p,.footer,.notice){
+  color:var(--lab-muted)!important;
+  font-family:"Helvetica Neue",Arial,sans-serif!important;
+  font-weight:650!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) :is(.eyebrow,.kicker,.genre-meta small,.scene-card__eyebrow,.concept-code,.status,.chip,.scene-card__meta,.scene-card__cta,.garment-v2-copy small,.garment-v3-copy small,.garment-v2-note,.garment-v3-note,.step span){
+  font-family:"Arial Black",Arial,sans-serif!important;
+  font-weight:900!important;
+  text-transform:uppercase!important;
+}
+
+/* Whole-page material consistency. */
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) :is(.genre,.concept,.product,.scene-card,.scene-storefront__proof,.storefront-final-cta,.blackmetal-dev-note,.garment-v2-card,.garment-v3-card){
+  background:color-mix(in srgb,var(--lab-panel) 96%,transparent)!important;
+  color:var(--lab-text)!important;
+  border-color:var(--lab-line)!important;
+  box-shadow:none!important;
+}
+body[data-theme="silvernoise"] :is(.genre,.concept,.product,.scene-card,.scene-storefront__proof,.storefront-final-cta,.garment-v2-card,.garment-v3-card){
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,rgba(0,0,0,.012) 1px 4px),
+    rgba(222,224,222,.94)!important;
+}
+body[data-theme="xerox"] :is(.genre,.concept,.product,.scene-card,.scene-storefront__proof,.storefront-final-cta,.garment-v2-card,.garment-v3-card){
+  background:
+    radial-gradient(circle at 12% 20%,rgba(0,0,0,.035) 0 1px,transparent 1.5px),
+    rgba(240,236,225,.95)!important;
+}
+
+/* Buttons */
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .button{
+  border-radius:2px!important;
+  text-transform:uppercase!important;
+  font-family:"Arial Black",Arial,sans-serif!important;
+  letter-spacing:.035em!important;
+  border-color:var(--lab-line)!important;
+}
+body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .button.ghost{
+  background:transparent!important;
+  color:var(--lab-text)!important;
+  border:1px solid var(--lab-line)!important;
+}
+
+/* Garment study surfaces inherit the website material but content is unchanged. */
+body[data-theme="slategrind"] :is(.garment-v2-stage,.garment-v3-stage){background:#151719!important}
+body[data-theme="silvernoise"] :is(.garment-v2-stage,.garment-v3-stage){background:linear-gradient(145deg,#e0e1df,#aeb2b3)!important}
+body[data-theme="xerox"] :is(.garment-v2-stage,.garment-v3-stage){background:#e6e1d5!important}
+
+/* Theme-specific logo atmosphere */
+body[data-theme="slategrind"] .brand-wordmark{filter:drop-shadow(0 5px 7px rgba(0,0,0,.55))}
+body[data-theme="silvernoise"] .brand-wordmark{filter:drop-shadow(1px 2px 0 rgba(255,255,255,.26))}
+body[data-theme="xerox"] .brand-wordmark{filter:contrast(1.25)}
+
+/* Xerox deliberately rougher edges; Silver cleaner/industrial. */
+body[data-theme="xerox"] :is(.scene-card,.concept,.genre,.button,.storefront-final-cta,.scene-storefront__proof){border-radius:0!important}
+body[data-theme="silvernoise"] :is(.scene-card,.concept,.genre,.storefront-final-cta,.scene-storefront__proof){border-radius:0!important}
+body[data-theme="slategrind"] :is(.scene-card,.concept,.genre,.storefront-final-cta,.scene-storefront__proof){border-radius:1px!important}
+
+@media(max-width:760px){
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .header{
+    min-height:96px!important;
+    padding:8px 14px!important;
+  }
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .brand-wordmark{
+    width:clamp(190px,58vw,255px)!important;
+    height:78px!important;
+  }
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .theme-lab{
+    margin-top:14px!important;
+    padding:18px!important;
+  }
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .theme-lab__options{
+    gap:8px!important;
+  }
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .theme-lab button{
+    padding:10px 13px!important;
+    font-size:.63rem!important;
+  }
+}
+
+@media(max-width:620px){
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .hero h1{
+    font-size:clamp(3.1rem,15.5vw,4.7rem)!important;
+    max-width:9.4ch!important;
+    line-height:.89!important;
+  }
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) :is(.section h2,.scene-storefront__head h2,.storefront-final-cta h2){
+    font-size:clamp(2.75rem,12.8vw,4rem)!important;
+    max-width:10.5ch!important;
+  }
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .intro{
+    font-size:.95rem!important;
+    line-height:1.5!important;
+  }
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .theme-lab__label span{display:none!important}
+  body:is([data-theme="slategrind"],[data-theme="silvernoise"],[data-theme="xerox"]) .theme-lab button{
+    flex:1 1 calc(50% - 8px)!important;
+    min-width:0!important;
+  }
+}
