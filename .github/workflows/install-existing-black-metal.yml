@@ -1,0 +1,60 @@
+name: Install existing Black Metal mockups
+
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/install-existing-black-metal.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode existing Black Metal boards and update preview
+        shell: python
+        run: |
+          from pathlib import Path
+          import base64, re
+
+          assets = {
+              'bm1': ('assets/concepts/black-metal-frostbite-portrait.webp', 65340),
+              'bm2': ('assets/concepts/black-metal-ritual-hound.webp', 60316),
+              'bm3': ('assets/concepts/black-metal-northern-apparition.webp', 72404),
+          }
+          for key, (dest, expected) in assets.items():
+              parts = sorted(Path('.tmp').glob(f'{key}.part*'), key=lambda p: int(p.name.split('part')[1]))
+              joined = ''.join(p.read_text().strip() for p in parts)
+              raw = base64.b64decode(joined, validate=True)
+              if len(raw) != expected:
+                  raise SystemExit(f'{key}: expected {expected} bytes, got {len(raw)}')
+              out = Path(dest)
+              out.parent.mkdir(parents=True, exist_ok=True)
+              out.write_bytes(raw)
+
+          p = Path('index.html')
+          html = p.read_text()
+          for title in ('Frostbite Portrait','Ritual Hound','Northern Apparition'):
+              pattern = rf'(<details class="concept"><summary><div class="concept-top"><span class="concept-code">.*?</span><span class="status">)ARTWORK PENDING(</span></div><h4>{re.escape(title)}</h4>)'
+              html, count = re.subn(pattern, r'\1EARLY MOCKUP / REWORK PENDING\2', html, count=1)
+              if count != 1:
+                  raise SystemExit(f'Could not update status for {title}')
+          html = html.replace('theme-lab.css?v=3','theme-lab.css?v=5')
+          html = html.replace('theme-lab.css?v=4','theme-lab.css?v=5')
+          p.write_text(html)
+
+          css = Path('theme-lab.css')
+          text = css.read_text()
+          marker = '/* Archive hero badge correction */'
+          if marker not in text:
+              text += '''\n\n/* Archive hero badge correction */\nbody .badge{background:color-mix(in srgb,var(--lab-panel) 92%,transparent)!important;color:var(--lab-text)!important;border:1px solid var(--lab-line)!important;border-radius:999px!important;padding:8px 11px!important;backdrop-filter:blur(8px);box-shadow:0 8px 24px rgba(0,0,0,.12)!important}\nbody[data-theme="archive"] .badge{background:rgba(244,239,231,.94)!important;color:#111214!important;border-color:rgba(212,77,44,.42)!important;box-shadow:0 8px 24px rgba(63,47,32,.12)!important}\n'''
+              css.write_text(text)
+      - name: Commit installed boards
+        run: |
+          git config user.name "bestieboys-uk"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html theme-lab.css assets/concepts/black-metal-*.webp
+          git commit -m "Reuse early Black Metal boards and fix hero badge"
+          git push
