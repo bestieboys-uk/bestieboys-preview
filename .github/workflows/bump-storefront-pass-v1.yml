@@ -1,0 +1,29 @@
+name: Bump storefront pass v1
+on:
+  push:
+    paths:
+      - '.github/workflows/bump-storefront-pass-v1.yml'
+permissions:
+  contents: write
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump preview script and self-clean
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          s=s.replace('theme-lab.js?v=silvercontrast1','theme-lab.js?v=storefront1')
+          p.write_text(s)
+          Path('.github/workflows/bump-storefront-pass-v1.yml').unlink()
+          PY
+      - name: Commit storefront pass
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Load customer-facing storefront scene pass"
+          git push
