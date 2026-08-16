@@ -1,0 +1,274 @@
+/* Bestie Boys Design Lab v5 — four approved website reference directions */
+
+:root{
+  --bb-logo-splatter:url('assets/brand/bestie-boys-splatter.png');
+  --bb-logo-spike:url('assets/brand/bestie-boys-spike.png');
+  --bb-logo-brush:url('assets/brand/bestie-boys-brush.png');
+}
+
+/* =========================================================
+   01 / COLDWAVE — near-black, icy blue, cinematic
+   ========================================================= */
+body[data-theme="coldwave"]{
+  --lab-bg:#07111a;
+  --lab-panel:rgba(9,19,29,.93);
+  --lab-panel-2:#122433;
+  --lab-text:#e4edf4;
+  --lab-muted:#c0ccd5;
+  --lab-accent:#a8cae3;
+  --lab-accent-2:#dcebf5;
+  --lab-line:rgba(196,222,239,.34);
+  --lab-shadow:rgba(0,0,0,.58);
+  --bb-logo-image:var(--bb-logo-splatter);
+  --bb-logo-color:#e8f2f8;
+  background:
+    radial-gradient(ellipse at 12% 0%,rgba(180,218,244,.18),transparent 22%),
+    radial-gradient(ellipse at 88% 0%,rgba(180,218,244,.16),transparent 22%),
+    radial-gradient(circle at 50% 6%,rgba(100,159,201,.10),transparent 28%),
+    linear-gradient(180deg,#06101a 0%,#07121c 42%,#03080d 100%)!important;
+  background-attachment:fixed!important;
+}
+body[data-theme="coldwave"] .theme-lab{
+  background:linear-gradient(180deg,rgba(12,26,39,.96),rgba(5,13,21,.96))!important;
+  border:1px solid rgba(196,222,239,.36)!important;
+  box-shadow:0 22px 58px rgba(0,0,0,.48),inset 0 1px rgba(255,255,255,.05)!important;
+}
+body[data-theme="coldwave"] .theme-lab button[aria-pressed="true"]{
+  background:linear-gradient(180deg,#c9e0ef,#88acc7)!important;
+  color:#06101a!important;
+  border-color:#dcecf7!important;
+  box-shadow:0 0 22px rgba(165,209,238,.25)!important;
+}
+
+/* =========================================================
+   02 / XEROX — dirty copier paper, ripped edges, black ink
+   ========================================================= */
+body[data-theme="xerox"]{
+  --lab-bg:#ddd8cd;
+  --lab-panel:rgba(241,237,226,.95);
+  --lab-panel-2:#cfc8ba;
+  --lab-text:#090909;
+  --lab-muted:#25231f;
+  --lab-accent:#8b3025;
+  --lab-accent-2:#111;
+  --lab-line:rgba(8,8,8,.42);
+  --lab-shadow:rgba(25,20,15,.17);
+  --bb-logo-image:var(--bb-logo-brush);
+  --bb-logo-color:#080808;
+  background:
+    radial-gradient(circle at 12% 18%,rgba(0,0,0,.13) 0 1px,transparent 1.4px),
+    radial-gradient(circle at 72% 32%,rgba(0,0,0,.09) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 42% 80%,rgba(0,0,0,.07) 0 1px,transparent 1.7px),
+    linear-gradient(145deg,#ece8dc 0%,#d9d4c8 52%,#c9c2b4 100%)!important;
+  background-size:9px 9px,17px 17px,23px 23px,100% 100%!important;
+  background-attachment:fixed!important;
+}
+body[data-theme="xerox"] .theme-lab{
+  background:rgba(239,235,224,.94)!important;
+  border:2px solid #111!important;
+  box-shadow:7px 8px 0 rgba(0,0,0,.08)!important;
+}
+body[data-theme="xerox"] .theme-lab button{
+  border:2px solid #111!important;
+}
+body[data-theme="xerox"] .theme-lab button[aria-pressed="true"]{
+  background:#111!important;color:#f4f0e7!important;border-color:#111!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)!important;
+}
+
+/* =========================================================
+   03 / SILVER NOISE — brushed steel, industrial plate
+   ========================================================= */
+body[data-theme="silvernoise"]{
+  --lab-bg:#b8bcbd;
+  --lab-panel:rgba(226,228,226,.96);
+  --lab-panel-2:#9ba0a2;
+  --lab-text:#07090a;
+  --lab-muted:#1e2224;
+  --lab-accent:#a52f23;
+  --lab-accent-2:#101213;
+  --lab-line:rgba(5,7,8,.48);
+  --lab-shadow:rgba(25,29,31,.30);
+  --bb-logo-image:var(--bb-logo-spike);
+  --bb-logo-color:#080a0b;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.12) 0 1px,rgba(0,0,0,.035) 1px 3px,transparent 3px 7px),
+    linear-gradient(115deg,#d9dbd9 0%,#9ea3a5 22%,#e1e2df 44%,#969b9e 69%,#d7d8d5 100%)!important;
+  background-attachment:fixed!important;
+}
+body[data-theme="silvernoise"] .theme-lab{
+  position:relative;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.08) 0 1px,rgba(0,0,0,.025) 1px 4px),
+    linear-gradient(135deg,#d7d9d7,#aeb2b3 46%,#d5d6d3)!important;
+  border:1px solid #4f5456!important;
+  box-shadow:inset 0 0 0 3px rgba(255,255,255,.16),0 15px 35px rgba(30,34,36,.25)!important;
+}
+body[data-theme="silvernoise"] .theme-lab:before,
+body[data-theme="silvernoise"] .theme-lab:after{
+  content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:#303436;
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.55),0 1px 2px rgba(0,0,0,.5);
+}
+body[data-theme="silvernoise"] .theme-lab:before{left:9px;top:9px}
+body[data-theme="silvernoise"] .theme-lab:after{right:9px;bottom:9px}
+body[data-theme="silvernoise"] .theme-lab button[aria-pressed="true"]{
+  background:#0b0d0e!important;color:#f3f3ef!important;border-color:#0b0d0e!important;
+}
+
+/* =========================================================
+   04 / SLATE GRIND — charcoal, dirty bone, rust, low light
+   ========================================================= */
+body[data-theme="slategrind"]{
+  --lab-bg:#111315;
+  --lab-panel:rgba(24,27,29,.95);
+  --lab-panel-2:#25292c;
+  --lab-text:#e7e2d8;
+  --lab-muted:#d0cac0;
+  --lab-accent:#ad3926;
+  --lab-accent-2:#f0ece4;
+  --lab-line:rgba(234,228,217,.28);
+  --lab-shadow:rgba(0,0,0,.60);
+  --bb-logo-image:var(--bb-logo-splatter);
+  --bb-logo-color:#f0ede5;
+  background:
+    radial-gradient(circle at 18% 8%,rgba(255,255,255,.035),transparent 24%),
+    radial-gradient(circle at 80% 33%,rgba(173,57,38,.045),transparent 27%),
+    linear-gradient(145deg,#1b1e20 0%,#111315 50%,#080a0b 100%)!important;
+  background-attachment:fixed!important;
+}
+body[data-theme="slategrind"] .theme-lab{
+  background:linear-gradient(180deg,rgba(31,34,36,.96),rgba(15,17,18,.97))!important;
+  border-color:rgba(230,224,213,.25)!important;
+  box-shadow:0 20px 48px rgba(0,0,0,.46)!important;
+}
+body[data-theme="slategrind"] .theme-lab button[aria-pressed="true"]{
+  background:#a63825!important;color:#f5eee5!important;border-color:#c5523c!important;
+}
+
+/* =========================================================
+   SHARED FOUR-THEME SYSTEM
+   ========================================================= */
+body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]){
+  --font-body:"Helvetica Neue",Arial,sans-serif;
+  --font-head:"Arial Black","Helvetica Neue",Arial,sans-serif;
+}
+
+body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) .brand-wordmark{
+  display:block!important;
+  width:clamp(176px,30vw,300px)!important;
+  height:clamp(66px,10vw,112px)!important;
+  font-size:0!important;
+  background:var(--bb-logo-color)!important;
+  -webkit-mask-image:var(--bb-logo-image);mask-image:var(--bb-logo-image);
+  -webkit-mask-size:contain;mask-size:contain;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:left center;mask-position:left center;
+  flex:0 0 auto;
+}
+body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) .footer .brand-wordmark{
+  width:150px!important;height:58px!important;
+}
+
+body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) .header{
+  min-height:110px!important;
+  border-radius:0!important;
+  padding:10px 18px!important;
+  background:color-mix(in srgb,var(--lab-panel) 93%,transparent)!important;
+  border-color:var(--lab-line)!important;
+  box-shadow:0 12px 35px var(--lab-shadow)!important;
+}
+
+body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) .theme-lab{
+  width:min(calc(100% - 28px),1280px)!important;
+  margin:20px auto 30px!important;
+  padding:22px!important;
+  border-radius:2px!important;
+  color:var(--lab-text)!important;
+}
+body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) .theme-lab__label b{
+  font-family:"Arial Black",Arial,sans-serif!important;
+  font-size:1.05rem!important;letter-spacing:.12em!important;text-transform:uppercase!important;
+}
+body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) .theme-lab__label span{
+  color:var(--lab-muted)!important;font-size:.68rem!important;
+}
+body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) .theme-lab button{
+  font-family:"Arial Black",Arial,sans-serif!important;
+  text-transform:uppercase!important;
+  font-size:.68rem!important;
+  letter-spacing:.035em!important;
+  padding:11px 18px!important;
+  border:1px solid var(--lab-line)!important;
+  color:var(--lab-text)!important;
+  background:transparent!important;
+  border-radius:999px!important;
+}
+
+body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) .hero h1,
+body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) .section h2,
+body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) .scene-storefront__head h2,
+body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) .storefront-final-cta h2{
+  font-family:"Arial Black","Helvetica Neue",Arial,sans-serif!important;
+  font-style:normal!important;font-weight:900!important;
+  text-transform:uppercase!important;
+  letter-spacing:-.065em!important;line-height:.88!important;
+  color:var(--lab-text)!important;text-shadow:none!important;
+}
+body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) :is(.hero h1 em,.section h2 em,.scene-storefront__head h2 span,.storefront-final-cta h2 span){
+  font:inherit!important;font-style:normal!important;color:var(--lab-accent)!important;
+}
+
+body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) :is(.intro,.section p,.scene-card p,.scene-storefront__copy,.garment-v3-copy p,.step p,.footer){
+  color:var(--lab-muted)!important;
+  font-family:"Helvetica Neue",Arial,sans-serif!important;
+  font-weight:650!important;
+}
+body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) :is(.eyebrow,.kicker,.genre-meta small,.scene-card__eyebrow,.concept-code,.status,.chip,.scene-card__meta,.scene-card__cta,.garment-v3-copy small,.garment-v3-note,.step span){
+  font-family:"Arial Black",Arial,sans-serif!important;
+  font-weight:900!important;
+  text-transform:uppercase!important;
+}
+
+body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) :is(.genre,.concept,.product,.scene-card,.scene-storefront__proof,.storefront-final-cta){
+  background:color-mix(in srgb,var(--lab-panel) 95%,transparent)!important;
+  color:var(--lab-text)!important;
+  border-color:var(--lab-line)!important;
+}
+
+body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) .button{
+  border-radius:2px!important;
+  text-transform:uppercase!important;
+  font-family:"Arial Black",Arial,sans-serif!important;
+  letter-spacing:.035em!important;
+}
+body[data-theme="coldwave"] .button.primary{background:#b7d3e5!important;color:#06111a!important}
+body[data-theme="xerox"] .button.primary{background:#111!important;color:#f2eee6!important}
+body[data-theme="silvernoise"] .button.primary{background:#0c0e0f!important;color:#f1f1ed!important}
+body[data-theme="slategrind"] .button.primary{background:#a63825!important;color:#f6efe5!important}
+
+/* Theme-specific logo atmosphere */
+body[data-theme="coldwave"] .brand-wordmark{filter:drop-shadow(0 0 13px rgba(181,218,243,.18))}
+body[data-theme="xerox"] .brand-wordmark{filter:contrast(1.25)}
+body[data-theme="silvernoise"] .brand-wordmark{filter:drop-shadow(1px 2px 0 rgba(255,255,255,.25))}
+body[data-theme="slategrind"] .brand-wordmark{filter:drop-shadow(0 3px 7px rgba(0,0,0,.72))}
+
+@media(max-width:620px){
+  body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) .header{
+    min-height:88px!important;padding:8px 12px!important;
+  }
+  body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) .brand-wordmark{
+    width:170px!important;height:66px!important;
+  }
+  body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) .theme-lab{
+    padding:18px 16px!important;margin-top:14px!important;
+  }
+  body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) .theme-lab__options{
+    gap:8px!important;
+  }
+  body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) .theme-lab button{
+    font-size:.61rem!important;padding:9px 12px!important;
+  }
+  body:is([data-theme="coldwave"],[data-theme="xerox"],[data-theme="silvernoise"],[data-theme="slategrind"]) .hero h1{
+    font-size:clamp(3.15rem,15.5vw,4.7rem)!important;
+  }
+}
