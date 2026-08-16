@@ -1,10 +1,22 @@
 (() => {
   const body = document.body;
   const themes = [
-    ['atelier','Atelier'],
-    ['coldwave','Coldwave'],
-    ['archive','Archive']
+    ['atelier','Atelier','Dark editorial / oxblood / serif-led'],
+    ['coldwave','Coldwave','Blue-black / steel / restrained editorial'],
+    ['archive','Archive','Warm paper / rust / fashion editorial'],
+    ['slategrind','Slate Grind','Slate grey / scratch header / acid utility'],
+    ['silvernoise','Silver Noise','Brushed silver / broken type / hard black'],
+    ['xerox','Xerox','Dirty copier paper / raw header / black + red']
   ];
+
+  if (!document.querySelector('link[data-design-lab-v3]')) {
+    const designLabCss = document.createElement('link');
+    designLabCss.rel = 'stylesheet';
+    designLabCss.href = 'design-lab-v3.css?v=1';
+    designLabCss.dataset.designLabV3 = 'true';
+    document.head.appendChild(designLabCss);
+  }
+
   const saved = localStorage.getItem('bestieboys-preview-theme');
   body.dataset.theme = themes.some(([id]) => id === saved) ? saved : 'archive';
 
@@ -21,7 +33,7 @@
     const lab = document.createElement('div');
     lab.className = 'theme-lab';
     lab.innerHTML = `
-      <div class="theme-lab__label"><b>Design Lab</b><span>Live colour + type trials</span></div>
+      <div class="theme-lab__label"><b>Design Lab</b><span data-theme-note>Live colour + type trials</span></div>
       <div class="theme-lab__options" role="group" aria-label="Preview colour and type themes">
         ${themes.map(([id,label]) => `<button type="button" data-theme-choice="${id}">${label}</button>`).join('')}
       </div>`;
@@ -31,6 +43,9 @@
   function applyTheme(id){
     body.dataset.theme = id;
     localStorage.setItem('bestieboys-preview-theme', id);
+    const active = themes.find(([themeId]) => themeId === id);
+    const note = document.querySelector('[data-theme-note]');
+    if (note && active) note.textContent = active[2];
     document.querySelectorAll('[data-theme-choice]').forEach(btn => {
       btn.setAttribute('aria-pressed', btn.dataset.themeChoice === id ? 'true' : 'false');
     });
@@ -91,7 +106,7 @@
   }
   if (!document.querySelector('script[data-garment-v2]')) {
     const garmentJs = document.createElement('script');
-    garmentJs.src = 'garment-lab-v2.js?v=1';
+    garmentJs.src = 'garment-lab-v2.js?v=2';
     garmentJs.dataset.garmentV2 = 'true';
     document.body.appendChild(garmentJs);
   }
