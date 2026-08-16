@@ -1,0 +1,65 @@
+/* Bestie Boys scene-specific storefront visual studies v1 */
+.scene-card__visual{isolation:isolate}
+.scene-card__visual .scene-visual{position:absolute;inset:0;overflow:hidden}
+.scene-card__visual .scene-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.scene-card__visual .scene-visual__type{position:absolute;z-index:3;font-family:"Arial Black",Arial,sans-serif;text-transform:uppercase;line-height:.82;letter-spacing:-.055em}
+.scene-card__visual .scene-visual__micro{position:absolute;z-index:4;font-family:"Arial Black",Arial,sans-serif;font-size:.42rem;letter-spacing:.12em;text-transform:uppercase}
+.scene-card__visual .scene-visual__rule{position:absolute;z-index:3;background:currentColor}
+
+/* Black Metal: use actual existing development artwork rather than the generic source portrait. */
+.scene-card--blackmetal .scene-visual img{filter:grayscale(1) contrast(1.35) brightness(.74);object-position:center}
+.scene-card--blackmetal .scene-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.78))}
+.scene-card--blackmetal .scene-visual__micro{left:10px;bottom:11px;color:#f2efe9}
+
+/* Grindcore: repeated xerox crops + hard blocks. */
+.scene-card--grindcore .scene-visual{background:#070707}
+.scene-card--grindcore .scene-visual img{filter:grayscale(1) contrast(2.35) brightness(.68);width:70%;height:58%;object-position:46% 35%}
+.scene-card--grindcore .scene-visual img:nth-child(1){left:-8%;top:-4%}
+.scene-card--grindcore .scene-visual img:nth-child(2){left:38%;top:19%;transform:scaleX(-1);opacity:.75}
+.scene-card--grindcore .scene-visual img:nth-child(3){left:4%;top:52%;width:105%;height:55%;opacity:.55}
+.scene-card--grindcore .scene-visual:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.08) 0 1px,transparent 1px 5px),linear-gradient(90deg,transparent 0 63%,rgba(0,0,0,.75) 63% 100%)}
+.scene-card--grindcore .scene-visual__type{right:7px;top:10px;width:42%;font-size:1rem;color:#f0ede7;text-align:right}
+.scene-card--grindcore .scene-visual__micro{right:8px;bottom:9px;color:#ffebe4}
+
+/* Goregrind: clinical specimen board with warning red. */
+.scene-card--goregrind .scene-visual{background:#d7d2c6;color:#5a1814}
+.scene-card--goregrind .scene-visual img{filter:grayscale(.75) sepia(.28) contrast(1.65) brightness(.7);inset:15% 8% 8% 8%;width:84%;height:77%;object-position:center 28%}
+.scene-card--goregrind .scene-visual:before{content:"";position:absolute;inset:8px;border:1px solid rgba(70,24,21,.6);background:linear-gradient(90deg,transparent 49.6%,rgba(90,24,20,.2) 49.6% 50.4%,transparent 50.4%),linear-gradient(0deg,transparent 49.6%,rgba(90,24,20,.2) 49.6% 50.4%,transparent 50.4%)}
+.scene-card--goregrind .scene-visual__type{left:9px;top:8px;font-size:.8rem;color:#7e201a;letter-spacing:-.03em}
+.scene-card--goregrind .scene-visual__micro{left:9px;bottom:9px;color:#7e201a}
+
+/* Crust: one-colour propaganda / stencil treatment. */
+.scene-card--crust .scene-visual{background:#121212}
+.scene-card--crust .scene-visual img{filter:grayscale(1) contrast(3) brightness(.72);object-position:center 28%;transform:scale(1.16)}
+.scene-card--crust .scene-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(145deg,transparent 0 55%,rgba(0,0,0,.78) 55% 100%),repeating-linear-gradient(90deg,transparent 0 12px,rgba(255,255,255,.025) 12px 13px)}
+.scene-card--crust .scene-visual__type{left:9px;bottom:17px;font-size:.9rem;color:#f1eee7;transform:rotate(-4deg)}
+.scene-card--crust .scene-visual__micro{right:8px;top:10px;color:#e14831;writing-mode:vertical-rl}
+
+/* Powerviolence: giant crop + huge blunt type. */
+.scene-card--power .scene-visual{background:#090909}
+.scene-card--power .scene-visual img{filter:grayscale(1) contrast(2.5) brightness(.72);width:130%;height:130%;left:-34%;top:-12%;object-position:center 30%}
+.scene-card--power .scene-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 0 52%,rgba(0,0,0,.9) 52% 100%)}
+.scene-card--power .scene-visual__type{right:5px;top:13px;width:46%;font-size:1.18rem;color:#f5f2ea;text-align:right;line-height:.76}
+.scene-card--power .scene-visual__micro{right:7px;bottom:8px;color:#e84c31}
+
+/* Gore Noise: scan corruption / signal loss. */
+.scene-card--noise .scene-visual{background:#050505}
+.scene-card--noise .scene-visual img{filter:grayscale(1) contrast(3) brightness(.55);object-position:center 24%;transform:scale(1.1)}
+.scene-card--noise .scene-visual:before{content:"";position:absolute;inset:0;z-index:2;background:repeating-linear-gradient(0deg,transparent 0 7px,rgba(255,255,255,.07) 7px 8px),linear-gradient(90deg,rgba(255,255,255,.08) 0 12%,transparent 12% 72%,rgba(255,255,255,.05) 72% 82%,transparent 82%)}
+.scene-card--noise .scene-visual:after{content:"";position:absolute;z-index:3;left:0;right:0;top:41%;height:13%;background:#050505;box-shadow:0 24px 0 rgba(255,255,255,.12),0 -19px 0 rgba(255,255,255,.08)}
+.scene-card--noise .scene-visual__type{left:8px;top:8px;font-size:.82rem;color:#eee}
+.scene-card--noise .scene-visual__micro{right:7px;bottom:8px;color:#a81714}
+
+/* Death / Doom: sepulchral framed monument. */
+.scene-card--death .scene-visual{background:linear-gradient(180deg,#27231e,#090909)}
+.scene-card--death .scene-visual img{filter:grayscale(.85) sepia(.38) contrast(1.45) brightness(.58);inset:12% 12% 4%;width:76%;height:84%;object-position:center 25%}
+.scene-card--death .scene-visual:before{content:"";position:absolute;z-index:2;left:16%;right:16%;top:8%;bottom:7%;border:2px solid rgba(209,192,160,.45);border-bottom-width:5px;box-shadow:inset 0 0 28px rgba(0,0,0,.6)}
+.scene-card--death .scene-visual:after{content:"";position:absolute;z-index:2;left:24%;right:24%;top:2%;height:24%;border:2px solid rgba(209,192,160,.34);border-bottom:0;border-radius:50% 50% 0 0}
+.scene-card--death .scene-visual__type{left:9px;bottom:12px;font-size:.78rem;color:#d7c6a5}
+.scene-card--death .scene-visual__micro{right:8px;top:10px;color:#d7c6a5}
+
+@media(max-width:620px){
+  .scene-card__visual .scene-visual__type{font-size:.82rem}
+  .scene-card--power .scene-visual__type{font-size:.98rem}
+  .scene-card__visual .scene-visual__micro{font-size:.34rem}
+}
