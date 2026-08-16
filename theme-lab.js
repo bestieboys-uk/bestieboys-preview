@@ -1,33 +1,11 @@
 (() => {
   const body = document.body;
   const themes = [
-    ['coldwave','Coldwave','Icy blue-black / cinematic / high contrast'],
-    ['xerox','Xerox','Dirty copier paper / black ink / ripped print'],
+    ['slategrind','Slate Grind','Charcoal / dirty bone / rust / rough surface'],
     ['silvernoise','Silver Noise','Brushed steel / industrial plate / black'],
-    ['slategrind','Slate Grind','Charcoal / dirty bone / rust / low light']
+    ['xerox','Xerox','Dirty copier paper / toner / ripped flyer']
   ];
 
-  if (!document.querySelector('link[data-design-lab-v3]')) {
-    const designLabCss = document.createElement('link');
-    designLabCss.rel = 'stylesheet';
-    designLabCss.href = 'design-lab-v3.css?v=4';
-    designLabCss.dataset.designLabV3 = 'true';
-    document.head.appendChild(designLabCss);
-  }
-  if (!document.querySelector('link[data-design-lab-v4]')) {
-    const designLabCss4 = document.createElement('link');
-    designLabCss4.rel = 'stylesheet';
-    designLabCss4.href = 'design-lab-v4.css?v=1';
-    designLabCss4.dataset.designLabV4 = 'true';
-    document.head.appendChild(designLabCss4);
-  }
-  if (!document.querySelector('link[data-design-lab-v5]')) {
-    const designLabCss5 = document.createElement('link');
-    designLabCss5.rel = 'stylesheet';
-    designLabCss5.href = 'design-lab-v5.css?v=1';
-    designLabCss5.dataset.designLabV5 = 'true';
-    document.head.appendChild(designLabCss5);
-  }
 
   const saved = localStorage.getItem('bestieboys-preview-theme');
   body.dataset.theme = themes.some(([id]) => id === saved) ? saved : 'slategrind';
@@ -73,7 +51,7 @@
     const lab = document.createElement('div');
     lab.className = 'theme-lab';
     lab.innerHTML = `
-      <div class="theme-lab__label"><b>Design Lab</b><span data-theme-note>Four website reference directions</span></div>
+      <div class="theme-lab__label"><b>Design Lab</b><span data-theme-note>Three selected website directions</span></div>
       <div class="theme-lab__options" role="group" aria-label="Preview colour, type and logo themes">
         ${themes.map(([id,label]) => `<button type="button" data-theme-choice="${id}">${label}</button>`).join('')}
       </div>`;
