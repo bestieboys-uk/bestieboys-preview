@@ -1,0 +1,79 @@
+/* Bestie Boys — Silver Noise reference correction v2
+   Fixes the v1 fixed viewport frame and brings the live site closer to the selected reference. */
+
+body[data-theme="silvernoise"]{
+  border:4px double #25292b!important;
+  box-shadow:inset 0 0 0 5px rgba(255,255,255,.20),inset 0 0 42px rgba(0,0,0,.12)!important;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.10) 0 1px,rgba(0,0,0,.045) 1px 2px,rgba(255,255,255,.025) 2px 5px),
+    linear-gradient(112deg,#c9cccb 0%,#8f9496 22%,#d7d9d6 45%,#858a8c 69%,#c6c8c6 100%)!important;
+}
+
+/* The old fixed viewport frame made bolts sit over every section while scrolling. */
+body[data-theme="silvernoise"]::before,
+body[data-theme="silvernoise"]::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* Use the broader splatter mark from the selected Silver Noise reference. */
+body[data-theme="silvernoise"] .header .brand-wordmark{
+  -webkit-mask-image:var(--bb-logo-splatter)!important;
+  mask-image:var(--bb-logo-splatter)!important;
+  width:min(80vw,780px)!important;
+  filter:drop-shadow(0 3px 0 rgba(255,255,255,.18)) drop-shadow(0 10px 10px rgba(0,0,0,.14))!important;
+}
+
+/* Make the masthead / lab / hero feel like one designed opening composition. */
+body[data-theme="silvernoise"] .header{
+  border-top:1px solid rgba(255,255,255,.35)!important;
+  border-left:1px solid rgba(37,41,43,.34)!important;
+  border-right:1px solid rgba(37,41,43,.34)!important;
+}
+body[data-theme="silvernoise"] .theme-lab{
+  width:min(calc(100% - 56px),1180px)!important;
+  margin:-12px auto 28px!important;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.10) 0 1px,rgba(0,0,0,.034) 1px 3px,transparent 3px 7px),
+    linear-gradient(135deg,#cfd1cf,#a0a5a6 48%,#d1d3d0)!important;
+  border-color:#3c4143!important;
+}
+body[data-theme="silvernoise"] .hero{
+  width:min(calc(100% - 56px),1180px)!important;
+  border-bottom:1px solid rgba(32,36,38,.28)!important;
+  margin-bottom:12px!important;
+}
+
+/* Lower storefront content keeps the steel material without a giant overlay frame. */
+body[data-theme="silvernoise"] main>section:not(.hero){
+  position:relative!important;
+  z-index:auto!important;
+}
+body[data-theme="silvernoise"] :is(.scene-card,.genre,.concept,.product,.garment-v3-card,.scene-storefront__proof,.storefront-final-cta){
+  box-shadow:inset 0 1px rgba(255,255,255,.28)!important;
+}
+
+@media(max-width:620px){
+  body[data-theme="silvernoise"]{
+    border-width:3px!important;
+  }
+  body[data-theme="silvernoise"] .header{
+    width:calc(100% - 16px)!important;
+    min-height:51vw!important;
+  }
+  body[data-theme="silvernoise"] .header .brand-wordmark{
+    width:84vw!important;
+    height:49vw!important;
+  }
+  body[data-theme="silvernoise"] .theme-lab{
+    width:calc(100% - 24px)!important;
+    margin:-8px auto 22px!important;
+  }
+  body[data-theme="silvernoise"] .hero{
+    width:calc(100% - 24px)!important;
+  }
+  body[data-theme="silvernoise"] .hero h1{
+    font-size:clamp(3.85rem,16.7vw,5.15rem)!important;
+    max-width:6.4ch!important;
+  }
+}
