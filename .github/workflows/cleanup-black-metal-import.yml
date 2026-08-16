@@ -1,0 +1,30 @@
+name: Cleanup Black Metal import files
+
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/cleanup-black-metal-import.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove temporary import files
+        run: |
+          rm -rf .tmp
+          rm -f _bm-assets-note.txt
+          rm -f assets/concepts/black-metal-frostbite-portrait.txt
+          rm -f .github/workflows/install-existing-black-metal.yml
+          rm -f .github/workflows/install-existing-black-metal-v2.yml
+      - name: Commit cleanup
+        run: |
+          git config user.name "bestieboys-uk"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "Clean Black Metal preview import files"
+          git push
