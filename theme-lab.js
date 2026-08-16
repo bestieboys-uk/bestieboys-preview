@@ -89,7 +89,7 @@
     });
   }
   document.querySelectorAll('[data-theme-choice]').forEach(btn => {
-    btn.addEventListener('click', () => applyTheme(btn.dataset.themeChoice));
+    btn.addEventListener('click', () => applyTheme(btn.datasetThemeChoice || btn.dataset.themeChoice));
   });
   applyTheme(body.dataset.theme);
 
@@ -157,7 +157,7 @@
   }
   if (!document.querySelector('script[data-archive-target]')) {
     const targetJs = document.createElement('script');
-    targetJs.src = 'archive-target.js?v=4';
+    targetJs.src = 'archive-target.js?v=5';
     targetJs.dataset.archiveTarget = 'true';
     document.body.appendChild(targetJs);
   }
