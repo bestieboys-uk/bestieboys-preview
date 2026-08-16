@@ -68,10 +68,34 @@
 .scene-proof b{display:block;font-family:"Arial Black",Arial,sans-serif;font-size:.7rem;color:var(--lab-text);letter-spacing:.02em;text-transform:uppercase}
 .scene-proof span{display:block;margin-top:4px;font-size:.67rem;color:var(--lab-muted)}
 
-/* Make the technical matrix visibly secondary once the customer-facing scene selector exists. */
 #concepts{scroll-margin-top:18px}
 #concepts>.section-head{padding-top:4px}
 #concepts .matrix-intro{opacity:.88}
+
+.storefront-final-cta{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);
+  gap:38px;
+  align-items:end;
+  padding:70px 0 74px;
+  border-top:1px solid var(--lab-line);
+}
+.storefront-final-cta__copy h2{
+  margin:0;
+  max-width:11ch;
+  font-family:var(--font-head)!important;
+  font-size:clamp(3rem,6.4vw,6.4rem)!important;
+  font-weight:900!important;
+  letter-spacing:-.06em!important;
+  line-height:.86!important;
+  text-transform:uppercase!important;
+  color:var(--lab-text)!important;
+}
+.storefront-final-cta__copy h2 span{color:var(--lab-accent)!important}
+.storefront-final-cta__copy p{max-width:43ch;margin:22px 0 0!important;color:var(--lab-muted)!important;font-size:.92rem!important;line-height:1.55!important}
+.storefront-final-cta__actions{display:flex;flex-direction:column;gap:9px;align-items:stretch}
+.storefront-final-cta__actions .button{justify-content:center;text-align:center}
+.storefront-final-cta__actions small{margin-top:7px;color:var(--lab-muted);font-size:.62rem;line-height:1.4;text-transform:uppercase;letter-spacing:.07em}
 
 @media(max-width:900px){
   .scene-storefront__head{grid-template-columns:1fr;gap:16px}
@@ -80,6 +104,7 @@
   .scene-storefront__proof{grid-template-columns:1fr 1fr}
   .scene-proof:nth-child(2){border-right:0}
   .scene-proof:nth-child(-n+2){border-bottom:1px solid var(--lab-line)}
+  .storefront-final-cta{grid-template-columns:1fr;gap:26px}
 }
 @media(max-width:620px){
   .scene-storefront{padding:58px 0 62px}
@@ -98,4 +123,8 @@
   .scene-proof{padding:13px 12px}
   .scene-proof b{font-size:.59rem}
   .scene-proof span{font-size:.58rem}
+  .storefront-final-cta{padding:56px 0 60px;gap:22px}
+  .storefront-final-cta__copy h2{font-size:clamp(2.75rem,12vw,3.8rem)!important;max-width:10ch}
+  .storefront-final-cta__copy p{font-size:.84rem!important;margin-top:18px!important}
+  .storefront-final-cta__actions small{font-size:.56rem}
 }
