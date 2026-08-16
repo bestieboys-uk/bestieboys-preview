@@ -80,6 +80,17 @@
   const processKicker = process?.querySelector('.section-head .kicker');
   if (processKicker) processKicker.textContent = '04 / HOW IT WORKS';
 
+  // Remove the internal build-status section from the customer-facing flow.
+  [...document.querySelectorAll('main > .section.shell')].forEach(candidate => {
+    const kicker = candidate.querySelector(':scope > .kicker');
+    if (kicker?.textContent?.toUpperCase().includes('BUILD STATUS')) candidate.remove();
+  });
+
+  // Keep development state visible, but discreetly in the footer rather than as a sales-page section.
+  const footer = document.querySelector('.footer');
+  const footerStatus = footer?.querySelector('span');
+  if (footerStatus) footerStatus.textContent = 'DEVELOPMENT PREVIEW / NOT FOR SALE';
+
   // Clicking a scene card opens the matching detail group after navigating to it.
   section.querySelectorAll('[data-scene-target]').forEach(link => {
     link.addEventListener('click', () => {
