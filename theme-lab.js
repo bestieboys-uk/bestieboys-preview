@@ -10,7 +10,8 @@
   const referenceSheets = [
     ['slate-reference','slate-reference-v1.css?v=1'],
     ['xerox-reference','xerox-reference-v1.css?v=1'],
-    ['garment-rendered','garment-storefront-v3.css?v=rendered1']
+    ['garment-rendered','garment-storefront-v3.css?v=rendered1'],
+    ['approved-mockups','approved-mockups.css?v=approved2']
   ];
   referenceSheets.forEach(([key,href]) => {
     if (document.querySelector(`link[data-${key}]`)) return;
@@ -40,6 +41,14 @@
     document.body.appendChild(script);
   }
   loadNextGarmentScript();
+
+  // Approved scene mockups are rendered directly in card summaries and expanded bodies.
+  if (!document.querySelector('script[data-approved-mockups]')) {
+    const approved = document.createElement('script');
+    approved.src = 'approved-mockups.js?v=approved2';
+    approved.dataset.approvedMockups = 'true';
+    document.body.appendChild(approved);
+  }
 
   const saved = localStorage.getItem('bestieboys-preview-theme');
   body.dataset.theme = themes.some(([id]) => id === saved) ? saved : 'slategrind';
