@@ -1,1 +1,0 @@
-Direct mockup QA complete: all 10 approved concept WebP files were verified non-empty and recognized as Web/P images by GitHub Actions before this branch was prepared for merge.
