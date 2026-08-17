@@ -10,7 +10,7 @@
     ['slate-reference','slate-reference-v1.css?v=1'],
     ['xerox-reference','xerox-reference-v1.css?v=1'],
     ['garment-rendered','garment-storefront-v3.css?v=rendered1'],
-    ['approved-mockups','approved-mockups.css?v=grind1']
+    ['approved-mockups','approved-mockups.css?v=direct1']
   ];
   referenceSheets.forEach(([key,href]) => {
     if (document.querySelector(`link[data-${key}]`)) return;
@@ -42,7 +42,7 @@
 
   if (!document.querySelector('script[data-approved-mockups]')) {
     const approved = document.createElement('script');
-    approved.src = 'approved-mockups.js?v=grind1';
+    approved.src = 'approved-mockups.js?v=direct1';
     approved.dataset.approvedMockups = 'true';
     document.body.appendChild(approved);
   }
