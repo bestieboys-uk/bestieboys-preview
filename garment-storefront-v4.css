@@ -1,0 +1,125 @@
+/* Bestie Boys format library — no temporary garment artwork */
+#formats .format-library-status{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:4px 18px;
+  align-items:end;
+  margin:-8px 0 18px;
+  padding:16px 18px;
+  border:1px solid var(--lab-line);
+  background:color-mix(in srgb,var(--lab-panel) 95%,transparent);
+}
+#formats .format-library-status span{
+  grid-column:1;
+  font:900 .56rem/1 "Helvetica Neue",Arial,sans-serif;
+  letter-spacing:.14em;
+  color:var(--lab-muted);
+}
+#formats .format-library-status strong{
+  grid-column:1;
+  font:900 1.02rem/1 "Arial Black",Arial,sans-serif;
+  letter-spacing:-.03em;
+  color:#c64936;
+}
+#formats .format-library-status p{
+  grid-column:2;
+  grid-row:1 / span 2;
+  margin:0;
+  max-width:62ch;
+  font-size:.78rem;
+  line-height:1.45;
+  color:var(--lab-text);
+}
+#formats .format-library{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+}
+#formats .format-card{
+  min-height:250px;
+  padding:16px;
+  border:1px solid var(--lab-line);
+  background:color-mix(in srgb,var(--lab-panel) 96%,transparent);
+  display:flex;
+  flex-direction:column;
+}
+#formats .format-card__top{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:flex-start;
+}
+#formats .format-card__code{
+  font:900 .7rem/1 "Arial Black",Arial,sans-serif;
+  letter-spacing:.1em;
+  color:#a43b2d;
+}
+#formats .format-card__status{
+  padding:4px 7px;
+  border:1px solid var(--lab-line);
+  border-radius:999px;
+  font:900 .46rem/1 "Helvetica Neue",Arial,sans-serif;
+  letter-spacing:.08em;
+  color:var(--lab-muted);
+  white-space:nowrap;
+}
+#formats .format-card h3{
+  margin:38px 0 8px;
+  font:900 1.48rem/.9 "Arial Black",Arial,sans-serif;
+  letter-spacing:-.045em;
+  text-transform:uppercase;
+  color:var(--lab-text);
+}
+#formats .format-card>strong{
+  font-size:.72rem;
+  line-height:1.3;
+  color:#a43b2d;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+#formats .format-card p{
+  margin:12px 0 20px;
+  font-size:.74rem;
+  line-height:1.48;
+  color:var(--lab-muted);
+}
+#formats .format-card__tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:auto;
+}
+#formats .format-card__tags span{
+  padding:5px 7px;
+  border:1px solid var(--lab-line);
+  border-radius:999px;
+  font:800 .48rem/1 "Helvetica Neue",Arial,sans-serif;
+  letter-spacing:.08em;
+  color:var(--lab-text);
+}
+body[data-theme="slategrind"] #formats .format-card,
+body[data-theme="slategrind"] #formats .format-library-status{background:#17191b}
+body[data-theme="silvernoise"] #formats .format-card,
+body[data-theme="silvernoise"] #formats .format-library-status{background:#c4c7c6;border-color:#4d5254}
+body[data-theme="xerox"] #formats .format-card,
+body[data-theme="xerox"] #formats .format-library-status{background:#e6e0d5;border-color:#191919}
+@media(max-width:980px){
+  #formats .format-library{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:620px){
+  #formats .format-library-status{
+    grid-template-columns:1fr;
+    gap:7px;
+    padding:14px;
+    margin-top:-4px;
+  }
+  #formats .format-library-status span,
+  #formats .format-library-status strong,
+  #formats .format-library-status p{grid-column:1;grid-row:auto}
+  #formats .format-library-status strong{font-size:1.18rem}
+  #formats .format-library-status p{font-size:.74rem}
+  #formats .format-library{grid-template-columns:1fr;gap:8px}
+  #formats .format-card{min-height:0;padding:14px}
+  #formats .format-card h3{margin:28px 0 7px;font-size:1.55rem}
+  #formats .format-card p{font-size:.72rem;margin-bottom:16px}
+}
