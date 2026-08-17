@@ -22,10 +22,36 @@
   filter:none!important;
   background:#e7e0d5;
 }
+.approved-mockup-thumb.standalone,
+.approved-mockup-full.standalone{
+  aspect-ratio:auto;
+  min-height:0;
+}
+.approved-mockup-thumb.standalone img,
+.approved-mockup-full.standalone img{
+  position:relative;
+  left:auto;
+  top:auto!important;
+  width:100%;
+  height:auto;
+  max-height:none!important;
+  object-fit:contain;
+}
 .concept.approved-mockup-card .art-slot{display:none!important}
 .concept.approved-mockup-card .status{
   color:#e14831!important;
   border-color:rgba(225,72,49,.45)!important;
+}
+.concept-art[hidden]{display:none!important}
+.approved-mockup-error{
+  margin:14px 0 8px;
+  padding:18px;
+  border:1px dashed rgba(225,72,49,.55);
+  color:#9f3024;
+  font-size:.58rem;
+  font-weight:900;
+  letter-spacing:.11em;
+  text-align:center;
 }
 body[data-theme="silvernoise"] .approved-mockup-thumb,
 body[data-theme="silvernoise"] .approved-mockup-full{border-color:#45494b;background:#c7c6c1}
