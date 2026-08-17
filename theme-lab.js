@@ -6,11 +6,11 @@
     ['xerox','Xerox','Dirty copier paper / toner / ripped flyer']
   ];
 
-  // Load only the current reference-specific theme layers.
   const referenceSheets = [
     ['slate-reference','slate-reference-v1.css?v=1'],
     ['xerox-reference','xerox-reference-v1.css?v=1'],
-    ['garment-rendered','garment-storefront-v3.css?v=rendered1']
+    ['garment-rendered','garment-storefront-v3.css?v=rendered1'],
+    ['approved-mockups','approved-mockups.css?v=approved3']
   ];
   referenceSheets.forEach(([key,href]) => {
     if (document.querySelector(`link[data-${key}]`)) return;
@@ -21,7 +21,6 @@
     document.head.appendChild(link);
   });
 
-  // Force the rendered garment board to replace the old SVG placeholder system.
   const garmentScripts = [
     'garment-board-part1.js?v=1',
     'garment-board-part2.js?v=1',
@@ -41,19 +40,23 @@
   }
   loadNextGarmentScript();
 
+  if (!document.querySelector('script[data-approved-mockups]')) {
+    const approved = document.createElement('script');
+    approved.src = 'approved-mockups.js?v=approved3';
+    approved.dataset.approvedMockups = 'true';
+    document.body.appendChild(approved);
+  }
+
   const saved = localStorage.getItem('bestieboys-preview-theme');
   body.dataset.theme = themes.some(([id]) => id === saved) ? saved : 'slategrind';
 
-  // Visible brand naming is always spaced: Bestie Boys.
   const replaceBrandText = (root = document.body) => {
     if (!root) return;
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
     const nodes = [];
     while (walker.nextNode()) nodes.push(walker.currentNode);
     nodes.forEach(node => {
-      if (node.nodeValue?.includes('BestieBoys')) {
-        node.nodeValue = node.nodeValue.replaceAll('BestieBoys','Bestie Boys');
-      }
+      if (node.nodeValue?.includes('BestieBoys')) node.nodeValue = node.nodeValue.replaceAll('BestieBoys','Bestie Boys');
     });
     root.querySelectorAll?.('[aria-label],[alt],[title]').forEach(el => {
       ['aria-label','alt','title'].forEach(attr => {
@@ -67,9 +70,7 @@
     records.forEach(record => record.addedNodes.forEach(node => {
       if (node.nodeType === Node.TEXT_NODE) {
         if (node.nodeValue?.includes('BestieBoys')) node.nodeValue = node.nodeValue.replaceAll('BestieBoys','Bestie Boys');
-      } else if (node.nodeType === Node.ELEMENT_NODE) {
-        replaceBrandText(node);
-      }
+      } else if (node.nodeType === Node.ELEMENT_NODE) replaceBrandText(node);
     }));
   }).observe(document.body,{childList:true,subtree:true});
 
@@ -103,8 +104,6 @@
     });
   }
 
-  document.querySelectorAll('[data-theme-choice]').forEach(btn => {
-    btn.addEventListener('click',() => applyTheme(btn.dataset.themeChoice));
-  });
+  document.querySelectorAll('[data-theme-choice]').forEach(btn => btn.addEventListener('click',() => applyTheme(btn.dataset.themeChoice)));
   applyTheme(body.dataset.theme);
 })();
