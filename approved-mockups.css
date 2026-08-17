@@ -1,41 +1,22 @@
-/* Approved Bestie Boys genre mockups — direct card presentation */
+/* Approved Bestie Boys genre mockups — direct image presentation */
 .approved-mockup-thumb,
 .approved-mockup-full{
-  position:relative;
-  width:100%;
-  aspect-ratio:4/5;
+  margin:12px 0;
   overflow:hidden;
   background:#e7e0d5;
-  border:1px solid var(--lab-line);
+  border:1px solid var(--lab-line,rgba(20,20,20,.25));
 }
-.approved-mockup-thumb{margin:14px 0 10px}
 .approved-mockup-full{margin:14px 0 18px}
 .approved-mockup-thumb img,
 .approved-mockup-full img{
-  position:absolute;
-  left:0;
-  width:100%;
-  height:700%;
-  max-height:none!important;
-  object-fit:fill;
   display:block!important;
+  position:static!important;
+  width:100%!important;
+  height:auto!important;
+  max-height:none!important;
+  object-fit:contain!important;
   filter:none!important;
   background:#e7e0d5;
-}
-.approved-mockup-thumb.standalone,
-.approved-mockup-full.standalone{
-  aspect-ratio:auto;
-  min-height:0;
-}
-.approved-mockup-thumb.standalone img,
-.approved-mockup-full.standalone img{
-  position:relative;
-  left:auto;
-  top:auto!important;
-  width:100%;
-  height:auto;
-  max-height:none!important;
-  object-fit:contain;
 }
 .concept.approved-mockup-card .art-slot{display:none!important}
 .concept.approved-mockup-card .status{
@@ -43,16 +24,6 @@
   border-color:rgba(225,72,49,.45)!important;
 }
 .concept-art[hidden]{display:none!important}
-.approved-mockup-error{
-  margin:14px 0 8px;
-  padding:18px;
-  border:1px dashed rgba(225,72,49,.55);
-  color:#9f3024;
-  font-size:.58rem;
-  font-weight:900;
-  letter-spacing:.11em;
-  text-align:center;
-}
 body[data-theme="silvernoise"] .approved-mockup-thumb,
 body[data-theme="silvernoise"] .approved-mockup-full{border-color:#45494b;background:#c7c6c1}
 body[data-theme="xerox"] .approved-mockup-thumb,
