@@ -68,3 +68,55 @@
     white-space:nowrap!important;
   }
 }
+
+/* Approved 2026-08-17 genre mockups. These are early visual studies, not production artwork. */
+.art-slot[data-art-base="assets/concepts/goregrind-canine-pathology"],
+.art-slot[data-art-base="assets/concepts/goregrind-dissection-club"],
+.art-slot[data-art-base="assets/concepts/goregrind-terminal-good-boy"],
+.art-slot[data-art-base="assets/concepts/crust-no-masters-only-gerrard"],
+.art-slot[data-art-base="assets/concepts/powerviolence-gerrard-no-peace"],
+.art-slot[data-art-base="assets/concepts/gore-noise-signal-rot-gerrard"],
+.art-slot[data-art-base="assets/concepts/death-doom-eternal-weight"]{
+  aspect-ratio:4/5;
+  min-height:0;
+  background-image:url('assets/concepts/approved-genre-mockups-sprite.webp');
+  background-size:100% 700%;
+  background-repeat:no-repeat;
+  background-position-x:center;
+  background-color:#e9e2d6;
+}
+.art-slot[data-art-base="assets/concepts/goregrind-canine-pathology"]{background-position-y:0%}
+.art-slot[data-art-base="assets/concepts/goregrind-dissection-club"]{background-position-y:16.6667%}
+.art-slot[data-art-base="assets/concepts/goregrind-terminal-good-boy"]{background-position-y:33.3333%}
+.art-slot[data-art-base="assets/concepts/crust-no-masters-only-gerrard"]{background-position-y:50%}
+.art-slot[data-art-base="assets/concepts/powerviolence-gerrard-no-peace"]{background-position-y:66.6667%}
+.art-slot[data-art-base="assets/concepts/gore-noise-signal-rot-gerrard"]{background-position-y:83.3333%}
+.art-slot[data-art-base="assets/concepts/death-doom-eternal-weight"]{background-position-y:100%}
+.art-slot[data-art-base="assets/concepts/goregrind-canine-pathology"] .concept-art,
+.art-slot[data-art-base="assets/concepts/goregrind-dissection-club"] .concept-art,
+.art-slot[data-art-base="assets/concepts/goregrind-terminal-good-boy"] .concept-art,
+.art-slot[data-art-base="assets/concepts/crust-no-masters-only-gerrard"] .concept-art,
+.art-slot[data-art-base="assets/concepts/powerviolence-gerrard-no-peace"] .concept-art,
+.art-slot[data-art-base="assets/concepts/gore-noise-signal-rot-gerrard"] .concept-art,
+.art-slot[data-art-base="assets/concepts/death-doom-eternal-weight"] .concept-art,
+.art-slot[data-art-base="assets/concepts/goregrind-canine-pathology"] .art-placeholder,
+.art-slot[data-art-base="assets/concepts/goregrind-dissection-club"] .art-placeholder,
+.art-slot[data-art-base="assets/concepts/goregrind-terminal-good-boy"] .art-placeholder,
+.art-slot[data-art-base="assets/concepts/crust-no-masters-only-gerrard"] .art-placeholder,
+.art-slot[data-art-base="assets/concepts/powerviolence-gerrard-no-peace"] .art-placeholder,
+.art-slot[data-art-base="assets/concepts/gore-noise-signal-rot-gerrard"] .art-placeholder,
+.art-slot[data-art-base="assets/concepts/death-doom-eternal-weight"] .art-placeholder{display:none!important}
+.concept:has(.art-slot[data-art-base="assets/concepts/goregrind-canine-pathology"]) .status,
+.concept:has(.art-slot[data-art-base="assets/concepts/goregrind-dissection-club"]) .status,
+.concept:has(.art-slot[data-art-base="assets/concepts/goregrind-terminal-good-boy"]) .status,
+.concept:has(.art-slot[data-art-base="assets/concepts/crust-no-masters-only-gerrard"]) .status,
+.concept:has(.art-slot[data-art-base="assets/concepts/powerviolence-gerrard-no-peace"]) .status,
+.concept:has(.art-slot[data-art-base="assets/concepts/gore-noise-signal-rot-gerrard"]) .status,
+.concept:has(.art-slot[data-art-base="assets/concepts/death-doom-eternal-weight"]) .status{font-size:0;color:#e14831;border-color:rgba(225,72,49,.45)}
+.concept:has(.art-slot[data-art-base="assets/concepts/goregrind-canine-pathology"]) .status:after,
+.concept:has(.art-slot[data-art-base="assets/concepts/goregrind-dissection-club"]) .status:after,
+.concept:has(.art-slot[data-art-base="assets/concepts/goregrind-terminal-good-boy"]) .status:after,
+.concept:has(.art-slot[data-art-base="assets/concepts/crust-no-masters-only-gerrard"]) .status:after,
+.concept:has(.art-slot[data-art-base="assets/concepts/powerviolence-gerrard-no-peace"]) .status:after,
+.concept:has(.art-slot[data-art-base="assets/concepts/gore-noise-signal-rot-gerrard"]) .status:after,
+.concept:has(.art-slot[data-art-base="assets/concepts/death-doom-eternal-weight"]) .status:after{content:"EARLY VISUAL MOCKUP";font-size:.49rem;letter-spacing:.09em}
