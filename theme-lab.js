@@ -9,7 +9,7 @@
   const referenceSheets = [
     ['slate-reference','slate-reference-v1.css?v=1'],
     ['xerox-reference','xerox-reference-v1.css?v=1'],
-    ['garment-rendered','garment-storefront-v3.css?v=rendered1'],
+    ['garment-formats','garment-storefront-v4.css?v=1'],
     ['approved-mockups','approved-mockups.css?v=direct1']
   ];
   referenceSheets.forEach(([key,href]) => {
@@ -20,25 +20,6 @@
     link.setAttribute(`data-${key}`,'true');
     document.head.appendChild(link);
   });
-
-  const garmentScripts = [
-    'garment-board-part1.js?v=1',
-    'garment-board-part2.js?v=1',
-    'garment-board-part3.js?v=1',
-    'garment-board-part4.js?v=1',
-    'garment-storefront-v3.js?v=rendered1'
-  ];
-  let garmentIndex = 0;
-  function loadNextGarmentScript(){
-    if (garmentIndex >= garmentScripts.length) return;
-    const src = garmentScripts[garmentIndex++];
-    const script = document.createElement('script');
-    script.src = src;
-    script.async = false;
-    script.onload = loadNextGarmentScript;
-    document.body.appendChild(script);
-  }
-  loadNextGarmentScript();
 
   if (!document.querySelector('script[data-approved-mockups]')) {
     const approved = document.createElement('script');
