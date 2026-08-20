@@ -1,3 +1,9 @@
+document.body.classList.add('public-review');
+const qaStyles=document.createElement('link');
+qaStyles.rel='stylesheet';
+qaStyles.href='storefront-v3-mobile-fixes.css';
+document.head.appendChild(qaStyles);
+
 const header=document.querySelector('[data-header]');
 const menu=document.querySelector('[data-menu]');
 const nav=document.querySelector('[data-nav]');
