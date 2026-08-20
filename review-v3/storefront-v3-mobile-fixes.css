@@ -1,0 +1,42 @@
+/* Storefront v3 mobile QA corrections for isolated public review. */
+html{scroll-padding-top:96px}
+section[id]{scroll-margin-top:96px}
+
+.product-visual{position:relative;isolation:isolate;background:linear-gradient(145deg,#0b0b0b,#101010)}
+.product-visual .garment{display:none}
+.product-visual::before{content:"FORMAT STUDY / ARTWORK NOT LOCKED";position:absolute;left:16px;top:16px;color:#777169;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.52rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+.product-visual::after{position:absolute;left:16px;right:16px;bottom:18px;color:#b7b1a8;font-family:Impact,"Arial Black",sans-serif;font-size:clamp(1.45rem,3vw,2.2rem);line-height:.92;letter-spacing:-.02em;text-transform:uppercase}
+.product-card:nth-child(1) .product-visual::after{content:"SHORT-SLEEVE TEE"}
+.product-card:nth-child(2) .product-visual::after{content:"LONGSLEEVE"}
+.product-card:nth-child(3) .product-visual::after{content:"PULLOVER HOODIE"}
+.product-card:nth-child(4) .product-visual::after{content:"ZIP HOODIE"}
+.product-card:nth-child(5) .product-visual::after{content:"GIRLIE / FITTED"}
+.product-card:nth-child(6) .product-visual::after{content:"CAP"}
+.product-card:nth-child(7) .product-visual::after{content:"STICKER"}
+
+.public-review .transform-card.source .image-wrap{display:grid;place-items:center;align-content:center;gap:8px;padding:28px;background:linear-gradient(145deg,#0a0a0a,#131313);text-align:center}
+.public-review .transform-card.source .image-wrap img{display:none}
+.public-review .transform-card.source .image-wrap::before{content:"SOURCE PHOTO WITHHELD";color:var(--ink);font-family:Impact,"Arial Black",sans-serif;font-size:clamp(1.8rem,7vw,3rem);line-height:.95;letter-spacing:.01em}
+.public-review .transform-card.source .image-wrap::after{content:"Public review uses a privacy-safe placeholder. The original reference remains in the private development workflow.";max-width:34ch;color:#8f8981;font-size:.72rem;line-height:1.5}
+.public-review .gallery-strip figure:nth-child(2){display:none}
+.public-review .gallery-strip{grid-template-columns:1fr}
+
+@media(max-width:760px){
+  html{scroll-padding-top:118px}
+  section[id]{scroll-margin-top:118px}
+  .announcement{min-height:32px;padding:7px 12px;font-size:0;line-height:1;white-space:normal;overflow:visible;text-align:center;justify-content:center}
+  .announcement::before{content:"DEVELOPMENT • ORDERING DISABLED";font-size:.58rem;font-weight:900;letter-spacing:.12em;white-space:nowrap}
+  .product-visual{height:132px;margin:-2px -2px 16px}
+  .product-visual::before{left:13px;top:13px;font-size:.48rem}
+  .product-visual::after{left:13px;right:13px;bottom:15px;font-size:1.6rem}
+  .status-list div{grid-template-columns:72px minmax(0,1fr);gap:14px;padding:18px 16px}
+  .status-list strong{overflow-wrap:anywhere}
+}
+
+@media(max-width:460px){
+  html{scroll-padding-top:112px}
+  section[id]{scroll-margin-top:112px}
+  .announcement::before{font-size:.54rem;letter-spacing:.1em}
+  .product-visual{height:118px}
+  .product-visual::after{font-size:1.45rem}
+}
