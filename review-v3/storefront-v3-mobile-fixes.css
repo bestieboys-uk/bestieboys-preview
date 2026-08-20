@@ -18,14 +18,14 @@ section[id]{scroll-margin-top:96px}
 .public-review .transform-card.source .image-wrap img{display:none}
 .public-review .transform-card.source .image-wrap::before{content:"SOURCE PHOTO WITHHELD";color:var(--ink);font-family:Impact,"Arial Black",sans-serif;font-size:clamp(1.8rem,7vw,3rem);line-height:.95;letter-spacing:.01em}
 .public-review .transform-card.source .image-wrap::after{content:"Public review uses a privacy-safe placeholder. The original reference remains in the private development workflow.";max-width:34ch;color:#8f8981;font-size:.72rem;line-height:1.5}
-.public-review .gallery-strip figure:nth-child(2){display:none}
-.public-review .gallery-strip{grid-template-columns:1fr}
+.tour-issue-review .gallery-strip{display:none!important}
 
 @media(max-width:760px){
   html{scroll-padding-top:118px}
   section[id]{scroll-margin-top:118px}
-  .announcement{min-height:32px;padding:7px 12px;font-size:0;line-height:1;white-space:normal;overflow:visible;text-align:center;justify-content:center}
-  .announcement::before{content:"DEVELOPMENT • ORDERING DISABLED";font-size:.58rem;font-weight:900;letter-spacing:.12em;white-space:nowrap}
+  .public-review:not(.tour-issue-review) .announcement{min-height:32px;padding:7px 12px;font-size:0;line-height:1;white-space:normal;overflow:visible;text-align:center;justify-content:center}
+  .public-review:not(.tour-issue-review) .announcement::before{content:"DEVELOPMENT • ORDERING DISABLED";font-size:.58rem;font-weight:900;letter-spacing:.12em;white-space:nowrap}
+  .tour-issue-review .announcement{min-height:32px;padding:7px 12px;font-size:.58rem;line-height:1.2;white-space:normal;overflow:visible;text-align:center;justify-content:center;letter-spacing:.12em}
   .product-visual{height:132px;margin:-2px -2px 16px}
   .product-visual::before{left:13px;top:13px;font-size:.48rem}
   .product-visual::after{left:13px;right:13px;bottom:15px;font-size:1.6rem}
@@ -36,7 +36,8 @@ section[id]{scroll-margin-top:96px}
 @media(max-width:460px){
   html{scroll-padding-top:112px}
   section[id]{scroll-margin-top:112px}
-  .announcement::before{font-size:.54rem;letter-spacing:.1em}
+  .public-review:not(.tour-issue-review) .announcement::before{font-size:.54rem;letter-spacing:.1em}
+  .tour-issue-review .announcement{font-size:.54rem;letter-spacing:.1em}
   .product-visual{height:118px}
   .product-visual::after{font-size:1.45rem}
 }
