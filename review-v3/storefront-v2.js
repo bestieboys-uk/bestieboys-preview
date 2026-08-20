@@ -1,8 +1,11 @@
 document.body.classList.add('public-review');
-const qaStyles=document.createElement('link');
-qaStyles.rel='stylesheet';
-qaStyles.href='storefront-v3-mobile-fixes.css';
-document.head.appendChild(qaStyles);
+if(!document.querySelector('link[data-review-qa]')){
+  const qaStyles=document.createElement('link');
+  qaStyles.rel='stylesheet';
+  qaStyles.href='storefront-v3-mobile-fixes.css?v=5';
+  qaStyles.dataset.reviewQa='true';
+  document.head.appendChild(qaStyles);
+}
 
 const header=document.querySelector('[data-header]');
 const menu=document.querySelector('[data-menu]');
