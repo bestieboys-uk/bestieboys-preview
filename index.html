@@ -1,107 +1,244 @@
 <!doctype html>
 <html lang="en-GB">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="robots" content="noindex,nofollow,noarchive">
-<meta name="theme-color" content="#050505">
-<title>BestieBoys — 21 Concept Preview</title>
-<style>
-:root{--bg:#050505;--panel:#0b0b0b;--panel2:#101010;--text:#f3eee6;--muted:#9d988f;--line:rgba(243,238,230,.15);--accent:#ff4b2b;--acid:#d9ff42;--max:1280px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.45;overflow-x:hidden}a{color:inherit;text-decoration:none}.announcement{height:32px;display:flex;align-items:center;justify-content:center;background:var(--acid);color:#050505;padding:0 12px;font-size:.57rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;overflow:hidden}.shell{width:min(calc(100% - 28px),var(--max));margin:auto}.header{margin:10px auto 0;width:min(calc(100% - 20px),var(--max));display:flex;justify-content:space-between;align-items:center;padding:11px 13px;background:#090909;border:1px solid var(--line);border-radius:14px}.brand{font-family:Impact,"Arial Black",sans-serif;color:#fff;font-size:1.08rem;letter-spacing:.03em}.brand span{color:var(--accent);font-size:.55em;vertical-align:top}.header nav{display:flex;gap:20px}.header nav a,.header-cta{font-size:.78rem;font-weight:800;color:#ddd7ce}.header-cta{border:1px solid var(--line);padding:8px 11px;border-radius:999px}.hero{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center;padding:54px 0 72px}.eyebrow,.kicker{font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;color:#918c83;font-weight:900}.hero h1,.section h2{font-family:Impact,"Arial Black",sans-serif;text-transform:uppercase;line-height:.86;letter-spacing:-.045em;margin:0}.hero h1{font-size:clamp(4rem,9vw,8.6rem)}.hero h1 em,.section h2 em{font-family:Georgia,serif;text-transform:none;color:var(--accent);font-weight:400}.intro{color:#aaa49c;font-size:1.05rem;max-width:660px;margin:24px 0}.buttons{display:flex;gap:10px;flex-wrap:wrap}.button{display:inline-flex;padding:12px 17px;border-radius:999px;font-weight:900}.primary{background:var(--text);color:#050505}.ghost{border:1px solid var(--line)}.hero-card{position:relative;min-height:540px;overflow:hidden;border:1px solid var(--line);background:#111;transform:rotate(1.2deg);box-shadow:0 30px 90px rgba(0,0,0,.5)}.hero-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.hero-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,rgba(0,0,0,.6))}.badge{position:absolute;left:14px;top:14px;z-index:2;background:rgba(5,5,5,.9);border:1px solid var(--line);padding:8px 10px;font-size:.56rem;letter-spacing:.12em;font-weight:900}.stamp{position:absolute;right:14px;bottom:18px;z-index:2;width:96px;height:96px;border:1px solid var(--acid);border-radius:50%;display:grid;place-items:center;text-align:center;color:var(--acid);font-size:.52rem;font-weight:900;letter-spacing:.1em;background:#080808;transform:rotate(8deg)}.section{padding:78px 0;border-top:1px solid var(--line)}.section-head{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:end;margin-bottom:34px}.section h2{font-size:clamp(3rem,7vw,6.5rem)}.section p{color:var(--muted)}.matrix-intro{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.matrix-intro span,.chip{border:1px solid var(--line);border-radius:999px;padding:7px 10px;font-size:.64rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#bbb5ac}.genre-stack{display:grid;gap:12px}.genre{border:1px solid var(--line);background:var(--panel);overflow:hidden}.genre>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:86px 1fr auto;gap:16px;align-items:center;padding:13px}.genre>summary::-webkit-details-marker,.concept>summary::-webkit-details-marker{display:none}.genre-thumb{width:86px;height:86px;overflow:hidden;background:#111;border:1px solid var(--line)}.genre-thumb img{width:100%;height:100%;object-fit:cover}.genre-meta small{display:block;color:var(--accent);font-size:.56rem;letter-spacing:.13em;font-weight:900;text-transform:uppercase;margin-bottom:5px}.genre-meta h3{margin:0;font-family:Impact,"Arial Black",sans-serif;font-size:clamp(2rem,4vw,3.3rem);text-transform:uppercase;line-height:.9}.genre-meta p{margin:7px 0 0;font-size:.82rem;max-width:70ch}.genre-count{display:flex;align-items:center;gap:10px;font-size:.64rem;letter-spacing:.11em;text-transform:uppercase;color:#8d887f;font-weight:900}.genre-count:after{content:"+";display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--line);border-radius:50%;font-size:1.2rem;color:var(--acid)}.genre[open] .genre-count:after{content:"−"}.blackmetal .genre-thumb img{filter:grayscale(1) contrast(1.85) brightness(.5)}.grindcore .genre-thumb img{filter:grayscale(1) contrast(2.2) brightness(.63)}.goregrind .genre-thumb img{filter:grayscale(.7) sepia(.25) saturate(1.8) contrast(1.7) brightness(.53)}.crust .genre-thumb img{filter:grayscale(1) contrast(1.55) brightness(.64)}.power .genre-thumb img{filter:grayscale(1) contrast(2.35) brightness(.7)}.noise .genre-thumb img{filter:grayscale(1) contrast(2.8) brightness(.44) blur(.4px)}.death .genre-thumb img{filter:grayscale(.8) sepia(.4) contrast(1.4) brightness(.58)}.concept-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 13px 13px}.concept{border:1px solid var(--line);background:linear-gradient(160deg,#121212,#080808);overflow:hidden}.concept>summary{list-style:none;cursor:pointer;padding:14px;position:relative}.concept>summary:after{content:"+";position:absolute;right:14px;bottom:15px;display:grid;place-items:center;width:28px;height:28px;border:1px solid var(--line);border-radius:50%;font-size:1rem;color:var(--acid)}.concept[open]>summary:after{content:"−"}.concept-top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.concept-code{color:var(--accent);font-size:.54rem;font-weight:900;letter-spacing:.12em}.status{border:1px solid rgba(217,255,66,.35);color:var(--acid);padding:4px 7px;border-radius:999px;font-size:.49rem;letter-spacing:.09em;font-weight:900;white-space:nowrap}.concept h4{font-family:Impact,"Arial Black",sans-serif;text-transform:uppercase;font-size:1.72rem;line-height:.9;margin:18px 38px 12px 0}.quick{display:flex;gap:7px;flex-wrap:wrap;padding-right:38px}.quick .chip{padding:5px 7px;font-size:.55rem}.concept-body{padding:0 14px 14px;border-top:1px solid var(--line)}.concept-body p{font-size:.81rem;margin:14px 0}.specs{display:grid;gap:8px;border-top:1px solid var(--line);padding-top:13px}.spec{display:grid;grid-template-columns:68px 1fr;gap:9px;font-size:.72rem}.spec b{color:#767169;font-size:.55rem;letter-spacing:.11em;text-transform:uppercase}.spec span{color:#c8c1b7}.recommend{margin-top:13px;padding-top:11px;border-top:1px dashed var(--line);font-size:.66rem;color:#8f8a82}.recommend strong{color:var(--acid);letter-spacing:.08em}.product-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}.product{border:1px solid var(--line);padding:16px;background:#0b0b0b;min-height:130px}.product small{color:var(--accent);font-size:.55rem;letter-spacing:.12em;font-weight:900}.product strong{display:block;font-family:Impact,"Arial Black",sans-serif;text-transform:uppercase;font-size:1.35rem;line-height:.95;margin-top:28px}.process{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.step{padding:22px;border-right:1px solid var(--line)}.step:last-child{border-right:0}.step span{font-size:.58rem;letter-spacing:.12em;color:var(--accent);font-weight:900}.step h3{font-family:Impact,"Arial Black",sans-serif;text-transform:uppercase;font-size:1.5rem;margin:28px 0 7px}.step p{font-size:.82rem;margin:0}.notice{border:1px solid var(--line);padding:20px;margin-top:26px;color:#aaa}.footer{padding:26px 0 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;color:#777}@media(max-width:1000px){.header nav{display:none}.hero{grid-template-columns:1fr}.section-head{grid-template-columns:1fr;gap:20px}.concept-grid{grid-template-columns:1fr 1fr}.product-strip{grid-template-columns:repeat(4,1fr)}.process{grid-template-columns:1fr 1fr}.step:nth-child(2){border-right:0}.step:nth-child(-n+2){border-bottom:1px solid var(--line)}}@media(max-width:620px){.announcement{justify-content:flex-start}.header{width:calc(100% - 20px)}.hero{padding:42px 0 58px;gap:20px}.hero h1{font-size:clamp(3.15rem,16.4vw,4.7rem)}.intro{font-size:.97rem;margin:18px 0 20px}.hero-card{min-height:365px}.section{padding:62px 0}.section h2{font-size:clamp(2.7rem,12.8vw,4.2rem)}.genre>summary{grid-template-columns:70px 1fr;gap:11px;padding:10px}.genre-thumb{width:70px;height:70px}.genre-count{grid-column:2;justify-content:flex-start;margin-top:-4px}.genre-count:after{width:26px;height:26px}.genre-meta h3{font-size:1.95rem}.genre-meta p{font-size:.75rem}.concept-grid{grid-template-columns:1fr;padding:0 10px 10px}.concept>summary{padding:12px}.concept h4{font-size:1.58rem;margin-top:16px}.concept-body{padding:0 12px 12px}.product-strip{grid-template-columns:1fr 1fr}.product{min-height:112px;padding:13px}.product strong{font-size:1.15rem;margin-top:22px}.process{grid-template-columns:1fr}.step{border-right:0!important;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}.footer{flex-direction:column}.stamp{width:84px;height:84px;font-size:.46rem}.badge{font-size:.48rem}}
-
-.art-slot{margin:14px 0 2px;border:1px solid var(--line);background:#070707;min-height:180px;position:relative;overflow:hidden}.concept-art{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:#050505}.art-placeholder{min-height:180px;display:grid;place-items:center;align-content:center;text-align:center;padding:24px;color:#777}.art-placeholder span{color:var(--acid);font-size:.56rem;letter-spacing:.14em;font-weight:900}.art-placeholder strong{font-family:Impact,"Arial Black",sans-serif;text-transform:uppercase;color:#cfc8bd;font-size:1.35rem;margin-top:8px}.art-placeholder small{font-size:.58rem;letter-spacing:.06em;margin-top:8px;max-width:38ch;word-break:break-word}.art-placeholder[hidden]{display:none}
-</style>
-<link rel="stylesheet" href="theme-lab.css?v=7">
-<link rel="stylesheet" href="design-lab-v6.css?v=1">
-<link rel="stylesheet" href="scene-visuals-v1.css?v=2">
-<link rel="stylesheet" href="garment-storefront-v3.css?v=2">
-<link rel="stylesheet" href="silver-reference-v1.css?v=1">
-<link rel="stylesheet" href="silver-reference-v2.css?v=2">
-<link rel="stylesheet" href="slate-reference-v1.css?v=1">
-<link rel="stylesheet" href="xerox-reference-v1.css?v=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#050505">
+  <meta name="description" content="BestieBoys turns real pets into authentic underground-style merchandise and artwork.">
+  <title>BestieBoys — Turn Your Pet Into Merch</title>
+  <link rel="stylesheet" href="storefront-v2.css">
 </head>
 <body>
-<div class="announcement">BESTIEBOYS / DEVELOPMENT PREVIEW • 21 CONCEPTS • NOT FOR SALE</div>
-<header class="header"><a class="brand" href="#top">BESTIEBOYS<span>™</span></a><nav><a href="#concepts">Concepts</a><a href="#formats">Formats</a><a href="#process">Process</a></nav><a class="header-cta" href="#concepts">Explore →</a></header>
-<main id="top">
-<section class="hero shell"><div><p class="eyebrow">CUSTOM PET ART / UNDERGROUND MERCH / UK DEVELOPMENT</p><h1>TURN YOUR PET<br>INTO <em>MERCH.</em></h1><p class="intro">BestieBoys turns real pets into scene-authentic apparel and artwork. Gerrard — a Shar Pei — is the development example while we build a proper underground-merch design system. Likeness is locked to his broad wrinkled muzzle, small folded ears, forehead folds and fawn colouring.</p><div class="buttons"><a class="button primary" href="#concepts">Browse 21 concepts →</a><a class="button ghost" href="#formats">See product formats</a></div></div><div class="hero-card"><img src="assets/gerrard-tour-issue.webp" alt="Gerrard BestieBoys Tour Issue development concept"><div class="stamp">21 CONCEPTS<br>7 SCENES<br>1 PET</div></div></section>
-<section class="section shell" id="concepts"><div class="section-head"><div><div class="kicker">01 / CREATIVE MATRIX</div><h2>SEVEN SCENES.<br><em>THREE DESIGNS EACH.</em></h2></div><div><p>Tap a genre, then tap a concept only when you want the full art-direction brief. The compact view keeps garment, palette and role easy to compare on mobile.</p><div class="matrix-intro"><span>21 concepts</span><span>7 scenes</span><span>Artwork pending</span><span>Gerrard: Shar Pei likeness locked</span></div></div></div><div class="genre-stack">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="announcement">BESTIEBOYS / DEVELOPMENT STOREFRONT • UK-FIRST • ORDERING DISABLED</div>
 
-<details class="genre blackmetal" open><summary><div class="genre-thumb"><img src="assets/gerrard-source.webp" alt="Gerrard black metal reference"></div><div class="genre-meta"><small>01 / BLACK METAL</small><h3>Black Metal</h3><p>Three deliberately different Black Metal systems: raw xerox, ritual artefact and atmospheric minimalism. No shared logo treatment.</p></div><div class="genre-count">3 concepts</div></summary><div class="concept-grid">
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">BM-A / LAUNCH PICK</span><span class="status">EARLY VISUAL MOCKUP</span></div><h4>Frostbite Portrait</h4><div class="quick"><span class="chip">Tee / Longsleeve</span><span class="chip">Black + Bone</span><span class="chip">Launch</span></div><img class="bm-early-thumb" src="assets/concepts/black-metal-frostbite-portrait.webp" alt="Frostbite Portrait early Gerrard Black Metal visual mockup" loading="lazy"></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/black-metal-frostbite-portrait"><img class="concept-art" alt="Frostbite Portrait Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>Frostbite Portrait</strong><small>black-metal-frostbite-portrait.webp / .png / .jpg / .jpeg</small></div></div><p>Shar Pei likeness locked: preserve Gerrard’s broad wrinkled muzzle, small folded ears and forehead folds. Use a blown-out one-colour portrait with an asymmetric hand-drawn branch/root GERRARD mark — thin, scratchy and crude, with no drips and no generic thorn-metal font. Sparse dead-tree/frost texture, toner loss and imperfect screenprint reproduction.</p><div class="specs"><div class="spec"><b>Best on</b><span>Short-sleeve tee / longsleeve</span></div><div class="spec"><b>Palette</b><span>Black + dirty bone</span></div><div class="spec"><b>Role</b><span>Most wearable / strongest launch candidate</span></div></div><div class="recommend"><strong>WHY:</strong> Reads like real merch before personalised pet merch.</div></div></details>
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">BM-B</span><span class="status">EARLY VISUAL MOCKUP</span></div><h4>Ritual Hound</h4><div class="quick"><span class="chip">Longsleeve / Hoodie</span><span class="chip">Bone + Oxblood</span><span class="chip">Collector</span></div><img class="bm-early-thumb" src="assets/concepts/black-metal-ritual-hound.webp" alt="Ritual Hound early Gerrard Black Metal visual mockup" loading="lazy"></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/black-metal-ritual-hound"><img class="concept-art" alt="Ritual Hound Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>Ritual Hound</strong><small>black-metal-ritual-hound.webp / .png / .jpg / .jpeg</small></div></div><p>Shar Pei portrait used as the icon. No conventional extreme-metal logo: set GERRARD small in a crude medieval serif beneath an original BestieBoys sigil. Use asymmetric hand-built marks, specimen numbering and a sparse back crest; avoid mirrored rune decoration and avoid reusing the Frostbite lettering system.</p><div class="specs"><div class="spec"><b>Best on</b><span>Longsleeve / pullover hoodie</span></div><div class="spec"><b>Palette</b><span>Bone + restrained oxblood</span></div><div class="spec"><b>Role</b><span>Collector / enthusiast piece</span></div></div></div></details>
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">BM-C</span><span class="status">EARLY VISUAL MOCKUP</span></div><h4>Northern Apparition</h4><div class="quick"><span class="chip">Oversized / Hoodie</span><span class="chip">Cool Grey</span><span class="chip">Fashion</span></div><img class="bm-early-thumb" src="assets/concepts/black-metal-northern-apparition.webp" alt="Northern Apparition early Gerrard Black Metal visual mockup" loading="lazy"></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/black-metal-northern-apparition"><img class="concept-art" alt="Northern Apparition Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>Northern Apparition</strong><small>black-metal-northern-apparition.webp / .png / .jpg / .jpeg</small></div></div><p>Shar Pei silhouette emerging from fog and ruined woodland with large areas of negative space. Set GERRARD in restrained narrow serif or primitive hand lettering rather than an extreme-metal logo. Use worn halftone, faint landscape texture and a minimal back mark; the atmosphere should carry the design, not decorative symbols.</p><div class="specs"><div class="spec"><b>Best on</b><span>Oversized tee / hoodie / fitted tee</span></div><div class="spec"><b>Palette</b><span>Black + cool grey + off-white</span></div><div class="spec"><b>Role</b><span>Fashion crossover</span></div></div></div></details>
-</div></details>
+  <header class="header" data-header>
+    <a class="brand" href="#top" aria-label="BestieBoys home">BESTIEBOYS<span>™</span></a>
+    <nav id="primary-navigation" data-nav aria-label="Primary navigation">
+      <a href="#scenes">Scenes</a>
+      <a href="#garments">Garments</a>
+      <a href="#transformation">Personalisation</a>
+      <a href="#process">Process</a>
+    </nav>
+    <div class="header-status"><i aria-hidden="true"></i>Development only</div>
+    <button class="menu-button" type="button" data-menu aria-expanded="false" aria-controls="primary-navigation">Menu</button>
+  </header>
 
-<details class="genre grindcore"><summary><div class="genre-thumb"><img src="assets/gerrard-source.webp" alt="Gerrard grindcore reference"></div><div class="genre-meta"><small>02 / GRINDCORE</small><h3>Grindcore</h3><p>Photocopy density, brutal information overload, frantic scale shifts and flyer-grade reproduction damage.</p></div><div class="genre-count">3 concepts</div></summary><div class="concept-grid">
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">GR-A / LAUNCH PICK</span><span class="status">ARTWORK PENDING</span></div><h4>Blast Portrait</h4><div class="quick"><span class="chip">Short Sleeve</span><span class="chip">Dirty White</span><span class="chip">Launch</span></div></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/grindcore-blast-portrait"><img class="concept-art" alt="Blast Portrait Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>Blast Portrait</strong><small>grindcore-blast-portrait.webp / .png / .jpg / .jpeg</small></div></div><p>Three deliberately misregistered Gerrard photocopy passes, huge compressed type, torn flyer texture, tape marks and blown-out xerox whites.</p><div class="specs"><div class="spec"><b>Best on</b><span>Black short-sleeve tee</span></div><div class="spec"><b>Palette</b><span>Dirty white + optional oxblood</span></div><div class="spec"><b>Role</b><span>Strongest DIY launch concept</span></div></div></div></details>
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">GR-B</span><span class="status">ARTWORK PENDING</span></div><h4>Noise Wall</h4><div class="quick"><span class="chip">Heavy Tee / Hoodie</span><span class="chip">White + Grey</span><span class="chip">Scene</span></div></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/grindcore-noise-wall"><img class="concept-art" alt="Noise Wall Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>Noise Wall</strong><small>grindcore-noise-wall.webp / .png / .jpg / .jpeg</small></div></div><p>Fragmented Gerrard zooms, illegible microtype, broken halftones and artwork that escapes the rectangle into the garment.</p><div class="specs"><div class="spec"><b>Best on</b><span>Heavyweight tee / pullover hoodie</span></div><div class="spec"><b>Palette</b><span>Dirty white + faded grey</span></div><div class="spec"><b>Role</b><span>Strongest scene-credibility option</span></div></div></div></details>
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">GR-C</span><span class="status">ARTWORK PENDING</span></div><h4>One Second Legend</h4><div class="quick"><span class="chip">Longsleeve</span><span class="chip">Bone White</span><span class="chip">Wearable</span></div></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/grindcore-one-second-legend"><img class="concept-art" alt="One Second Legend Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>One Second Legend</strong><small>grindcore-one-second-legend.webp / .png / .jpg / .jpeg</small></div></div><p>Tiny Gerrard portrait, massive GERRARD / 1 SECOND / LEGEND typography and a deliberately absurd micro track-list treatment.</p><div class="specs"><div class="spec"><b>Best on</b><span>Black longsleeve</span></div><div class="spec"><b>Palette</b><span>Bone white only</span></div><div class="spec"><b>Role</b><span>Most memorable / wearable</span></div></div></div></details>
-</div></details>
+  <main id="main">
+    <section class="hero shell" id="top">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><b></b>CUSTOM PET ART / UNDERGROUND MERCH</p>
+        <h1 class="display">TURN YOUR PET INTO <em>MERCH.</em></h1>
+        <p class="hero-intro"><strong>BestieBoys turns real pets into scene-authentic merchandise.</strong> Not a photo dropped onto a T-shirt. Your pet becomes the frontman, the band, the cult figure — with each piece art-directed around a real underground visual language.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#scenes">Choose a scene <span aria-hidden="true">→</span></a>
+          <a class="button ghost" href="#transformation">See the transformation</a>
+        </div>
+        <div class="hero-proof" aria-label="BestieBoys design principles">
+          <span>One pet</span><i></i><span>Distinct scenes</span><i></i><span>Wearable first</span>
+        </div>
+      </div>
 
-<details class="genre goregrind"><summary><div class="genre-thumb"><img src="assets/gerrard-source.webp" alt="Gerrard goregrind reference"></div><div class="genre-meta"><small>03 / GOREGRIND</small><h3>Goregrind</h3><p>Pathology, clinical annotation, medical collage and grotesque-but-wearable print language.</p></div><div class="genre-count">3 concepts</div></summary><div class="concept-grid">
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">GG-A / LAUNCH PICK</span><span class="status">ARTWORK PENDING</span></div><h4>Canine Pathology</h4><div class="quick"><span class="chip">Longsleeve</span><span class="chip">Bone + Red</span><span class="chip">Launch</span></div></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/goregrind-canine-pathology"><img class="concept-art" alt="Canine Pathology Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>Canine Pathology</strong><small>goregrind-canine-pathology.webp / .png / .jpg / .jpeg</small></div></div><p>Vintage pathology-plate Gerrard with pseudo-medical callouts, specimen numbering, hospital-record framing and a tangled custom wordmark.</p><div class="specs"><div class="spec"><b>Best on</b><span>Black longsleeve</span></div><div class="spec"><b>Palette</b><span>Bone white + blood red</span></div><div class="spec"><b>Role</b><span>Best balance of credibility and wearability</span></div></div></div></details>
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">GG-B</span><span class="status">ARTWORK PENDING</span></div><h4>Dissection Club</h4><div class="quick"><span class="chip">Oversized Tee</span><span class="chip">Red + Green</span><span class="chip">Social</span></div></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/goregrind-dissection-club"><img class="concept-art" alt="Dissection Club Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>Dissection Club</strong><small>goregrind-dissection-club.webp / .png / .jpg / .jpeg</small></div></div><p>Multiple Gerrard portraits, veterinary diagrams, x-ray textures, clinical labels, warning blocks and damaged halftones.</p><div class="specs"><div class="spec"><b>Best on</b><span>Oversized short-sleeve tee</span></div><div class="spec"><b>Palette</b><span>Dirty white + deep red + surgical green</span></div><div class="spec"><b>Role</b><span>Strongest visual / social-media piece</span></div></div></div></details>
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">GG-C</span><span class="status">ARTWORK PENDING</span></div><h4>Terminal Good Boy</h4><div class="quick"><span class="chip">Tee / Zip Hoodie</span><span class="chip">Black + Bone</span><span class="chip">Extreme</span></div></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/goregrind-terminal-good-boy"><img class="concept-art" alt="Terminal Good Boy Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>Terminal Good Boy</strong><small>goregrind-terminal-good-boy.webp / .png / .jpg / .jpeg</small></div></div><p>Face swallowed by blown-out photocopy damage, dense near-illegible type and faux diagnostic notes such as STATUS: LEGEND.</p><div class="specs"><div class="spec"><b>Best on</b><span>Short sleeve / zip hoodie</span></div><div class="spec"><b>Palette</b><span>Black + bone, optional red</span></div><div class="spec"><b>Role</b><span>Most extreme underground option</span></div></div></div></details>
-</div></details>
+      <div class="hero-media reveal">
+        <figure class="hero-card">
+          <img src="assets/gerrard-tour-issue.webp" alt="Gerrard BestieBoys development garment artwork">
+          <div class="hero-tag">GERRARD / DEVELOPMENT EXAMPLE</div>
+          <figcaption class="hero-caption">
+            <div><small>Development artwork</small><strong>Gerrard / Tour Issue</strong></div>
+            <span>NOT FOR SALE</span>
+          </figcaption>
+        </figure>
+        <div class="hero-stamp">YOUR PET<br>YOUR SCENE<br>YOUR MERCH</div>
+      </div>
+    </section>
 
-<details class="genre crust"><summary><div class="genre-thumb"><img src="assets/gerrard-source.webp" alt="Gerrard crust punk reference"></div><div class="genre-meta"><small>04 / CRUST PUNK</small><h3>Crust Punk</h3><p>Stencil propaganda, D-beat abrasion, xerox war-collage logic and one-colour DIY print energy.</p></div><div class="genre-count">3 concepts</div></summary><div class="concept-grid">
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">CR-A / LAUNCH PICK</span><span class="status">ARTWORK PENDING</span></div><h4>No Masters / Only Gerrard</h4><div class="quick"><span class="chip">Short Sleeve</span><span class="chip">Dirty White</span><span class="chip">Launch</span></div></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/crust-no-masters-only-gerrard"><img class="concept-art" alt="No Masters / Only Gerrard Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>No Masters / Only Gerrard</strong><small>crust-no-masters-only-gerrard.webp / .png / .jpg / .jpeg</small></div></div><p>Brutal black-and-white portrait, rough stencil geometry and NO MASTERS / ONLY GOOD BOYS propaganda-style hierarchy.</p><div class="specs"><div class="spec"><b>Best on</b><span>Black short-sleeve tee</span></div><div class="spec"><b>Palette</b><span>Dirty white only</span></div><div class="spec"><b>Role</b><span>Strongest crossover crust design</span></div></div></div></details>
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">CR-B</span><span class="status">ARTWORK PENDING</span></div><h4>Total Canine Collapse</h4><div class="quick"><span class="chip">Long / Zip</span><span class="chip">Bone + Red</span><span class="chip">Scene</span></div></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/crust-total-canine-collapse"><img class="concept-art" alt="Total Canine Collapse Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>Total Canine Collapse</strong><small>crust-total-canine-collapse.webp / .png / .jpg / .jpeg</small></div></div><p>Repeated Gerrard portraits, torn photocopy blocks, ruined-city texture, wire-fence marks and a large diagonal overprint bar.</p><div class="specs"><div class="spec"><b>Best on</b><span>Longsleeve / zip hoodie</span></div><div class="spec"><b>Palette</b><span>Bone + faded red</span></div><div class="spec"><b>Role</b><span>Strongest D-beat / scene-authentic piece</span></div></div></div></details>
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">CR-C</span><span class="status">ARTWORK PENDING</span></div><h4>System Failure: Gerrard</h4><div class="quick"><span class="chip">Fitted / Tee</span><span class="chip">White + Acid</span><span class="chip">Light</span></div></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/crust-system-failure-gerrard"><img class="concept-art" alt="System Failure: Gerrard Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>System Failure: Gerrard</strong><small>crust-system-failure-gerrard.webp / .png / .jpg / .jpeg</small></div></div><p>Coarse bitmap cutout, protest-poster typography, warning copy, brush marks and intentionally imperfect registration.</p><div class="specs"><div class="spec"><b>Best on</b><span>Fitted/girlie tee / short sleeve</span></div><div class="spec"><b>Palette</b><span>White + optional acid micro-detail</span></div><div class="spec"><b>Role</b><span>Lighter visual-weight option</span></div></div></div></details>
-</div></details>
+    <section class="section shell" id="scenes">
+      <div class="section-head reveal">
+        <div>
+          <p class="kicker"><b></b>01 / SHOP BY SCENE</p>
+          <h2 class="display">ONE PET.<br><em>SEVEN WORLDS.</em></h2>
+        </div>
+        <div>
+          <p>Every scene gets its own typography, composition, print texture and garment logic. These are not recolours of one template.</p>
+          <p class="section-note">Only approved artwork will replace the development treatments below.</p>
+        </div>
+      </div>
 
-<details class="genre power"><summary><div class="genre-thumb"><img src="assets/gerrard-source.webp" alt="Gerrard powerviolence reference"></div><div class="genre-meta"><small>05 / POWERVIOLENCE</small><h3>Powerviolence</h3><p>Brutal reduction, giant typography, sudden scale shifts and deliberate confrontation.</p></div><div class="genre-count">3 concepts</div></summary><div class="concept-grid">
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">PV-A / LAUNCH PICK</span><span class="status">ARTWORK PENDING</span></div><h4>Gerrard // No Peace</h4><div class="quick"><span class="chip">Heavy Tee</span><span class="chip">Dirty White</span><span class="chip">Launch</span></div></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/powerviolence-gerrard-no-peace"><img class="concept-art" alt="Gerrard // No Peace Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>Gerrard // No Peace</strong><small>powerviolence-gerrard-no-peace.webp / .png / .jpg / .jpeg</small></div></div><p>One huge blown-out Gerrard head cropped to the edges with enormous GERRARD / NO PEACE type and almost no decoration.</p><div class="specs"><div class="spec"><b>Best on</b><span>Heavyweight black short-sleeve tee</span></div><div class="spec"><b>Palette</b><span>Dirty white only</span></div><div class="spec"><b>Role</b><span>Strongest overall launch piece</span></div></div></div></details>
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">PV-B</span><span class="status">ARTWORK PENDING</span></div><h4>Ten Second Icon</h4><div class="quick"><span class="chip">Longsleeve</span><span class="chip">Bone</span><span class="chip">Fashion</span></div></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/powerviolence-ten-second-icon"><img class="concept-art" alt="Ten Second Icon Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>Ten Second Icon</strong><small>powerviolence-ten-second-icon.webp / .png / .jpg / .jpeg</small></div></div><p>Tiny chest portrait and 00:10 front treatment contrasted with an enormous degraded Gerrard back print and asymmetric sleeve text.</p><div class="specs"><div class="spec"><b>Best on</b><span>Black longsleeve</span></div><div class="spec"><b>Palette</b><span>Bone white</span></div><div class="spec"><b>Role</b><span>Premium / fashion-forward option</span></div></div></div></details>
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">PV-C</span><span class="status">ARTWORK PENDING</span></div><h4>Gerrard vs. Everything</h4><div class="quick"><span class="chip">Tee / Hoodie / Sticker</span><span class="chip">White + Red</span><span class="chip">Content</span></div></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/powerviolence-gerrard-vs-everything"><img class="concept-art" alt="Gerrard vs. Everything Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>Gerrard vs. Everything</strong><small>powerviolence-gerrard-vs-everything.webp / .png / .jpg / .jpeg</small></div></div><p>Four coarse-halftone Gerrard crops orbiting oversized GERRARD VS EVERYTHING type with tiny NO INTRO / NO OUTRO / NO COMPROMISE blocks.</p><div class="specs"><div class="spec"><b>Best on</b><span>Short sleeve / pullover hoodie / sticker</span></div><div class="spec"><b>Palette</b><span>Black + white + optional fluorescent red</span></div><div class="spec"><b>Role</b><span>Strongest content / social concept</span></div></div></div></details>
-</div></details>
+      <div class="scene-grid reveal">
+        <article class="scene-card blackmetal active" data-mark="BM">
+          <span class="scene-code">01 / BM</span>
+          <small><i></i>Direction established</small>
+          <h3>Black Metal</h3>
+          <p>Cold symmetry, severe lettering, ritual framing and distressed monochrome print language.</p>
+        </article>
+        <article class="scene-card grindcore active" data-mark="GC">
+          <span class="scene-code">02 / GC</span>
+          <small><i></i>In development</small>
+          <h3>Grindcore</h3>
+          <p>Compressed logos, DIY xerox damage, flyer density and deliberately abrasive placement.</p>
+        </article>
+        <article class="scene-card goregrind" data-mark="GG">
+          <span class="scene-code">03 / GG</span>
+          <small><i></i>Queued</small>
+          <h3>Goregrind</h3>
+          <p>Medical-zine ugliness, grotesque illustration language and filthy small-run bootleg energy.</p>
+        </article>
+        <article class="scene-card crust" data-mark="CP">
+          <span class="scene-code">04 / CP</span>
+          <small><i></i>Queued</small>
+          <h3>Crust Punk</h3>
+          <p>Patch graphics, hand-cut type, political-flyer structure and worn black-ink economy.</p>
+        </article>
+        <article class="scene-card power" data-mark="PV">
+          <span class="scene-code">05 / PV</span>
+          <small><i></i>Queued</small>
+          <h3>Powerviolence</h3>
+          <p>Short-form impact: huge type, blunt contrast, brutal crops and minimal visual hesitation.</p>
+        </article>
+        <article class="scene-card noise" data-mark="GN">
+          <span class="scene-code">06 / GN</span>
+          <small><i></i>Queued</small>
+          <h3>Gore Noise</h3>
+          <p>Overloaded signal, blown-out photocopy texture, near-illegible marks and hostile image decay.</p>
+        </article>
+        <article class="scene-card rap" data-mark="RB">
+          <span class="scene-code">07 / RB</span>
+          <small><i></i>Queued</small>
+          <h3>Rap Bootleg</h3>
+          <p>90s memorial-shirt composition, airbrush drama, oversized portraiture and tour-bootleg swagger.</p>
+        </article>
+      </div>
+    </section>
 
-<details class="genre noise"><summary><div class="genre-thumb"><img src="assets/gerrard-source.webp" alt="Gerrard gore noise reference"></div><div class="genre-meta"><small>06 / GORE NOISE</small><h3>Gore Noise</h3><p>Broken reproduction, scan damage, anti-design, illegibility and deliberately corrupted visual information.</p></div><div class="genre-count">3 concepts</div></summary><div class="concept-grid">
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">GN-A / LAUNCH PICK</span><span class="status">ARTWORK PENDING</span></div><h4>Signal Rot: Gerrard</h4><div class="quick"><span class="chip">Oversized Tee</span><span class="chip">Filthy Grey</span><span class="chip">Fashion</span></div></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/gore-noise-signal-rot-gerrard"><img class="concept-art" alt="Signal Rot: Gerrard Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>Signal Rot: Gerrard</strong><small>gore-noise-signal-rot-gerrard.webp / .png / .jpg / .jpeg</small></div></div><p>Recognisable Gerrard face fractured into crushed copies, scan-error strips, black bars, raster noise and corrupted transmission markings.</p><div class="specs"><div class="spec"><b>Best on</b><span>Oversized black short sleeve</span></div><div class="spec"><b>Palette</b><span>Filthy white / grey</span></div><div class="spec"><b>Role</b><span>Strongest fashion/design piece</span></div></div></div></details>
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">GN-B</span><span class="status">ARTWORK PENDING</span></div><h4>Gurgle Transmission</h4><div class="quick"><span class="chip">Longsleeve</span><span class="chip">White + Dark Red</span><span class="chip">Scene</span></div></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/gore-noise-gurgle-transmission"><img class="concept-art" alt="Gurgle Transmission Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>Gurgle Transmission</strong><small>gore-noise-gurgle-transmission.webp / .png / .jpg / .jpeg</small></div></div><p>Gerrard buried in microscopic pseudo-track titles, waveform lines, broken letterforms, bitmap fragments and an almost unreadable custom logo.</p><div class="specs"><div class="spec"><b>Best on</b><span>Black longsleeve</span></div><div class="spec"><b>Palette</b><span>White + extremely dark red</span></div><div class="spec"><b>Role</b><span>Most authentic Gore Noise option</span></div></div></div></details>
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">GN-C</span><span class="status">ARTWORK PENDING</span></div><h4>Unlistenable Good Boy</h4><div class="quick"><span class="chip">Tee / Sticker</span><span class="chip">Black + White</span><span class="chip">Social</span></div></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/gore-noise-unlistenable-good-boy"><img class="concept-art" alt="Unlistenable Good Boy Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>Unlistenable Good Boy</strong><small>gore-noise-unlistenable-good-boy.webp / .png / .jpg / .jpeg</small></div></div><p>Tiny bad photocopy portrait, UNLISTENABLE GOOD BOY type and a compressed fake track list that becomes texture rather than a novelty graphic.</p><div class="specs"><div class="spec"><b>Best on</b><span>Tee / sticker</span></div><div class="spec"><b>Palette</b><span>Black + white</span></div><div class="spec"><b>Role</b><span>Strongest social / viral candidate</span></div></div></div></details>
-</div></details>
+    <section class="section shell" id="garments">
+      <div class="section-head reveal">
+        <div>
+          <p class="kicker"><b></b>02 / CORE GARMENTS</p>
+          <h2 class="display">BUILT TO BE<br><em>WORN.</em></h2>
+        </div>
+        <div>
+          <p>The launch catalogue stays tight. Every format must earn its place through print quality, scene credibility, UK fulfilment and margin — not catalogue volume.</p>
+        </div>
+      </div>
 
-<details class="genre death"><summary><div class="genre-thumb"><img src="assets/gerrard-source.webp" alt="Gerrard death doom reference"></div><div class="genre-meta"><small>07 / DEATH + DOOM</small><h3>Death / Doom</h3><p>Gothic weight, monumental illustration, mournful space and slower, heavier visual composition.</p></div><div class="genre-count">3 concepts</div></summary><div class="concept-grid">
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">DD-A / LAUNCH PICK</span><span class="status">ARTWORK PENDING</span></div><h4>Eternal Weight</h4><div class="quick"><span class="chip">Heavy Tee / Hoodie</span><span class="chip">Bone + Bronze</span><span class="chip">Launch</span></div></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/death-doom-eternal-weight"><img class="concept-art" alt="Eternal Weight Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>Eternal Weight</strong><small>death-doom-eternal-weight.webp / .png / .jpg / .jpeg</small></div></div><p>Gerrard rendered like an aged engraving or stone relief beneath an original gothic arch, with narrow serif titling and a fade-to-black edge.</p><div class="specs"><div class="spec"><b>Best on</b><span>Washed-black heavyweight tee / pullover hoodie</span></div><div class="spec"><b>Palette</b><span>Dirty bone + charcoal + muted bronze</span></div><div class="spec"><b>Role</b><span>Strongest overall Death/Doom launch concept</span></div></div></div></details>
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">DD-B</span><span class="status">ARTWORK PENDING</span></div><h4>The Good Boy Never Dies</h4><div class="quick"><span class="chip">Zip Hoodie</span><span class="chip">Bone + Oxblood</span><span class="chip">Memorial</span></div></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/death-doom-good-boy-never-dies"><img class="concept-art" alt="The Good Boy Never Dies Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>The Good Boy Never Dies</strong><small>death-doom-good-boy-never-dies.webp / .png / .jpg / .jpeg</small></div></div><p>Central Gerrard portrait with dark halo disc, dead florals, stone texture, ornamental thorns and restrained memorial typography.</p><div class="specs"><div class="spec"><b>Best on</b><span>Black zip hoodie</span></div><div class="spec"><b>Palette</b><span>Black + grey + bone + restrained oxblood</span></div><div class="spec"><b>Role</b><span>Premium memorial crossover</span></div></div></div></details>
-<details class="concept"><summary><div class="concept-top"><span class="concept-code">DD-C</span><span class="status">ARTWORK PENDING</span></div><h4>Crypt Hound</h4><div class="quick"><span class="chip">Longsleeve</span><span class="chip">Grey + Moss</span><span class="chip">Collector</span></div></summary><div class="concept-body"><div class="art-slot" data-art-base="assets/concepts/death-doom-crypt-hound"><img class="concept-art" alt="Crypt Hound Gerrard concept artwork" hidden><div class="art-placeholder"><span>ARTWORK SLOT</span><strong>Crypt Hound</strong><small>death-doom-crypt-hound.webp / .png / .jpg / .jpeg</small></div></div><p>Original crypt illustration with Gerrard, weathered stone, deep shadow, fog, ornamental decay and deliberately elaborate old-metal-shirt detailing.</p><div class="specs"><div class="spec"><b>Best on</b><span>Black longsleeve</span></div><div class="spec"><b>Palette</b><span>Bone + dirty grey + muted moss/bronze</span></div><div class="spec"><b>Role</b><span>Dedicated metal-fan / collector design</span></div></div></div></details>
-</div></details>
-</div></section>
+      <div class="product-rail reveal">
+        <article class="product-card">
+          <div class="product-visual"><div class="garment tee"><span class="mark">BB</span></div></div>
+          <small>01 / CORE</small><h3>Short-Sleeve Tee</h3><p>Primary canvas for large front and back artwork.</p>
+        </article>
+        <article class="product-card">
+          <div class="product-visual"><div class="garment long"><span class="mark">BB</span></div></div>
+          <small>02 / CORE</small><h3>Longsleeve</h3><p>Sleeve prints make the artwork system more complete.</p>
+        </article>
+        <article class="product-card">
+          <div class="product-visual"><div class="garment hoodie"><span class="mark">BB</span></div></div>
+          <small>03 / CORE</small><h3>Pullover Hoodie</h3><p>Heavier format for oversized or restrained scene graphics.</p>
+        </article>
+        <article class="product-card">
+          <div class="product-visual"><div class="garment hoodie zip"><span class="mark">BB</span></div></div>
+          <small>04 / CORE</small><h3>Zip Hoodie</h3><p>Front-split layouts with sleeve and back-print potential.</p>
+        </article>
+        <article class="product-card">
+          <div class="product-visual"><div class="garment fit"><span class="mark">BB</span></div></div>
+          <small>05 / CORE</small><h3>Girlie / Fitted</h3><p>Separate placement rules rather than shrinking a unisex print.</p>
+        </article>
+        <article class="product-card">
+          <div class="product-visual"><div class="garment cap"><span class="mark">BB</span></div></div>
+          <small>06 / SUPPORT</small><h3>Caps</h3><p>Small-format logos, names and simplified pet marks.</p>
+        </article>
+        <article class="product-card">
+          <div class="product-visual"><div class="garment sticker"><span class="mark">G</span></div></div>
+          <small>07 / ADD-ON</small><h3>Stickers</h3><p>Low-friction add-ons using artwork already built for the drop.</p>
+        </article>
+      </div>
+    </section>
 
-<section class="section shell" id="formats"><div class="section-head"><div><div class="kicker">02 / CORE PRODUCT FORMATS</div><h2>SEVEN FORMATS.<br><em>NO RANDOM PET SHOP.</em></h2></div><p>The launch catalogue stays disciplined. Each approved design is adapted only where the artwork and garment genuinely work together.</p></div><div class="product-strip"><article class="product"><small>01</small><strong>Short-sleeve tee</strong></article><article class="product"><small>02</small><strong>Longsleeve</strong></article><article class="product"><small>03</small><strong>Pullover hoodie</strong></article><article class="product"><small>04</small><strong>Zip hoodie</strong></article><article class="product"><small>05</small><strong>Girlie / fitted</strong></article><article class="product"><small>06</small><strong>Cap</strong></article><article class="product"><small>07</small><strong>Sticker</strong></article></div></section>
+    <section class="section shell" id="transformation">
+      <div class="section-head reveal">
+        <div>
+          <p class="kicker"><b></b>03 / PERSONALISATION</p>
+          <h2 class="display">YOUR PHOTO IS<br><em>THE SOURCE.</em></h2>
+        </div>
+        <div>
+          <p>The transformation is the product. The original pet photo provides likeness and character; the finished piece is rebuilt around the selected scene and garment.</p>
+        </div>
+      </div>
 
-<section class="section shell" id="process"><div class="section-head"><div><div class="kicker">03 / HOW THE SYSTEM WORKS</div><h2>CHOOSE THE WORLD.<br><em>THEN BUILD THE PIECE.</em></h2></div><p>Personalisation stays simple for the customer while the art direction stays disciplined on the BestieBoys side.</p></div><div class="process"><article class="step"><span>01</span><h3>Scene</h3><p>Select the cultural visual language: Black Metal, Grindcore, Goregrind, Crust, Powerviolence, Gore Noise or Death/Doom.</p></article><article class="step"><span>02</span><h3>Concept</h3><p>Select one of three genuinely different art directions inside that scene.</p></article><article class="step"><span>03</span><h3>Pet</h3><p>Your source photo, name and meaningful details are art-directed into the selected visual language.</p></article><article class="step"><span>04</span><h3>Proof</h3><p>Artwork is checked for likeness, hierarchy and print suitability before any future production step.</p></article></div></section>
+      <div class="transform-grid reveal">
+        <figure class="transform-card source">
+          <div class="image-wrap"><img src="assets/gerrard-source.webp" alt="Original source photo of Gerrard"></div>
+          <figcaption class="transform-meta"><div><span>01 / INPUT</span><strong>Original pet photo</strong></div><span>REFERENCE</span></figcaption>
+        </figure>
+        <div class="transform-arrow" aria-hidden="true"><span>Art directed</span><b>→</b></div>
+        <figure class="transform-card final">
+          <div class="image-wrap"><img src="assets/gerrard-tour-issue.webp" alt="Finished BestieBoys Gerrard development artwork"></div>
+          <figcaption class="transform-meta"><div><span>02 / OUTPUT</span><strong>Finished merch artwork</strong></div><span>DEVELOPMENT</span></figcaption>
+        </figure>
+      </div>
+    </section>
 
-<section class="section shell"><div class="kicker">04 / BUILD STATUS</div><h2>STRUCTURE LOCKED.<br><em>ARTWORK NEXT.</em></h2><div class="notice">Public development preview only. The 21 concept briefs are now structured for comparison; final scene-specific artwork remains pending. No checkout, uploads, payments or production system is connected.</div></section>
-</main>
-<footer class="footer shell"><a class="brand" href="#top">BESTIEBOYS<span>™</span></a><span>DEVELOPMENT PREVIEW / 2026</span></footer>
+    <section class="section shell" id="process">
+      <div class="section-head reveal">
+        <div>
+          <p class="kicker"><b></b>04 / HOW IT WORKS</p>
+          <h2 class="display">NOT A FILTER.<br><em>A DESIGN PROCESS.</em></h2>
+        </div>
+        <div><p>BestieBoys is built around art direction and production checks, not instant template output.</p></div>
+      </div>
 
-<script>
-function loadConceptArt(concept){
-  const slot=concept.querySelector('[data-art-base]');
-  if(!slot || slot.dataset.loaded==='done') return;
-  slot.dataset.loaded='done';
-  const img=slot.querySelector('.concept-art');
-  const placeholder=slot.querySelector('.art-placeholder');
-  const exts=['.webp','.png','.jpg','.jpeg'];
-  let i=0;
-  function next(){
-    if(i>=exts.length){img.hidden=true;placeholder.hidden=false;return;}
-    img.onload=()=>{img.hidden=false;placeholder.hidden=true;};
-    img.onerror=()=>{i+=1;next();};
-    img.src=slot.dataset.artBase+exts[i]+'?v=earlybm1';
-  }
-  next();
-}
-document.querySelectorAll('details.concept').forEach(concept=>{
-  concept.addEventListener('toggle',()=>{if(concept.open) loadConceptArt(concept);});
-  if(concept.open) loadConceptArt(concept);
-});
-</script>
-<script src="theme-lab.js?v=format1"></script>
-<script src="scene-visuals-v1.js?v=1"></script>
-<script src="garment-storefront-v4.js?v=1"></script>
+      <div class="process-grid reveal">
+        <article class="process-step"><span>01</span><h3>Upload</h3><p>Send the clearest pet photo available and the details that matter.</p></article>
+        <article class="process-step"><span>02</span><h3>Choose Scene</h3><p>Select the underground visual world the finished piece should belong to.</p></article>
+        <article class="process-step"><span>03</span><h3>Art Direct</h3><p>Likeness, typography, composition and garment placement are built as one system.</p></article>
+        <article class="process-step"><span>04</span><h3>Proof + Make</h3><p>Artwork and production quality are checked before anything moves into fulfilment.</p></article>
+      </div>
+    </section>
+
+    <section class="section shell" id="standard">
+      <div class="cred-grid reveal">
+        <article class="cred-panel primary">
+          <p class="kicker">05 / THE STANDARD</p>
+          <blockquote>If it only works because <em>your pet</em> is on it, it is not good enough.</blockquote>
+          <p>The piece should read as authentic merch first. Personalisation is what makes it yours.</p>
+        </article>
+        <article class="cred-panel">
+          <p class="kicker">WHAT GETS CHECKED</p>
+          <div class="cred-list">
+            <div><span>01</span><strong>Pet likeness and feature accuracy</strong></div>
+            <div><span>02</span><strong>Scene-authentic typography and composition</strong></div>
+            <div><span>03</span><strong>Garment placement and print realism</strong></div>
+            <div><span>04</span><strong>UK fulfilment, delivery and complaint risk</strong></div>
+            <div><span>05</span><strong>Margin, differentiation and repeatability</strong></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section shell" id="status">
+      <div class="status-panel reveal">
+        <div class="status-copy">
+          <p class="kicker"><b></b>06 / BUILD STATUS</p>
+          <h2 class="display">NOT LIVE.<br><em>NOT RUSHED.</em></h2>
+          <p>This storefront is still in development. Ordering, uploads and payments remain disabled while artwork systems, product formats, fulfilment and the UK customer journey are completed and QA'd.</p>
+          <span class="button ghost disabled" aria-disabled="true">Ordering disabled</span>
+        </div>
+        <div class="status-list" aria-label="Current development status">
+          <div><span>NOW</span><strong>Scene system + homepage architecture</strong></div>
+          <div><span>NEXT</span><strong>Approved mockups for each scene</strong></div>
+          <div><span>THEN</span><strong>Product pages + personalisation flow</strong></div>
+          <div><span>BEFORE LIVE</span><strong>Supplier, margin, mobile, checkout and fulfilment QA</strong></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <a class="brand" href="#top">BESTIEBOYS<span>™</span></a>
+    <p>Turn real pets into authentic underground-style merchandise.</p>
+    <small>Development / 2026</small>
+  </footer>
+
+  <script src="storefront-v2.js"></script>
 </body>
 </html>
