@@ -1,3 +1,8 @@
+const mobileFixes=document.createElement('link');
+mobileFixes.rel='stylesheet';
+mobileFixes.href='storefront-mobile-fixes.css?v=1';
+document.head.appendChild(mobileFixes);
+
 const header=document.querySelector('[data-header]');
 const menu=document.querySelector('[data-menu]');
 const nav=document.querySelector('[data-nav]');
