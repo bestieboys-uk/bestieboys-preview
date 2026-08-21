@@ -1,4 +1,4 @@
-/* BestieBoys storefront v2 — screenshot-driven mobile QA fixes, pass 2 */
+/* BestieBoys storefront v2 — screenshot-driven mobile QA fixes, pass 3 */
 
 section[id]{scroll-margin-top:86px}
 
@@ -36,8 +36,7 @@ section[id]{scroll-margin-top:86px}
 .garment .mark{z-index:4}
 
 @media(max-width:760px){
-  /* A text node inside a flex announcement can refuse to shrink in iOS Safari.
-     Switch the bar to block layout so the warning always wraps inside the viewport. */
+  /* iOS Safari: keep the development warning inside the viewport. */
   .announcement{
     display:block;
     width:100%;
@@ -52,11 +51,29 @@ section[id]{scroll-margin-top:86px}
     font-size:.50rem;
   }
 
+  /* Mobile screenshots showed reveal-hidden sections creating large blank dead zones.
+     Keep content visible on small screens; desktop keeps the reveal treatment. */
+  .reveal{
+    opacity:1!important;
+    transform:none!important;
+    transition:none!important;
+  }
+
   /* Keep long scene names inside their cards at iPhone widths. */
   .scene-card.power h3{
     max-width:100%;
     font-size:clamp(1.76rem,8.55vw,2.22rem);
     letter-spacing:-.095em;
+    white-space:nowrap;
+  }
+
+  /* The serif second line of the personalisation heading was overrunning the viewport. */
+  #transformation .display em{
+    display:inline-block;
+    max-width:100%;
+    font-size:.74em;
+    line-height:.92;
+    letter-spacing:-.055em;
     white-space:nowrap;
   }
 
@@ -67,9 +84,14 @@ section[id]{scroll-margin-top:86px}
   .product-visual{height:155px}
   .garment.tee{width:132px;height:118px}
   .garment.long{width:148px;height:122px}
+
+  /* Improve legibility of temporary garment silhouettes until approved mockups replace them. */
+  .garment{background:#1b1b1b;border-color:#393939}
+  .product-visual{background:radial-gradient(circle at 50% 38%,#2a2a2a 0,#151515 45%,#090909 76%)}
 }
 
 @media(max-width:390px){
   .scene-card.power h3{font-size:clamp(1.64rem,8.15vw,1.96rem)}
   .announcement{font-size:.48rem;padding-inline:10px}
+  #transformation .display em{font-size:.70em}
 }
