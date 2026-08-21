@@ -20,6 +20,33 @@ section[id]{scroll-margin-top:96px}
 .public-review .transform-card.source .image-wrap::after{content:"Public review uses a privacy-safe placeholder. The original reference remains in the private development workflow.";max-width:34ch;color:#8f8981;font-size:.72rem;line-height:1.5}
 .tour-issue-review .gallery-strip{display:none!important}
 
+/* Keep the Tour Issue copy inside the viewport on narrow screens. */
+.tour-issue-review{overflow-x:hidden}
+.tour-issue-review main,.tour-issue-review .product-shell,.tour-issue-review .product-hero,.tour-issue-review .product-buy{min-width:0;max-width:100%}
+.tour-issue-review .product-buy h1{max-width:100%;overflow:hidden}
+.tour-issue-review .product-buy h1 em{display:block;max-width:100%;white-space:normal}
+.tour-issue-review .product-lead,.tour-issue-review .price-placeholder strong{overflow-wrap:anywhere}
+
+/* Existing scene artwork is shown only as development T-shirt direction studies. */
+.design-studies{padding:clamp(68px,9vw,118px) 0;border-top:1px solid var(--line)}
+.design-studies-head{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);gap:clamp(24px,6vw,80px);align-items:end;margin-bottom:32px}
+.design-studies-head h2{margin:0;font-family:Impact,"Arial Black",sans-serif;font-size:clamp(3rem,6.5vw,6.4rem);line-height:.88;letter-spacing:-.045em;text-transform:uppercase}
+.design-studies-head h2 em{font-family:Georgia,serif;font-weight:400;text-transform:none;color:var(--rust)}
+.design-studies-head p{margin:0;color:#989189;max-width:60ch}
+.design-study-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.design-study{min-width:0;border:1px solid var(--line);background:#080808;overflow:hidden}
+.design-study-media{aspect-ratio:4/5;overflow:hidden;background:#0d0d0d;border-bottom:1px solid var(--line)}
+.design-study-media img{width:100%;height:100%;object-fit:cover;filter:saturate(.72) contrast(1.08)}
+.design-study-copy{padding:16px}
+.design-study-copy small{display:block;color:var(--rust);font-size:.52rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+.design-study-copy h3{margin:8px 0 6px;font-family:Impact,"Arial Black",sans-serif;font-size:1.7rem;line-height:.95;text-transform:uppercase}
+.design-study-copy p{margin:0;color:#8d8780;font-size:.74rem}
+.design-study-copy b{display:inline-block;margin-top:12px;border:1px solid var(--line);border-radius:999px;padding:5px 8px;color:#9d978e;font-size:.49rem;letter-spacing:.1em;text-transform:uppercase}
+
+@media(max-width:960px){
+  .design-study-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
 @media(max-width:760px){
   html{scroll-padding-top:118px}
   section[id]{scroll-margin-top:118px}
@@ -31,6 +58,11 @@ section[id]{scroll-margin-top:96px}
   .product-visual::after{left:13px;right:13px;bottom:15px;font-size:1.6rem}
   .status-list div{grid-template-columns:72px minmax(0,1fr);gap:14px;padding:18px 16px}
   .status-list strong{overflow-wrap:anywhere}
+  .tour-issue-review .product-buy{overflow:hidden}
+  .tour-issue-review .product-buy h1{font-size:clamp(3.2rem,15.4vw,4.9rem);line-height:.88}
+  .tour-issue-review .product-buy h1 em{font-size:.72em;line-height:.92;letter-spacing:-.055em}
+  .design-studies-head{grid-template-columns:1fr;gap:16px}
+  .design-studies-head h2{font-size:clamp(3rem,13vw,4.6rem)}
 }
 
 @media(max-width:460px){
@@ -40,4 +72,8 @@ section[id]{scroll-margin-top:96px}
   .tour-issue-review .announcement{font-size:.54rem;letter-spacing:.1em}
   .product-visual{height:118px}
   .product-visual::after{font-size:1.45rem}
+  .tour-issue-review .product-buy h1{font-size:clamp(3rem,15vw,4.15rem)}
+  .tour-issue-review .product-buy h1 em{font-size:.70em;letter-spacing:-.06em}
+  .design-study-grid{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+  .design-study{flex:0 0 82%;scroll-snap-align:start}
 }
