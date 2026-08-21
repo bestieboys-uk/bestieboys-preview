@@ -1,0 +1,51 @@
+name: Assemble high-res concept assets
+on:
+  push:
+    branches:
+      - fix/hires-concept-assets-20260821
+    paths:
+      - 'assets/hires-payload/READY'
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Assemble and validate AVIF assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          mkdir -p assets/concepts
+          count=0
+          for first in assets/hires-payload/*.part01; do
+            stem="${first%.part01}"
+            name="$(basename "$stem")"
+            target="assets/concepts/$name"
+            echo "=== $name ==="
+            cat "${stem}.part"* | base64 -d > "$target"
+            test -s "$target"
+            file "$target"
+            ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0 "$target"
+            count=$((count+1))
+          done
+          test "$count" -gt 0
+          for f in assets/concepts/grindcore-blast-portrait.avif assets/concepts/grindcore-noise-wall.avif assets/concepts/grindcore-one-second-legend.avif; do
+            test -s "$f"
+            file "$f"
+            ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0 "$f"
+          done
+          rm -rf assets/hires-payload
+          rm -f .github/workflows/assemble-hires-assets.yml
+      - name: Commit verified assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A assets/concepts assets/hires-payload .github/workflows/assemble-hires-assets.yml
+          git commit -m "Assemble verified high-res concept assets"
+          git push
