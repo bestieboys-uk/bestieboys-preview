@@ -1,6 +1,6 @@
 const mobileFixes=document.createElement('link');
 mobileFixes.rel='stylesheet';
-mobileFixes.href='storefront-mobile-fixes.css?v=2';
+mobileFixes.href='storefront-mobile-fixes.css?v=3';
 document.head.appendChild(mobileFixes);
 
 const header=document.querySelector('[data-header]');
