@@ -1,50 +1,75 @@
-/* BestieBoys storefront v2 — screenshot-driven mobile QA fixes */
+/* BestieBoys storefront v2 — screenshot-driven mobile QA fixes, pass 2 */
 
 section[id]{scroll-margin-top:86px}
 
-/* The tee/longsleeve sleeve pseudo-elements were sitting behind the product panel,
-   which reduced the garment preview to a plain rectangle on mobile. */
-.garment.tee:before,.garment.long:before{z-index:0}
-.garment .mark{z-index:2}
+/* Make CSS garment placeholders read as garments rather than rectangles. */
+.garment.tee,.garment.long{
+  border:1px solid #2b2b2b;
+  background:#171717;
+  overflow:visible;
+}
+.garment.tee{
+  width:124px;
+  height:112px;
+  clip-path:polygon(28% 0,40% 8%,60% 8%,72% 0,100% 20%,86% 47%,75% 39%,75% 100%,25% 100%,25% 39%,14% 47%,0 20%);
+}
+.garment.long{
+  width:142px;
+  height:118px;
+  clip-path:polygon(29% 0,40% 7%,60% 7%,71% 0,100% 12%,92% 100%,79% 96%,75% 40%,75% 100%,25% 100%,25% 40%,21% 96%,8% 100%,0 12%);
+}
+.garment.tee:before,.garment.long:before{display:none}
 .garment.tee:after,.garment.long:after{
   content:"";
   position:absolute;
-  z-index:1;
+  z-index:3;
   left:50%;
   top:-1px;
-  width:24px;
-  height:10px;
+  width:25px;
+  height:12px;
   transform:translateX(-50%);
-  border:2px solid #090909;
+  background:#090909;
+  border:2px solid #2b2b2b;
   border-top:0;
-  border-radius:0 0 50% 50%;
+  border-radius:0 0 55% 55%;
 }
+.garment .mark{z-index:4}
 
 @media(max-width:760px){
-  /* Do not crop the development warning on narrow screens. */
+  /* A text node inside a flex announcement can refuse to shrink in iOS Safari.
+     Switch the bar to block layout so the warning always wraps inside the viewport. */
   .announcement{
+    display:block;
+    width:100%;
+    max-width:100vw;
     min-height:0;
-    padding:7px 12px;
-    justify-content:center;
-    white-space:normal;
+    padding:8px 14px;
+    white-space:normal!important;
     overflow:visible;
+    overflow-wrap:anywhere;
     text-align:center;
-    line-height:1.25;
-    font-size:.52rem;
+    line-height:1.3;
+    font-size:.50rem;
   }
 
-  /* POWERVIOLENCE was escaping the card at iPhone widths. */
+  /* Keep long scene names inside their cards at iPhone widths. */
   .scene-card.power h3{
     max-width:100%;
-    font-size:clamp(1.82rem,8.9vw,2.3rem);
-    letter-spacing:-.09em;
+    font-size:clamp(1.76rem,8.55vw,2.22rem);
+    letter-spacing:-.095em;
     white-space:nowrap;
   }
 
   /* Give anchored sections breathing room below the sticky header. */
   #scenes,#garments,#transformation,#process,#standard,#status{scroll-margin-top:78px}
+
+  /* Slightly more visual room for the now-recognisable garment silhouettes. */
+  .product-visual{height:155px}
+  .garment.tee{width:132px;height:118px}
+  .garment.long{width:148px;height:122px}
 }
 
 @media(max-width:390px){
-  .scene-card.power h3{font-size:clamp(1.72rem,8.5vw,2.05rem)}
+  .scene-card.power h3{font-size:clamp(1.64rem,8.15vw,1.96rem)}
+  .announcement{font-size:.48rem;padding-inline:10px}
 }
