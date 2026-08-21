@@ -2,9 +2,16 @@ document.body.classList.add('public-review');
 if(!document.querySelector('link[data-review-qa]')){
   const qaStyles=document.createElement('link');
   qaStyles.rel='stylesheet';
-  qaStyles.href='storefront-v3-mobile-fixes.css?v=5';
+  qaStyles.href='storefront-v3-mobile-fixes.css?v=8';
   qaStyles.dataset.reviewQa='true';
   document.head.appendChild(qaStyles);
+}
+if(!document.querySelector('link[data-scene-studies]')){
+  const sceneStyles=document.createElement('link');
+  sceneStyles.rel='stylesheet';
+  sceneStyles.href='scene-study-cards-v1.css?v=1';
+  sceneStyles.dataset.sceneStudies='true';
+  document.head.appendChild(sceneStyles);
 }
 
 const header=document.querySelector('[data-header]');
