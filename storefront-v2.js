@@ -55,18 +55,22 @@ markDirectionBuilt(registerSceneCard('.scene-card.rap','rap-bootleg.html','Open 
 
 const homepage=document.querySelector('.hero');
 if(homepage){
-  if(nav&&!nav.querySelector('a[href="personalise.html"]')){
+  const tallyUrl='https://tally.so/r/pbY28J?origin=bestieboys-public-preview&build_version=BB-CYB-PHASE-B-01';
+
+  if(nav&&!nav.querySelector('a[data-create-bestie]')){
     const startLink=document.createElement('a');
-    startLink.href='personalise.html';
-    startLink.textContent='Start';
+    startLink.href=tallyUrl;
+    startLink.textContent='Create';
+    startLink.dataset.createBestie='true';
     nav.appendChild(startLink);
   }
 
   const heroPrimary=document.querySelector('.hero-actions .primary');
   const heroSecondary=document.querySelector('.hero-actions .ghost');
   if(heroPrimary){
-    heroPrimary.href='personalise.html';
-    heroPrimary.innerHTML='Start with your photos <span aria-hidden="true">→</span>';
+    heroPrimary.href=tallyUrl;
+    heroPrimary.innerHTML='Create your Bestie <span aria-hidden="true">→</span>';
+    heroPrimary.setAttribute('aria-label','Open the private BestieBoys Phase B intake test');
   }
   if(heroSecondary){
     heroSecondary.href='#scenes';
@@ -77,9 +81,9 @@ if(homepage){
   if(uploadStep){
     uploadStep.tabIndex=0;
     uploadStep.setAttribute('role','link');
-    uploadStep.setAttribute('aria-label','Open the BestieBoys personalisation brief prototype');
+    uploadStep.setAttribute('aria-label','Open the private BestieBoys Phase B intake test');
     uploadStep.style.cursor='pointer';
-    const openBrief=()=>{window.location.href='personalise.html'};
+    const openBrief=()=>{window.location.href=tallyUrl};
     uploadStep.addEventListener('click',openBrief);
     uploadStep.addEventListener('keydown',event=>{
       if(event.key==='Enter'||event.key===' '){
@@ -87,6 +91,25 @@ if(homepage){
         openBrief();
       }
     });
+  }
+
+  const announcement=document.querySelector('.announcement');
+  if(announcement)announcement.textContent='BESTIEBOYS / PRIVATE PHASE B INTAKE TEST • PASSWORD REQUIRED • NO PAYMENT';
+
+  const headerStatus=document.querySelector('.header-status');
+  if(headerStatus)headerStatus.innerHTML='<i aria-hidden="true"></i>Phase B test';
+
+  const statusCopy=document.querySelector('#status .status-copy > p:not(.kicker)');
+  if(statusCopy)statusCopy.textContent='The public preview remains a development build. The private Phase B intake is now available for controlled testing; no payment, checkout or production order is created.';
+
+  const disabledStatusButton=document.querySelector('#status .button.disabled');
+  if(disabledStatusButton){
+    const intakeLink=document.createElement('a');
+    intakeLink.className='button primary';
+    intakeLink.href=tallyUrl;
+    intakeLink.innerHTML='Create your Bestie <span aria-hidden="true">→</span>';
+    intakeLink.setAttribute('aria-label','Open the private BestieBoys Phase B intake test');
+    disabledStatusButton.replaceWith(intakeLink);
   }
 }
 
