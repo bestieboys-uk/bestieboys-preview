@@ -22,7 +22,7 @@ if(menu&&nav){
 
 function registerSceneCard(selector,url,label){
   const card=document.querySelector(selector);
-  if(!card)return;
+  if(!card)return null;
   card.tabIndex=0;
   card.setAttribute('role','link');
   card.setAttribute('aria-label',label);
@@ -35,10 +35,17 @@ function registerSceneCard(selector,url,label){
       open();
     }
   });
+  return card;
 }
 
 registerSceneCard('.scene-card.blackmetal','black-metal.html','Open the BestieBoys Black Metal collection page');
 registerSceneCard('.scene-card.grindcore','grindcore.html','Open the BestieBoys Grindcore collection page');
+const goregrindCard=registerSceneCard('.scene-card.goregrind','goregrind.html','Open the BestieBoys Goregrind collection page');
+if(goregrindCard){
+  goregrindCard.classList.add('active');
+  const status=goregrindCard.querySelector('small');
+  if(status)status.innerHTML='<i></i>Direction built';
+}
 
 window.addEventListener('scroll',()=>header?.classList.toggle('scrolled',window.scrollY>20),{passive:true});
 
