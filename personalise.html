@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#050505">
+  <meta name="description" content="Build a BestieBoys custom-pet artwork brief. Development prototype: photos remain on the device and nothing is submitted.">
+  <title>Start Your Piece — BestieBoys</title>
+  <link rel="stylesheet" href="storefront-v2.css">
+  <link rel="stylesheet" href="storefront-mobile-fixes.css">
+  <link rel="stylesheet" href="personalise.css">
+</head>
+<body class="personalise-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="announcement">DEVELOPMENT PERSONALISATION PROTOTYPE • PHOTOS STAY ON THIS DEVICE • NOTHING IS SENT</div>
+
+  <header class="header" data-header>
+    <a class="brand" href="index.html#top" aria-label="BestieBoys home">BESTIEBOYS<span>™</span></a>
+    <nav id="primary-navigation" data-nav aria-label="Personalisation navigation">
+      <a href="#photos">Photos</a>
+      <a href="#pet">Pet</a>
+      <a href="#scene">Scene</a>
+      <a href="#product">Product</a>
+      <a href="#review">Review</a>
+    </nav>
+    <div class="header-status"><i aria-hidden="true"></i>Local preview only</div>
+    <button class="menu-button" type="button" data-menu aria-expanded="false" aria-controls="primary-navigation">Menu</button>
+  </header>
+
+  <main id="main">
+    <section class="brief-hero shell" id="top">
+      <div class="brief-hero-copy">
+        <p class="brief-kicker"><b></b>BUILD YOUR BESTIEBOYS BRIEF</p>
+        <h1>UPLOAD THE PET.<br><em>DIRECT THE MERCH.</em></h1>
+        <p><strong>This is the customer journey prototype.</strong> Add photos, choose a scene and product, then review the design brief on this device. The current development page does not upload files, store personal data, take payment or place an order.</p>
+        <div class="brief-badges" aria-label="Prototype safeguards">
+          <span>No server upload</span><span>No account required</span><span>No payment</span><span>Clears on refresh</span>
+        </div>
+      </div>
+      <aside class="privacy-card" aria-label="Photo privacy note">
+        <span>PRIVACY / DEVELOPMENT</span>
+        <strong>Your photos remain inside this browser tab.</strong>
+        <p>Image previews are created locally. Nothing leaves the device and nothing is retained when the page is closed or refreshed.</p>
+      </aside>
+    </section>
+
+    <section class="brief-shell shell">
+      <form id="brief-form" class="brief-form" novalidate>
+        <section class="brief-step" id="photos" data-progress-step="photos">
+          <header class="step-head">
+            <div><span>01</span><h2>Add your pet photos</h2></div>
+            <p>One clear face photograph is essential. Up to six images can be previewed here.</p>
+          </header>
+
+          <div class="photo-layout">
+            <div>
+              <input id="pet-photos" name="petPhotos" type="file" accept="image/jpeg,image/png,image/webp" multiple hidden>
+              <label class="upload-drop" for="pet-photos" data-drop-zone tabindex="0">
+                <span class="upload-icon" aria-hidden="true">＋</span>
+                <strong>Choose photos or drop them here</strong>
+                <small>JPEG, PNG or WebP • maximum 6 files • 15 MB each</small>
+              </label>
+              <p class="field-error" id="photo-error" role="alert"></p>
+              <div class="photo-previews" id="photo-previews" aria-live="polite"></div>
+            </div>
+
+            <div class="photo-guidance">
+              <h3>Strong source photos</h3>
+              <div><span>01</span><p>Eyes, muzzle, ears and distinctive markings are visible.</p></div>
+              <div><span>02</span><p>Natural light and sharp focus; no heavy social-media filters.</p></div>
+              <div><span>03</span><p>Include another angle when the face or body shape is unusual.</p></div>
+              <div><span>04</span><p>Old or imperfect memorial photos are welcome—send the best available.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="brief-step" id="pet" data-progress-step="pet">
+          <header class="step-head">
+            <div><span>02</span><h2>Tell us who they are</h2></div>
+            <p>Likeness and character matter more than a generic “cute pet” result.</p>
+          </header>
+
+          <div class="field-grid two">
+            <label class="field">
+              <span>Pet name <b>Required</b></span>
+              <input id="pet-name" name="petName" type="text" autocomplete="off" maxlength="40" required placeholder="e.g. Gerrard">
+            </label>
+
+            <label class="field">
+              <span>Animal <b>Required</b></span>
+              <select id="animal-type" name="animalType" required>
+                <option value="">Choose one</option>
+                <option>Dog</option>
+                <option>Cat</option>
+                <option>Rabbit</option>
+                <option>Bird</option>
+                <option>Reptile</option>
+                <option>Other animal</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Breed or type</span>
+              <input id="breed" name="breed" type="text" autocomplete="off" maxlength="60" placeholder="e.g. Shar Pei">
+            </label>
+
+            <label class="field">
+              <span>Name exactly as printed</span>
+              <input id="print-name" name="printName" type="text" autocomplete="off" maxlength="40" placeholder="Defaults to the pet name">
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Features we must get right</span>
+            <textarea id="features" name="features" rows="4" maxlength="500" placeholder="Distinctive folds, markings, ear shape, eye colour, missing tooth, collar, expression…"></textarea>
+            <small><span id="features-count">0</span>/500</small>
+          </label>
+
+          <div class="memorial-box">
+            <label class="check-row">
+              <input id="memorial" name="memorial" type="checkbox">
+              <span><strong>This is a memorial or remembrance piece</strong><small>Reveals optional dates and tribute wording.</small></span>
+            </label>
+            <div class="memorial-fields" id="memorial-fields" hidden>
+              <div class="field-grid two">
+                <label class="field"><span>Dates or years</span><input id="memorial-dates" name="memorialDates" type="text" maxlength="60" placeholder="Optional"></label>
+                <label class="field"><span>Short tribute line</span><input id="tribute-line" name="tributeLine" type="text" maxlength="90" placeholder="Optional"></label>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="brief-step" id="scene" data-progress-step="scene">
+          <header class="step-head">
+            <div><span>03</span><h2>Choose the scene</h2></div>
+            <p>This selects the visual language—not just a font or colour filter.</p>
+          </header>
+
+          <fieldset class="choice-fieldset">
+            <legend class="sr-only">Choose one scene</legend>
+            <div class="choice-grid scene-choices">
+              <label class="choice-card"><input type="radio" name="scene" value="Black Metal" required><span class="choice-code">BM</span><strong>Black Metal</strong><small>Cold, ritual, severe.</small></label>
+              <label class="choice-card"><input type="radio" name="scene" value="Grindcore"><span class="choice-code">GC</span><strong>Grindcore</strong><small>Xerox, abrasion, compression.</small></label>
+              <label class="choice-card"><input type="radio" name="scene" value="Goregrind"><span class="choice-code">GG</span><strong>Goregrind</strong><small>Clinical, grotesque, controlled.</small></label>
+              <label class="choice-card"><input type="radio" name="scene" value="Crust Punk"><span class="choice-code">CP</span><strong>Crust Punk</strong><small>Patch-built, worn, direct.</small></label>
+              <label class="choice-card"><input type="radio" name="scene" value="Powerviolence"><span class="choice-code">PV</span><strong>Powerviolence</strong><small>Blunt scale, no filler.</small></label>
+              <label class="choice-card"><input type="radio" name="scene" value="Gore Noise"><span class="choice-code">GN</span><strong>Gore Noise</strong><small>Signal loss, hard clipping.</small></label>
+              <label class="choice-card"><input type="radio" name="scene" value="Rap Bootleg"><span class="choice-code">RB</span><strong>Rap Bootleg</strong><small>Tribute scale, full colour.</small></label>
+              <label class="choice-card assist"><input type="radio" name="scene" value="Help me choose"><span class="choice-code">?</span><strong>Help me choose</strong><small>BestieBoys proposes the strongest fit.</small></label>
+            </div>
+            <p class="group-error" id="scene-error" role="alert"></p>
+          </fieldset>
+          <a class="compare-link" href="index.html#scenes">Compare all seven collection directions →</a>
+        </section>
+
+        <section class="brief-step" id="product" data-progress-step="product">
+          <header class="step-head">
+            <div><span>04</span><h2>Choose the first product</h2></div>
+            <p>The design will be rebuilt for the selected format. It will not simply be shrunk across every blank.</p>
+          </header>
+
+          <fieldset class="choice-fieldset">
+            <legend class="sr-only">Choose one product</legend>
+            <div class="choice-grid product-choices">
+              <label class="choice-card"><input type="radio" name="product" value="Short-Sleeve T-shirt" required><span class="choice-code">01</span><strong>Short-Sleeve Tee</strong><small>Primary large-print canvas.</small></label>
+              <label class="choice-card"><input type="radio" name="product" value="Long-Sleeve T-shirt"><span class="choice-code">02</span><strong>Longsleeve</strong><small>Front, back and sleeve system.</small></label>
+              <label class="choice-card"><input type="radio" name="product" value="Pullover Hoodie"><span class="choice-code">03</span><strong>Pullover Hoodie</strong><small>Heavy blank, pocket-aware layout.</small></label>
+              <label class="choice-card"><input type="radio" name="product" value="Zip Hoodie"><span class="choice-code">04</span><strong>Zip Hoodie</strong><small>Split-safe front, strong back.</small></label>
+              <label class="choice-card"><input type="radio" name="product" value="Girlie / Fitted T-shirt"><span class="choice-code">05</span><strong>Girlie / Fitted</strong><small>Purpose-built narrow placement.</small></label>
+              <label class="choice-card"><input type="radio" name="product" value="Cap"><span class="choice-code">06</span><strong>Cap</strong><small>Simplified name or pet mark.</small></label>
+              <label class="choice-card"><input type="radio" name="product" value="Sticker"><span class="choice-code">07</span><strong>Sticker</strong><small>Supporting die-cut artwork.</small></label>
+            </div>
+            <p class="group-error" id="product-error" role="alert"></p>
+          </fieldset>
+
+          <div class="field-grid two compact-fields">
+            <label class="field"><span>Preferred garment size</span><input id="size" name="size" type="text" maxlength="20" placeholder="Optional at brief stage"></label>
+            <label class="field"><span>Preferred fit</span><select id="fit" name="fit"><option value="">No preference yet</option><option>Regular</option><option>Relaxed / oversized</option><option>Fitted</option></select></label>
+          </div>
+        </section>
+
+        <section class="brief-step" id="story" data-progress-step="story">
+          <header class="step-head">
+            <div><span>05</span><h2>Add the story and boundaries</h2></div>
+            <p>Optional, but useful when the piece needs a specific emotional tone or must avoid certain imagery.</p>
+          </header>
+
+          <label class="field">
+            <span>What should the piece communicate?</span>
+            <textarea id="story-notes" name="storyNotes" rows="5" maxlength="800" placeholder="Personality, favourite nickname, recurring joke, memorial tone, words to include, symbols to avoid, preferred intensity…"></textarea>
+            <small><span id="story-count">0</span>/800</small>
+          </label>
+
+          <div class="consent-panel">
+            <label class="check-row required-check"><input id="rights" name="rights" type="checkbox" required><span><strong>I own these photos or have permission to use them</strong><small>Required before any future artwork can be produced.</small></span></label>
+            <label class="check-row required-check"><input id="local-only" name="localOnly" type="checkbox" required><span><strong>I understand this development preview does not send or save anything</strong><small>Refreshing or closing the page clears the draft and photo previews.</small></span></label>
+            <p class="group-error" id="consent-error" role="alert"></p>
+          </div>
+        </section>
+
+        <div class="form-actions">
+          <button class="button primary review-button" type="submit">Review my brief on this device <span aria-hidden="true">→</span></button>
+          <p>No order, upload, email or payment is created.</p>
+        </div>
+      </form>
+
+      <aside class="progress-card" aria-label="Brief progress">
+        <span class="progress-label">BRIEF PROGRESS</span>
+        <strong id="progress-text">0 / 5 essentials complete</strong>
+        <div class="progress-track" aria-hidden="true"><i id="progress-bar"></i></div>
+        <div class="progress-list">
+          <a href="#photos" data-progress-item="photos"><span>01</span><b>Photos</b><i></i></a>
+          <a href="#pet" data-progress-item="pet"><span>02</span><b>Pet details</b><i></i></a>
+          <a href="#scene" data-progress-item="scene"><span>03</span><b>Scene</b><i></i></a>
+          <a href="#product" data-progress-item="product"><span>04</span><b>Product</b><i></i></a>
+          <a href="#story" data-progress-item="consent"><span>05</span><b>Permission</b><i></i></a>
+        </div>
+        <div class="local-status"><span></span><p><strong>Local-only prototype</strong>No data connection is active.</p></div>
+      </aside>
+    </section>
+
+    <section class="review-section shell" id="review" hidden>
+      <div class="review-head">
+        <div><p class="brief-kicker"><b></b>LOCAL REVIEW</p><h2>Your development brief</h2></div>
+        <p>This summary exists only in the current browser tab. It has not been sent to BestieBoys.</p>
+      </div>
+
+      <div class="review-grid">
+        <article class="review-panel review-primary">
+          <span>SUBJECT</span>
+          <h3 id="review-name">—</h3>
+          <div class="review-facts">
+            <div><small>Animal</small><strong id="review-animal">—</strong></div>
+            <div><small>Scene</small><strong id="review-scene">—</strong></div>
+            <div><small>Product</small><strong id="review-product">—</strong></div>
+            <div><small>Memorial</small><strong id="review-memorial">—</strong></div>
+          </div>
+        </article>
+
+        <article class="review-panel">
+          <span>PHOTO REFERENCES</span>
+          <div class="review-photos" id="review-photos"></div>
+          <p id="review-photo-copy">—</p>
+        </article>
+
+        <article class="review-panel review-wide">
+          <div><span>LIKENESS NOTES</span><p id="review-features">No additional notes.</p></div>
+          <div><span>STORY / ART DIRECTION</span><p id="review-story">No additional notes.</p></div>
+          <div><span>PRINT NAME</span><p id="review-print-name">—</p></div>
+        </article>
+      </div>
+
+      <div class="review-actions">
+        <button class="button ghost" id="edit-brief" type="button">Edit the brief</button>
+        <button class="button ghost" id="clear-brief" type="button">Clear local draft</button>
+        <button class="button disabled" type="button" disabled>Send brief — not connected</button>
+      </div>
+    </section>
+
+    <section class="prototype-note shell">
+      <div><span>WHAT THIS PAGE PROVES</span><h2>The upload journey can exist before checkout.</h2></div>
+      <div class="prototype-grid">
+        <article><span>01</span><strong>Customers can provide multiple references</strong><p>Clear source-photo guidance reduces likeness complaints later.</p></article>
+        <article><span>02</span><strong>Scene and garment choices become structured data</strong><p>The design request is no longer buried in an email thread.</p></article>
+        <article><span>03</span><strong>Privacy can be explicit before files are collected</strong><p>A live version still requires secure storage, retention rules and consent records.</p></article>
+        <article><span>04</span><strong>Ordering can remain separate until the artwork flow is proven</strong><p>No payment or production commitment is needed at this stage.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <a class="brand" href="index.html#top">BESTIEBOYS<span>™</span></a>
+    <p>Custom art for very good animals.</p>
+    <small>Development / local preview</small>
+  </footer>
+
+  <script src="personalise.js"></script>
+</body>
+</html>
