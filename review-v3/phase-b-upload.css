@@ -22,14 +22,14 @@
 @media(max-width:980px){.phase-b-hero{grid-template-columns:1fr}.phase-b-status{max-width:720px}.phase-b-flow{grid-template-columns:1fr 1fr}}
 @media(max-width:760px){
   .phase-b-page .announcement{min-height:32px;padding:7px 12px;justify-content:center;white-space:normal;overflow:visible;text-align:center;font-size:.56rem;line-height:1.25;letter-spacing:.1em}
-  .phase-b-hero{padding:58px 0 72px}
+  .phase-b-hero{padding:58px 0 32px}
   .phase-b-hero h1{font-size:clamp(3.2rem,15vw,5.3rem)}
   .phase-b-actions{display:grid;grid-template-columns:1fr}
   .phase-b-actions .button{width:100%}
   .phase-b-status{scroll-margin-top:112px}
   .phase-b-status div{grid-template-columns:1fr;gap:6px}
   .phase-b-status strong{text-align:left;overflow-wrap:anywhere}
-  .phase-b-section{padding:78px 0}
+  .phase-b-section{padding:48px 0 78px}
   .phase-b-flow{grid-template-columns:1fr}
   .phase-b-flow article{min-height:220px}
   .phase-b-flow strong{margin-top:36px}
