@@ -20,21 +20,25 @@ if(menu&&nav){
   }));
 }
 
-const blackMetalCard=document.querySelector('.scene-card.blackmetal');
-if(blackMetalCard){
-  blackMetalCard.tabIndex=0;
-  blackMetalCard.setAttribute('role','link');
-  blackMetalCard.setAttribute('aria-label','Open the BestieBoys Black Metal collection page');
-  blackMetalCard.style.cursor='pointer';
-  const openBlackMetal=()=>{window.location.href='black-metal.html'};
-  blackMetalCard.addEventListener('click',openBlackMetal);
-  blackMetalCard.addEventListener('keydown',event=>{
+function registerSceneCard(selector,url,label){
+  const card=document.querySelector(selector);
+  if(!card)return;
+  card.tabIndex=0;
+  card.setAttribute('role','link');
+  card.setAttribute('aria-label',label);
+  card.style.cursor='pointer';
+  const open=()=>{window.location.href=url};
+  card.addEventListener('click',open);
+  card.addEventListener('keydown',event=>{
     if(event.key==='Enter'||event.key===' '){
       event.preventDefault();
-      openBlackMetal();
+      open();
     }
   });
 }
+
+registerSceneCard('.scene-card.blackmetal','black-metal.html','Open the BestieBoys Black Metal collection page');
+registerSceneCard('.scene-card.grindcore','grindcore.html','Open the BestieBoys Grindcore collection page');
 
 window.addEventListener('scroll',()=>header?.classList.toggle('scrolled',window.scrollY>20),{passive:true});
 
