@@ -20,6 +20,22 @@ if(menu&&nav){
   }));
 }
 
+const blackMetalCard=document.querySelector('.scene-card.blackmetal');
+if(blackMetalCard){
+  blackMetalCard.tabIndex=0;
+  blackMetalCard.setAttribute('role','link');
+  blackMetalCard.setAttribute('aria-label','Open the BestieBoys Black Metal collection page');
+  blackMetalCard.style.cursor='pointer';
+  const openBlackMetal=()=>{window.location.href='black-metal.html'};
+  blackMetalCard.addEventListener('click',openBlackMetal);
+  blackMetalCard.addEventListener('keydown',event=>{
+    if(event.key==='Enter'||event.key===' '){
+      event.preventDefault();
+      openBlackMetal();
+    }
+  });
+}
+
 window.addEventListener('scroll',()=>header?.classList.toggle('scrolled',window.scrollY>20),{passive:true});
 
 const targets=[...document.querySelectorAll('.reveal')];
