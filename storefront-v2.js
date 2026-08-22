@@ -53,6 +53,43 @@ markDirectionBuilt(registerSceneCard('.scene-card.power','powerviolence.html','O
 markDirectionBuilt(registerSceneCard('.scene-card.noise','gore-noise.html','Open the BestieBoys Gore Noise collection page'));
 markDirectionBuilt(registerSceneCard('.scene-card.rap','rap-bootleg.html','Open the BestieBoys Rap Bootleg collection page'));
 
+const homepage=document.querySelector('.hero');
+if(homepage){
+  if(nav&&!nav.querySelector('a[href="personalise.html"]')){
+    const startLink=document.createElement('a');
+    startLink.href='personalise.html';
+    startLink.textContent='Start';
+    nav.appendChild(startLink);
+  }
+
+  const heroPrimary=document.querySelector('.hero-actions .primary');
+  const heroSecondary=document.querySelector('.hero-actions .ghost');
+  if(heroPrimary){
+    heroPrimary.href='personalise.html';
+    heroPrimary.innerHTML='Start with your photos <span aria-hidden="true">→</span>';
+  }
+  if(heroSecondary){
+    heroSecondary.href='#scenes';
+    heroSecondary.textContent='Explore the scenes';
+  }
+
+  const uploadStep=document.querySelector('.process-step:first-child');
+  if(uploadStep){
+    uploadStep.tabIndex=0;
+    uploadStep.setAttribute('role','link');
+    uploadStep.setAttribute('aria-label','Open the BestieBoys personalisation brief prototype');
+    uploadStep.style.cursor='pointer';
+    const openBrief=()=>{window.location.href='personalise.html'};
+    uploadStep.addEventListener('click',openBrief);
+    uploadStep.addEventListener('keydown',event=>{
+      if(event.key==='Enter'||event.key===' '){
+        event.preventDefault();
+        openBrief();
+      }
+    });
+  }
+}
+
 window.addEventListener('scroll',()=>header?.classList.toggle('scrolled',window.scrollY>20),{passive:true});
 
 const targets=[...document.querySelectorAll('.reveal')];
