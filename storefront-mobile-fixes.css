@@ -1,4 +1,4 @@
-/* BestieBoys storefront v2 — screenshot-driven mobile QA fixes, pass 3 */
+/* BestieBoys storefront v2 — screenshot-driven mobile QA fixes, pass 4 */
 
 section[id]{scroll-margin-top:86px}
 
@@ -50,6 +50,10 @@ section[id]{scroll-margin-top:86px}
     line-height:1.3;
     font-size:.50rem;
   }
+
+  /* Collection headers have a brand, back link and menu button. Hide the duplicate
+     back link on narrow screens so the menu remains on the first row. */
+  .scene-back{display:none!important}
 
   /* Mobile screenshots showed reveal-hidden sections creating large blank dead zones.
      Keep content visible on small screens; desktop keeps the reveal treatment. */
