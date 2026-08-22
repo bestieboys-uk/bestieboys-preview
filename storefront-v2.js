@@ -1,6 +1,6 @@
 const qaStyles=document.createElement('link');
 qaStyles.rel='stylesheet';
-qaStyles.href='storefront-mobile-fixes.css?v=3';
+qaStyles.href='storefront-mobile-fixes.css?v=4';
 document.head.appendChild(qaStyles);
 
 const header=document.querySelector('[data-header]');
