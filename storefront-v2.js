@@ -50,6 +50,7 @@ markDirectionBuilt(registerSceneCard('.scene-card.grindcore','grindcore.html','O
 markDirectionBuilt(registerSceneCard('.scene-card.goregrind','goregrind.html','Open the BestieBoys Goregrind collection page'));
 markDirectionBuilt(registerSceneCard('.scene-card.crust','crust-punk.html','Open the BestieBoys Crust Punk collection page'));
 markDirectionBuilt(registerSceneCard('.scene-card.power','powerviolence.html','Open the BestieBoys Powerviolence collection page'));
+markDirectionBuilt(registerSceneCard('.scene-card.noise','gore-noise.html','Open the BestieBoys Gore Noise collection page'));
 
 window.addEventListener('scroll',()=>header?.classList.toggle('scrolled',window.scrollY>20),{passive:true});
 
