@@ -1,3 +1,9 @@
+const qaStyles=document.createElement('link');
+qaStyles.rel='stylesheet';
+qaStyles.href='personalise-qa-fixes.css?v=1';
+qaStyles.dataset.personaliseQa='true';
+if(!document.querySelector('[data-personalise-qa]'))document.head.appendChild(qaStyles);
+
 const header=document.querySelector('[data-header]');
 const menu=document.querySelector('[data-menu]');
 const nav=document.querySelector('[data-nav]');
@@ -37,6 +43,10 @@ const storyCount=document.querySelector('#story-count');
 const reviewSection=document.querySelector('#review');
 const editBrief=document.querySelector('#edit-brief');
 const clearBrief=document.querySelector('#clear-brief');
+const reviewWide=document.querySelector('.review-wide');
+if(reviewWide&&!document.querySelector('#review-memorial-dates')){
+  reviewWide.insertAdjacentHTML('beforeend','<div><span>MEMORIAL DATES</span><p id="review-memorial-dates">Not applicable.</p></div><div><span>TRIBUTE LINE</span><p id="review-tribute-line">Not applicable.</p></div>');
+}
 
 const MAX_FILES=6;
 const MAX_BYTES=15*1024*1024;
@@ -169,6 +179,10 @@ printName?.addEventListener('input',()=>{
 
 petName?.addEventListener('input',()=>{
   if(!printNameEdited)printName.value=petName.value;
+  if(petName.value.trim())markInvalid(petName,false);
+});
+animalType?.addEventListener('change',()=>{
+  if(animalType.value)markInvalid(animalType,false);
 });
 
 function updateCounter(field,output){
@@ -237,13 +251,13 @@ function validateBrief(){
 
   if(!checkedValue('scene')){
     sceneError.textContent='Choose a scene or select “Help me choose”.';
-    if(!firstInvalid)firstInvalid=document.querySelector('#scene');
+    if(!firstInvalid)firstInvalid=document.querySelector('input[name="scene"]');
     valid=false;
   }
 
   if(!checkedValue('product')){
     productError.textContent='Choose the first product format.';
-    if(!firstInvalid)firstInvalid=document.querySelector('#product');
+    if(!firstInvalid)firstInvalid=document.querySelector('input[name="product"]');
     valid=false;
   }
 
@@ -251,7 +265,7 @@ function validateBrief(){
   const localOnly=document.querySelector('#local-only');
   if(!rights.checked||!localOnly.checked){
     consentError.textContent='Confirm both permission statements to review the brief.';
-    if(!firstInvalid)firstInvalid=document.querySelector('.consent-panel');
+    if(!firstInvalid)firstInvalid=rights;
     valid=false;
   }
 
@@ -297,6 +311,10 @@ function renderReview(){
   setText('#review-features',features.value.trim(),'No additional likeness notes.');
   setText('#review-story',storyNotes.value.trim(),'No additional story or art-direction notes.');
   setText('#review-print-name',printValue);
+  const memorialDates=document.querySelector('#memorial-dates').value.trim();
+  const tributeLine=document.querySelector('#tribute-line').value.trim();
+  setText('#review-memorial-dates',memorial.checked?memorialDates:'Not applicable.',memorial.checked?'Not supplied.':'Not applicable.');
+  setText('#review-tribute-line',memorial.checked?tributeLine:'Not applicable.',memorial.checked?'Not supplied.':'Not applicable.');
   renderReviewPhotos();
 
   reviewSection.hidden=false;
