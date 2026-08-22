@@ -1,7 +1,7 @@
-const mobileFixes=document.createElement('link');
-mobileFixes.rel='stylesheet';
-mobileFixes.href='storefront-mobile-fixes.css?v=3';
-document.head.appendChild(mobileFixes);
+const qaStyles=document.createElement('link');
+qaStyles.rel='stylesheet';
+qaStyles.href='storefront-mobile-fixes.css?v=3';
+document.head.appendChild(qaStyles);
 
 const header=document.querySelector('[data-header]');
 const menu=document.querySelector('[data-menu]');
@@ -38,14 +38,17 @@ function registerSceneCard(selector,url,label){
   return card;
 }
 
-registerSceneCard('.scene-card.blackmetal','black-metal.html','Open the BestieBoys Black Metal collection page');
-registerSceneCard('.scene-card.grindcore','grindcore.html','Open the BestieBoys Grindcore collection page');
-const goregrindCard=registerSceneCard('.scene-card.goregrind','goregrind.html','Open the BestieBoys Goregrind collection page');
-if(goregrindCard){
-  goregrindCard.classList.add('active');
-  const status=goregrindCard.querySelector('small');
+function markDirectionBuilt(card){
+  if(!card)return;
+  card.classList.add('active');
+  const status=card.querySelector('small');
   if(status)status.innerHTML='<i></i>Direction built';
 }
+
+registerSceneCard('.scene-card.blackmetal','black-metal.html','Open the BestieBoys Black Metal collection page');
+markDirectionBuilt(registerSceneCard('.scene-card.grindcore','grindcore.html','Open the BestieBoys Grindcore collection page'));
+markDirectionBuilt(registerSceneCard('.scene-card.goregrind','goregrind.html','Open the BestieBoys Goregrind collection page'));
+markDirectionBuilt(registerSceneCard('.scene-card.crust','crust-punk.html','Open the BestieBoys Crust Punk collection page'));
 
 window.addEventListener('scroll',()=>header?.classList.toggle('scrolled',window.scrollY>20),{passive:true});
 
