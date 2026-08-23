@@ -20,6 +20,11 @@
 .product-card--image.is-approved-garment .product-visual:after{display:none}
 .product-card--image.is-approved-garment .image-status{color:var(--acid)}
 
+/* Approved Gerrard tee in the hero: full garment, no crop. */
+.hero-card.approved-garment-hero{background:#111}
+.hero-card.approved-garment-hero img{object-fit:contain;filter:none;background:#eceae6}
+.hero-card.approved-garment-hero:after{background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.82) 100%)}
+
 @media(max-width:1080px){
   #garments .product-rail{grid-template-columns:repeat(2,minmax(0,1fr))}
   #garments .product-card--image,#garments .product-card:not(.product-card--image){grid-column:span 1}
