@@ -53,9 +53,30 @@ function applyPresentationCleanup(){
   }
 }
 
+function isReviewHomepage(){
+  return location.pathname.endsWith('/review-v3/')||location.pathname.endsWith('/review-v3/index.html');
+}
+
+function applyApprovedHero(){
+  if(!isReviewHomepage())return;
+  const card=document.querySelector('.hero-card');
+  const image=card?.querySelector('img');
+  const tag=card?.querySelector('.hero-tag');
+  const small=card?.querySelector('.hero-caption small');
+  const title=card?.querySelector('.hero-caption strong');
+  const status=card?.querySelector('.hero-caption > span');
+  if(!card||!image)return;
+  card.classList.add('approved-garment-hero');
+  image.src='assets/mockups/gerrard-black-metal-tee.svg';
+  image.alt='Approved Gerrard Black Metal short-sleeve T-shirt development mockup';
+  if(tag)tag.textContent='GERRARD / BLACK METAL';
+  if(small)small.textContent='Approved development mockup';
+  if(title)title.textContent='Gerrard / Black Metal Tee';
+  if(status)status.textContent='ORDERING DISABLED';
+}
+
 function applyApprovedGarmentMockups(){
-  const isReviewHomepage=location.pathname.endsWith('/review-v3/')||location.pathname.endsWith('/review-v3/index.html');
-  if(!isReviewHomepage)return;
+  if(!isReviewHomepage())return;
   const cards=[...document.querySelectorAll('#garments .product-card--image')];
   const approved=[
     {src:'assets/mockups/gerrard-black-metal-tee.svg',alt:'Approved Gerrard Black Metal short-sleeve T-shirt development mockup',copy:'Approved Black Metal short-sleeve development mockup.'},
@@ -79,6 +100,7 @@ function applyApprovedGarmentMockups(){
 
 function applyReviewPresentation(){
   applyPresentationCleanup();
+  applyApprovedHero();
   applyApprovedGarmentMockups();
 }
 
