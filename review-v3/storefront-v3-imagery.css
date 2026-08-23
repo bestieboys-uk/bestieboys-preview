@@ -1,4 +1,8 @@
 /* BestieBoys image-led product development cards — isolated review */
+#garments .product-rail{grid-template-columns:repeat(12,minmax(0,1fr))}
+#garments .product-card--image{grid-column:span 4}
+#garments .product-card:not(.product-card--image){grid-column:span 3}
+
 .product-card.product-card--image{padding:0;display:flex;flex-direction:column;background:#070707}
 .product-card--image .product-visual{position:relative;height:auto;aspect-ratio:4/5;margin:0;background:#0a0a0a;border-bottom:1px solid var(--line);overflow:hidden}
 .product-card--image .product-visual img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.04) saturate(.88)}
@@ -9,6 +13,24 @@
 .product-card--image .product-copy h3{font-size:1.6rem}
 .product-card--image .product-copy p{margin-bottom:0}
 .product-card--image .art-credit{margin-top:auto;padding-top:16px;color:#625d56;font-size:.53rem;letter-spacing:.09em;text-transform:uppercase;font-weight:900}
-@media(max-width:1080px){.product-card--image .product-visual{aspect-ratio:1/1}}
-@media(max-width:760px){.product-card--image .product-visual{aspect-ratio:4/3}.product-card--image .product-copy{padding:14px}}
-@media(max-width:460px){.product-card--image .product-visual{aspect-ratio:1/1}}
+
+/* Approved garments: show the whole garment, never crop the animal or print. */
+.product-card--image.is-approved-garment .product-visual{aspect-ratio:1/1;background:#eceae6}
+.product-card--image.is-approved-garment .product-visual img{object-fit:contain;filter:none}
+.product-card--image.is-approved-garment .product-visual:after{display:none}
+.product-card--image.is-approved-garment .image-status{color:var(--acid)}
+
+@media(max-width:1080px){
+  #garments .product-rail{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #garments .product-card--image,#garments .product-card:not(.product-card--image){grid-column:span 1}
+  .product-card--image .product-visual{aspect-ratio:1/1}
+}
+
+@media(max-width:760px){
+  #garments .product-rail{grid-template-columns:1fr}
+  .product-card--image .product-copy{padding:14px}
+}
+
+@media(max-width:460px){
+  .product-card--image .product-visual{aspect-ratio:1/1}
+}
