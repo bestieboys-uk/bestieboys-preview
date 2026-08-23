@@ -53,8 +53,37 @@ function applyPresentationCleanup(){
   }
 }
 
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',applyPresentationCleanup,{once:true});
-else applyPresentationCleanup();
+function applyApprovedGarmentMockups(){
+  const isReviewHomepage=location.pathname.endsWith('/review-v3/')||location.pathname.endsWith('/review-v3/index.html');
+  if(!isReviewHomepage)return;
+  const cards=[...document.querySelectorAll('#garments .product-card--image')];
+  const approved=[
+    {src:'assets/mockups/gerrard-black-metal-tee.svg',alt:'Approved Gerrard Black Metal short-sleeve T-shirt development mockup',copy:'Approved Black Metal short-sleeve development mockup.'},
+    {src:'assets/mockups/onion-grindcore-longsleeve.svg',alt:'Approved Onion Grindcore longsleeve development mockup',copy:'Approved Grindcore longsleeve development mockup.'},
+    {src:'assets/mockups/sylvester-crust-punk-hoodie.svg',alt:'Approved Sylvester Crust Punk pullover hoodie development mockup',copy:'Approved Crust Punk pullover hoodie development mockup.'}
+  ];
+  cards.slice(0,3).forEach((card,index)=>{
+    const item=approved[index];
+    if(!item)return;
+    card.classList.add('is-approved-garment');
+    const image=card.querySelector('.product-visual img');
+    if(image){image.src=item.src;image.alt=item.alt;}
+    const status=card.querySelector('.image-status');
+    if(status)status.textContent='Approved garment mockup';
+    const copy=card.querySelector('.product-copy p');
+    if(copy)copy.textContent=item.copy;
+    const credit=card.querySelector('.art-credit');
+    if(credit)credit.textContent='Approved development mockup';
+  });
+}
+
+function applyReviewPresentation(){
+  applyPresentationCleanup();
+  applyApprovedGarmentMockups();
+}
+
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',applyReviewPresentation,{once:true});
+else applyReviewPresentation();
 
 const header=document.querySelector('[data-header]');
 const menu=document.querySelector('[data-menu]');
