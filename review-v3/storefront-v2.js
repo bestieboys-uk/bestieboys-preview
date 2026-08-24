@@ -57,6 +57,25 @@ function isReviewHomepage(){
   return location.pathname.endsWith('/review-v3/')||location.pathname.endsWith('/review-v3/index.html');
 }
 
+function applyCustomerJourneyRoute(){
+  if(!isReviewHomepage())return;
+  const navPersonalise=[...document.querySelectorAll('[data-nav] a')].find(link=>link.getAttribute('href')==='#transformation');
+  if(navPersonalise){
+    navPersonalise.href='personalise.html?v=1';
+    navPersonalise.textContent='Personalise';
+  }
+  const primary=document.querySelector('.hero-actions .button.primary');
+  const secondary=document.querySelector('.hero-actions .button.ghost');
+  if(primary){
+    primary.href='personalise.html?v=1';
+    primary.innerHTML='Start with your pet <span aria-hidden="true">→</span>';
+  }
+  if(secondary){
+    secondary.href='#scenes';
+    secondary.textContent='Explore the styles';
+  }
+}
+
 function applyApprovedHero(){
   if(!isReviewHomepage())return;
   const card=document.querySelector('.hero-card');
@@ -100,6 +119,7 @@ function applyApprovedGarmentMockups(){
 
 function applyReviewPresentation(){
   applyPresentationCleanup();
+  applyCustomerJourneyRoute();
   applyApprovedHero();
   applyApprovedGarmentMockups();
 }
