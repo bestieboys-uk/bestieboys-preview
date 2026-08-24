@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#050505">
+  <meta name="description" content="BestieBoys development personalisation flow for custom underground-style pet merchandise.">
+  <title>Personalise — BestieBoys</title>
+  <link rel="stylesheet" href="storefront-v2.css?v=10">
+  <link rel="stylesheet" href="personalise.css?v=1">
+</head>
+<body class="personalise-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="announcement">DEVELOPMENT PERSONALISATION PROTOTYPE • NOTHING IS UPLOADED OR SENT</div>
+
+  <header class="header" data-header>
+    <a class="brand" href="index.html?v=10" aria-label="BestieBoys home">BESTIEBOYS<span>™</span></a>
+    <nav id="primary-navigation" data-nav aria-label="Primary navigation">
+      <a href="index.html?v=10#scenes">Styles</a>
+      <a href="#direction">Choose style</a>
+      <a href="#photos">Pet photo</a>
+      <a href="#review">Review</a>
+    </nav>
+    <div class="header-status"><i aria-hidden="true"></i>Prototype only</div>
+    <button class="menu-button" type="button" data-menu aria-expanded="false" aria-controls="primary-navigation">Menu</button>
+  </header>
+
+  <main id="main">
+    <section class="intake-hero shell">
+      <p class="eyebrow"><b></b>BUILD YOUR BESTIEBOYS REQUEST</p>
+      <h1 class="display">YOUR PET.<br>YOUR STYLE.<br><em>YOUR GARMENT.</em></h1>
+      <p class="intake-lead">Choose the underground direction, tell us exactly what your animal is called, add the source photo and choose the garment. BestieBoys handles the likeness, typography, composition and print placement.</p>
+      <div class="prototype-rule"><strong>Development rule:</strong> photos stay on this device. This page does not upload files, create an order or take payment.</div>
+    </section>
+
+    <form class="intake-form shell" id="personaliseForm" novalidate>
+      <section class="intake-step" id="direction" data-step="01">
+        <div class="step-copy">
+          <p class="kicker"><b></b>01 / CHOOSE THE STYLE</p>
+          <h2>WHAT WORLD<br><em>SHOULD IT LIVE IN?</em></h2>
+          <p>These are separate artwork systems, not colour variants of one template.</p>
+        </div>
+        <fieldset class="choice-grid scene-choice-grid" data-required-group="scene">
+          <legend class="sr-only">Choose a style</legend>
+          <label class="choice-card"><input type="radio" name="scene" value="Black Metal" required><span><b>BLACK METAL</b><small>Cold / severe / ritual / monochrome</small></span></label>
+          <label class="choice-card"><input type="radio" name="scene" value="Grindcore"><span><b>GRINDCORE</b><small>DIY xerox / compressed / abrasive</small></span></label>
+          <label class="choice-card"><input type="radio" name="scene" value="Goregrind"><span><b>GOREGRIND</b><small>Pathology-zine / filthy bootleg energy</small></span></label>
+          <label class="choice-card"><input type="radio" name="scene" value="Crust Punk"><span><b>CRUST PUNK</b><small>Patch graphics / D-beat abrasion</small></span></label>
+          <label class="choice-card"><input type="radio" name="scene" value="Powerviolence"><span><b>POWERVIOLENCE</b><small>Blunt impact / hard crops / huge type</small></span></label>
+          <label class="choice-card"><input type="radio" name="scene" value="Gore Noise"><span><b>GORE NOISE</b><small>Signal collapse / photocopy damage</small></span></label>
+          <label class="choice-card"><input type="radio" name="scene" value="Rap Bootleg"><span><b>RAP BOOTLEG</b><small>90s memorial / airbrush / oversized portrait</small></span></label>
+          <label class="choice-card"><input type="radio" name="scene" value="Help me choose"><span><b>HELP ME CHOOSE</b><small>BestieBoys recommends the strongest direction</small></span></label>
+        </fieldset>
+        <p class="field-error" data-error-for="scene" hidden>Choose a style or “Help me choose”.</p>
+      </section>
+
+      <section class="intake-step" id="pet-details" data-step="02">
+        <div class="step-copy">
+          <p class="kicker"><b></b>02 / PET DETAILS</p>
+          <h2>GET THE NAME<br><em>EXACTLY RIGHT.</em></h2>
+          <p>The name becomes part of the artwork system, so spelling matters.</p>
+        </div>
+        <div class="field-grid">
+          <label class="field"><span>Pet name <b>required</b></span><input id="petName" name="petName" type="text" maxlength="40" autocomplete="off" placeholder="e.g. Gerrard" required><small>Enter it exactly as you want it to appear.</small></label>
+          <label class="field"><span>Animal type <b>required</b></span><input id="animalType" name="animalType" type="text" maxlength="40" autocomplete="off" placeholder="e.g. dog / cat / rabbit" required><small>Breed is optional; the source photos matter more.</small></label>
+        </div>
+        <details class="optional-fields">
+          <summary>Add optional details</summary>
+          <div class="field-grid optional-grid">
+            <label class="field"><span>Nickname</span><input id="nickname" name="nickname" type="text" maxlength="40"></label>
+            <label class="field"><span>Dates</span><input id="dates" name="dates" type="text" maxlength="60" placeholder="Only if you want them considered"></label>
+            <label class="field field-wide"><span>Short line / dedication</span><input id="shortLine" name="shortLine" type="text" maxlength="100" placeholder="Optional wording"></label>
+            <label class="field field-wide"><span>Personality / visual details we must not lose</span><textarea id="personality" name="personality" rows="4" maxlength="500" placeholder="Expression, markings, ears, posture, attitude, favourite feature..."></textarea></label>
+          </div>
+        </details>
+      </section>
+
+      <section class="intake-step" id="photos" data-step="03">
+        <div class="step-copy">
+          <p class="kicker"><b></b>03 / SOURCE PHOTOGRAPHS</p>
+          <h2>SHOW US<br><em>THE REAL ANIMAL.</em></h2>
+          <p>One clear primary photo is required. Supporting photos can help confirm markings, shape, posture and expression.</p>
+        </div>
+        <div class="photo-guidance">
+          <strong>Best source:</strong>
+          <span>face and eyes visible</span>
+          <span>natural proportions</span>
+          <span>minimal motion blur</span>
+          <span>no heavy filters</span>
+          <span>highest-resolution original available</span>
+        </div>
+        <div class="upload-grid">
+          <label class="upload-card" for="primaryPhoto">
+            <input id="primaryPhoto" name="primaryPhoto" type="file" accept="image/jpeg,image/png,image/heic,image/heif,image/webp" required>
+            <span class="upload-index">PRIMARY / REQUIRED</span>
+            <strong>Choose main photo</strong>
+            <small>JPEG, PNG, HEIC or WebP for the prototype.</small>
+          </label>
+          <div class="preview-card" id="primaryPreviewCard" aria-live="polite">
+            <div class="preview-placeholder" id="primaryPlaceholder">No photo selected</div>
+            <img id="primaryPreview" alt="Local preview of selected pet photo" hidden>
+            <div class="preview-meta" id="primaryMeta"></div>
+          </div>
+          <label class="upload-card supporting" for="supportPhotos">
+            <input id="supportPhotos" name="supportPhotos" type="file" accept="image/jpeg,image/png,image/heic,image/heif,image/webp" multiple>
+            <span class="upload-index">SUPPORTING / OPTIONAL</span>
+            <strong>Add up to four more</strong>
+            <small>Used only to understand the animal more accurately.</small>
+          </label>
+          <div class="support-summary" id="supportSummary" aria-live="polite">No supporting photos selected.</div>
+        </div>
+        <p class="privacy-note">This review page keeps selected photographs inside your browser only. Nothing is transmitted to BestieBoys, GitHub or a storage provider.</p>
+      </section>
+
+      <section class="intake-step" id="garment" data-step="04">
+        <div class="step-copy">
+          <p class="kicker"><b></b>04 / PRODUCT FORMAT</p>
+          <h2>WHAT ARE WE<br><em>MAKING IT FOR?</em></h2>
+          <p>The artwork will be adapted to the selected format rather than copied unchanged across every product.</p>
+        </div>
+        <fieldset class="choice-grid garment-choice-grid" data-required-group="garment">
+          <legend class="sr-only">Choose a garment or product</legend>
+          <label class="choice-card"><input type="radio" name="garment" value="Short-Sleeve T-shirt" required><span><b>SHORT-SLEEVE TEE</b><small>Primary large-format canvas</small></span></label>
+          <label class="choice-card"><input type="radio" name="garment" value="Longsleeve"><span><b>LONGSLEEVE</b><small>Front / back / sleeve potential</small></span></label>
+          <label class="choice-card"><input type="radio" name="garment" value="Pullover Hoodie"><span><b>PULLOVER HOODIE</b><small>Heavier oversized format</small></span></label>
+          <label class="choice-card"><input type="radio" name="garment" value="Zip Hoodie"><span><b>ZIP HOODIE</b><small>Split-front layout rules</small></span></label>
+          <label class="choice-card"><input type="radio" name="garment" value="Girlie / Fitted Shirt"><span><b>GIRLIE / FITTED</b><small>Separate placement, not a scaled-down tee</small></span></label>
+          <label class="choice-card"><input type="radio" name="garment" value="Cap"><span><b>CAP</b><small>Simplified small-format artwork</small></span></label>
+          <label class="choice-card"><input type="radio" name="garment" value="Sticker"><span><b>STICKER</b><small>Standalone graphic / add-on</small></span></label>
+        </fieldset>
+        <p class="field-error" data-error-for="garment" hidden>Choose the format you want the artwork developed for.</p>
+      </section>
+
+      <section class="intake-step" id="creative-notes" data-step="05">
+        <div class="step-copy">
+          <p class="kicker"><b></b>05 / CREATIVE NOTES</p>
+          <h2>ANYTHING WE<br><em>SHOULD KNOW?</em></h2>
+        </div>
+        <label class="field"><span>Optional direction notes</span><textarea id="creativeNotes" name="creativeNotes" rows="6" maxlength="800" placeholder="Mood, colour preference, elements to avoid, important wording, or a BestieBoys direction you like..."></textarea><small>BestieBoys interprets the brief. We will not reproduce another band’s logo, artwork or copyrighted merchandise.</small></label>
+      </section>
+
+      <section class="intake-step review-step" id="review" data-step="06">
+        <div class="step-copy">
+          <p class="kicker"><b></b>06 / REVIEW</p>
+          <h2>CHECK IT<br><em>BEFORE IT LEAVES.</em></h2>
+          <p>In this Phase A prototype nothing leaves the browser. The review is here to prove the customer journey before any secure upload service is connected.</p>
+        </div>
+
+        <div class="consent-grid">
+          <label class="check-row"><input id="permissionConsent" type="checkbox" required><span>I confirm I have permission to use the photographs for this artwork request.</span></label>
+          <label class="check-row"><input id="prototypeConsent" type="checkbox" required><span>I understand this development page does not upload files, create an order or take payment.</span></label>
+        </div>
+
+        <button class="button primary review-button" type="button" id="reviewButton">Review my request <span aria-hidden="true">→</span></button>
+        <div class="review-errors" id="reviewErrors" hidden></div>
+
+        <section class="request-summary" id="requestSummary" hidden aria-live="polite">
+          <div class="summary-head"><span>LOCAL REVIEW ONLY</span><strong>BESTIEBOYS REQUEST SUMMARY</strong></div>
+          <dl>
+            <div><dt>Pet name</dt><dd id="summaryPetName">—</dd></div>
+            <div><dt>Animal</dt><dd id="summaryAnimalType">—</dd></div>
+            <div><dt>Style</dt><dd id="summaryScene">—</dd></div>
+            <div><dt>Format</dt><dd id="summaryGarment">—</dd></div>
+            <div><dt>Primary photo</dt><dd id="summaryPrimary">—</dd></div>
+            <div><dt>Supporting photos</dt><dd id="summarySupport">0</dd></div>
+            <div class="summary-wide"><dt>Optional wording</dt><dd id="summaryWording">None</dd></div>
+            <div class="summary-wide"><dt>Creative notes</dt><dd id="summaryNotes">None</dd></div>
+          </dl>
+          <div class="summary-stop"><strong>Nothing has been sent.</strong><span>The next phase will connect this reviewed brief to private file storage and a secure BestieBoys artwork queue only after the upload architecture and privacy controls are approved.</span></div>
+        </section>
+      </section>
+    </form>
+  </main>
+
+  <footer class="footer shell">
+    <a class="brand" href="index.html?v=10">BESTIEBOYS<span>™</span></a>
+    <p>Custom animal artwork built for real underground-style merchandise.</p>
+    <small>Development intake / 2026</small>
+  </footer>
+
+  <script src="personalise.js?v=1"></script>
+</body>
+</html>
