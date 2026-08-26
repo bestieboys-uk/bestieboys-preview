@@ -7,7 +7,7 @@
 .onion-scene-card__head span,.onion-scene-card__head strong{display:block;font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .onion-scene-card__head strong{color:var(--acid)}
 .onion-scene-card h3{margin:6px 0 0;font-family:Impact,"Arial Black",sans-serif;font-size:clamp(1.8rem,3vw,3rem);line-height:.9;text-transform:uppercase}
-.onion-scene-card__sheet{aspect-ratio:3.018/1;background-image:url("assets/styles/onion/onion-all-locked-sprite.webp");background-repeat:no-repeat;background-size:100% auto;background-color:#020202}
+.onion-scene-card__sheet{aspect-ratio:3/1;background-image:url("assets/styles/onion/onion-all-locked-sprite.avif");background-repeat:no-repeat;background-size:100% auto;background-color:#020202}
 .onion-scene-card__sheet[data-row="0"]{background-position:50% 0%}
 .onion-scene-card__sheet[data-row="1"]{background-position:50% 12.5%}
 .onion-scene-card__sheet[data-row="2"]{background-position:50% 25%}
