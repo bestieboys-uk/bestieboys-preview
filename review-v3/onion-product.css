@@ -132,7 +132,7 @@
   .black-metal-product .product-buy{position:static;width:min(100%,760px);padding-top:18px}
   .black-metal-product .product-buy h1{max-width:10ch;font-size:clamp(4.2rem,10vw,6rem)}
   .onion-product-page .product-buy h1{max-width:12ch;font-size:clamp(3.85rem,8.8vw,5rem)}
-  .onion-product-page[data-scene="powerviolence"] .product-buy h1{font-size:clamp(3.25rem,7.2vw,4.15rem)}
+  .onion-product-page[data-scene="powerviolence"] .product-buy h1{max-width:100%;font-size:clamp(3.25rem,7.2vw,4.15rem)}
   .black-metal-product .product-buy h1 em{width:auto;font-size:.3em}
   .black-metal-product .product-lead{max-width:56ch}
   .black-metal-product .personalise-grid{grid-template-columns:repeat(2,1fr)}
