@@ -116,14 +116,14 @@
 .onion-product-page .product-cta{background:var(--bm-bone);border-color:var(--bm-bone)}
 .onion-product-page .product-rule .rule-panel{border-top:8px solid var(--scene-accent)}
 .onion-product-page .product-buy h1{max-width:100%;font-size:clamp(3.25rem,4.2vw,4.35rem)}
-.onion-product-page[data-scene="powerviolence"] .product-buy h1{font-size:clamp(2.7rem,3.35vw,3.2rem)}
+.onion-product-page[data-scene="powerviolence"] .product-buy h1{font-size:clamp(2.3rem,3.1vw,2.5rem)}
 .black-metal-product .footer{border-top:0;color:#918b83}
 
 @media(max-width:1080px){
   .bm-product-hero{grid-template-columns:minmax(0,1.35fr) minmax(310px,.65fr);gap:38px}
   .black-metal-product .product-buy h1{font-size:clamp(3.9rem,6.4vw,5.1rem)}
   .onion-product-page .product-buy h1{font-size:clamp(3.15rem,4.9vw,3.75rem)}
-  .onion-product-page[data-scene="powerviolence"] .product-buy h1{font-size:clamp(2.55rem,3.9vw,3rem)}
+  .onion-product-page[data-scene="powerviolence"] .product-buy h1{font-size:clamp(2.15rem,3.35vw,2.3rem)}
 }
 
 @media(max-width:960px){
@@ -181,7 +181,7 @@
   .black-metal-product .product-buy{padding:14px 0 0}
   .black-metal-product .product-buy h1{font-size:clamp(3.2rem,15.8vw,4.3rem)}
   .onion-product-page .product-buy h1{font-size:clamp(2.9rem,13.8vw,3.55rem)}
-  .onion-product-page[data-scene="powerviolence"] .product-buy h1{font-size:clamp(2.3rem,10.8vw,2.8rem)}
+  .onion-product-page[data-scene="powerviolence"] .product-buy h1{font-size:clamp(2.05rem,9.8vw,2.7rem)}
   .black-metal-product .product-buy h1 em{font-size:.3em;letter-spacing:.015em}
   .bm-mockup figcaption>span{display:none}
   .bm-art-option__copy small{display:none}
