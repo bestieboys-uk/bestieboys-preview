@@ -16,7 +16,7 @@ if(!document.querySelector('link[data-scene-studies]')){
 if(!document.querySelector('link[data-drive-assets]')){
   const assetStyles=document.createElement('link');
   assetStyles.rel='stylesheet';
-  assetStyles.href='drive-asset-gallery.css?v=1';
+  assetStyles.href='drive-asset-gallery.css?v=2';
   assetStyles.dataset.driveAssets='true';
   document.head.appendChild(assetStyles);
 }
@@ -94,75 +94,45 @@ function applyDesignLabLink(){
   primaryNav.appendChild(link);
 }
 
-function applyApprovedHero(){
-  if(!isReviewHomepage())return;
-  const card=document.querySelector('.hero-card');
-  const image=card?.querySelector('img');
-  const tag=card?.querySelector('.hero-tag');
-  const small=card?.querySelector('.hero-caption small');
-  const title=card?.querySelector('.hero-caption strong');
-  const status=card?.querySelector('.hero-caption > span');
-  if(!card||!image)return;
-  card.classList.add('approved-garment-hero');
-  image.src='assets/mockups/gerrard-black-metal-tee.svg';
-  image.alt='Approved Gerrard Black Metal short-sleeve T-shirt development mockup';
-  if(tag)tag.textContent='GERRARD / BLACK METAL';
-  if(small)small.textContent='Approved development mockup';
-  if(title)title.textContent='Gerrard / Black Metal Tee';
-  if(status)status.textContent='ORDERING DISABLED';
-}
-
-function applyApprovedGarmentMockups(){
-  if(!isReviewHomepage())return;
-  const cards=[...document.querySelectorAll('#garments .product-card--image')];
-  const approved=[
-    {src:'assets/mockups/gerrard-black-metal-tee.svg',alt:'Approved Gerrard Black Metal short-sleeve T-shirt development mockup',copy:'Approved Black Metal short-sleeve development mockup.'},
-    {src:'assets/mockups/onion-grindcore-longsleeve.svg',alt:'Approved Onion Grindcore longsleeve development mockup',copy:'Approved Grindcore longsleeve development mockup.'},
-    {src:'assets/mockups/sylvester-crust-punk-hoodie.svg',alt:'Approved Sylvester Crust Punk pullover hoodie development mockup',copy:'Approved Crust Punk pullover hoodie development mockup.'}
-  ];
-  cards.slice(0,3).forEach((card,index)=>{
-    const item=approved[index];
-    if(!item)return;
-    card.classList.add('is-approved-garment');
-    const image=card.querySelector('.product-visual img');
-    if(image){image.src=item.src;image.alt=item.alt;}
-    const status=card.querySelector('.image-status');
-    if(status)status.textContent='Approved garment mockup';
-    const copy=card.querySelector('.product-copy p');
-    if(copy)copy.textContent=item.copy;
-    const credit=card.querySelector('.art-credit');
-    if(credit)credit.textContent='Approved development mockup';
-  });
-}
-
 function applyAssetLibrary(){
   if(!isReviewHomepage()||document.querySelector('#asset-library'))return;
   const garments=document.querySelector('#garments');
   if(!garments)return;
   const section=document.createElement('section');
-  section.className='section shell asset-library-slice';
+  section.className='section shell asset-library-slice reveal';
   section.id='asset-library';
   section.innerHTML=`
     <div class="section-head">
-      <div><p class="kicker"><b></b>ASSET LIBRARY / DEVELOPMENT</p><h2 class="display">FROM THE<br><em>ARCHIVE.</em></h2></div>
-      <div><p>Real source photography and locked BestieBoys scene artwork pulled directly from the organised project asset library.</p><p class="section-note">UI screenshots and third-party references are excluded. Development visuals only.</p></div>
+      <div><p class="kicker"><b></b>01B / SELECTED ARTWORK</p><h2 class="display">LOCKED ART.<br><em>UP CLOSE.</em></h2></div>
+      <div><p>Three approved Onion directions shown at a larger scale. The full nine-scene, 27-artwork system remains above; these are selected details for composition, texture and scene credibility.</p><p class="section-note">Development artwork. Not yet production files.</p></div>
     </div>
     <div class="asset-library-grid">
-      <figure class="asset-library-card"><div class="asset-library-media"><img src="assets/library/source-dog-reference.webp" alt="Original dog source photograph from the BestieBoys asset library" loading="lazy"></div><figcaption><span>SOURCE PHOTO</span><strong>Original reference</strong></figcaption></figure>
-      <figure class="asset-library-card"><div class="asset-library-media"><img src="assets/library/onion-black-metal-drive.webp" alt="Onion Black Metal locked scene artwork" loading="lazy"></div><figcaption><span>LOCKED SCENE SOURCE</span><strong>Onion / Black Metal</strong></figcaption></figure>
-      <figure class="asset-library-card"><div class="asset-library-media"><img src="assets/library/onion-grindcore-drive.webp" alt="Onion Grindcore locked scene artwork" loading="lazy"></div><figcaption><span>LOCKED SCENE SOURCE</span><strong>Onion / Grindcore</strong></figcaption></figure>
-      <figure class="asset-library-card"><div class="asset-library-media"><img src="assets/library/onion-rap-bootleg-drive.webp" alt="Onion Rap Bootleg locked scene artwork" loading="lazy"></div><figcaption><span>LOCKED SCENE SOURCE</span><strong>Onion / Rap Bootleg</strong></figcaption></figure>
+      <figure class="asset-library-card"><div class="asset-library-media"><img src="assets/editorial/onion-black-doom-feature.webp" alt="Approved Onion gothic Black and Doom Metal artwork" loading="lazy"></div><figcaption><span>BLACK / DOOM</span><strong>Gothic icon study</strong></figcaption></figure>
+      <figure class="asset-library-card"><div class="asset-library-media"><img src="assets/editorial/onion-goregrind-feature.webp" alt="Approved Onion Goregrind collage artwork" loading="lazy"></div><figcaption><span>GOREGRIND</span><strong>Pathology collage study</strong></figcaption></figure>
+      <figure class="asset-library-card"><div class="asset-library-media"><img src="assets/editorial/onion-gorenoise-red-feature.webp" alt="Approved Onion Gore Noise red and black artwork" loading="lazy"></div><figcaption><span>GORE NOISE</span><strong>Red-noise artwork study</strong></figcaption></figure>
     </div>`;
   garments.before(section);
+}
+
+function applyGarmentEditorial(){
+  if(!isReviewHomepage()||document.querySelector('.garment-editorial-grid'))return;
+  const garments=document.querySelector('#garments');
+  const rail=garments?.querySelector('.product-rail');
+  if(!garments||!rail)return;
+  const grid=document.createElement('div');
+  grid.className='garment-editorial-grid reveal';
+  grid.innerHTML=`
+    <figure class="garment-editorial-card"><img src="assets/editorial/gerrard-transmissions-board.webp" alt="Gerrard extreme-metal merchandise development board" loading="lazy"><figcaption><span>GARMENT SYSTEM STUDY</span><strong>Gerrard / Transmissions board</strong></figcaption></figure>
+    <figure class="garment-editorial-card"><img src="assets/editorial/gerrard-extreme-merch-grid.webp" alt="Gerrard extreme-metal T-shirt, longsleeve and hoodie development grid" loading="lazy"><figcaption><span>FORMAT RANGE STUDY</span><strong>Gerrard / Extreme merch grid</strong></figcaption></figure>`;
+  rail.before(grid);
 }
 
 function applyReviewPresentation(){
   applyPresentationCleanup();
   applyCustomerJourneyRoute();
   applyDesignLabLink();
-  applyApprovedHero();
-  applyApprovedGarmentMockups();
   applyAssetLibrary();
+  applyGarmentEditorial();
 }
 
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',applyReviewPresentation,{once:true});
