@@ -74,6 +74,42 @@
     header.insertAdjacentElement('afterend',lab);
   }
 
+  /* The standalone Design Lab reuses old reference themes, but must not inherit
+     the storefront's sticky masthead or theme-dependent black text on its fixed
+     dark Onion artwork cards. Keep these overrides scoped to design-lab.html. */
+  if (document.querySelector('[data-legacy-matrix]')) {
+    body.classList.add('design-lab-page');
+    if (!document.querySelector('style[data-design-lab-guard]')) {
+      const guard = document.createElement('style');
+      guard.dataset.designLabGuard = 'true';
+      guard.textContent = `
+        body.design-lab-page[data-theme] .header{
+          position:relative!important;
+          top:auto!important;
+          z-index:10!important;
+        }
+        body.design-lab-page .onion-scene-card{
+          background:#070707!important;
+          color:#f1ede6!important;
+        }
+        body.design-lab-page .onion-scene-card h3{
+          color:#f1ede6!important;
+          opacity:1!important;
+        }
+        body.design-lab-page .onion-scene-card__head span{
+          color:#9b958b!important;
+        }
+        body.design-lab-page .onion-scene-card__head strong{
+          color:#d9ff42!important;
+        }
+        body.design-lab-page .onion-scene-card__sheet{
+          background-color:#020202!important;
+        }
+      `;
+      document.head.appendChild(guard);
+    }
+  }
+
   function applyTheme(id){
     body.dataset.theme = id;
     localStorage.setItem('bestieboys-preview-theme',id);
