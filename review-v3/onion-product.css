@@ -2,6 +2,7 @@
   --bm-bone:#eee9e1;
   --bm-soft:#aaa39a;
   --bm-dim:#9f9990;
+  --scene-accent:#9e2f1e;
   overflow-x:hidden;
   background:
     radial-gradient(circle at 12% 16%,rgba(255,255,255,.035),transparent 29rem),
@@ -105,6 +106,16 @@
 .black-metal-product .rule-panel p{margin-bottom:clamp(28px,4vw,48px);color:#4d4943}
 .black-metal-product .rule-panel blockquote{max-width:14ch;font-size:clamp(3.1rem,7.2vw,7.4rem);line-height:.84}
 .black-metal-product .rule-panel blockquote em{color:#9e2f1e}
+.onion-product-page .rule-panel blockquote{max-width:18ch}
+.onion-product-page .bm-art-option__image>.onion-art-crop{width:75%;height:100%;margin-inline:auto;aspect-ratio:auto}
+.onion-product-page .bm-master-art>.onion-art-crop{width:100%;aspect-ratio:1}
+.onion-product-page .source-note{margin-top:12px;color:#777169;font-size:.68rem;line-height:1.55}
+.onion-product-page .source-note[hidden]{display:none}
+.onion-product-page .bm-art-option input:checked~.bm-art-option__copy{border-color:var(--scene-accent)}
+.onion-product-page .bm-art-option input:checked~.bm-art-option__copy b{color:var(--scene-accent)}
+.onion-product-page .product-cta{background:var(--bm-bone);border-color:var(--bm-bone)}
+.onion-product-page .product-rule .rule-panel{border-top:8px solid var(--scene-accent)}
+.onion-product-page[data-scene="powerviolence"] .product-buy h1{font-size:clamp(3.55rem,4.9vw,5rem)}
 .black-metal-product .footer{border-top:0;color:#918b83}
 
 @media(max-width:1080px){
@@ -157,6 +168,7 @@
   .black-metal-product .input-card p{margin-top:8px}
   .bm-process-cta{width:100%}
   .black-metal-product .details-copy h2{font-size:clamp(3.35rem,14vw,5rem)}
+  .onion-product-page[data-scene="powerviolence"] .product-buy h1{font-size:clamp(2.85rem,12.6vw,4.35rem)}
 }
 
 @media(max-width:460px){

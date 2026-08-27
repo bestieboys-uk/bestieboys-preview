@@ -6,9 +6,9 @@ Display asset note: the 27 locked source selections are rendered into one genuin
 
 QA note: Black Metal 02 and Doom Metal 01 intentionally use the same locked source image because both sets were explicitly approved that way.
 
-Black Metal product-page prototype
+All-genres product-page review
 
-The first product-page template is review-v3/onion-black-metal.html. It links from the Black Metal card and carries the selected BM-01, BM-02 or BM-03 route into the local-only personalisation brief. Ordering, payment, submission and production routing remain disabled.
+The approved editorial product theme now covers all nine genres. review-v3/onion-black-metal.html remains the Black Metal compatibility page; review-v3/onion-product.html uses review-v3/onion-catalog.js to render the remaining eight scene routes. Every card carries the selected 01, 02 or 03 direction into the local-only personalisation brief. Ordering, payment, submission and production routing remain disabled.
 
 The 1260×3780 WebP above remains the authoritative all-genres review sprite. The Black Metal product page also uses three byte-identical approved source masters for sharper individual display without recompression:
 
@@ -16,4 +16,6 @@ The 1260×3780 WebP above remains the authoritative all-genres review sprite. Th
 - black-metal-02-approved.jpeg — 1122×1402 — SHA-256 f3e24bb41e201324c05d805e8740e2c1389feef876c9618a49d5f4910eae2180
 - black-metal-03-approved.jpeg — 1254×1254 — SHA-256 7f47c2e7e7208ede3f4e90e6247d1adecf785bc9523228268314336cdde0cf47
 
-No production-ready Onion Black Metal garment mockup exists yet. The T-shirt view is therefore permanently labelled as a digital placement study, not a production mockup or print proof.
+Seventeen unique recovered standalone source files cover eighteen approved positions and are committed without recompression. The remaining nine approved selections are rendered directly from their 420×420 cells in the authoritative binary WebP; no near-match or alternate artwork is substituted. Black Metal 02 and Doom Metal 01 intentionally share one standalone source.
+
+No production-ready Onion garment mockup exists yet. All 27 T-shirt views are permanently labelled as digital placement studies, not production mockups or print proofs. The three temporary inline-base64 SVG garment wrappers used during troubleshooting have been removed.

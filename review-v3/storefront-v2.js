@@ -97,11 +97,11 @@ function applyApprovedHero(){
   const status=card?.querySelector('.hero-caption > span');
   if(!card||!image)return;
   card.classList.add('approved-garment-hero');
-  image.src='assets/mockups/gerrard-black-metal-tee.svg';
-  image.alt='Approved Gerrard Black Metal short-sleeve T-shirt development mockup';
-  if(tag)tag.textContent='GERRARD / BLACK METAL';
-  if(small)small.textContent='Approved development mockup';
-  if(title)title.textContent='Gerrard / Black Metal Tee';
+  image.src='assets/mockups/onion-black-metal/bm-01-front.webp';
+  image.alt='Onion Black Metal approved artwork shown on a short-sleeve T-shirt visual placement study';
+  if(tag)tag.textContent='ONION / BLACK METAL';
+  if(small)small.textContent='Approved art / placement study';
+  if(title)title.textContent='Onion / Black Metal Tee';
   if(status)status.textContent='ORDERING DISABLED';
 }
 
@@ -109,9 +109,9 @@ function applyApprovedGarmentMockups(){
   if(!isReviewHomepage())return;
   const cards=[...document.querySelectorAll('#garments .product-card--image')];
   const approved=[
-    {src:'assets/mockups/gerrard-black-metal-tee.svg',alt:'Approved Gerrard Black Metal short-sleeve T-shirt development mockup',copy:'Approved Black Metal short-sleeve development mockup.'},
-    {src:'assets/mockups/onion-grindcore-longsleeve.svg',alt:'Approved Onion Grindcore longsleeve development mockup',copy:'Approved Grindcore longsleeve development mockup.'},
-    {src:'assets/mockups/sylvester-crust-punk-hoodie.svg',alt:'Approved Sylvester Crust Punk pullover hoodie development mockup',copy:'Approved Crust Punk pullover hoodie development mockup.'}
+    {src:'assets/mockups/onion-black-metal/bm-01-front.webp',alt:'Onion Black Metal approved art on a short-sleeve T-shirt visual placement study',copy:'Black Metal approved art shown as a short-sleeve placement study.'},
+    {src:'assets/mockups/onion-grindcore/grindcore-01-front.webp',alt:'Onion Grindcore approved art on a short-sleeve T-shirt visual placement study',copy:'Grindcore approved art shown as a short-sleeve placement study.'},
+    {src:'assets/mockups/onion-crust-punk/crust-punk-01-front.webp',alt:'Onion Crust Punk approved art on a short-sleeve T-shirt visual placement study',copy:'Crust Punk approved art shown as a short-sleeve placement study.'}
   ];
   cards.slice(0,3).forEach((card,index)=>{
     const item=approved[index];
@@ -120,11 +120,11 @@ function applyApprovedGarmentMockups(){
     const image=card.querySelector('.product-visual img');
     if(image){image.src=item.src;image.alt=item.alt;}
     const status=card.querySelector('.image-status');
-    if(status)status.textContent='Approved garment mockup';
+    if(status)status.textContent='Visual placement study';
     const copy=card.querySelector('.product-copy p');
     if(copy)copy.textContent=item.copy;
     const credit=card.querySelector('.art-credit');
-    if(credit)credit.textContent='Approved development mockup';
+    if(credit)credit.textContent='Not a print proof';
   });
 }
 

@@ -54,16 +54,33 @@
   function applyProductRoute(){
     const params=new URLSearchParams(window.location.search);
     const source=params.get('source');
-    const scene=params.get('scene');
+    const requestedScene=params.get('scene');
     const garment=params.get('garment');
-    const art=params.get('art');
-    if(source!=='onion-black-metal'||scene!=='Black Metal'||garment!=='Short-Sleeve T-shirt'||!['1','2','3'].includes(art))return;
+    const requestedArt=params.get('art');
+    const catalog=window.BESTIEBOYS_ONION;
+    if(!catalog||garment!=='Short-Sleeve T-shirt')return;
 
-    const sceneInput=form.querySelector('input[name="scene"][value="Black Metal"]');
+    let scene;
+    let artId;
+    let legacyRoute=false;
+    if(source==='onion-black-metal'&&requestedScene==='Black Metal'&&['1','2','3'].includes(requestedArt)){
+      scene=catalog.scenes['black-metal'];
+      artId=String(requestedArt).padStart(2,'0');
+      legacyRoute=true;
+    }else if(source==='onion-product'){
+      scene=catalog.scenes[requestedScene];
+      artId=String(requestedArt||'').padStart(2,'0');
+      if(!scene||!scene.artworks.some(item=>item.id===artId))return;
+    }else return;
+
+    const selectedArt=scene.artworks.find(item=>item.id===artId);
+    if(!selectedArt)return;
+
+    const sceneInput=[...form.querySelectorAll('input[name="scene"]')].find(input=>input.value===scene.name);
     const garmentInput=form.querySelector('input[name="garment"][value="Short-Sleeve T-shirt"]');
     if(!sceneInput||!garmentInput)return;
 
-    routeArtwork=`BM–0${art}`;
+    routeArtwork=`${scene.code}–${artId}`;
     sceneInput.checked=true;
     garmentInput.checked=true;
     sceneInput.closest('.choice-card')?.classList.add('is-route-choice');
@@ -72,26 +89,31 @@
 
     const context=document.getElementById('selectedProduct');
     const artwork=document.getElementById('selectedProductArtwork');
+    const spriteArtwork=document.getElementById('selectedProductSprite');
     const direction=document.getElementById('selectedProductDirection');
+    const title=document.getElementById('selectedProductTitle');
     const back=document.getElementById('selectedProductBack');
     if(context)context.hidden=false;
-    if(artwork){
-      const sources={
-        '1':['assets/styles/onion/black-metal-01-approved.jpeg',1122,1402],
-        '2':['assets/styles/onion/black-metal-02-approved.jpeg',1122,1402],
-        '3':['assets/styles/onion/black-metal-03-approved.jpeg',1254,1254]
-      };
-      const [src,width,height]=sources[art];
-      artwork.src=src;
-      artwork.width=width;
-      artwork.height=height;
-      artwork.alt=`Selected Onion Black Metal approved artwork 0${art}`;
+    if(selectedArt.master&&artwork){
+      artwork.hidden=false;
+      artwork.src=selectedArt.master.src;
+      artwork.width=selectedArt.master.width;
+      artwork.height=selectedArt.master.height;
+      artwork.alt=`Selected Onion ${scene.name} approved artwork ${artId}`;
+      if(spriteArtwork)spriteArtwork.hidden=true;
+    }else if(spriteArtwork){
+      if(artwork)artwork.hidden=true;
+      spriteArtwork.hidden=false;
+      spriteArtwork.dataset.row=String(scene.row);
+      spriteArtwork.dataset.col=String(selectedArt.col);
+      spriteArtwork.setAttribute('aria-label',`Selected Onion ${scene.name} approved artwork ${artId}`);
     }
     if(direction)direction.textContent=`${routeArtwork} approved direction`;
-    if(back)back.href=`onion-black-metal.html?art=${art}`;
+    if(title)title.textContent=`${scene.name.toUpperCase()} / SHORT-SLEEVE TEE`;
+    if(back)back.href=legacyRoute?`onion-black-metal.html?art=${Number(artId)}`:`onion-product.html?scene=${encodeURIComponent(scene.slug)}&art=${artId}`;
 
     const announcement=document.querySelector('.announcement');
-    if(announcement)announcement.textContent=`BLACK METAL BRIEF • ${routeArtwork} PRESELECTED • NOTHING IS UPLOADED OR SENT`;
+    if(announcement)announcement.textContent=`${scene.name.toUpperCase()} BRIEF • ${routeArtwork} PRESELECTED • NOTHING IS UPLOADED OR SENT`;
   }
 
   function fileIssue(file){

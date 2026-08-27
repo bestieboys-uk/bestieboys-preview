@@ -10,6 +10,8 @@
 .selected-product[hidden]{display:none!important}
 .selected-product__art{display:grid;place-items:center;width:100%;max-width:420px;aspect-ratio:1;overflow:hidden;border:1px solid var(--line-strong);background:#000}
 .selected-product__art img{width:100%;height:100%;object-fit:contain;background:#000;filter:none}
+.selected-product__art .onion-art-crop{width:100%;height:100%;aspect-ratio:1}
+.selected-product__art [hidden]{display:none!important}
 .selected-product__copy{min-width:0}
 .selected-product__copy h2{margin:12px 0 16px;font-family:Impact,"Arial Black",sans-serif;font-size:clamp(2.5rem,5vw,5rem);line-height:.88;letter-spacing:-.04em;text-transform:uppercase}
 .selected-product__copy>p:not(.kicker){max-width:62ch;color:#9d978f}
