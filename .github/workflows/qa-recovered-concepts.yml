@@ -1,0 +1,29 @@
+name: QA recovered concept assets
+on:
+  push:
+    branches:
+      - fix/highres-review-assets-20260827
+    paths:
+      - '.github/workflows/qa-recovered-concepts.yml'
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Inspect recovered assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in \
+            assets/concepts/grindcore-blast-portrait.avif \
+            assets/concepts/grindcore-noise-wall.avif \
+            assets/concepts/grindcore-one-second-legend.avif; do
+            test -s "$f"
+            echo "CURRENT :: $f :: $(stat -c%s "$f") bytes"
+            file "$f"
+          done
+          git show origin/asset-quality-batch:assets/concepts/goregrind-dissection-club.webp > /tmp/goregrind-dissection-club.webp
+          echo "REPAIRED :: goregrind-dissection-club.webp :: $(stat -c%s /tmp/goregrind-dissection-club.webp) bytes"
+          file /tmp/goregrind-dissection-club.webp
