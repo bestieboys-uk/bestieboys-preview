@@ -1,0 +1,65 @@
+name: Install high-resolution review assets
+on:
+  push:
+    branches:
+      - fix/highres-review-assets-20260827
+    paths:
+      - '.github/workflows/install-highres-review-assets.yml'
+permissions:
+  contents: write
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Extract and validate recovered boards
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/bb-hires
+          tar -xzf highres-concepts-q10.tgz -C /tmp/bb-hires
+          files=(
+            assets/concepts/black-metal-frostbite-portrait.webp
+            assets/concepts/black-metal-northern-apparition.webp
+            assets/concepts/black-metal-ritual-hound.webp
+            assets/concepts/grindcore-blast-portrait.webp
+            assets/concepts/grindcore-noise-wall.webp
+            assets/concepts/grindcore-one-second-legend.webp
+            assets/concepts/goregrind-canine-pathology.webp
+            assets/concepts/goregrind-dissection-club.webp
+            assets/concepts/goregrind-terminal-good-boy.webp
+            assets/concepts/crust-no-masters-only-gerrard.webp
+            assets/concepts/gore-noise-signal-rot-gerrard.webp
+            assets/concepts/death-doom-eternal-weight.webp
+          )
+          for f in "${files[@]}"; do
+            src="/tmp/bb-hires/$f"
+            test -s "$src"
+            bytes=$(stat -c%s "$src")
+            test "$bytes" -gt 10000
+            info=$(file "$src")
+            echo "$f :: $bytes bytes :: $info"
+            echo "$info" | grep -q 'Web/P image'
+            echo "$info" | grep -Eq '[0-9]+x[0-9]+'
+            mkdir -p "$(dirname "$f")"
+            cp "$src" "$f"
+          done
+      - name: Cache-bust recovered artwork
+        shell: bash
+        run: |
+          set -euo pipefail
+          sed -i 's/\.webp?v=direct1/\.webp?v=hires2/g' approved-mockups.js
+          sed -i 's/approved-mockups.js?v=direct1/approved-mockups.js?v=hires2/g' theme-lab.js
+          rm -f highres-concepts-q10.tgz
+          rm -f .github/workflows/install-highres-review-assets.yml
+      - name: Commit validated review assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Replace blurry preview derivatives with recovered review boards"
+          git push
