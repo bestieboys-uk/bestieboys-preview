@@ -21,6 +21,55 @@
     header.insertAdjacentElement('afterend', lab);
   }
 
+  /* Final standalone mobile polish. Keep concept controls attached to their
+     headings, remove redundant missing-artwork panels, and preserve whole
+     artwork boards instead of decorative crops. */
+  if (!document.querySelector('style[data-design-lab-polish]')) {
+    const polish = document.createElement('style');
+    polish.dataset.designLabPolish = 'true';
+    polish.textContent = `
+      body.design-lab-page .legacy-matrix-concept > summary:after{
+        top:54px!important;
+        right:12px!important;
+        transform:none!important;
+      }
+      body.design-lab-page .legacy-matrix-concept h4{
+        padding-right:44px!important;
+      }
+      body.design-lab-page .legacy-missing-note{
+        display:none!important;
+      }
+      body.design-lab-page .legacy-matrix-concept.is-brief-only .legacy-concept-body{
+        padding-top:10px!important;
+      }
+      body.design-lab-page .legacy-matrix-concept.is-brief-only .legacy-specs{
+        margin-top:0!important;
+      }
+      body.design-lab-page .legacy-concept-thumb img,
+      body.design-lab-page .legacy-art-slot img,
+      body.design-lab-page .saved-asset-media img{
+        object-fit:contain!important;
+        background:#050505!important;
+      }
+      body.design-lab-page .header nav{
+        scrollbar-width:none!important;
+        -webkit-overflow-scrolling:touch;
+      }
+      body.design-lab-page .header nav::-webkit-scrollbar{display:none}
+      @media(max-width:560px){
+        body.design-lab-page .legacy-matrix-concept > summary:after{
+          top:50px!important;
+          width:28px!important;
+          height:28px!important;
+        }
+        body.design-lab-page .legacy-matrix-concept h4{
+          padding-right:42px!important;
+        }
+      }
+    `;
+    document.head.appendChild(polish);
+  }
+
   function readSavedTheme(){
     try { return localStorage.getItem('bestieboys-preview-theme'); }
     catch (_) { return null; }
