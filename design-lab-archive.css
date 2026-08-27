@@ -1,0 +1,10 @@
+/* Complete Design Lab archive additions — saved boards, rendered layouts and briefs */
+.legacy-matrix-concept.is-rendered-layout .legacy-concept-status{color:#77d8ff!important}
+.legacy-matrix-count span{display:block;margin-top:3px}
+.legacy-rendered-thumb{margin-top:12px;min-height:86px;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px;border:1px dashed var(--lab-line,rgba(235,228,216,.28));background:color-mix(in srgb,var(--lab-panel,#1a1d1f) 88%,#050505);color:var(--lab-muted,#d2cbc0)}
+.legacy-rendered-thumb strong{display:block;color:#77d8ff;font-family:"Arial Black","Helvetica Neue",Arial,sans-serif;font-size:.58rem;letter-spacing:.09em;text-transform:uppercase}.legacy-rendered-thumb span{font-size:.72rem;line-height:1.35}.legacy-rendered-thumb b{font-size:1.4rem;line-height:1;color:var(--lab-text,#e9e4da)}
+.legacy-matrix-concept[open] .legacy-rendered-thumb{display:none}
+.legacy-live-preview{min-height:110px;display:grid;place-items:center;overflow:hidden;border:1px solid var(--lab-line,rgba(235,228,216,.28));background:#080808;color:var(--lab-muted,#d2cbc0)}
+.legacy-live-preview__loading{padding:22px;text-align:center;font-size:.62rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase}.legacy-live-preview iframe{display:block;width:100%;min-height:220px;border:0;background:#080808;overflow:hidden}.legacy-live-preview.is-error{padding:18px;border-style:dashed}.legacy-live-preview.is-error strong{font-size:.65rem;letter-spacing:.08em;text-transform:uppercase}
+.legacy-matrix-concept.is-rendered-layout .legacy-specs{margin-top:10px}
+@media(max-width:560px){.legacy-rendered-thumb{min-height:72px;padding:11px 12px}.legacy-rendered-thumb span{font-size:.66rem}.legacy-live-preview iframe{min-height:180px}.legacy-matrix-count span{font-size:.5rem}}
