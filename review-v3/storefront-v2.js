@@ -76,6 +76,17 @@ function applyCustomerJourneyRoute(){
   }
 }
 
+function applyDesignLabLink(){
+  if(!isReviewHomepage())return;
+  const primaryNav=document.querySelector('[data-nav]');
+  if(!primaryNav||primaryNav.querySelector('[data-design-lab-link]'))return;
+  const link=document.createElement('a');
+  link.href='../design-lab.html?v=4';
+  link.textContent='Design Lab';
+  link.dataset.designLabLink='true';
+  primaryNav.appendChild(link);
+}
+
 function applyApprovedHero(){
   if(!isReviewHomepage())return;
   const card=document.querySelector('.hero-card');
@@ -120,6 +131,7 @@ function applyApprovedGarmentMockups(){
 function applyReviewPresentation(){
   applyPresentationCleanup();
   applyCustomerJourneyRoute();
+  applyDesignLabLink();
   applyApprovedHero();
   applyApprovedGarmentMockups();
 }
