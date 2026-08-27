@@ -8,7 +8,7 @@
   <meta name="description" content="BestieBoys development personalisation flow for custom underground-style pet merchandise.">
   <title>Personalise — BestieBoys</title>
   <link rel="stylesheet" href="storefront-v2.css?v=10">
-  <link rel="stylesheet" href="personalise.css?v=1">
+  <link rel="stylesheet" href="personalise.css?v=2">
 </head>
 <body class="personalise-page">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -34,6 +34,16 @@
       <div class="prototype-rule"><strong>Development rule:</strong> photos stay on this device. This page does not upload files, create an order or take payment.</div>
     </section>
 
+    <section class="selected-product shell" id="selectedProduct" hidden aria-labelledby="selectedProductTitle">
+      <div class="selected-product__art"><img id="selectedProductArtwork" src="assets/styles/onion/black-metal-01-approved.jpeg" width="1122" height="1402" alt="Selected Onion Black Metal approved artwork 01"></div>
+      <div class="selected-product__copy">
+        <p class="kicker"><b></b>PRODUCT ROUTE PRESELECTED</p>
+        <h2 id="selectedProductTitle">BLACK METAL / SHORT-SLEEVE TEE</h2>
+        <p><strong id="selectedProductDirection">BM–01 approved direction</strong> has been carried into this local brief. The Onion image is the locked example artwork; your pet photograph remains reference material for a separately art-directed result.</p>
+        <a class="button ghost" id="selectedProductBack" href="onion-black-metal.html">Change artwork direction</a>
+      </div>
+    </section>
+
     <form class="intake-form shell" id="personaliseForm" novalidate>
       <section class="intake-step" id="direction" data-step="01">
         <div class="step-copy">
@@ -50,6 +60,8 @@
           <label class="choice-card"><input type="radio" name="scene" value="Powerviolence"><span><b>POWERVIOLENCE</b><small>Blunt impact / hard crops / huge type</small></span></label>
           <label class="choice-card"><input type="radio" name="scene" value="Gore Noise"><span><b>GORE NOISE</b><small>Signal collapse / photocopy damage</small></span></label>
           <label class="choice-card"><input type="radio" name="scene" value="Rap Bootleg"><span><b>RAP BOOTLEG</b><small>90s memorial / airbrush / oversized portrait</small></span></label>
+          <label class="choice-card"><input type="radio" name="scene" value="Death Metal"><span><b>DEATH METAL</b><small>Dense / decayed / monumental / heavy</small></span></label>
+          <label class="choice-card"><input type="radio" name="scene" value="Doom Metal"><span><b>DOOM METAL</b><small>Slow / funereal / ornate / atmospheric</small></span></label>
           <label class="choice-card"><input type="radio" name="scene" value="Help me choose"><span><b>HELP ME CHOOSE</b><small>BestieBoys recommends the strongest direction</small></span></label>
         </fieldset>
         <p class="field-error" data-error-for="scene" hidden>Choose a style or “Help me choose”.</p>
@@ -95,7 +107,7 @@
             <input id="primaryPhoto" name="primaryPhoto" type="file" accept="image/jpeg,image/png,image/heic,image/heif,image/webp" required>
             <span class="upload-index">PRIMARY / REQUIRED</span>
             <strong>Choose main photo</strong>
-            <small>JPEG, PNG, HEIC or WebP for the prototype.</small>
+            <small>JPEG, PNG, HEIC or WebP — up to 15 MB.</small>
           </label>
           <div class="preview-card" id="primaryPreviewCard" aria-live="polite">
             <div class="preview-placeholder" id="primaryPlaceholder">No photo selected</div>
@@ -106,7 +118,7 @@
             <input id="supportPhotos" name="supportPhotos" type="file" accept="image/jpeg,image/png,image/heic,image/heif,image/webp" multiple>
             <span class="upload-index">SUPPORTING / OPTIONAL</span>
             <strong>Add up to four more</strong>
-            <small>Used only to understand the animal more accurately.</small>
+            <small>Up to four files, 15 MB each, used only to understand the animal more accurately.</small>
           </label>
           <div class="support-summary" id="supportSummary" aria-live="polite">No supporting photos selected.</div>
         </div>
@@ -162,8 +174,10 @@
             <div><dt>Animal</dt><dd id="summaryAnimalType">—</dd></div>
             <div><dt>Style</dt><dd id="summaryScene">—</dd></div>
             <div><dt>Format</dt><dd id="summaryGarment">—</dd></div>
+            <div><dt>Artwork route</dt><dd id="summaryArtwork">Not preselected</dd></div>
             <div><dt>Primary photo</dt><dd id="summaryPrimary">—</dd></div>
             <div><dt>Supporting photos</dt><dd id="summarySupport">0</dd></div>
+            <div><dt>Status</dt><dd>Local review only</dd></div>
             <div class="summary-wide"><dt>Optional wording</dt><dd id="summaryWording">None</dd></div>
             <div class="summary-wide"><dt>Creative notes</dt><dd id="summaryNotes">None</dd></div>
           </dl>
@@ -179,6 +193,6 @@
     <small>Development intake / 2026</small>
   </footer>
 
-  <script src="personalise.js?v=1"></script>
+  <script src="personalise.js?v=2"></script>
 </body>
 </html>

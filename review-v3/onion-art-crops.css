@@ -1,0 +1,24 @@
+.onion-art-crop{
+  --onion-art-x:0%;
+  --onion-art-y:0%;
+  aspect-ratio:1;
+  background-color:#020202;
+  background-image:url("assets/styles/onion/onion-all-locked-sprite.webp?v=3");
+  background-position:var(--onion-art-x) var(--onion-art-y);
+  background-repeat:no-repeat;
+  background-size:300% 900%;
+  filter:none;
+}
+
+.onion-art-crop[data-col="0"]{--onion-art-x:0%}
+.onion-art-crop[data-col="1"]{--onion-art-x:50%}
+.onion-art-crop[data-col="2"]{--onion-art-x:100%}
+.onion-art-crop[data-row="0"]{--onion-art-y:0%}
+.onion-art-crop[data-row="1"]{--onion-art-y:12.5%}
+.onion-art-crop[data-row="2"]{--onion-art-y:25%}
+.onion-art-crop[data-row="3"]{--onion-art-y:37.5%}
+.onion-art-crop[data-row="4"]{--onion-art-y:50%}
+.onion-art-crop[data-row="5"]{--onion-art-y:62.5%}
+.onion-art-crop[data-row="6"]{--onion-art-y:75%}
+.onion-art-crop[data-row="7"]{--onion-art-y:87.5%}
+.onion-art-crop[data-row="8"]{--onion-art-y:100%}

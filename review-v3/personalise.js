@@ -46,6 +46,64 @@
   const requestSummary=document.getElementById('requestSummary');
 
   let previewUrl=null;
+  let routeArtwork='';
+  const MAX_FILE_BYTES=15*1024*1024;
+  const ACCEPTED_TYPES=new Set(['image/jpeg','image/png','image/webp','image/heic','image/heif']);
+  const ACCEPTED_EXTENSIONS=new Set(['jpg','jpeg','png','webp','heic','heif']);
+
+  function applyProductRoute(){
+    const params=new URLSearchParams(window.location.search);
+    const source=params.get('source');
+    const scene=params.get('scene');
+    const garment=params.get('garment');
+    const art=params.get('art');
+    if(source!=='onion-black-metal'||scene!=='Black Metal'||garment!=='Short-Sleeve T-shirt'||!['1','2','3'].includes(art))return;
+
+    const sceneInput=form.querySelector('input[name="scene"][value="Black Metal"]');
+    const garmentInput=form.querySelector('input[name="garment"][value="Short-Sleeve T-shirt"]');
+    if(!sceneInput||!garmentInput)return;
+
+    routeArtwork=`BM–0${art}`;
+    sceneInput.checked=true;
+    garmentInput.checked=true;
+    sceneInput.closest('.choice-card')?.classList.add('is-route-choice');
+    garmentInput.closest('.choice-card')?.classList.add('is-route-choice');
+    document.body.classList.add('product-route');
+
+    const context=document.getElementById('selectedProduct');
+    const artwork=document.getElementById('selectedProductArtwork');
+    const direction=document.getElementById('selectedProductDirection');
+    const back=document.getElementById('selectedProductBack');
+    if(context)context.hidden=false;
+    if(artwork){
+      const sources={
+        '1':['assets/styles/onion/black-metal-01-approved.jpeg',1122,1402],
+        '2':['assets/styles/onion/black-metal-02-approved.jpeg',1122,1402],
+        '3':['assets/styles/onion/black-metal-03-approved.jpeg',1254,1254]
+      };
+      const [src,width,height]=sources[art];
+      artwork.src=src;
+      artwork.width=width;
+      artwork.height=height;
+      artwork.alt=`Selected Onion Black Metal approved artwork 0${art}`;
+    }
+    if(direction)direction.textContent=`${routeArtwork} approved direction`;
+    if(back)back.href=`onion-black-metal.html?art=${art}`;
+
+    const announcement=document.querySelector('.announcement');
+    if(announcement)announcement.textContent=`BLACK METAL BRIEF • ${routeArtwork} PRESELECTED • NOTHING IS UPLOADED OR SENT`;
+  }
+
+  function fileIssue(file){
+    if(!file)return '';
+    const extension=(file.name.split('.').pop()||'').toLowerCase();
+    const accepted=ACCEPTED_TYPES.has(file.type)||(!file.type&&ACCEPTED_EXTENSIONS.has(extension));
+    if(!accepted)return 'use JPEG, PNG, HEIC, HEIF or WebP.';
+    if(file.size>MAX_FILE_BYTES)return 'file must be 15 MB or smaller.';
+    return '';
+  }
+
+  applyProductRoute();
 
   function formatBytes(bytes){
     if(!Number.isFinite(bytes))return '';
@@ -60,13 +118,22 @@
     primaryPreview.hidden=true;
     primaryPreview.removeAttribute('src');
     primaryPlaceholder.hidden=false;
+    primaryPlaceholder.textContent='No photo selected';
     primaryMeta.textContent='';
+    delete primaryMeta.dataset.error;
   }
 
   function renderPrimary(){
     clearPreview();
     const file=primaryInput.files?.[0];
     if(!file)return;
+    const issue=fileIssue(file);
+    if(issue){
+      primaryPlaceholder.textContent='Choose a supported image up to 15 MB.';
+      primaryMeta.textContent=`Primary photo: ${issue}`;
+      primaryMeta.dataset.error='true';
+      return;
+    }
     previewUrl=URL.createObjectURL(file);
     primaryPreview.src=previewUrl;
     primaryPreview.hidden=false;
@@ -86,6 +153,12 @@
       supportSummary.dataset.error='true';
       return;
     }
+    const issue=files.map(fileIssue).find(Boolean);
+    if(issue){
+      supportSummary.textContent=`Supporting photo: ${issue}`;
+      supportSummary.dataset.error='true';
+      return;
+    }
     delete supportSummary.dataset.error;
     if(!files.length){supportSummary.textContent='No supporting photos selected.';return;}
     const total=files.reduce((sum,file)=>sum+file.size,0);
@@ -94,6 +167,19 @@
 
   primaryInput.addEventListener('change',renderPrimary);
   supportInput.addEventListener('change',renderSupporting);
+
+  function markSummaryForReview(event){
+    if(!requestSummary.hidden)requestSummary.hidden=true;
+    const target=event.target;
+    if(target.matches('input[name="scene"]'))setGroupError('scene',false);
+    if(target.matches('input[name="garment"]'))setGroupError('garment',false);
+    if(target.matches('#petName,#animalType,#permissionConsent,#prototypeConsent'))target.setAttribute('aria-invalid','false');
+    if(target===primaryInput&&!fileIssue(primaryInput.files?.[0]))primaryInput.setAttribute('aria-invalid','false');
+    if(target===supportInput&&supportInput.files.length<=4&&![...supportInput.files].some(fileIssue))supportInput.setAttribute('aria-invalid','false');
+  }
+
+  form.addEventListener('input',markSummaryForReview);
+  form.addEventListener('change',markSummaryForReview);
 
   function checkedValue(name){
     return form.querySelector(`input[name="${name}"]:checked`)?.value||'';
@@ -106,6 +192,7 @@
   function setGroupError(name,show){
     const el=form.querySelector(`[data-error-for="${name}"]`);
     if(el)el.hidden=!show;
+    form.querySelectorAll(`input[name="${name}"]`).forEach(input=>input.setAttribute('aria-invalid',String(show)));
   }
 
   function validate(){
@@ -116,6 +203,8 @@
     const animalType=textValue('animalType');
     const primary=primaryInput.files?.[0];
     const supportCount=supportInput.files?.length||0;
+    const primaryIssue=primary?fileIssue(primary):'';
+    const supportIssue=[...(supportInput.files||[])].map(fileIssue).find(Boolean)||'';
     const permission=document.getElementById('permissionConsent').checked;
     const prototype=document.getElementById('prototypeConsent').checked;
 
@@ -126,15 +215,17 @@
     if(!petName)errors.push('Enter the pet name exactly as it should appear.');
     if(!animalType)errors.push('Enter the animal type.');
     if(!primary)errors.push('Choose one primary pet photo.');
+    if(primaryIssue)errors.push(`Primary photo: ${primaryIssue}`);
     if(supportCount>4)errors.push('Use no more than four supporting photos.');
+    if(supportIssue)errors.push(`Supporting photo: ${supportIssue}`);
     if(!garment)errors.push('Choose a garment or product format.');
     if(!permission)errors.push('Confirm you have permission to use the photographs.');
     if(!prototype)errors.push('Confirm you understand this is a non-submitting development prototype.');
 
     document.getElementById('petName').setAttribute('aria-invalid',String(!petName));
     document.getElementById('animalType').setAttribute('aria-invalid',String(!animalType));
-    primaryInput.setAttribute('aria-invalid',String(!primary));
-    supportInput.setAttribute('aria-invalid',String(supportCount>4));
+    primaryInput.setAttribute('aria-invalid',String(!primary||Boolean(primaryIssue)));
+    supportInput.setAttribute('aria-invalid',String(supportCount>4||Boolean(supportIssue)));
     document.getElementById('permissionConsent').setAttribute('aria-invalid',String(!permission));
     document.getElementById('prototypeConsent').setAttribute('aria-invalid',String(!prototype));
 
@@ -149,6 +240,7 @@
     document.getElementById('summaryAnimalType').textContent=textValue('animalType')||'—';
     document.getElementById('summaryScene').textContent=checkedValue('scene')||'—';
     document.getElementById('summaryGarment').textContent=checkedValue('garment')||'—';
+    document.getElementById('summaryArtwork').textContent=routeArtwork?`${routeArtwork} / approved Onion example`:'Not preselected';
     document.getElementById('summaryPrimary').textContent=primary?`${primary.name} (${formatBytes(primary.size)})`:'—';
     document.getElementById('summarySupport').textContent=String(supportCount);
     document.getElementById('summaryWording').textContent=optionalWording||'None';

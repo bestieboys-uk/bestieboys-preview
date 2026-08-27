@@ -7,7 +7,11 @@
 .onion-scene-card__head span,.onion-scene-card__head strong{display:block;font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .onion-scene-card__head strong{color:var(--acid)}
 .onion-scene-card h3{margin:6px 0 0;font-family:Impact,"Arial Black",sans-serif;font-size:clamp(1.8rem,3vw,3rem);line-height:.9;text-transform:uppercase}
-.onion-scene-card__sheet{aspect-ratio:3/1;background-image:url("assets/styles/onion/onion-all-locked-sprite.webp?v=3");background-repeat:no-repeat;background-size:100% auto;background-color:#020202}
+.onion-scene-card__sheet{display:block;aspect-ratio:3/1;background-image:url("assets/styles/onion/onion-all-locked-sprite.webp?v=3");background-repeat:no-repeat;background-size:100% auto;background-color:#020202}
+.onion-scene-card__sheet--linked{position:relative;isolation:isolate}
+.onion-scene-card__sheet--linked span{position:absolute;right:10px;bottom:10px;z-index:2;border:1px solid rgba(255,255,255,.3);background:rgba(3,3,3,.9);padding:7px 9px;color:#f1ede6;font-size:.49rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+.onion-scene-card__sheet--linked:hover span{background:var(--acid);color:#050505;border-color:var(--acid)}
+.onion-scene-card__sheet--linked:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
 .onion-scene-card__sheet[data-row="0"]{background-position:50% 0%}
 .onion-scene-card__sheet[data-row="1"]{background-position:50% 12.5%}
 .onion-scene-card__sheet[data-row="2"]{background-position:50% 25%}
