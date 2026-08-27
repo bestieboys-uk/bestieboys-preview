@@ -23,7 +23,7 @@
 
   if (!document.querySelector('script[data-approved-mockups]')) {
     const approved = document.createElement('script');
-    approved.src = 'approved-mockups.js?v=direct1';
+    approved.src = 'approved-mockups.js?v=hires3';
     approved.dataset.approvedMockups = 'true';
     document.body.appendChild(approved);
   }
