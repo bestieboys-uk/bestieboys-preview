@@ -1,4 +1,4 @@
-name: Assemble recovered Goregrind boards
+name: Install recovered Goregrind review boards
 on:
   push:
     branches:
@@ -8,42 +8,48 @@ on:
 permissions:
   contents: write
 jobs:
-  assemble:
+  install:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Decode and validate recovered AVIF boards
+      - name: Recover and validate Canine Pathology AVIF
         shell: bash
         run: |
           set -euo pipefail
-          for name in goregrind-canine-pathology.avif goregrind-dissection-club.avif; do
-            stem="assets/hires-payload/$name"
-            target="assets/concepts/$name"
-            cat "${stem}.part"* | base64 -d > "$target"
-            test -s "$target"
-            bytes=$(stat -c%s "$target")
-            test "$bytes" -gt 10000
-            info=$(file "$target")
-            echo "=== $target :: $bytes bytes :: $info ==="
-            echo "$info" | grep -q 'AVIF Image'
-          done
-      - name: Route Goregrind cards to recovered AVIFs
+          cat assets/hires-payload/goregrind-canine-pathology.avif.part* | base64 -d > assets/concepts/goregrind-canine-pathology.avif
+          bytes=$(stat -c%s assets/concepts/goregrind-canine-pathology.avif)
+          test "$bytes" -gt 10000
+          info=$(file assets/concepts/goregrind-canine-pathology.avif)
+          echo "CANINE :: $bytes bytes :: $info"
+          echo "$info" | grep -q 'AVIF Image'
+      - name: Recover and validate Dissection Club WebP repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          git show origin/asset-quality-batch:assets/concepts/goregrind-dissection-club.webp > assets/concepts/goregrind-dissection-club.webp
+          bytes=$(stat -c%s assets/concepts/goregrind-dissection-club.webp)
+          test "$bytes" -gt 14000
+          info=$(file assets/concepts/goregrind-dissection-club.webp)
+          echo "DISSECTION :: $bytes bytes :: $info"
+          echo "$info" | grep -q 'Web/P image'
+          echo "$info" | grep -q '650x812'
+      - name: Route cards to recovered assets and clean temporary files
         shell: bash
         run: |
           set -euo pipefail
           sed -i "s#goregrind-canine-pathology.webp?v=direct1#goregrind-canine-pathology.avif?v=hires3#g" approved-mockups.js
-          sed -i "s#goregrind-dissection-club.webp?v=direct1#goregrind-dissection-club.avif?v=hires3#g" approved-mockups.js
+          sed -i "s#goregrind-dissection-club.webp?v=direct1#goregrind-dissection-club.webp?v=hires3#g" approved-mockups.js
           rm -rf assets/hires-payload
           rm -f .github/workflows/qa-recovered-concepts.yml
           rm -f .github/workflows/assemble-recovered-goregrind.yml
-      - name: Commit verified recovered boards
+      - name: Commit verified recovered review boards
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "Install recovered Goregrind AVIF review boards"
+          git commit -m "Install validated high-resolution review assets"
           git push
