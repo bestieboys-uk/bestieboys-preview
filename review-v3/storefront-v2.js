@@ -81,7 +81,7 @@ function applyDesignLabLink(){
   const primaryNav=document.querySelector('[data-nav]');
   if(!primaryNav||primaryNav.querySelector('[data-design-lab-link]'))return;
   const link=document.createElement('a');
-  link.href='../design-lab.html?v=4';
+  link.href='../design-lab.html?v=7';
   link.textContent='Design Lab';
   link.dataset.designLabLink='true';
   primaryNav.appendChild(link);
