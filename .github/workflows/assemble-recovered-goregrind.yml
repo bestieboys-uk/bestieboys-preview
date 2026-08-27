@@ -23,11 +23,11 @@ jobs:
             target="assets/concepts/$name"
             cat "${stem}.part"* | base64 -d > "$target"
             test -s "$target"
-            echo "=== $target :: $(stat -c%s "$target") bytes ==="
-            file "$target"
-            dims=$(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0 "$target")
-            echo "DIMENSIONS :: $dims"
-            test -n "$dims"
+            bytes=$(stat -c%s "$target")
+            test "$bytes" -gt 10000
+            info=$(file "$target")
+            echo "=== $target :: $bytes bytes :: $info ==="
+            echo "$info" | grep -q 'AVIF Image'
           done
       - name: Route Goregrind cards to recovered AVIFs
         shell: bash
