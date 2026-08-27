@@ -7,6 +7,23 @@ const header=document.querySelector('[data-header]');
 const menu=document.querySelector('[data-menu]');
 const nav=document.querySelector('[data-nav]');
 
+const genrePageClasses=['black-metal-page','grindcore-page','goregrind-page','crust-punk-page','powerviolence-page','gore-noise-page','rap-bootleg-page'];
+const isGenrePage=genrePageClasses.some(className=>document.body.classList.contains(className));
+if(isGenrePage){
+  if(nav&&!nav.querySelector('[data-design-lab-return]')){
+    const labLink=document.createElement('a');
+    labLink.href='design-lab.html#legacy-matrix';
+    labLink.textContent='Design Lab';
+    labLink.dataset.designLabReturn='true';
+    nav.prepend(labLink);
+  }
+  const sceneBack=document.querySelector('.scene-back');
+  if(sceneBack){
+    sceneBack.href='design-lab.html#legacy-matrix';
+    sceneBack.innerHTML='<span>←</span>Design Lab';
+  }
+}
+
 if(menu&&nav){
   menu.addEventListener('click',()=>{
     const open=nav.classList.toggle('open');
