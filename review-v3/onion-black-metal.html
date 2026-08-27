@@ -10,12 +10,11 @@
   <link rel="stylesheet" href="storefront-v2.css?v=10">
   <link rel="stylesheet" href="storefront-v2-product.css?v=8">
   <link rel="stylesheet" href="storefront-v3-mobile-fixes.css?v=9" data-review-qa>
-  <link rel="stylesheet" href="onion-art-crops.css?v=1">
-  <link rel="stylesheet" href="onion-black-metal.css?v=1">
+  <link rel="stylesheet" href="onion-black-metal.css?v=2">
 </head>
 <body class="black-metal-product public-review">
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="announcement">ONION / BLACK METAL PRODUCT PROTOTYPE • ORDERING DISABLED</div>
+  <div class="announcement">ONION / BLACK METAL • VISUAL REVIEW • ORDERING DISABLED</div>
 
   <header class="header" data-header>
     <a class="brand" href="index.html" aria-label="BestieBoys home">BESTIEBOYS<span>™</span></a>
@@ -25,7 +24,7 @@
       <a href="#process">Personalisation</a>
       <a href="#status">Product status</a>
     </nav>
-    <div class="header-status"><i aria-hidden="true"></i>Prototype only</div>
+    <div class="header-status"><i aria-hidden="true"></i>Visual review</div>
     <button class="menu-button" type="button" data-menu aria-expanded="false" aria-controls="primary-navigation">Menu</button>
   </header>
 
@@ -33,89 +32,72 @@
     <section class="product-shell shell">
       <div class="product-hero bm-product-hero">
         <div class="product-gallery reveal">
-          <figure class="bm-placement">
-            <div class="bm-placement__stage">
-              <svg class="bm-tee" viewBox="0 0 760 860" aria-hidden="true" focusable="false">
-                <defs>
-                  <linearGradient id="tee-fabric" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="#262626"/>
-                    <stop offset=".48" stop-color="#111"/>
-                    <stop offset="1" stop-color="#1b1b1b"/>
-                  </linearGradient>
-                  <filter id="tee-shadow" x="-20%" y="-20%" width="140%" height="150%">
-                    <feDropShadow dx="0" dy="28" stdDeviation="24" flood-color="#000" flood-opacity=".62"/>
-                  </filter>
-                </defs>
-                <path d="M222 132 309 88c18 25 40 38 71 38s53-13 71-38l87 44 153 107-82 118-72-58 17 476c-111 35-237 35-348 0l17-476-72 58-82-118Z" fill="url(#tee-fabric)" stroke="#353535" stroke-width="3" filter="url(#tee-shadow)"/>
-                <path d="M309 88c12 61 130 61 142 0" fill="none" stroke="#424242" stroke-width="9"/>
-                <path d="M214 323c105 18 227 18 332 0M207 777c111 32 235 32 346 0" fill="none" stroke="#242424" stroke-width="2" opacity=".75"/>
-              </svg>
-              <div class="bm-print onion-art-crop" data-art-preview data-row="0" data-col="0" role="img" aria-label="Onion Black Metal approved artwork 01 shown on a digital T-shirt placement study"></div>
-              <div class="bm-placement__flag">DIGITAL PLACEMENT STUDY<br>NOT A PRODUCTION MOCKUP</div>
-            </div>
+          <figure class="bm-mockup">
+            <img id="bmMockup" data-mockup-preview src="assets/mockups/onion-black-metal/bm-01-front.webp" width="1600" height="2000" alt="Onion Black Metal BM–01 shown on a black short-sleeve T-shirt visual mockup">
+            <div class="bm-mockup__flag">VISUAL MOCKUP / NOT A PRINT PROOF</div>
             <figcaption>
-              <div><small>Selected artwork</small><strong id="selectedDirection" aria-live="polite">BLACK METAL / 01</strong></div>
-              <span>APPROVED SOURCE</span>
+              <div><small>Selected direction</small><strong id="selectedDirection" aria-live="polite">BLACK METAL / 01</strong></div>
+              <span>APPROVED SOURCE ART</span>
             </figcaption>
           </figure>
 
           <fieldset class="bm-art-selector" aria-label="Choose an approved Black Metal artwork direction">
-            <legend>Choose the artwork direction</legend>
+            <legend>Switch artwork</legend>
             <label class="bm-art-option">
-              <input type="radio" name="blackMetalArtwork" value="1" checked>
+              <input type="radio" name="blackMetalArtwork" value="1" data-mockup-src="assets/mockups/onion-black-metal/bm-01-front.webp" data-mockup-alt="Onion Black Metal BM–01 shown on a black short-sleeve T-shirt visual mockup" checked>
               <span class="bm-art-option__image"><img src="assets/styles/onion/black-metal-01-approved.jpeg" width="1122" height="1402" alt="Black Metal artwork 01: Onion lying within a dark ritual landscape beneath a white spiked Onion wordmark"></span>
-              <span class="bm-art-option__copy"><b>BM–01</b><small>Approved direction</small></span>
+              <span class="bm-art-option__copy"><b>BM–01</b><small>Ritual landscape</small></span>
             </label>
             <label class="bm-art-option">
-              <input type="radio" name="blackMetalArtwork" value="2">
+              <input type="radio" name="blackMetalArtwork" value="2" data-mockup-src="assets/mockups/onion-black-metal/bm-02-front.webp" data-mockup-alt="Onion Black Metal BM–02 shown on a black short-sleeve T-shirt visual mockup">
               <span class="bm-art-option__image"><img src="assets/styles/onion/black-metal-02-approved.jpeg" width="1122" height="1402" alt="Black Metal artwork 02: Onion standing in an ornate gothic frame beneath an engraved Onion wordmark"></span>
-              <span class="bm-art-option__copy"><b>BM–02</b><small>Approved direction</small></span>
+              <span class="bm-art-option__copy"><b>BM–02</b><small>Gothic frame</small></span>
             </label>
             <label class="bm-art-option">
-              <input type="radio" name="blackMetalArtwork" value="3">
+              <input type="radio" name="blackMetalArtwork" value="3" data-mockup-src="assets/mockups/onion-black-metal/bm-03-front.webp" data-mockup-alt="Onion Black Metal BM–03 shown on a black short-sleeve T-shirt visual mockup">
               <span class="bm-art-option__image"><img src="assets/styles/onion/black-metal-03-approved.jpeg" width="1254" height="1254" alt="Black Metal artwork 03: Onion lying in a moonlit forest beneath an angular white Onion wordmark"></span>
-              <span class="bm-art-option__copy"><b>BM–03</b><small>Approved direction</small></span>
+              <span class="bm-art-option__copy"><b>BM–03</b><small>Moonlit forest</small></span>
             </label>
           </fieldset>
         </div>
 
         <aside class="product-buy reveal">
-          <p class="eyebrow"><b></b>ONION / BLACK METAL / PRODUCT PROTOTYPE</p>
-          <h1>BLACK METAL.<br><em>CUSTOM PET TEE.</em></h1>
-          <p class="product-lead">Choose one of Onion’s three approved Black Metal directions. A customer’s pet would be art-directed into that visual language after its source photographs and likeness details are reviewed.</p>
-          <div class="product-status"><span>3 LOCKED DIRECTIONS</span><span>SHORT-SLEEVE TEE STUDY</span><span>NOT FOR SALE</span></div>
-          <div class="price-placeholder"><small>PRICE / BLANK / FULFILMENT</small><strong>NOT YET LOCKED — SUPPLIER, MARGIN, PRINT AND CHECKOUT QA REQUIRED</strong></div>
+          <p class="eyebrow"><b></b>BESTIEBOYS / SCENE 01</p>
+          <h1>BLACK METAL.<br><em>YOUR PET, CENTRE STAGE.</em></h1>
+          <p class="product-lead">Choose one of Onion’s three approved directions. Your pet is then art-directed into that world—built as a considered piece of band merch, not dropped into a filter.</p>
+          <div class="product-status"><span>3 APPROVED DIRECTIONS</span><span>SHORT-SLEEVE TEE STUDY</span><span>REVIEW ONLY</span></div>
           <a class="button primary product-cta" id="personaliseCta" href="personalise.html?scene=Black+Metal&amp;garment=Short-Sleeve+T-shirt&amp;art=1&amp;source=onion-black-metal">Start your Black Metal brief <span aria-hidden="true">→</span></a>
+          <div class="price-placeholder"><small>Development note</small><strong>Blank, print method, price and fulfilment are still being tested.</strong></div>
           <a class="bm-back-link" href="index.html#scenes">← Back to all nine scenes</a>
-          <div class="microcopy">This review page cannot upload files, take payment, create an order or send anything to production.</div>
+          <div class="microcopy">Review page only. Uploads, checkout, orders and production are disabled.</div>
         </aside>
       </div>
     </section>
 
     <section class="bm-artwork-section shell" id="artwork">
       <div class="section-head reveal">
-        <div><p class="kicker"><b></b>01 / APPROVED ARTWORK SYSTEM</p><h2 class="display">THREE LOCKED ROUTES.<br><em>NO FILTERS.</em></h2></div>
-        <div><p>Each option is a separate approved Onion composition—not a colour treatment or repeated template. The selected route defines the composition, lettering density and image hierarchy for the customer brief.</p></div>
+        <div><p class="kicker"><b></b>01 / THE ORIGINALS</p><h2 class="display">THREE DIRECTIONS.<br><em>THREE DISTINCT WORLDS.</em></h2></div>
+        <div><p>These are the exact approved Onion masters. Each has its own composition, lettering and atmosphere; the mockups above show placement only.</p></div>
       </div>
       <div class="bm-approved-grid reveal">
         <article class="bm-approved-card">
           <div class="bm-master-art"><img src="assets/styles/onion/black-metal-01-approved.jpeg" width="1122" height="1402" alt="Onion Black Metal approved artwork 01" loading="lazy"></div>
-          <div><small>BLACK METAL / 01</small><strong>APPROVED DIRECTION</strong><p>Landscape composition with the pet held low beneath a dominant white wordmark.</p></div>
+          <div><small>BLACK METAL / 01</small><strong>RITUAL LANDSCAPE</strong><p>The pet held low beneath a dominant white wordmark and ceremonial scene.</p></div>
         </article>
         <article class="bm-approved-card">
           <div class="bm-master-art"><img src="assets/styles/onion/black-metal-02-approved.jpeg" width="1122" height="1402" alt="Onion Black Metal approved artwork 02" loading="lazy"></div>
-          <div><small>BLACK METAL / 02</small><strong>APPROVED DIRECTION</strong><p>Vertical gothic framing with Onion centred inside an ornate architectural structure.</p></div>
+          <div><small>BLACK METAL / 02</small><strong>GOTHIC FRAME</strong><p>Onion centred within dense, ornate architecture and engraved lettering.</p></div>
         </article>
         <article class="bm-approved-card">
           <div class="bm-master-art"><img src="assets/styles/onion/black-metal-03-approved.jpeg" width="1254" height="1254" alt="Onion Black Metal approved artwork 03" loading="lazy"></div>
-          <div><small>BLACK METAL / 03</small><strong>APPROVED DIRECTION</strong><p>Atmospheric forest composition with a hard white wordmark and stronger negative space.</p></div>
+          <div><small>BLACK METAL / 03</small><strong>MOONLIT FOREST</strong><p>A harder white wordmark, nocturnal forest and deliberate negative space.</p></div>
         </article>
       </div>
     </section>
 
     <section class="personalise shell" id="process">
       <div class="section-head reveal">
-        <div><p class="kicker"><b></b>02 / PERSONALISATION FLOW</p><h2 class="display">THE BRIEF IN.<br><em>ART DIRECTION OUT.</em></h2></div>
+        <div><p class="kicker"><b></b>02 / PERSONALISATION</p><h2 class="display">YOUR PET IN.<br><em>ART DIRECTION OUT.</em></h2></div>
         <div><p>The artwork shown remains the approved Onion example. Personalisation creates a production brief for a different pet; it does not perform an instant face swap or pretend that the final artwork already exists.</p></div>
       </div>
       <div class="personalise-grid reveal">
@@ -138,7 +120,8 @@
         <div class="spec-list reveal">
           <div><span>ARTWORK</span><strong>Three exact approved Onion Black Metal sources</strong></div>
           <div><span>FORMAT</span><strong>Short-sleeve T-shirt development template</strong></div>
-          <div><span>PLACEMENT</span><strong>Digital composition study only; print dimensions not locked</strong></div>
+          <div><span>MOCKUPS</span><strong>Digital garment studies derived from the approved masters; not print proofs</strong></div>
+          <div><span>PLACEMENT</span><strong>Visual composition only; production dimensions not locked</strong></div>
           <div><span>GARMENT</span><strong>Final blank, colours and variants not selected</strong></div>
           <div><span>PRICE</span><strong>Not set</strong></div>
           <div><span>FULFILMENT</span><strong>Not connected; no order or production routing</strong></div>
@@ -161,6 +144,6 @@
   </footer>
 
   <script src="storefront-v2.js?v=10"></script>
-  <script src="onion-black-metal.js?v=1"></script>
+  <script src="onion-black-metal.js?v=2"></script>
 </body>
 </html>

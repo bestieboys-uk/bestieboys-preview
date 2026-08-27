@@ -1,16 +1,13 @@
 (() => {
   const selector=document.querySelector('.bm-art-selector');
-  if(!selector)return;
+  const preview=document.querySelector('[data-mockup-preview]');
+  if(!selector||!preview)return;
 
-  const descriptions={
-    '1':'Onion Black Metal approved artwork 01 shown on a digital T-shirt placement study',
-    '2':'Onion Black Metal approved artwork 02 shown on a digital T-shirt placement study',
-    '3':'Onion Black Metal approved artwork 03 shown on a digital T-shirt placement study'
-  };
-  const allowed=new Set(Object.keys(descriptions));
-  const previews=[...document.querySelectorAll('[data-art-preview]')];
+  const radios=[...selector.querySelectorAll('input[name="blackMetalArtwork"]')];
+  const allowed=new Set(radios.map(radio=>radio.value));
   const selectedDirection=document.getElementById('selectedDirection');
   const ctas=[document.getElementById('personaliseCta'),document.getElementById('processCta')].filter(Boolean);
+  let swapToken=0;
 
   function briefUrl(art){
     const url=new URL('personalise.html',window.location.href);
@@ -21,16 +18,46 @@
     return url.href;
   }
 
+  function loadMockup(radio){
+    const src=radio.dataset.mockupSrc;
+    const alt=radio.dataset.mockupAlt;
+    const token=++swapToken;
+    if(!src)return;
+
+    if(preview.getAttribute('src')===src){
+      preview.alt=alt||preview.alt;
+      preview.classList.remove('is-loading');
+      preview.parentElement?.removeAttribute('aria-busy');
+      return;
+    }
+
+    preview.classList.add('is-loading');
+    preview.parentElement?.setAttribute('aria-busy','true');
+    const candidate=new Image();
+    candidate.decoding='async';
+    candidate.onload=async()=>{
+      try{await candidate.decode();}catch(error){/* Decoded by onload in older browsers. */}
+      if(token!==swapToken)return;
+      preview.src=src;
+      preview.alt=alt||preview.alt;
+      preview.classList.remove('is-loading');
+      preview.parentElement?.removeAttribute('aria-busy');
+    };
+    candidate.onerror=()=>{
+      if(token!==swapToken)return;
+      preview.classList.remove('is-loading');
+      preview.parentElement?.removeAttribute('aria-busy');
+    };
+    candidate.src=src;
+  }
+
   function selectArtwork(value){
     const art=allowed.has(String(value))?String(value):'1';
-    const col=String(Number(art)-1);
-    previews.forEach(preview=>{
-      preview.dataset.row='0';
-      preview.dataset.col=col;
-      preview.setAttribute('aria-label',descriptions[art]);
-    });
+    const radio=radios.find(option=>option.value===art)||radios[0];
+    if(!radio)return;
     if(selectedDirection)selectedDirection.textContent=`BLACK METAL / 0${art}`;
     ctas.forEach(cta=>cta.href=briefUrl(art));
+    loadMockup(radio);
   }
 
   selector.addEventListener('change',event=>{
@@ -39,7 +66,15 @@
 
   const requested=new URLSearchParams(window.location.search).get('art');
   const initial=allowed.has(requested)?requested:'1';
-  const initialRadio=selector.querySelector(`input[value="${initial}"]`);
+  const initialRadio=radios.find(radio=>radio.value===initial);
   if(initialRadio)initialRadio.checked=true;
   selectArtwork(initial);
+
+  const warmCache=()=>radios.forEach(radio=>{
+    if(radio.dataset.mockupSrc===preview.getAttribute('src'))return;
+    const image=new Image();
+    image.src=radio.dataset.mockupSrc;
+  });
+  if('requestIdleCallback' in window)window.requestIdleCallback(warmCache,{timeout:1800});
+  else window.setTimeout(warmCache,800);
 })();
