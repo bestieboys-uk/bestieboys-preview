@@ -50,27 +50,56 @@
   if (!root) return;
 
   genres.forEach((genre, genreIndex) => {
+    const savedCount = genre.items.filter(([, , base]) => savedArtwork.has(base)).length;
     const section = document.createElement('details');
     section.className = 'legacy-matrix-genre';
     if (genreIndex === 0) section.open = true;
-    section.innerHTML = `<summary><div class="legacy-matrix-meta"><small>${genre.code}</small><h3>${genre.name}</h3><p>${genre.desc}</p></div><div class="legacy-matrix-count">3 concepts</div></summary><div class="legacy-matrix-grid"></div>`;
+    section.innerHTML = `
+      <summary>
+        <div class="legacy-matrix-meta">
+          <small>${genre.code}</small>
+          <h3>${genre.name}</h3>
+          <p>${genre.desc}</p>
+        </div>
+        <div class="legacy-matrix-count"><b>${savedCount}/3 saved</b><span>3 concepts</span></div>
+      </summary>
+      <div class="legacy-matrix-grid"></div>`;
+
     const grid = section.querySelector('.legacy-matrix-grid');
 
     genre.items.forEach(([code,name,base,format,palette,role]) => {
       const hasArtwork = savedArtwork.has(base);
-      const artworkUrl = `${base}.webp?v=designlab5`;
+      const artworkUrl = `${base}.webp?v=designlab6`;
       const thumb = hasArtwork
         ? `<div class="legacy-concept-thumb"><img src="${artworkUrl}" alt="${name} Bestie Boys saved development artwork" loading="eager" decoding="async"></div>`
-        : `<div class="legacy-concept-thumb legacy-concept-thumb--empty"><span>BRIEF ONLY</span></div>`;
-      const full = hasArtwork
+        : '';
+      const detailMedia = hasArtwork
         ? `<div class="legacy-art-slot"><img src="${artworkUrl}" alt="${name} Bestie Boys development artwork" loading="lazy" decoding="async"></div>`
-        : `<div class="legacy-art-slot"><div class="legacy-art-placeholder"><strong>Brief only</strong><small>No saved artwork file: ${base}.webp</small></div></div>`;
+        : `<div class="legacy-missing-note"><strong>Artwork not saved</strong>This concept brief exists in the archive, but there is no artwork file for it in the repository yet.</div>`;
 
       const concept = document.createElement('details');
       concept.className = `legacy-matrix-concept${hasArtwork ? ' has-saved-artwork' : ' is-brief-only'}`;
-      concept.innerHTML = `<summary><div class="legacy-concept-top"><span class="legacy-concept-code">${code}</span><span class="legacy-concept-status">${hasArtwork ? 'SAVED ARTWORK' : 'BRIEF ONLY'}</span></div><h4>${name}</h4><div class="legacy-concept-chips"><span>${format}</span><span>${palette}</span></div>${thumb}</summary><div class="legacy-concept-body">${full}<div class="legacy-specs"><div class="legacy-spec"><b>Format</b><span>${format}</span></div><div class="legacy-spec"><b>Palette</b><span>${palette}</span></div><div class="legacy-spec"><b>Role</b><span>${role}</span></div></div></div>`;
+      concept.innerHTML = `
+        <summary>
+          <div class="legacy-concept-top">
+            <span class="legacy-concept-code">${code}</span>
+            <span class="legacy-concept-status">${hasArtwork ? 'SAVED ARTWORK' : 'BRIEF ONLY'}</span>
+          </div>
+          <h4>${name}</h4>
+          <div class="legacy-concept-chips"><span>${format}</span><span>${palette}</span></div>
+          ${thumb}
+        </summary>
+        <div class="legacy-concept-body">
+          ${detailMedia}
+          <div class="legacy-specs">
+            <div class="legacy-spec"><b>Format</b><span>${format}</span></div>
+            <div class="legacy-spec"><b>Palette</b><span>${palette}</span></div>
+            <div class="legacy-spec"><b>Role</b><span>${role}</span></div>
+          </div>
+        </div>`;
       grid.appendChild(concept);
     });
+
     root.appendChild(section);
   });
 })();
