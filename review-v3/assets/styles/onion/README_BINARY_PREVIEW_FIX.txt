@@ -1,1 +1,0 @@
-Temporary review-branch marker. The Onion scene preview now uses a direct WebP sprite blob rather than the browser base64 loader. This file can be removed after visual QA.
