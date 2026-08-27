@@ -22,4 +22,4 @@
 .onion-scene-card__sheet[data-row="7"]{background-position:50% 87.5%}
 .onion-scene-card__sheet[data-row="8"]{background-position:50% 100%}
 @media(max-width:980px){.onion-scene-grid{grid-template-columns:1fr}}
-@media(max-width:520px){.onion-scene-card__head{align-items:flex-start;flex-direction:column;gap:10px;padding:14px 12px 12px}.onion-scene-card h3{font-size:2rem}.onion-scene-card__head strong{font-size:.46rem}}
+@media(max-width:520px){.onion-scene-card__head{align-items:flex-start;flex-direction:column;gap:10px;padding:14px 12px 12px}.onion-scene-card h3{font-size:clamp(1.7rem,8.4vw,2rem);overflow-wrap:anywhere}.onion-scene-card__head strong{font-size:.46rem}}

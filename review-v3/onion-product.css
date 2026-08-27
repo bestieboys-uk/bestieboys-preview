@@ -195,7 +195,7 @@
 @media(max-width:340px){
   .black-metal-product .product-buy h1{font-size:3rem}
   .onion-product-page .product-buy h1{font-size:2.72rem}
-  .onion-product-page[data-scene="powerviolence"] .product-buy h1{font-size:2.18rem}
+  .onion-product-page[data-scene="powerviolence"] .product-buy h1{font-size:2rem}
   .bm-mockup__flag{max-width:190px}
   .bm-art-option__copy b{font-size:.58rem}
 }

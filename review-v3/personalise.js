@@ -68,6 +68,7 @@
       artId=String(requestedArt).padStart(2,'0');
       legacyRoute=true;
     }else if(source==='onion-product'){
+      if(!Object.prototype.hasOwnProperty.call(catalog.scenes,requestedScene))return;
       scene=catalog.scenes[requestedScene];
       artId=String(requestedArt||'').padStart(2,'0');
       if(!scene||!scene.artworks.some(item=>item.id===artId))return;
@@ -93,7 +94,10 @@
     const direction=document.getElementById('selectedProductDirection');
     const title=document.getElementById('selectedProductTitle');
     const back=document.getElementById('selectedProductBack');
-    if(context)context.hidden=false;
+    if(context){
+      context.hidden=false;
+      context.dataset.scene=scene.slug;
+    }
     if(selectedArt.master&&artwork){
       artwork.hidden=false;
       artwork.src=selectedArt.master.src;
