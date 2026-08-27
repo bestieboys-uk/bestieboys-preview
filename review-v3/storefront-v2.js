@@ -13,6 +13,13 @@ if(!document.querySelector('link[data-scene-studies]')){
   sceneStyles.dataset.sceneStudies='true';
   document.head.appendChild(sceneStyles);
 }
+if(!document.querySelector('link[data-drive-assets]')){
+  const assetStyles=document.createElement('link');
+  assetStyles.rel='stylesheet';
+  assetStyles.href='drive-asset-gallery.css?v=1';
+  assetStyles.dataset.driveAssets='true';
+  document.head.appendChild(assetStyles);
+}
 
 function applyPresentationCleanup(){
   document.querySelectorAll('.scene-study-card:not(.scene-study-placeholder)').forEach(card=>{
@@ -128,12 +135,34 @@ function applyApprovedGarmentMockups(){
   });
 }
 
+function applyAssetLibrary(){
+  if(!isReviewHomepage()||document.querySelector('#asset-library'))return;
+  const garments=document.querySelector('#garments');
+  if(!garments)return;
+  const section=document.createElement('section');
+  section.className='section shell asset-library-slice';
+  section.id='asset-library';
+  section.innerHTML=`
+    <div class="section-head">
+      <div><p class="kicker"><b></b>ASSET LIBRARY / DEVELOPMENT</p><h2 class="display">FROM THE<br><em>ARCHIVE.</em></h2></div>
+      <div><p>Real source photography and locked BestieBoys scene artwork pulled directly from the organised project asset library.</p><p class="section-note">UI screenshots and third-party references are excluded. Development visuals only.</p></div>
+    </div>
+    <div class="asset-library-grid">
+      <figure class="asset-library-card"><div class="asset-library-media"><img src="assets/library/source-dog-reference.webp" alt="Original dog source photograph from the BestieBoys asset library" loading="lazy"></div><figcaption><span>SOURCE PHOTO</span><strong>Original reference</strong></figcaption></figure>
+      <figure class="asset-library-card"><div class="asset-library-media"><img src="assets/library/onion-black-metal-drive.webp" alt="Onion Black Metal locked scene artwork" loading="lazy"></div><figcaption><span>LOCKED SCENE SOURCE</span><strong>Onion / Black Metal</strong></figcaption></figure>
+      <figure class="asset-library-card"><div class="asset-library-media"><img src="assets/library/onion-grindcore-drive.webp" alt="Onion Grindcore locked scene artwork" loading="lazy"></div><figcaption><span>LOCKED SCENE SOURCE</span><strong>Onion / Grindcore</strong></figcaption></figure>
+      <figure class="asset-library-card"><div class="asset-library-media"><img src="assets/library/onion-rap-bootleg-drive.webp" alt="Onion Rap Bootleg locked scene artwork" loading="lazy"></div><figcaption><span>LOCKED SCENE SOURCE</span><strong>Onion / Rap Bootleg</strong></figcaption></figure>
+    </div>`;
+  garments.before(section);
+}
+
 function applyReviewPresentation(){
   applyPresentationCleanup();
   applyCustomerJourneyRoute();
   applyDesignLabLink();
   applyApprovedHero();
   applyApprovedGarmentMockups();
+  applyAssetLibrary();
 }
 
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',applyReviewPresentation,{once:true});
