@@ -1,0 +1,27 @@
+name: Audit remaining concept assets
+on:
+  push:
+    branches:
+      - fix/highres-review-assets-batch2-20260827
+    paths:
+      - '.github/workflows/audit-remaining-concept-assets.yml'
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Find all historical copies of remaining approved concept assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin '+refs/heads/*:refs/remotes/origin/*'
+          pattern='goregrind-terminal-good-boy|crust-no-masters-only-gerrard|powerviolence-gerrard-no-peace|gore-noise-signal-rot-gerrard|death-doom-eternal-weight'
+          for ref in $(git for-each-ref --format='%(refname:short)' refs/remotes/origin/ | sort); do
+            matches=$(git ls-tree -r --long "$ref" 2>/dev/null | grep -Ei "$pattern" || true)
+            if [ -n "$matches" ]; then
+              echo "===== $ref ====="
+              echo "$matches"
+            fi
+          done
