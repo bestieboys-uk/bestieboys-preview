@@ -1,4 +1,20 @@
 (() => {
+  const savedArtwork = new Set([
+    'assets/concepts/black-metal-frostbite-portrait',
+    'assets/concepts/black-metal-ritual-hound',
+    'assets/concepts/black-metal-northern-apparition',
+    'assets/concepts/grindcore-blast-portrait',
+    'assets/concepts/grindcore-noise-wall',
+    'assets/concepts/grindcore-one-second-legend',
+    'assets/concepts/goregrind-canine-pathology',
+    'assets/concepts/goregrind-dissection-club',
+    'assets/concepts/goregrind-terminal-good-boy',
+    'assets/concepts/crust-no-masters-only-gerrard',
+    'assets/concepts/powerviolence-gerrard-no-peace',
+    'assets/concepts/gore-noise-signal-rot-gerrard',
+    'assets/concepts/death-doom-eternal-weight'
+  ]);
+
   const genres = [
     {code:'01 / BLACK METAL',name:'Black Metal',desc:'Raw xerox, ritual artefact and atmospheric minimalism. Three deliberately different systems.',items:[
       ['BM-A / LAUNCH PICK','Frostbite Portrait','assets/concepts/black-metal-frostbite-portrait','Tee / Longsleeve','Black + Bone','Most wearable / launch candidate'],
@@ -41,14 +57,18 @@
     const grid = section.querySelector('.legacy-matrix-grid');
 
     genre.items.forEach(([code,name,base,format,palette,role]) => {
+      const hasArtwork = savedArtwork.has(base);
+      const artworkUrl = `${base}.webp?v=designlab5`;
+      const thumb = hasArtwork
+        ? `<div class="legacy-concept-thumb"><img src="${artworkUrl}" alt="${name} Bestie Boys saved development artwork" loading="eager" decoding="async"></div>`
+        : `<div class="legacy-concept-thumb legacy-concept-thumb--empty"><span>BRIEF ONLY</span></div>`;
+      const full = hasArtwork
+        ? `<div class="legacy-art-slot"><img src="${artworkUrl}" alt="${name} Bestie Boys development artwork" loading="lazy" decoding="async"></div>`
+        : `<div class="legacy-art-slot"><div class="legacy-art-placeholder"><strong>Brief only</strong><small>No saved artwork file: ${base}.webp</small></div></div>`;
+
       const concept = document.createElement('details');
-      concept.className = 'legacy-matrix-concept';
-      concept.innerHTML = `<summary><div class="legacy-concept-top"><span class="legacy-concept-code">${code}</span><span class="legacy-concept-status">CHECKING ARTWORK</span></div><h4>${name}</h4><div class="legacy-concept-chips"><span>${format}</span><span>${palette}</span></div></summary><div class="legacy-concept-body"><div class="legacy-art-slot"><img src="${base}.webp?v=designlab4" alt="${name} Bestie Boys development artwork" loading="lazy"><div class="legacy-art-placeholder" hidden><strong>Brief only</strong><small>No saved artwork file: ${base}</small></div></div><div class="legacy-specs"><div class="legacy-spec"><b>Format</b><span>${format}</span></div><div class="legacy-spec"><b>Palette</b><span>${palette}</span></div><div class="legacy-spec"><b>Role</b><span>${role}</span></div></div></div>`;
-      const img = concept.querySelector('img');
-      const status = concept.querySelector('.legacy-concept-status');
-      const placeholder = concept.querySelector('.legacy-art-placeholder');
-      img.addEventListener('load', () => { status.textContent = 'SAVED ARTWORK'; img.hidden = false; placeholder.hidden = true; }, {once:true});
-      img.addEventListener('error', () => { status.textContent = 'BRIEF ONLY'; img.hidden = true; placeholder.hidden = false; }, {once:true});
+      concept.className = `legacy-matrix-concept${hasArtwork ? ' has-saved-artwork' : ' is-brief-only'}`;
+      concept.innerHTML = `<summary><div class="legacy-concept-top"><span class="legacy-concept-code">${code}</span><span class="legacy-concept-status">${hasArtwork ? 'SAVED ARTWORK' : 'BRIEF ONLY'}</span></div><h4>${name}</h4><div class="legacy-concept-chips"><span>${format}</span><span>${palette}</span></div>${thumb}</summary><div class="legacy-concept-body">${full}<div class="legacy-specs"><div class="legacy-spec"><b>Format</b><span>${format}</span></div><div class="legacy-spec"><b>Palette</b><span>${palette}</span></div><div class="legacy-spec"><b>Role</b><span>${role}</span></div></div></div>`;
       grid.appendChild(concept);
     });
     root.appendChild(section);
