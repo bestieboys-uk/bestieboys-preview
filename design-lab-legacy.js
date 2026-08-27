@@ -68,6 +68,7 @@
   if (!root) return;
 
   const typeOf = item => item.base && savedArtwork.has(item.base) ? 'saved' : item.render ? 'rendered' : 'brief';
+  const slug = value => value.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
 
   function specs(item){
     return `<div class="legacy-specs">
@@ -138,6 +139,7 @@
     const counts = genre.items.reduce((acc,item) => { acc[typeOf(item)]++; return acc; }, {saved:0,rendered:0,brief:0});
     const section = document.createElement('details');
     section.className = 'legacy-matrix-genre';
+    section.id = `archive-${slug(genre.name)}`;
     if (genreIndex === 0) section.open = true;
     section.innerHTML = `
       <summary>
@@ -152,6 +154,7 @@
       const type = typeOf(item);
       const concept = document.createElement('details');
       concept.className = `legacy-matrix-concept ${type === 'saved' ? 'has-saved-artwork' : type === 'rendered' ? 'is-rendered-layout' : 'is-brief-only'}`;
+      concept.id = `study-${slug(item.name)}`;
 
       let thumb = '';
       let bodyMedia = '';
@@ -182,4 +185,21 @@
 
     root.appendChild(section);
   });
+
+  function openHashTarget(){
+    if (!location.hash || location.hash === '#legacy-matrix') return;
+    const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (!target) return;
+    if (target.classList.contains('legacy-matrix-genre')) target.open = true;
+    if (target.classList.contains('legacy-matrix-concept')) {
+      const genre = target.closest('.legacy-matrix-genre');
+      if (genre) genre.open = true;
+      target.open = true;
+      if (target.classList.contains('is-rendered-layout')) loadRenderedStudy(target);
+    }
+    requestAnimationFrame(() => target.scrollIntoView({block:'start'}));
+  }
+
+  requestAnimationFrame(openHashTarget);
+  window.addEventListener('hashchange', openHashTarget);
 })();
