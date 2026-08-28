@@ -128,3 +128,29 @@ if('IntersectionObserver' in window&&!window.matchMedia('(prefers-reduced-motion
 }else{
   targets.forEach(el=>el.classList.add('visible'));
 }
+
+// Approved BestieBoys wordmark used consistently in the site header and footer.
+const approvedBrandLogo='assets/brand/bestieboys-logo-custom.webp?v=1';
+const brandLogoStyle=document.createElement('style');
+brandLogoStyle.textContent=`
+  .brand.brand--image{display:inline-flex;align-items:center;width:clamp(170px,16vw,235px);height:auto;font-size:0;line-height:0;flex:0 0 auto}
+  .brand.brand--image img{display:block;width:100%;height:auto;max-width:none}
+  .footer .brand.brand--image{width:min(260px,72vw)}
+  @media (max-width:760px){
+    .brand.brand--image{width:168px}
+    .footer .brand.brand--image{width:210px}
+  }
+`;
+document.head.appendChild(brandLogoStyle);
+
+document.querySelectorAll('a.brand').forEach((brand,index)=>{
+  const logo=document.createElement('img');
+  logo.src=approvedBrandLogo;
+  logo.alt='BestieBoys';
+  logo.width=700;
+  logo.height=113;
+  logo.decoding='async';
+  if(index===0)logo.fetchPriority='high';
+  brand.replaceChildren(logo);
+  brand.classList.add('brand--image');
+});
