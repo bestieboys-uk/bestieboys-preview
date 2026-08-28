@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="storefront-v2.css?v=7">
   <link rel="stylesheet" href="storefront-v2-product.css?v=7">
   <link rel="stylesheet" href="storefront-v3-mobile-fixes.css?v=7" data-review-qa>
+  <script src="https://tally.so/widgets/embed.js"></script>
   <style>
     .tour-issue-review .gallery-strip{display:none!important}
     @media(max-width:760px){
@@ -48,8 +49,8 @@
           <p class="product-lead">A development example showing how a real pet can be rebuilt inside authentic tour-merch language rather than pasted onto a blank.</p>
           <div class="product-status"><span>PROTOTYPE</span><span>ART DIRECTED</span><span>NOT FOR SALE</span></div>
           <div class="price-placeholder"><small>PRICE / GARMENT / FULFILMENT</small><strong>NOT LOCKED — SUBJECT TO UK SUPPLIER, MARGIN AND CHECKOUT QA</strong></div>
-          <a class="button primary product-cta" href="#design-studies">See the other T-shirt studies <span aria-hidden="true">↓</span></a>
-          <div class="microcopy">No upload, payment, order or production action is available from this development page.</div>
+          <a class="button primary product-cta" id="create-bestie" href="#create-bestie">Create your Bestie <span aria-hidden="true">→</span></a>
+          <div class="microcopy">Private Phase B test. Upload your pet photos and brief. No payment or production order is created.</div>
         </aside>
       </div>
     </section>
@@ -105,7 +106,7 @@
     <section class="personalise shell" id="personalise">
       <div class="section-head reveal">
         <div><p class="kicker"><b></b>02 / PERSONALISATION MODEL</p><h2 class="display">FOUR THINGS IN.<br><em>ONE PIECE OUT.</em></h2></div>
-        <div><p>The eventual ordering flow should stay simple for the customer while the art direction remains controlled on the BestieBoys side.</p></div>
+        <div><p>The private Phase B intake is available here for testing while payment, fulfilment and production remain disconnected.</p></div>
       </div>
       <div class="personalise-grid reveal">
         <article class="input-card"><span>01</span><small>PHOTO</small><strong>Your clearest pet photo</strong><p>The image is reference material for likeness, not the finished layout.</p></article>
@@ -146,5 +147,30 @@
     <small>Ordering disabled / 2026</small>
   </footer>
   <script src="storefront-v2.js?v=7"></script>
+  <script>
+    (function () {
+      var trigger = document.getElementById('create-bestie');
+      if (!trigger) return;
+
+      trigger.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        if (!window.Tally || typeof window.Tally.openPopup !== 'function') {
+          window.alert('The private intake could not load. Please try again in a moment.');
+          return;
+        }
+
+        window.Tally.openPopup('pbY28J', {
+          layout: 'modal',
+          width: 720,
+          overlay: true,
+          hiddenFields: {
+            origin: 'bestieboys-tour-issue',
+            build_version: 'BB-CYB-PHASE-B-01'
+          }
+        });
+      });
+    }());
+  </script>
 </body>
 </html>
