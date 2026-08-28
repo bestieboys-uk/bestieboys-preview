@@ -1,0 +1,95 @@
+name: PR5 Hosted CTA QA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'qa-pr5-20260828/**'
+      - '.github/workflows/pr5-hosted-qa.yml'
+  workflow_dispatch:
+
+jobs:
+  browser-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright
+        run: |
+          npm init -y
+          npm install playwright
+          npx playwright install --with-deps chromium
+      - name: Test hosted Create your Bestie CTA
+        env:
+          QA_URL: https://bestieboys-uk.github.io/bestieboys-preview/qa-pr5-20260828/tour-issue.html
+        run: |
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          const url = process.env.QA_URL;
+
+          async function waitForPublish() {
+            for (let i = 0; i < 30; i++) {
+              try {
+                const r = await fetch(url, { cache: 'no-store' });
+                const text = await r.text();
+                if (r.ok && text.includes('Create your Bestie') && text.includes("Tally.openPopup('pbY28J'")) return;
+              } catch (_) {}
+              await new Promise(r => setTimeout(r, 10000));
+            }
+            throw new Error('GitHub Pages preview did not publish within 5 minutes');
+          }
+
+          (async () => {
+            await waitForPublish();
+            const browser = await chromium.launch({ headless: true });
+            const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+            const errors = [];
+            page.on('pageerror', err => errors.push(String(err)));
+            page.on('console', msg => {
+              if (msg.type() === 'error') errors.push(msg.text());
+            });
+
+            await page.goto(url, { waitUntil: 'networkidle', timeout: 90000 });
+            const cta = page.locator('#create-bestie');
+            await cta.waitFor({ state: 'visible', timeout: 30000 });
+            await cta.click();
+
+            await page.waitForFunction(() => {
+              return [...document.querySelectorAll('iframe')].some(f => (f.src || '').includes('tally.so'));
+            }, { timeout: 30000 });
+
+            const tallyFrame = page.frames().find(f => f.url().includes('tally.so'));
+            if (!tallyFrame) throw new Error('CTA click did not create a Tally frame');
+
+            await tallyFrame.waitForLoadState('domcontentloaded', { timeout: 30000 });
+            const passwordInput = tallyFrame.locator('input[type="password"]');
+            const passwordVisible = await passwordInput.count() > 0 && await passwordInput.first().isVisible().catch(() => false);
+            const frameText = (await tallyFrame.locator('body').innerText().catch(() => '')).toLowerCase();
+            const passwordText = frameText.includes('password');
+
+            console.log('HOSTED_URL=' + url);
+            console.log('TALLY_FRAME_URL=' + tallyFrame.url());
+            console.log('PASSWORD_INPUT_VISIBLE=' + passwordVisible);
+            console.log('PASSWORD_TEXT_PRESENT=' + passwordText);
+            if (errors.length) console.log('BROWSER_ERRORS=' + JSON.stringify(errors));
+
+            if (!passwordVisible && !passwordText) {
+              throw new Error('Tally opened, but the password gate was not detected');
+            }
+
+            await page.screenshot({ path: 'pr5-hosted-cta.png', fullPage: true });
+            await browser.close();
+          })().catch(err => {
+            console.error(err);
+            process.exit(1);
+          });
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr5-hosted-cta-qa
+          path: pr5-hosted-cta.png
+          if-no-files-found: ignore
