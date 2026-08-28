@@ -1,0 +1,14 @@
+/* BestieBoys realistic garment presentation override */
+.garment-shape{clip-path:none!important;background-repeat:no-repeat!important;background-position:center!important;background-size:cover!important;filter:none!important;overflow:hidden!important;aspect-ratio:1/1.02!important;width:min(520px,100%)!important;max-width:100%!important}
+.garment-shape:before,.garment-shape:after,.garment-hoodie .hood{display:none!important}
+.hero-garment .garment-shape,.garment-card:nth-child(1) .garment-shape,.transform-garment .garment-shape{background-image:url("assets/gerrard-tee-realistic.webp")!important}
+.garment-card:nth-child(2) .garment-shape{background-image:url("assets/onion-longsleeve-realistic.webp")!important}
+.garment-card:nth-child(3) .garment-shape{background-image:url("assets/sylvester-hoodie-realistic.webp")!important}
+.garment-print{position:absolute!important;left:50%!important;transform:translateX(-50%)!important;object-fit:cover!important;mix-blend-mode:normal!important;filter:grayscale(1) contrast(1.18)!important;opacity:.97!important;background:#050505!important;box-shadow:0 0 28px 18px rgba(0,0,0,.33)!important}
+.hero-garment .garment-print,.garment-card:nth-child(1) .garment-print,.transform-garment .garment-print{top:24%!important;width:47%!important;height:58%!important}
+.garment-card:nth-child(2) .garment-print{top:21%!important;width:48%!important;height:59%!important}
+.garment-card:nth-child(3) .garment-print{top:27%!important;width:47%!important;height:52%!important}
+.hero-garment{min-height:0!important;padding:18px!important}.hero-garment .garment-shape{width:min(610px,100%)!important}.garment-stage{padding:16px!important;min-height:0!important}.garment-card .garment-shape{width:100%!important}.transform-garment{padding:12px!important}.transform-garment .garment-shape{width:100%!important}
+.brand-garment{background-image:url("assets/bestieboys-brand-merch-realistic.webp")!important;background-repeat:no-repeat!important;background-position:center!important;background-size:contain!important;min-height:300px!important}.brand-garment .brand-tee{display:none!important}
+@media(max-width:900px){.garment-card .garment-shape{width:min(560px,100%)!important;margin:auto}.brand-garment{min-height:240px!important}}
+@media(max-width:560px){.hero-garment{padding:8px!important}.garment-shape{aspect-ratio:1/1.02!important}.garment-card .garment-shape{width:100%!important}.garment-meta{padding-top:11px!important}.brand-garment{min-height:180px!important}}
