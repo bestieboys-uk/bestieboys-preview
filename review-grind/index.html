@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow,noarchive">
-  <meta name="theme-color" content="#171819">
+  <meta name="theme-color" content="#151617">
   <title>BestieBoys — Immortalise Your Pet</title>
   <meta name="description" content="Immortalise your pet with BestieBoys. Original underground-style pet artwork for clothing and merch made for you to wear and own.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800;900&family=IBM+Plex+Mono:wght@500;700&family=Metal+Mania&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="grind.css?v=8">
+  <link rel="stylesheet" href="grind.css?v=9">
 </head>
 <body>
   <div class="dev-strip">DEVELOPMENT PREVIEW / ORDERING OFF</div>
@@ -34,10 +34,13 @@
         <p class="human-note">THE PET IS THE ARTWORK. THE CLOTHING IS FOR YOU.</p>
         <a class="btn btn-light" href="start.html">START YOUR DESIGN →</a>
       </div>
-      <figure class="hero-merch">
-        <img src="assets/gerrard-wearing-black-metal-shirt.webp" alt="Personalised Gerrard artwork shown on a BestieBoys T-shirt">
-        <figcaption>PERSONALISED PET MERCH / GERRARD</figcaption>
-      </figure>
+
+      <div class="hero-garment" aria-label="Personalised Gerrard Black Metal T-shirt example">
+        <div class="garment-shape garment-tee">
+          <img class="garment-print" src="../review-v3/assets/styles/gerrard-black-metal.jpg" alt="Gerrard Black Metal personalised artwork printed on a black T-shirt">
+        </div>
+        <p>PERSONALISED PET MERCH / GERRARD / BLACK METAL</p>
+      </div>
     </section>
 
     <section class="process-band" id="how">
@@ -52,8 +55,8 @@
     <section class="scene-section wrap" id="scenes">
       <div class="scene-intro">
         <p class="kicker">CHOOSE A SCENE</p>
-        <h2>NO TEMPLATE.<br><span>DIFFERENT WORLD, DIFFERENT ART.</span></h2>
-        <p>We do not show raw artwork boards here. Pick the scene by name; the finished design is judged on how it works on the garment.</p>
+        <h2>PICK THE<br><span>WORLD.</span></h2>
+        <p>The name sets the art direction. The finished design is judged on how it looks on the garment.</p>
       </div>
       <div class="scene-list" aria-label="Available style directions">
         <span>Black Metal</span><span>Goregrind</span><span>Grindcore</span><span>Crust Punk</span><span>Powerviolence</span><span>Gore Noise</span><span>Rap Bootleg</span><span>Death Metal</span><span>Doom Metal</span>
@@ -61,17 +64,46 @@
     </section>
 
     <section class="pet-merch" id="pet-merch">
-      <div class="wrap merch-layout">
-        <div class="merch-copy">
-          <p class="kicker">PERSONALISED PET MERCH</p>
-          <h2>THE DESIGN LIVES<br><span>ON THE GARMENT.</span></h2>
-          <p>Your pet artwork is adapted to the actual format instead of being dropped into the same square on every product.</p>
-          <p class="format-line">TEES · LONGSLEEVES · HOODIES · CAPS · STICKERS · PRINTS</p>
+      <div class="wrap">
+        <div class="merch-head">
+          <div>
+            <p class="kicker">PERSONALISED PET MERCH</p>
+            <h2>THE ART BELONGS<br><span>ON THE CLOTHING.</span></h2>
+          </div>
+          <p>These are owner-worn garment presentations. Your pet is the subject of the artwork — not the wearer of the clothing.</p>
         </div>
-        <div class="merch-images">
-          <figure class="merch-main"><img src="assets/gerrard-transmissions.webp" alt="Gerrard personalised pet artwork developed across clothing formats"></figure>
-          <figure class="merch-float"><img src="assets/gerrard-extreme-merch.webp" alt="Personalised Gerrard merchandise range"></figure>
+
+        <div class="garment-grid">
+          <article class="garment-card">
+            <div class="garment-stage">
+              <div class="garment-shape garment-tee">
+                <img class="garment-print" src="../review-v3/assets/styles/gerrard-black-metal.jpg" alt="Gerrard Black Metal personalised design on a short-sleeve T-shirt">
+              </div>
+            </div>
+            <div class="garment-meta"><span>01 / SHORT-SLEEVE TEE</span><strong>GERRARD / BLACK METAL</strong></div>
+          </article>
+
+          <article class="garment-card">
+            <div class="garment-stage">
+              <div class="garment-shape garment-longsleeve">
+                <img class="garment-print" src="../review-v3/assets/styles/onion-grindcore.jpg" alt="Onion Grindcore personalised design on a black longsleeve">
+              </div>
+            </div>
+            <div class="garment-meta"><span>02 / LONGSLEEVE</span><strong>ONION / GRINDCORE</strong></div>
+          </article>
+
+          <article class="garment-card">
+            <div class="garment-stage">
+              <div class="garment-shape garment-hoodie">
+                <div class="hood"></div>
+                <img class="garment-print" src="../review-v3/assets/styles/sylvester-crust-punk.jpg" alt="Sylvester Crust Punk personalised design on a black hoodie">
+              </div>
+            </div>
+            <div class="garment-meta"><span>03 / PULLOVER HOODIE</span><strong>SYLVESTER / CRUST PUNK</strong></div>
+          </article>
         </div>
+
+        <p class="format-line">TEES · LONGSLEEVES · HOODIES · CAPS · STICKERS · PRINTS</p>
       </div>
     </section>
 
@@ -83,19 +115,24 @@
       <div class="transform-flow">
         <figure><img src="assets/gerrard-source.webp" alt="Original photograph of Gerrard"><figcaption>01 / YOUR PHOTO</figcaption></figure>
         <div class="flow-arrow">→</div>
-        <figure><img src="assets/gerrard-tour-issue.webp" alt="Finished Gerrard artwork"><figcaption>02 / OUR ARTWORK</figcaption></figure>
+        <figure><img src="assets/gerrard-tour-issue.webp" alt="Finished Gerrard BestieBoys artwork"><figcaption>02 / OUR ARTWORK</figcaption></figure>
         <div class="flow-arrow">→</div>
-        <figure><img src="assets/gerrard-wearing-black-metal-shirt.webp" alt="Finished Gerrard artwork on clothing"><figcaption>03 / YOUR MERCH</figcaption></figure>
+        <figure class="transform-garment">
+          <div class="garment-shape garment-tee"><img class="garment-print" src="../review-v3/assets/styles/gerrard-black-metal.jpg" alt="Gerrard artwork applied to a black T-shirt"></div>
+          <figcaption>03 / YOUR MERCH</figcaption>
+        </figure>
       </div>
     </section>
 
     <section class="brand-merch">
       <div class="wrap brand-merch-inner">
-        <div class="brand-mark"><img src="../assets/brand/bestie-boys-spike.png" alt="BestieBoys"></div>
+        <div class="brand-garment">
+          <div class="garment-shape garment-tee brand-tee"><img class="brand-print" src="../assets/brand/bestie-boys-spike.png" alt="BestieBoys logo on a black brand T-shirt"></div>
+        </div>
         <div>
           <p class="kicker">BESTIEBOYS BRAND MERCH</p>
           <h2>BRAND MARKS ONLY.<br><span>NO PET ARTWORK.</span></h2>
-          <p>Separate from personalised orders, BestieBoys-branded merch uses the BestieBoys identity only. Pet artwork belongs on personalised pet merch.</p>
+          <p>BestieBoys-branded merch uses the BestieBoys identity only. Personalised pet artwork stays on personalised pet merch.</p>
         </div>
       </div>
     </section>
