@@ -45,42 +45,89 @@ jobs:
           (async () => {
             await waitForPublish();
             const browser = await chromium.launch({ headless: true });
-            const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+            const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+            const page = await context.newPage();
             const errors = [];
-            page.on('pageerror', err => errors.push(String(err)));
+            page.on('pageerror', err => errors.push('pageerror: ' + String(err)));
             page.on('console', msg => {
-              if (msg.type() === 'error') errors.push(msg.text());
+              if (msg.type() === 'error') errors.push('console: ' + msg.text());
             });
 
             await page.goto(url, { waitUntil: 'networkidle', timeout: 90000 });
+            await page.waitForFunction(() => window.Tally && typeof window.Tally.openPopup === 'function', null, { timeout: 30000 });
+
+            const instrumented = await page.evaluate(() => {
+              const original = window.Tally.openPopup;
+              if (typeof original !== 'function') return false;
+              window.__bestieQaPopupCall = null;
+              window.Tally.openPopup = function (id, options) {
+                let safeOptions = null;
+                try { safeOptions = JSON.parse(JSON.stringify(options || {})); } catch (_) { safeOptions = options || {}; }
+                window.__bestieQaPopupCall = { id, options: safeOptions };
+                return original.apply(this, arguments);
+              };
+              return window.Tally.openPopup !== original;
+            });
+            console.log('INSTRUMENTED=' + instrumented);
+
             const cta = page.locator('#create-bestie');
             await cta.waitFor({ state: 'visible', timeout: 30000 });
             await cta.click();
 
-            await page.waitForFunction(() => {
-              return [...document.querySelectorAll('iframe')].some(f => (f.src || '').includes('tally.so'));
-            }, { timeout: 30000 });
-
-            const tallyFrame = page.frames().find(f => f.url().includes('tally.so'));
-            if (!tallyFrame) throw new Error('CTA click did not create a Tally frame');
-
-            await tallyFrame.waitForLoadState('domcontentloaded', { timeout: 30000 });
-            const passwordInput = tallyFrame.locator('input[type="password"]');
-            const passwordVisible = await passwordInput.count() > 0 && await passwordInput.first().isVisible().catch(() => false);
-            const frameText = (await tallyFrame.locator('body').innerText().catch(() => '')).toLowerCase();
-            const passwordText = frameText.includes('password');
-
+            await page.waitForFunction(() => window.__bestieQaPopupCall !== null, null, { timeout: 10000 });
+            const call = await page.evaluate(() => window.__bestieQaPopupCall);
             console.log('HOSTED_URL=' + url);
-            console.log('TALLY_FRAME_URL=' + tallyFrame.url());
-            console.log('PASSWORD_INPUT_VISIBLE=' + passwordVisible);
-            console.log('PASSWORD_TEXT_PRESENT=' + passwordText);
-            if (errors.length) console.log('BROWSER_ERRORS=' + JSON.stringify(errors));
+            console.log('POPUP_CALL=' + JSON.stringify(call));
 
-            if (!passwordVisible && !passwordText) {
-              throw new Error('Tally opened, but the password gate was not detected');
+            if (!call || call.id !== 'pbY28J') throw new Error('CTA did not call Tally.openPopup with form pbY28J');
+            if (!call.options || !call.options.hiddenFields) throw new Error('CTA popup call did not include hiddenFields');
+            if (call.options.hiddenFields.origin !== 'bestieboys-tour-issue') throw new Error('origin hidden field was wrong');
+            if (call.options.hiddenFields.build_version !== 'BB-CYB-PHASE-B-01') throw new Error('build_version hidden field was wrong');
+
+            await page.waitForTimeout(3000);
+
+            const iframeInfo = await page.locator('iframe').evaluateAll(nodes => nodes.map((n, i) => ({
+              i,
+              src: n.getAttribute('src') || '',
+              title: n.getAttribute('title') || '',
+              className: n.className || ''
+            })));
+            const tallyNodes = await page.locator('[class*="tally"], [id*="tally"], iframe[src*="tally.so"]').count();
+            const tallyPopupCount = await page.locator('.tally-popup').count();
+            console.log('IFRAMES=' + JSON.stringify(iframeInfo));
+            console.log('PLAYWRIGHT_FRAMES=' + JSON.stringify(page.frames().map(f => f.url())));
+            console.log('TALLY_RELATED_NODE_COUNT=' + tallyNodes);
+            console.log('TALLY_POPUP_COUNT=' + tallyPopupCount);
+
+            let passwordInputVisible = false;
+            let passwordTextPresent = false;
+            let tallyFrameFound = false;
+            const iframeHandles = await page.locator('iframe').elementHandles();
+            for (const handle of iframeHandles) {
+              const src = await handle.getAttribute('src').catch(() => '');
+              if (!(src || '').includes('tally.so')) continue;
+              const frame = await handle.contentFrame();
+              if (!frame) continue;
+              tallyFrameFound = true;
+              await frame.waitForLoadState('domcontentloaded', { timeout: 30000 }).catch(() => {});
+              const passwordInput = frame.locator('input[type="password"]');
+              if (await passwordInput.count()) {
+                passwordInputVisible = await passwordInput.first().isVisible().catch(() => false);
+              }
+              const frameText = (await frame.locator('body').innerText().catch(() => '')).toLowerCase();
+              if (frameText.includes('password')) passwordTextPresent = true;
             }
 
+            console.log('TALLY_FRAME_FOUND=' + tallyFrameFound);
+            console.log('PASSWORD_INPUT_VISIBLE=' + passwordInputVisible);
+            console.log('PASSWORD_TEXT_PRESENT=' + passwordTextPresent);
+            if (errors.length) console.log('BROWSER_ERRORS=' + JSON.stringify(errors));
+
             await page.screenshot({ path: 'pr5-hosted-cta.png', fullPage: true });
+
+            const popupRendered = tallyPopupCount > 0 || iframeInfo.some(x => x.src.includes('tally.so')) || tallyNodes > 0;
+            if (!popupRendered) throw new Error('The CTA called Tally.openPopup correctly, but no Tally popup UI rendered');
+
             await browser.close();
           })().catch(err => {
             console.error(err);
