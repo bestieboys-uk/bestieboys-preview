@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#050505">
+  <meta name="description" content="BestieBoys Tour Issue — art-directed custom pet apparel inspired by real music merch.">
+  <title>Tour Issue — BestieBoys</title>
+  <link rel="stylesheet" href="bestieboys-preview.css">
+  <link rel="stylesheet" href="bestieboys-preview-v2.css">
+  <link rel="stylesheet" href="bestieboys-preview-v3.css">
+  <link rel="stylesheet" href="product.css">
+  <script src="https://tally.so/widgets/embed.js"></script>
+</head>
+<body class="product-page">
+  <div class="noise" aria-hidden="true"></div>
+  <div class="announcement">PROTOTYPE / DROP 001 <i>•</i> DEVELOPMENT BUILD <i>•</i> NOT YET FOR SALE</div>
+
+  <header class="header product-header">
+    <a class="brand" href="index.html">BESTIEBOYS<span>™</span></a>
+    <nav><a href="index.html#styles">Drop 001</a><a href="#personalise">Personalise</a><a href="#details">Details</a><a href="index.html#process">Process</a></nav>
+    <a class="header-cta" href="index.html">Back <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main class="product-main">
+    <section class="product-hero shell">
+      <div class="product-gallery reveal">
+        <div class="gallery-main"><img src="assets/gerrard-tour-issue.webp" alt="Gerrard Tour Issue BestieBoys T-shirt prototype"></div>
+        <div class="gallery-strip">
+          <figure class="active"><img src="assets/gerrard-tour-issue.webp" alt="Finished Tour Issue artwork"><figcaption>FINISHED PIECE</figcaption></figure>
+          <figure><img src="assets/gerrard-source.webp" alt="Original Gerrard source photograph"><figcaption>SOURCE PHOTO</figcaption></figure>
+        </div>
+      </div>
+
+      <aside class="product-buy reveal">
+        <p class="eyebrow"><b></b>001 / TOUR ISSUE</p>
+        <h1>YOUR PET.<br><em>HEADLINER.</em></h1>
+        <p class="product-lead">A custom pet T-shirt built with the visual language of real tour merch — not a photo dropped onto a blank.</p>
+        <div class="product-status"><span>PROTOTYPE</span><span>MADE TO ORDER</span><span>ART DIRECTED</span></div>
+        <div class="price-placeholder"><small>LAUNCH PRICE</small><strong>TO BE LOCKED AFTER UK CHECKOUT QA</strong></div>
+        <a class="button primary product-cta" id="create-bestie" href="#create-bestie">Create your Bestie <span>→</span></a>
+        <div class="microcopy">Private Phase B test. Upload your pet photos and brief. No payment or production order is created.</div>
+      </aside>
+    </section>
+
+    <section class="product-story shell">
+      <div class="kicker reveal">WHY IT EXISTS</div>
+      <div class="story-grid">
+        <h2 class="reveal">NOT A PET TEE.<br><em>A TEE WITH YOUR PET IN IT.</em></h2>
+        <div class="copy reveal"><p>The difference is the art direction. Tour Issue starts with the kind of T-shirt you would actually wear, then builds your pet into that visual language.</p><p>We use the source photo for likeness and personality. The finished composition is created for the garment, not pasted onto it.</p></div>
+      </div>
+    </section>
+
+    <section class="personalise shell" id="personalise">
+      <div class="section-head reveal"><div><div class="kicker">PERSONALISATION</div><h2>FOUR THINGS IN.<br>ONE PIECE OUT.</h2></div><p>The private Phase B intake is now live for testing. Upload your pet photos, add the details that matter and send the brief for manual review.</p></div>
+      <div class="personalise-grid reveal">
+        <div class="input-card"><span>01</span><small>PHOTO</small><strong>Your clearest pet photo</strong><p>Phone photo, old print or imperfect source material is fine. We work from what matters.</p></div>
+        <div class="input-card"><span>02</span><small>NAME</small><strong>Exactly as you want it shown</strong><p>The pet name becomes part of the visual hierarchy rather than an afterthought.</p></div>
+        <div class="input-card"><span>03</span><small>DETAILS</small><strong>Dates, nickname or line</strong><p>Optional details are used only when they improve the piece.</p></div>
+        <div class="input-card"><span>04</span><small>DIRECTION</small><strong>Choose the merch language</strong><p>Tour / Heavy / Punk directions will be offered as genuinely different systems, not recolours.</p></div>
+      </div>
+    </section>
+
+    <section class="product-details shell" id="details">
+      <div class="details-grid">
+        <div class="details-copy reveal"><div class="kicker">PRODUCT STANDARD</div><h2>THE BLANK<br>MATTERS TOO.</h2><p>Launch garments will be selected by print quality, cut, weight, UK fulfilment and margin. A premium artwork does not belong on a cheap-feeling promo shirt.</p></div>
+        <div class="spec-list reveal">
+          <div><span>PRINT</span><strong>Large-format front graphic</strong></div>
+          <div><span>COLOUR</span><strong>Black / washed black priority</strong></div>
+          <div><span>FIT</span><strong>Unisex, with premium heavyweight option planned</strong></div>
+          <div><span>FULFILMENT</span><strong>UK-first wherever commercially viable</strong></div>
+          <div><span>QA</span><strong>Manual artwork review before production</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-rule shell">
+      <div class="rule-panel reveal"><p>WEARABILITY TEST</p><blockquote>If the pet disappeared from the brief, the shirt should still look like <em>real merch.</em></blockquote></div>
+    </section>
+  </main>
+
+  <footer class="footer shell"><a class="brand" href="index.html">BESTIEBOYS<span>™</span></a><p>Custom art for very good animals.</p><span>DROP 001 / DEVELOPMENT</span></footer>
+  <script src="bestieboys-preview.js"></script>
+  <script>
+    (function () {
+      var trigger = document.getElementById('create-bestie');
+      if (!trigger) return;
+
+      trigger.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        if (!window.Tally || typeof window.Tally.openPopup !== 'function') {
+          window.alert('The private intake could not load. Please try again in a moment.');
+          return;
+        }
+
+        window.Tally.openPopup('pbY28J', {
+          layout: 'modal',
+          width: 720,
+          overlay: true,
+          hiddenFields: {
+            origin: 'bestieboys-tour-issue',
+            build_version: 'BB-CYB-PHASE-B-01'
+          }
+        });
+      });
+    }());
+  </script>
+</body>
+</html>
