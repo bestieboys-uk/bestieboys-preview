@@ -1,0 +1,19 @@
+Options -Indexes
+
+RewriteEngine On
+
+# Force HTTPS on the cPanel-hosted site.
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# Preserve the clean routes used by the current live BestieBoys site.
+RewriteRule ^styles/?$ styles.html [L]
+RewriteRule ^merch/?$ merch.html [L]
+RewriteRule ^arcade/?$ arcade.html [L]
+
+# cPanel/PHP replacement for the current same-origin enquiry endpoint.
+RewriteRule ^api/custom-enquiries/?$ api/custom-enquiries.php [L,QSA]
+
+<IfModule mod_env.c>
+  SetEnv BESTIEBOYS_DATA_DIR /data/bestieboys/bestieboys-private
+</IfModule>
