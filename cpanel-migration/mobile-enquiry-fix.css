@@ -1,0 +1,9 @@
+/* BestieBoys mobile enquiry repair
+   Verified non-persistently against the live site at 390x844 on 2026-09-25.
+   The mobile layout already sets top/left to 0; Tailwind's individual translate
+   property remained at -50% -50%, shifting the whole dialog off-screen. */
+@media (max-width: 640px) {
+  .enquiry-dialog {
+    translate: none !important;
+  }
+}
