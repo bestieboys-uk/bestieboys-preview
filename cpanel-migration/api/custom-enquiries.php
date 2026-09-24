@@ -28,7 +28,7 @@ if ($method !== 'POST') {
 
 function text_field(string $name, int $maxLength): string {
     $value = trim((string)($_POST[$name] ?? ''));
-    if (mb_strlen($value) > $maxLength) {
+    if (strlen($value) > $maxLength) {
         respond(422, ['error' => 'One or more fields are too long.']);
     }
     return $value;
@@ -116,8 +116,8 @@ if (!move_uploaded_file($tmp, $photoPath)) {
 @chmod($photoPath, 0600);
 
 $originalName = basename((string)($photo['name'] ?? 'pet-photo'));
-if (mb_strlen($originalName) > 255) {
-    $originalName = mb_substr($originalName, 0, 255);
+if (strlen($originalName) > 255) {
+    $originalName = substr($originalName, 0, 255);
 }
 
 $record = [
