@@ -1,5 +1,5 @@
 /* BESTIEBOYS: LAST WALK — restrained SFX over The Corpse soundtrack */
-import { startSoundtrack, setSoundtrackMuted } from './soundtrack.js?v=1.2.1';
+import { startSoundtrack, setSoundtrackMuted } from './soundtrack.js?v=1.2.2';
 let ctx = null, master = null, muted = false;
 
 export function initAudio() {

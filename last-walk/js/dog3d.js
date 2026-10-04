@@ -45,11 +45,11 @@ const BREEDS={
 };
 const HERO_FORMS={
   gerrard:{length:1.28,width:.55,height:1.02,head:.58,muzzle:.52,leg:.60,ear:'drop',tail:.48,coat:'#c9a77c',chest:'#e5cda9'},
-  onion:{length:1.52,width:.32,height:1.36,head:.34,muzzle:.96,leg:1.02,ear:'rose',tail:1.06,coat:'#27282c',chest:'#f2eee8'},
+  onion:{length:1.52,width:.32,height:1.36,head:.34,muzzle:.96,leg:1.02,ear:'rose',tail:1.06,coat:'#27282c',chest:'#f2eee8',paws:'#f2eee8'},
   sylvester:{species:'cat',length:1.18,width:.39,height:.82,head:.41,muzzle:.34,leg:.55,ear:'upright',tail:1.34,coat:'#947b65',chest:'#c7ad8b'},
   vega:{length:1.62,width:.49,height:1.34,head:.47,muzzle:.78,leg:.85,ear:'upright',tail:1.22,coat:'#29292c',chest:'#d8d0c0',saddle:'#111214'},
   ben:{length:1.06,width:.46,height:.86,head:.47,muzzle:.54,leg:.52,ear:'drop',tail:.82,coat:'#d1c1a2',chest:'#eee3cf'},
-  kysa:{species:'cat',length:1.15,width:.37,height:.84,head:.42,muzzle:.31,leg:.58,ear:'upright',tail:1.38,coat:'#1d1d22',chest:'#f0efec'},
+  kysa:{species:'cat',length:1.15,width:.37,height:.84,head:.42,muzzle:.31,leg:.58,ear:'upright',tail:1.38,coat:'#1d1d22',chest:'#f0efec',paws:'#f0efec'},
 };
 const HERO_COATS={gerrard:'#c9a77c',onion:'#ba8752',sylvester:'#8c8075',vega:'#948577',ben:'#7b7168',kysa:'#ae7e64'};
 const loaders=new THREE.TextureLoader();const faceTextures=new Map();
@@ -59,7 +59,7 @@ function mesh(g,m,parent,cast=true){const o=new THREE.Mesh(g,m);o.castShadow=cas
 export function createDog(kind='hero',heroId='gerrard',scale=1,quality='medium') {
   const b=kind==='hero'?(HERO_FORMS[heroId]||BREEDS.hero):(BREEDS[kind]||BREEDS.hero), root=new THREE.Group();root.scale.setScalar(scale);
   const coat=makeMaterial(kind==='hero'?(b.coat||HERO_COATS[heroId]||HERO_COATS.gerrard):b.coat);
-  const light=makeMaterial(b.chest||'#cfb694'),dark=makeMaterial(b.mask||'#312d2d'),nose=makeMaterial(b.species==='cat'?'#c58f91':'#171b20',.35),eye=makeMaterial('#231916',.28),shine=makeMaterial('#efe1c7',.32),accent=makeMaterial(b.brow||'#ae774a');
+  const light=makeMaterial(b.chest||'#cfb694'),dark=makeMaterial(b.mask||'#312d2d'),paw=makeMaterial(b.paws||b.coat||'#cfb694'),nose=makeMaterial(b.species==='cat'?'#c58f91':'#171b20',.35),eye=makeMaterial('#231916',.28),shine=makeMaterial('#efe1c7',.32),accent=makeMaterial(b.brow||'#ae774a');
   const torso=new THREE.Group();root.add(torso);
   const w=b.width,L=b.length,h=b.height, leg=b.leg;
   mesh(longitudinal([
@@ -145,13 +145,13 @@ export function createDog(kind='hero',heroId='gerrard',scale=1,quality='medium')
       {x:0,y:-.17*leg,z:front?0:.07,rx:thick*.50,rz:thick*.51},
       {x:0,y:-.40*leg,z:front?.02:.13,rx:thick*.42,rz:thick*.45},
       {x:0,y:-.48*leg,z:front?.11:.25,rx:thick*.67,rz:thick*.74}
-    ],quality==='low'?7:10),b.chest&&kind==='rottweiler'?accent:coat,knee);
+    ],quality==='low'?7:10),b.paws?paw:(b.chest&&kind==='rottweiler'?accent:coat),knee);
     // Broad, low paw with forward toes; the last section sits on the bridge.
     mesh(vertical([
       {x:0,y:-.43*leg,z:front?.10:.22,rx:thick*.67,rz:thick*.75},
       {x:0,y:-.50*leg,z:front?.23:.32,rx:thick*.76,rz:thick*1.08},
       {x:0,y:-.53*leg,z:front?.24:.33,rx:thick*.74,rz:thick*1.08}
-    ],10),kind==='rottweiler'?accent:coat,knee);
+    ],10),b.paws?paw:(kind==='rottweiler'?accent:coat),knee);
     legs.push({piv,knee,front,side});
   }
   const tail=new THREE.Group();tail.position.set(0,leg+.72*w,-.65*L);torso.add(tail);
