@@ -1,5 +1,5 @@
 /* BESTIEBOYS: LAST WALK — offline shell cache */
-const CACHE = 'bestieboys-last-walk-3d-1.0.4';
+const CACHE = 'bestieboys-last-walk-3d-1.1.1';
 const ASSETS = [
   './',
   './index.html',
@@ -30,6 +30,12 @@ const ASSETS = [
   './assets/pets/portraits/vega.png',
   './assets/pets/portraits/ben.png',
   './assets/pets/portraits/kysa.png',
+  './assets/cards/gerrard.webp',
+  './assets/cards/onion.webp',
+  './assets/cards/sylvester.webp',
+  './assets/cards/vega.webp',
+  './assets/cards/ben.webp',
+  './assets/cards/kysa.webp',
 ];
 
 self.addEventListener('install', (e) => {

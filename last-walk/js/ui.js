@@ -192,9 +192,12 @@ export function initUI(handlers) {
         btn.className = 'char-card' + (selected ? ' selected' : '');
         btn.disabled = !unlocked;
         btn.innerHTML = `
-          <img class="char-portrait" src="assets/pets/portraits/${c.id}.png" alt="${c.name}" width="96" height="96" />
+          <span class="char-art-wrap">
+            <img class="char-portrait" src="assets/cards/${c.id}.webp" alt="${c.name} character artwork" width="180" height="220" />
+            <span class="char-number">${String(CHARACTERS.indexOf(c) + 1).padStart(2, '0')}</span>
+          </span>
           <strong>${c.name}</strong>
-          <span>${c.tagline}</span>
+          <span class="char-tagline">${c.tagline}</span>
         `;
         if (unlocked) {
           btn.addEventListener('click', () => { SFX.ui(); onSelect(c.id); });
@@ -208,7 +211,7 @@ export function initUI(handlers) {
       $('#menu-best').textContent = 'Best stage ' + (data.bestStage || 1);
       const ch = getCharacter(data.selectedCharacter);
       $('#menu-char').textContent = 'Playing as ' + ch.name;
-      $('#menu-pet-image').src = 'assets/pets/portraits/' + ch.id + '.png';
+      $('#menu-pet-image').src = 'assets/cards/' + ch.id + '.webp';
     },
   };
 }
