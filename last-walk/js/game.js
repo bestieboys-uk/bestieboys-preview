@@ -1,5 +1,5 @@
-import { createWorld } from './world3d.js';
-import { initUI } from './ui.js';
+import { createWorld } from './world3d.js?v=1.1.2';
+import { initUI } from './ui.js?v=1.1.2';
 import { load, save, resetAll } from './save.js';
 import { getCharacter } from './characters.js';
 import { initAudio, resumeAudio, SFX, setMuted } from './audio.js';

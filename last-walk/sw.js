@@ -1,20 +1,20 @@
 /* BESTIEBOYS: LAST WALK — offline shell cache */
-const CACHE = 'bestieboys-last-walk-3d-1.1.1';
+const CACHE = 'bestieboys-last-walk-3d-1.1.2';
 const ASSETS = [
   './',
   './index.html',
-  './css/style.css',
-  './js/game.js',
+  './css/style.css?v=1.1.2',
+  './js/game.js?v=1.1.2',
   './js/constants.js',
   './js/characters.js',
   './js/audio.js',
   './js/save.js',
-  './js/world3d.js',
+  './js/world3d.js?v=1.1.2',
   './js/dog3d.js',
   './js/vendor/three.module.js',
   './js/vendor/three.core.js',
   './js/upgrades.js',
-  './js/ui.js',
+  './js/ui.js?v=1.1.2',
   './manifest.webmanifest',
   './icons/icon-192.png',
   './icons/icon-512.png',
