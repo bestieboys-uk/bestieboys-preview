@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#2a9fd4" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="BESTIEBOYS LAST WALK" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="description" content="BESTIEBOYS: LAST WALK — a 3D bridge squad shooter for your phone." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>BESTIEBOYS: LAST WALK</title>
+</head>
+<body>
+  <canvas id="game" aria-label="BESTIEBOYS LAST WALK bridge shooter"></canvas>
+  <div id="damage-layer" aria-hidden="true"></div>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div class="hud-top safe-top">
+      <div class="bar-block">
+        <div class="bar hp-bar"><div id="hp-fill" class="fill"></div></div>
+        <div class="bar xp-bar"><div id="xp-fill" class="fill"></div></div>
+      </div>
+      <div class="hud-meta">
+        <span id="hud-char" class="hud-char">—</span>
+        <span id="hud-level">STAGE 1</span>
+        <span id="hud-time">0:00</span>
+        <span id="hud-kills">0 kills</span>
+      </div>
+      <button type="button" id="btn-pause" class="icon-btn" aria-label="Pause">⏸</button>
+    </div>
+    <div id="boss-hp-wrap" class="boss-hp-wrap hidden safe-top">
+      <div id="boss-hp-name" class="boss-hp-name">BOSS</div>
+      <div class="bar boss-bar"><div id="boss-hp-fill" class="fill"></div></div>
+    </div>
+  </div>
+
+  <div id="boss-banner" class="banner hidden" role="status"></div>
+  <div id="evolve-toast" class="banner evolve hidden" role="status"></div>
+
+  <!-- Main menu -->
+  <div id="screen-menu" class="screen active">
+    <div class="menu-inner safe-pad">
+      <p class="eyebrow">BESTIEBOYS</p>
+      <h1 class="title">LAST<br/>WALK</h1>
+      <p class="tagline">SURVIVE THE WALK.</p>
+      <div class="menu-stats">
+        <span id="menu-currency">0 SCRAPS</span>
+        <span id="menu-best">Best 0:00</span>
+      </div>
+      <p id="menu-char" class="menu-char">Playing as GERRARD</p>
+      <img id="menu-pet-image" class="menu-pet-image" src="assets/pets/portraits/gerrard.png" alt="Selected BestieBoys pet" />
+      <div class="menu-actions">
+        <button type="button" id="btn-play" class="btn primary">START RUN</button>
+        <button type="button" id="btn-chars" class="btn">CHARACTER SELECT</button>
+        <button type="button" id="btn-shop" class="btn">THE DISTRO</button>
+        <button type="button" id="btn-how" class="btn ghost">HOW TO PLAY</button>
+      </div>
+      <button type="button" id="btn-mute" class="icon-btn mute-fab" aria-label="Mute sound">🔊</button>
+    </div>
+  </div>
+
+  <!-- Character select -->
+  <div id="screen-chars" class="screen">
+    <div class="panel safe-pad chars-panel">
+      <h2>CHARACTER SELECT</h2>
+      <p class="hint">Pick your BestieBoy.</p>
+      <div id="char-grid" class="char-grid"></div>
+      <button type="button" id="btn-chars-back" class="btn primary">BACK</button>
+    </div>
+  </div>
+
+  <!-- How to play -->
+  <div id="screen-how" class="screen">
+    <div class="panel safe-pad">
+      <h2>HOW TO PLAY</h2>
+      <ul class="how-list">
+        <li><strong>Drag left or right</strong> to steer the squad. Forward travel is automatic.</li>
+        <li>Your pets <strong>fire upward automatically</strong>.</li>
+        <li>Cross cyan <strong>+1, multiplier and upgrade gates</strong> to grow stronger.</li>
+        <li>Shoot through <strong>HP blockers</strong> and breed enemy waves.</li>
+        <li>Beat the stage bosses in order: <strong>Rottweiler, Pit Bull, XL Bully</strong>.</li>
+        <li>Earn <strong>SCRAPS</strong> for permanent Distro upgrades.</li>
+      </ul>
+      <button type="button" id="btn-how-back" class="btn primary">BACK</button>
+    </div>
+  </div>
+
+  <!-- THE DISTRO -->
+  <div id="screen-shop" class="screen">
+    <div class="panel safe-pad shop-panel">
+      <h2>THE DISTRO</h2>
+      <p class="shop-balance">Balance: <strong id="shop-currency">0</strong> SCRAPS</p>
+      <div id="shop-list" class="shop-list"></div>
+      <button type="button" id="btn-clear-save" class="btn danger ghost">CLEAR SAVE DATA</button>
+      <button type="button" id="btn-shop-back" class="btn primary">BACK</button>
+    </div>
+  </div>
+
+  <!-- Level up -->
+  <div id="screen-level" class="screen modal">
+    <div class="panel level-panel">
+      <h2>LEVEL UP</h2>
+      <p class="hint">Choose an upgrade</p>
+      <div id="level-cards" class="level-cards"></div>
+    </div>
+  </div>
+
+  <!-- Pause -->
+  <div id="screen-pause" class="screen modal">
+    <div class="panel">
+      <h2>PAUSED</h2>
+      <button type="button" id="btn-resume" class="btn primary">RESUME</button>
+      <button type="button" id="btn-quit" class="btn ghost">QUIT TO MENU</button>
+    </div>
+  </div>
+
+  <!-- Death -->
+  <div id="screen-death" class="screen modal">
+    <div class="panel death-panel">
+      <h2>WALK FAILED</h2>
+      <div class="summary">
+        <div><span>Time</span><strong id="death-time">0:00</strong></div>
+        <div><span>Kills</span><strong id="death-kills">0</strong></div>
+        <div><span>Level</span><strong id="death-level">1</strong></div>
+        <div><span>Score</span><strong id="death-score">0</strong></div>
+        <div class="earn"><span>Earned</span><strong id="death-currency">+0</strong></div>
+        <div><span>Longest walk</span><strong id="death-best">0:00</strong></div>
+      </div>
+      <button type="button" id="btn-retry" class="btn primary">RUN IT AGAIN</button>
+      <button type="button" id="btn-death-chars" class="btn">CHARACTER SELECT</button>
+      <button type="button" id="btn-death-shop" class="btn">THE DISTRO</button>
+      <button type="button" id="btn-death-menu" class="btn ghost">MENU</button>
+    </div>
+  </div>
+
+  <!-- Victory -->
+  <div id="screen-victory" class="screen modal">
+    <div class="panel death-panel victory-panel">
+      <h2>LEVEL COMPLETE</h2>
+      <p class="victory-tag" id="win-boss">BOSS DEFEATED.</p>
+      <div class="summary">
+        <div><span>Time</span><strong id="win-time">0:00</strong></div>
+        <div><span>Kills</span><strong id="win-kills">0</strong></div>
+        <div><span>Squad</span><strong id="win-level">1</strong></div>
+        <div><span>Score</span><strong id="win-score">0</strong></div>
+        <div class="earn"><span>Earned</span><strong id="win-currency">+0</strong></div>
+        <div><span>Best stage</span><strong id="win-best">1</strong></div>
+      </div>
+      <button type="button" id="btn-next" class="btn primary">NEXT LEVEL</button>
+      <button type="button" id="btn-win-retry" class="btn">RETRY</button>
+      <button type="button" id="btn-win-chars" class="btn">CHARACTER SELECT</button>
+      <button type="button" id="btn-win-shop" class="btn">THE DISTRO</button>
+      <button type="button" id="btn-win-menu" class="btn ghost">MENU</button>
+    </div>
+  </div>
+
+  <script type="module" src="js/game.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
