@@ -628,3 +628,5 @@ body::after {
   .char-card { min-height:218px; }
   .char-art-wrap { height:154px; }
 }
+.soundtrack-credit { display:inline-block; margin:3px 0 11px; color:#a9a29a; font:700 9px/1.2 Arial,sans-serif; letter-spacing:.16em; text-decoration:none; border-bottom:1px solid rgba(182,38,45,.7); }
+.soundtrack-credit:active { color:#e8dfd2; }

@@ -1,4 +1,5 @@
-/* BESTIEBOYS: LAST WALK — Web Audio SFX */
+/* BESTIEBOYS: LAST WALK — restrained SFX over The Corpse soundtrack */
+import { startSoundtrack, setSoundtrackMuted } from './soundtrack.js?v=1.2.1';
 let ctx = null, master = null, muted = false;
 
 export function initAudio() {
@@ -7,16 +8,17 @@ export function initAudio() {
   if (!AC) return;
   ctx = new AC();
   master = ctx.createGain();
-  master.gain.value = 0.35;
+  master.gain.value = 0.14;
   master.connect(ctx.destination);
 }
 
 export function resumeAudio() {
   initAudio();
   if (ctx && ctx.state === 'suspended') ctx.resume();
+  startSoundtrack();
 }
 
-export function setMuted(m) { muted = m; }
+export function setMuted(m) { muted = m; setSoundtrackMuted(m); }
 export function isMuted() { return muted; }
 
 function tone(freq, dur, type = 'sine', vol = 0.3, slide = 0) {
@@ -50,20 +52,20 @@ function noise(dur, vol = 0.15, hp = 800) {
 }
 
 export const SFX = {
-  shoot() { tone(660, 0.06, 'square', 0.08, -200); },
-  hit() { tone(180, 0.08, 'triangle', 0.2, -80); noise(0.04, 0.08, 400); },
-  crit() { tone(880, 0.1, 'sawtooth', 0.15, 200); tone(1320, 0.08, 'sine', 0.1); },
-  kill() { tone(320, 0.12, 'triangle', 0.18, -250); },
-  xp() { tone(920, 0.05, 'sine', 0.1, 400); },
-  level() { tone(440, 0.1, 'sine', 0.2); setTimeout(() => tone(660, 0.12, 'sine', 0.2), 80); setTimeout(() => tone(880, 0.18, 'sine', 0.22), 160); },
-  hurt() { tone(120, 0.2, 'sawtooth', 0.25, -60); noise(0.15, 0.2, 200); },
-  nova() { tone(200, 0.25, 'sine', 0.25, -100); noise(0.2, 0.15, 100); },
-  lightning() { noise(0.08, 0.2, 1500); tone(1400, 0.05, 'square', 0.1); },
-  missile() { tone(280, 0.15, 'sawtooth', 0.12, 180); },
-  beam() { tone(520, 0.04, 'sine', 0.06); },
-  boss() { tone(80, 0.4, 'sawtooth', 0.3, -20); tone(160, 0.35, 'triangle', 0.2); },
-  evolve() { tone(523, 0.15, 'sine', 0.25); setTimeout(() => tone(784, 0.2, 'sine', 0.25), 100); setTimeout(() => tone(1046, 0.3, 'sine', 0.28), 220); },
-  buy() { tone(600, 0.08, 'sine', 0.15); tone(900, 0.1, 'sine', 0.12); },
-  ui() { tone(500, 0.04, 'sine', 0.08); },
-  death() { tone(200, 0.5, 'sawtooth', 0.3, -150); noise(0.4, 0.25, 80); },
+  shoot() {},
+  hit() {},
+  crit() { tone(760, 0.06, 'triangle', 0.045, 100); },
+  kill() { tone(180, 0.08, 'triangle', 0.055, -60); },
+  xp() {},
+  level() { tone(330, 0.08, 'sine', 0.07); setTimeout(() => tone(495, 0.10, 'sine', 0.065), 80); },
+  hurt() { tone(92, 0.13, 'triangle', 0.09, -32); },
+  nova() { tone(160, 0.16, 'sine', 0.08, -55); },
+  lightning() { noise(0.05, 0.04, 1200); },
+  missile() { tone(220, 0.09, 'triangle', 0.045, 80); },
+  beam() {},
+  boss() { tone(72, 0.28, 'triangle', 0.10, -12); },
+  evolve() { tone(392, 0.08, 'sine', 0.06); setTimeout(() => tone(587, 0.12, 'sine', 0.055), 90); },
+  buy() { tone(440, 0.06, 'sine', 0.06); tone(660, 0.07, 'sine', 0.05); },
+  ui() { tone(360, 0.025, 'sine', 0.025); },
+  death() { tone(110, 0.32, 'triangle', 0.10, -60); },
 };

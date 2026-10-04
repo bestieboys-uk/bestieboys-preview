@@ -43,15 +43,23 @@ const BREEDS={
   pitbull:{length:1.43,width:.60,height:1.22,head:.63,muzzle:.55,leg:.73,ear:'rose',tail:.9,coat:'#645d5b',chest:'#f4ebe1'},
   xlbully:{length:1.78,width:.84,height:1.38,head:.82,muzzle:.48,leg:.71,ear:'rose',tail:.72,coat:'#6b6a70',chest:'#eee9e5'},
 };
+const HERO_FORMS={
+  gerrard:{length:1.28,width:.55,height:1.02,head:.58,muzzle:.52,leg:.60,ear:'drop',tail:.48,coat:'#c9a77c',chest:'#e5cda9'},
+  onion:{length:1.52,width:.32,height:1.36,head:.34,muzzle:.96,leg:1.02,ear:'rose',tail:1.06,coat:'#27282c',chest:'#f2eee8'},
+  sylvester:{species:'cat',length:1.18,width:.39,height:.82,head:.41,muzzle:.34,leg:.55,ear:'upright',tail:1.34,coat:'#947b65',chest:'#c7ad8b'},
+  vega:{length:1.62,width:.49,height:1.34,head:.47,muzzle:.78,leg:.85,ear:'upright',tail:1.22,coat:'#29292c',chest:'#d8d0c0',saddle:'#111214'},
+  ben:{length:1.06,width:.46,height:.86,head:.47,muzzle:.54,leg:.52,ear:'drop',tail:.82,coat:'#d1c1a2',chest:'#eee3cf'},
+  kysa:{species:'cat',length:1.15,width:.37,height:.84,head:.42,muzzle:.31,leg:.58,ear:'upright',tail:1.38,coat:'#1d1d22',chest:'#f0efec'},
+};
 const HERO_COATS={gerrard:'#c9a77c',onion:'#ba8752',sylvester:'#8c8075',vega:'#948577',ben:'#7b7168',kysa:'#ae7e64'};
 const loaders=new THREE.TextureLoader();const faceTextures=new Map();
-function faceTexture(id){if(!faceTextures.has(id)){const t=loaders.load(`assets/pets/${id}.png`);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=2;faceTextures.set(id,t);}return faceTextures.get(id);}
+function faceTexture(id){if(!faceTextures.has(id)){const t=loaders.load(`assets/pets/faces/${id}.webp`);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=4;faceTextures.set(id,t);}return faceTextures.get(id);}
 function mesh(g,m,parent,cast=true){const o=new THREE.Mesh(g,m);o.castShadow=cast;o.receiveShadow=true;parent.add(o);return o;}
 
 export function createDog(kind='hero',heroId='gerrard',scale=1,quality='medium') {
-  const b=BREEDS[kind]||BREEDS.hero, root=new THREE.Group();root.scale.setScalar(scale);
-  const coat=makeMaterial(kind==='hero'?HERO_COATS[heroId]||HERO_COATS.gerrard:b.coat);
-  const light=makeMaterial(b.chest||'#cfb694'),dark=makeMaterial(b.mask||'#312d2d'),nose=makeMaterial('#171b20',.35),eye=makeMaterial('#231916',.28),shine=makeMaterial('#efe1c7',.32),accent=makeMaterial(b.brow||'#ae774a');
+  const b=kind==='hero'?(HERO_FORMS[heroId]||BREEDS.hero):(BREEDS[kind]||BREEDS.hero), root=new THREE.Group();root.scale.setScalar(scale);
+  const coat=makeMaterial(kind==='hero'?(b.coat||HERO_COATS[heroId]||HERO_COATS.gerrard):b.coat);
+  const light=makeMaterial(b.chest||'#cfb694'),dark=makeMaterial(b.mask||'#312d2d'),nose=makeMaterial(b.species==='cat'?'#c58f91':'#171b20',.35),eye=makeMaterial('#231916',.28),shine=makeMaterial('#efe1c7',.32),accent=makeMaterial(b.brow||'#ae774a');
   const torso=new THREE.Group();root.add(torso);
   const w=b.width,L=b.length,h=b.height, leg=b.leg;
   mesh(longitudinal([
@@ -115,6 +123,12 @@ export function createDog(kind='hero',heroId='gerrard',scale=1,quality='medium')
     const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(verts,3));g.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));g.setIndex(ix);g.computeVertexNormals();
     const f=mesh(g,new THREE.MeshBasicMaterial({map:tex,transparent:true,alphaTest:.12,side:THREE.DoubleSide,depthWrite:false}),head,false);f.renderOrder=2;
   }
+  if(b.species==='cat'&&quality!=='low'){
+    const points=[];
+    for(const side of [-1,1]) for(const dy of [-.10,0,.10]) points.push(side*.20*hw,-.18*hw+dy*hw,.73,side*1.18*hw,-.16*hw+dy*hw,.91);
+    const whiskerGeo=new THREE.BufferGeometry();whiskerGeo.setAttribute('position',new THREE.Float32BufferAttribute(points,3));
+    const whiskers=new THREE.LineSegments(whiskerGeo,new THREE.LineBasicMaterial({color:'#dfd8ca',transparent:true,opacity:.72}));whiskers.renderOrder=3;head.add(whiskers);
+  }
   const legs=[];
   for(const front of [true,false])for(const side of [-1,1]){
     const piv=new THREE.Group();piv.position.set(side*w*(front?.66:.58),leg+.07*w,front?.54*L:-.47*L);torso.add(piv);
@@ -147,7 +161,7 @@ export function createDog(kind='hero',heroId='gerrard',scale=1,quality='medium')
     {x:0,y:.27*b.tail,z:-.48*b.tail,rx:.09*w,ry:.08*w},
     {x:0,y:.38*b.tail,z:-.67*b.tail,rx:.035*w,ry:.03*w}
   ],9),coat,tail);
-  const shadow=new THREE.Mesh(new THREE.PlaneGeometry(w*2.5,L*2.1),new THREE.MeshBasicMaterial({color:'#132a39',transparent:true,opacity:.18,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=.018;root.add(shadow);
+  const shadow=new THREE.Mesh(new THREE.PlaneGeometry(w*2.5,L*2.1),new THREE.MeshBasicMaterial({color:'#050505',transparent:true,opacity:.24,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=.018;root.add(shadow);
   root.userData={kind,head,torso,legs,tail,scale,baseY:0,phase:Math.random()*6.28};
   return root;
 }
