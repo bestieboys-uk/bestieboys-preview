@@ -52,8 +52,9 @@ const HERO_FORMS={
   kysa:{species:'cat',length:1.25,width:.40,height:.98,head:.46,muzzle:.31,leg:.65,ear:'upright',tail:1.46,coat:'#17181d',chest:'#f0efec',paws:'#f0efec',saddle:'#f0efec',tailTip:'#f0efec'},
 };
 const HERO_COATS={gerrard:'#c9a77c',onion:'#ba8752',sylvester:'#8c8075',vega:'#948577',ben:'#7b7168',kysa:'#ae7e64'};
-const loaders=new THREE.TextureLoader();const faceTextures=new Map();
+const loaders=new THREE.TextureLoader();const faceTextures=new Map(),petTextures=new Map();
 function faceTexture(id){if(!faceTextures.has(id)){const t=loaders.load(`assets/pets/faces/${id}.webp`);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=4;faceTextures.set(id,t);}return faceTextures.get(id);}
+function petTexture(id){if(!petTextures.has(id)){const t=loaders.load(`assets/pets/${id}.png`);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=4;petTextures.set(id,t);}return petTextures.get(id);}
 function mesh(g,m,parent,cast=true){const o=new THREE.Mesh(g,m);o.castShadow=cast;o.receiveShadow=true;parent.add(o);return o;}
 
 export function createDog(kind='hero',heroId='gerrard',scale=1,quality='medium') {
@@ -129,6 +130,15 @@ export function createDog(kind='hero',heroId='gerrard',scale=1,quality='medium')
     const whiskerGeo=new THREE.BufferGeometry();whiskerGeo.setAttribute('position',new THREE.Float32BufferAttribute(points,3));
     const whiskers=new THREE.LineSegments(whiskerGeo,new THREE.LineBasicMaterial({color:'#dfd8ca',transparent:true,opacity:.72}));whiskers.renderOrder=3;head.add(whiskers);
   }
+  // Keep the approved animal visible from the chase camera. The transparent
+  // cutout rides with the quadruped body, leaving the animated legs and shadow
+  // visible instead of turning the character into a rectangular portrait card.
+  let likeness=null;
+  if(kind==='hero'&&quality!=='low'){
+    const size={gerrard:[1.38,1.48],onion:[1.28,1.62],sylvester:[1.30,1.42],vega:[1.34,1.52],ben:[1.26,1.38],kysa:[1.28,1.43]}[heroId]||[1.32,1.46];
+    likeness=new THREE.Sprite(new THREE.SpriteMaterial({map:petTexture(heroId),transparent:true,alphaTest:.10,depthWrite:false,toneMapped:false}));
+    likeness.position.set(0,leg+.54*w,-.03*L);likeness.scale.set(size[0],size[1],1);likeness.renderOrder=4;root.add(likeness);
+  }
   const legs=[];
   for(const front of [true,false])for(const side of [-1,1]){
     const piv=new THREE.Group();piv.position.set(side*w*(front?.66:.58),leg+.07*w,front?.54*L:-.47*L);torso.add(piv);
@@ -166,17 +176,18 @@ export function createDog(kind='hero',heroId='gerrard',scale=1,quality='medium')
     {x:0,y:.38*b.tail,z:-.67*b.tail,rx:.035*w,ry:.03*w}
   ],8),tip,tail);
   const shadow=new THREE.Mesh(new THREE.PlaneGeometry(w*2.5,L*2.1),new THREE.MeshBasicMaterial({color:'#050505',transparent:true,opacity:.24,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=.018;root.add(shadow);
-  root.userData={kind,head,torso,legs,tail,scale,baseY:0,phase:Math.random()*6.28};
+  root.userData={kind,head,torso,legs,tail,likeness,likenessY:likeness?.position.y||0,scale,baseY:0,phase:Math.random()*6.28};
   return root;
 }
 
 export function animateDog(dog,t,speed=1,action='run') {
-  const {head,torso,legs,tail,phase}=dog.userData;
+  const {head,torso,legs,tail,likeness,likenessY,phase}=dog.userData;
   const s=t*11*speed+phase,run=action==='run'?1:action==='charge'?1.45:.22;
   torso.position.y=Math.abs(Math.sin(s))*0.035*run;
   torso.rotation.z=Math.sin(s*.5)*.012*run;
   head.rotation.x=Math.sin(s+1)*.035*run;
   tail.rotation.y=Math.sin(s*.7)*.20;
+  if(likeness){likeness.position.y=likenessY+Math.abs(Math.sin(s))*.025*run;likeness.material.rotation=Math.sin(s*.5)*.012*run;}
   for(const q of legs){const offset=q.front ? (q.side<0?0:Math.PI):(q.side<0?Math.PI:0);q.piv.rotation.x=Math.sin(s+offset)*.32*run;q.knee.rotation.x=Math.max(0,Math.sin(s+offset+1))*.32*run;}
   if(action==='hit')torso.rotation.z=Math.sin(t*30)*.08;
   if(action==='death'){dog.rotation.z=Math.min(1.15,dog.rotation.z+.06);dog.position.y=-.1;}

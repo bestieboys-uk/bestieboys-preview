@@ -1,5 +1,5 @@
 import * as THREE from './vendor/three.module.js';
-import {createDog,animateDog} from './dog3d.js?v=1.3.1';
+import {createDog,animateDog} from './dog3d.js?v=1.4.3';
 
 const C={road:'#292727',rail:'#171616',cyan:'#b6262d',ink:'#090909'};
 function mat(color,roughness=.8,metalness=0){return new THREE.MeshStandardMaterial({color,roughness,metalness});}
@@ -36,7 +36,11 @@ export function createWorld(canvas){
   for(const z of [75,120]){const span=new THREE.Mesh(new THREE.BoxGeometry(31,.45,.45),darkM);span.position.set(0,13,z);scene.add(span);for(const side of [-1,1]){const p=new THREE.Mesh(new THREE.BoxGeometry(.5,14,.5),darkM);p.position.set(side*11,6,z);scene.add(p);}}
   let heroId='gerrard',leader=null,near=[],army=null,armyCount=1,armyX=0,entities=[],bullets=[],effects=[],rings=[],time=0;
   const enemyShapes=new Map(),enemyMaterial=new THREE.MeshStandardMaterial({vertexColors:true,roughness:.88,metalness:0,side:THREE.DoubleSide});
-  const dummy=new THREE.Object3D(),bulletGeo=new THREE.BufferGeometry(),maxBullet=360,bulletPos=new Float32Array(maxBullet*18);bulletGeo.setAttribute('position',new THREE.BufferAttribute(bulletPos,3).setUsage(THREE.DynamicDrawUsage));bulletGeo.setDrawRange(0,0);const bulletMesh=new THREE.Mesh(bulletGeo,new THREE.MeshBasicMaterial({color:'#f0e5d5',transparent:true,opacity:.92,side:THREE.DoubleSide,depthWrite:false}));bulletMesh.frustumCulled=false;scene.add(bulletMesh);
+  const dummy=new THREE.Object3D(),bulletGeo=new THREE.BufferGeometry(),bulletGlowGeo=new THREE.BufferGeometry(),maxBullet=360,bulletPos=new Float32Array(maxBullet*18),bulletGlowPos=new Float32Array(maxBullet*18);
+  bulletGeo.setAttribute('position',new THREE.BufferAttribute(bulletPos,3).setUsage(THREE.DynamicDrawUsage));bulletGlowGeo.setAttribute('position',new THREE.BufferAttribute(bulletGlowPos,3).setUsage(THREE.DynamicDrawUsage));bulletGeo.setDrawRange(0,0);bulletGlowGeo.setDrawRange(0,0);
+  const bulletMesh=new THREE.Mesh(bulletGeo,new THREE.MeshBasicMaterial({color:'#fff0cf',transparent:true,opacity:1,side:THREE.DoubleSide,depthWrite:false,blending:THREE.AdditiveBlending}));
+  const bulletGlowMesh=new THREE.Mesh(bulletGlowGeo,new THREE.MeshBasicMaterial({color:'#d4282f',transparent:true,opacity:.38,side:THREE.DoubleSide,depthWrite:false,blending:THREE.AdditiveBlending}));
+  bulletMesh.frustumCulled=false;bulletGlowMesh.frustumCulled=false;bulletMesh.renderOrder=5;bulletGlowMesh.renderOrder=4;scene.add(bulletGlowMesh,bulletMesh);
   const burstGeo=new THREE.BufferGeometry(),burstPos=new Float32Array(300*3),burstColor=new Float32Array(300*3);burstGeo.setAttribute('position',new THREE.BufferAttribute(burstPos,3).setUsage(THREE.DynamicDrawUsage));burstGeo.setAttribute('color',new THREE.BufferAttribute(burstColor,3).setUsage(THREE.DynamicDrawUsage));const burstPoints=new THREE.Points(burstGeo,new THREE.PointsMaterial({vertexColors:true,size:.16,transparent:true,opacity:.85,depthWrite:false}));burstPoints.frustumCulled=false;scene.add(burstPoints);
   function clear(){for(const e of entities)scene.remove(e.mesh);entities=[];effects=[];bullets=[];for(const r of rings){scene.remove(r.mesh);r.mesh.geometry.dispose();r.mesh.material.dispose();}rings=[];if(leader)scene.remove(leader);for(const d of near)scene.remove(d);near=[];if(army)scene.remove(army);army=null;}
   function reset(id){clear();heroId=id;leader=createDog('hero',id,1.05,'high');leader.castShadow=true;scene.add(leader);for(let i=0;i<7;i++){const d=createDog('hero',id,.84,'medium');d.traverse(o=>{if(o.isMesh)o.castShadow=false});near.push(d);scene.add(d);}army=new THREE.InstancedMesh(mergeDogGeometry('hero',id),new THREE.MeshStandardMaterial({vertexColors:true,roughness:.9,metalness:0,side:THREE.DoubleSide}),100);army.instanceMatrix.setUsage(THREE.DynamicDrawUsage);army.count=0;army.castShadow=false;army.frustumCulled=false;scene.add(army);armyCount=1;armyX=0;}
@@ -56,7 +60,11 @@ export function createWorld(canvas){
   function update(dt,t,count,x,projectiles){time=t;water.material.uniforms.uTime.value=t;water.material.uniformsNeedUpdate=true;deck.material.map.offset.y=-t*.09;for(let i=0;i<roadMarks.length;i++)roadMarks[i].position.z=-18+((i*2.4-t*8)%100+100)%100;
     squad(count,x,t);
     for(const e of entities){if(e.kind==='gate'||e.kind==='blocker'){e.mesh.position.z=e.z;continue;}e.mesh.position.set(e.x,e.boss?0:Math.abs(Math.sin(t*11+e.phase))*.035,e.z);if(e.boss)animateDog(e.mesh,t+e.phase,.74,'run');else e.mesh.rotation.z=Math.sin(t*6+e.phase)*.015;}
-    const cap=Math.min(maxBullet,projectiles.length);for(let i=0;i<cap;i++){const b=projectiles[i],o=i*18,x=b.x,z=b.z,y=b.y||.68,len=b.len||.65,w=b.w||.027;bulletPos.set([x-w,y,z,x+w,y,z,x-w,y,z-len,x+w,y,z,x+w,y,z-len,x-w,y,z-len],o);}bulletGeo.setDrawRange(0,cap*6);bulletGeo.attributes.position.needsUpdate=true;
+    const cap=Math.min(maxBullet,projectiles.length);for(let i=0;i<cap;i++){
+      const b=projectiles[i],o=i*18,x=b.x,z=b.z,y=b.y||.68,len=b.len||.75,w=b.w||.036,tip=z+.16,tail=z-len;
+      bulletPos.set([x,y+.012,tip,x-w,y,z-.11,x,y,tail,x,y+.012,tip,x,y,tail,x+w,y,z-.11],o);
+      const gw=w*3.1,gTail=tail-.16;bulletGlowPos.set([x,y-.006,tip+.08,x-gw,y-.006,z-.08,x,y-.006,gTail,x,y-.006,tip+.08,x,y-.006,gTail,x+gw,y-.006,z-.08],o);
+    }bulletGeo.setDrawRange(0,cap*6);bulletGlowGeo.setDrawRange(0,cap*6);bulletGeo.attributes.position.needsUpdate=true;bulletGlowGeo.attributes.position.needsUpdate=true;
     for(const p of effects){p.x+=p.vx*dt;p.y+=p.vy*dt;p.z+=p.vz*dt;p.vy-=11*dt;p.life-=dt;}effects=effects.filter(p=>p.life>0);for(let i=0;i<effects.length;i++){const p=effects[i];burstPos.set([p.x,p.y,p.z],i*3);burstColor.set([p.color.r,p.color.g,p.color.b],i*3);}burstGeo.setDrawRange(0,effects.length);burstGeo.attributes.position.needsUpdate=true;burstGeo.attributes.color.needsUpdate=true;
     for(let i=rings.length-1;i>=0;i--){const r=rings[i];r.age+=dt;r.mesh.scale.setScalar(.15+r.age*7);r.mesh.material.opacity=Math.max(0,.8-r.age);if(r.age>.8){scene.remove(r.mesh);r.mesh.geometry.dispose();r.mesh.material.dispose();rings.splice(i,1);}}
     const targetX=x*.13;camera.position.x+=(targetX-camera.position.x)*Math.min(1,dt*2.2);camera.position.z+=((-14.1-Math.min(7,count*.07))-camera.position.z)*Math.min(1,dt*1.4);camera.position.y+=((7.7+Math.min(2.2,count*.023))-camera.position.y)*Math.min(1,dt*1.4);camera.lookAt(camera.position.x*.38,1.25,14);

@@ -1,8 +1,8 @@
-import { createWorld } from './world3d.js?v=1.3.1';
-import { initUI } from './ui.js?v=1.3.1';
+import { createWorld } from './world3d.js?v=1.4.3';
+import { initUI } from './ui.js?v=1.4.3';
 import { load, save, resetAll } from './save.js';
 import { getCharacter } from './characters.js';
-import { initAudio, resumeAudio, SFX, setMuted } from './audio.js?v=1.3.1';
+import { initAudio, resumeAudio, SFX, setMuted } from './audio.js?v=1.4.3';
 
 const canvas=document.getElementById('game'), world=createWorld(canvas);
 let data=load();data.bestStage=Math.max(1,data.bestStage||1);data.currentStage=Math.max(1,Math.min(3,data.currentStage||1));setMuted(!!data.muted);
@@ -35,7 +35,7 @@ refresh();ui.showMenu();
 const mute=document.getElementById('btn-mute');mute.textContent=data.muted?'🔇':'🔊';mute.addEventListener('click',()=>{data.muted=!data.muted;setMuted(data.muted);mute.textContent=data.muted?'🔇':'🔊';save(data);});
 
 function start(stage){
- resumeAudio();initAudio();ui.show('playing');ui.hideDeath();ui.hideVictory();ui.showHud();canvas.classList.add('playing');
+ initAudio();resumeAudio();ui.show('playing');ui.hideDeath();ui.hideVictory();ui.showHud();canvas.classList.add('playing');
  const c=getCharacter(data.selectedCharacter),meta=data.meta||{},cfg=STAGES[stage-1];world.reset(c.id);
  run={stage,cfg,c,t:0,x:0,targetX:0,hp:Math.round(100*(c.mods.maxHp||1)*(1+(meta.startHp||0)*.12)),maxHp:0,
  squad:Math.min(100,1+(meta.startWeapon||0)),damage:8*(c.mods.damage||1)*(1+(meta.damage||0)*.08),
@@ -52,8 +52,8 @@ function spawnBoss(which=run.cfg.boss){if(run.boss)return;const hp=run.stage===1
 function event([,type,a,b,c]){if(type==='wall')spawnWall();if(type==='wave')spawnWave(a,b,c);if(type==='choice')spawnChoice(a,b);if(type==='blocker')spawnBlocker(a,b);}
 function gate(value){let n=run.squad;if(value==='+1')n+=1+run.gateBonus;if(value==='+3')n+=3+run.gateBonus;if(value==='+5')n+=5+run.gateBonus;if(value==='x2')n*=2;if(value==='x3')n*=3;if(value==='DAMAGE')run.damage*=1.25;if(value==='FIRE RATE')run.fireRate*=1.25;if(value==='SPREAD')run.spread+=2;run.squad=Math.min(100,Math.max(1,Math.round(n)));ui.showEvolve(['DAMAGE','FIRE RATE','SPREAD'].includes(value)?value:run.c.name+' ×'+run.squad);SFX.level();}
 function removeFrom(list,i){world.remove(list[i]);list.splice(i,1);}
-function hitTarget(target,bullet,boss=false){const crit=Math.random()<(run.c.mods.critChance||0),dmg=bullet.damage*(crit?1.8:1)*(target.z<10?(run.c.mods.closeRangeDmg||1):1);target.hp-=dmg;target.damageAcc+=dmg;target.accCd+=.04;if(target.accCd>.23){showDamage(target.x,boss?5.5:target.kind==='blocker'?2.8:2.1,target.z,target.damageAcc,crit);target.damageAcc=0;target.accCd=0;}if(Math.random()<.2)world.impact(bullet.x,bullet.z,boss?'#ffb479':'#bdfcff',boss?7:4);if(Math.random()<.14)SFX.hit();return target.hp<=0;}
-function fire(dt){run.shotCd-=dt;if(run.shotCd>0)return;run.shotCd+=.30/Math.max(.6,run.fireRate);const streams=Math.min(24,Math.max(1,Math.ceil(run.squad*.48))),width=Math.min(8.6,Math.max(.1,Math.sqrt(run.squad)*.75+run.spread*.28));for(let i=0;i<streams;i++){if(run.bullets.length>=340)break;const spread=streams===1?0:(i/(streams-1)-.5)*width;run.bullets.push({x:Math.max(-4.55,Math.min(4.55,run.x+spread)),z:.75+(i%4)*.18,y:.7+(i%3)*.05,speed:(35+(i%3)*2)*(run.c.mods.projectileSpeed||1),damage:run.damage*(1+Math.min(3,run.squad/18)*.11),w:.021,len:.52});}if(Math.random()<.1)SFX.shoot();}
+function hitTarget(target,bullet,boss=false){const crit=Math.random()<(run.c.mods.critChance||0),dmg=bullet.damage*(crit?1.8:1)*(target.z<10?(run.c.mods.closeRangeDmg||1):1);target.hp-=dmg;target.damageAcc+=dmg;target.accCd+=.04;if(target.accCd>.23){showDamage(target.x,boss?5.5:target.kind==='blocker'?2.8:2.1,target.z,target.damageAcc,crit);target.damageAcc=0;target.accCd=0;}if(Math.random()<.2)world.impact(bullet.x,bullet.z,boss?'#ffb479':'#bdfcff',boss?7:4);SFX.hit();return target.hp<=0;}
+function fire(dt){run.shotCd-=dt;if(run.shotCd>0)return;run.shotCd+=.30/Math.max(.6,run.fireRate);const streams=Math.min(24,Math.max(1,Math.ceil(run.squad*.48))),width=Math.min(8.6,Math.max(.1,Math.sqrt(run.squad)*.75+run.spread*.28));for(let i=0;i<streams;i++){if(run.bullets.length>=340)break;const spread=streams===1?0:(i/(streams-1)-.5)*width;run.bullets.push({x:Math.max(-4.55,Math.min(4.55,run.x+spread)),z:.75+(i%4)*.18,y:.72+(i%3)*.055,speed:(35+(i%3)*2)*(run.c.mods.projectileSpeed||1),damage:run.damage*(1+Math.min(3,run.squad/18)*.11),w:.052,len:.96});}SFX.shoot();}
 function bullets(dt){for(let i=run.bullets.length-1;i>=0;i--){const b=run.bullets[i];b.z+=b.speed*dt;let did=false;
  for(let j=run.blockers.length-1;j>=0&&!did;j--){const e=run.blockers[j];if(Math.abs(b.z-e.z)<1.2&&Math.abs(b.x-e.x)<1.45){did=true;if(hitTarget(e,b)){run.scraps+=4;run.score+=100;run.squad=Math.min(100,run.squad+2);world.impact(e.x,e.z,'#ffe0a4',34);removeFrom(run.blockers,j);SFX.kill();ui.showEvolve('BLOCKER BROKEN · +2');}else if(Math.random()<.13)world.setBlockerHp(e,e.hp);}}
  for(let j=run.enemies.length-1;j>=0&&!did;j--){const e=run.enemies[j];if(Math.abs(b.z-e.z)<.85&&Math.abs(b.x-e.x)<e.radius){did=true;if(hitTarget(e,b)){run.kills++;run.score+=25;run.scraps++;world.impact(e.x,e.z,'#ffd1b5',9);removeFrom(run.enemies,j);if(Math.random()<.2)SFX.kill();}}}
@@ -71,8 +71,18 @@ function finish(victory){if(!run||run.complete)return;run.complete=true;state=vi
 function complete(){finish(true);}function fail(){SFX.death();finish(false);}
 function step(dt){run.t+=dt;const cfg=run.cfg;while(run.events<cfg.events.length&&run.t>=cfg.events[run.events][0])event(cfg.events[run.events++]);if(!run.boss&&run.t>=cfg.bossAt)spawnBoss();run.x+=(run.targetX-run.x)*Math.min(1,dt*run.speed*2.2);run.x=Math.max(-4.25,Math.min(4.25,run.x));fire(dt);bullets(dt);updateEntities(dt);world.update(dt,run.t,run.squad,run.x,run.bullets);if(run.t-run.lastHud>.1){run.lastHud=run.t;updateHud();}}
 function frame(now){const dt=Math.min(.05,Math.max(0,(now-last)/1000));last=now;displayTime+=dt;if(state==='playing'&&run)step(dt);else world.update(dt,displayTime,run?run.squad:1,run?run.x:0,run?run.bullets:[]);world.render();requestAnimationFrame(frame);}requestAnimationFrame(frame);
-canvas.addEventListener('pointerdown',e=>{if(state!=='playing')return;dragId=e.pointerId;dragX=e.clientX;canvas.setPointerCapture(e.pointerId);e.preventDefault();},{passive:false});
-canvas.addEventListener('pointermove',e=>{if(state!=='playing'||e.pointerId!==dragId)return;const dx=e.clientX-dragX;dragX=e.clientX;run.targetX=Math.max(-4.25,Math.min(4.25,run.targetX+dx/innerWidth*10.6));e.preventDefault();},{passive:false});
-for(const type of ['pointerup','pointercancel'])canvas.addEventListener(type,e=>{if(e.pointerId===dragId)dragId=null;});
+function steerAt(clientX){
+ if(state!=='playing'||!run)return;
+ const r=canvas.getBoundingClientRect(),u=Math.max(0,Math.min(1,(clientX-r.left)/Math.max(1,r.width)));
+ // The bridge camera faces +Z, so screen-left is positive world X.
+ run.targetX=Math.max(-4.25,Math.min(4.25,(.5-u)*9.15));
+ document.documentElement.dataset.steering=run.targetX.toFixed(2);
+}
+canvas.addEventListener('pointerdown',e=>{if(state!=='playing')return;dragId=e.pointerId;dragX=e.clientX;steerAt(e.clientX);try{canvas.setPointerCapture(e.pointerId);}catch{}e.preventDefault();},{passive:false});
+window.addEventListener('pointermove',e=>{if(state!=='playing'||e.pointerId!==dragId)return;dragX=e.clientX;steerAt(e.clientX);e.preventDefault();},{passive:false});
+for(const type of ['pointerup','pointercancel'])window.addEventListener(type,e=>{if(e.pointerId===dragId)dragId=null;});
+// Older iPhone Safari builds can drop pointer capture during a canvas frame.
+canvas.addEventListener('touchstart',e=>{if(state!=='playing'||!e.touches[0])return;steerAt(e.touches[0].clientX);e.preventDefault();},{passive:false});
+canvas.addEventListener('touchmove',e=>{if(state!=='playing'||!e.touches[0])return;steerAt(e.touches[0].clientX);e.preventDefault();},{passive:false});
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&state==='playing'){state='paused';ui.showPause();}});
-window.addEventListener('keydown',e=>{if(state!=='playing')return;if(e.key==='ArrowLeft'||e.key==='a')run.targetX=Math.max(-4.25,run.targetX-.9);if(e.key==='ArrowRight'||e.key==='d')run.targetX=Math.min(4.25,run.targetX+.9);if(e.key==='Escape'){state='paused';ui.showPause();}});
+window.addEventListener('keydown',e=>{if(state!=='playing')return;if(e.key==='ArrowLeft'||e.key==='a')run.targetX=Math.min(4.25,run.targetX+.9);if(e.key==='ArrowRight'||e.key==='d')run.targetX=Math.max(-4.25,run.targetX-.9);if(e.key==='Escape'){state='paused';ui.showPause();}});

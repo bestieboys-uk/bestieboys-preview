@@ -1,6 +1,7 @@
 /* BESTIEBOYS: LAST WALK — restrained SFX over The Corpse soundtrack */
-import { startSoundtrack, setSoundtrackMuted } from './soundtrack.js?v=1.3.1';
+import { startSoundtrack, setSoundtrackMuted } from './soundtrack.js?v=1.4.3';
 let ctx = null, master = null, muted = false;
+let startCuePlayed = false;
 const lastCue = new Map();
 function cue(name, gap){const now=performance.now();if(now-(lastCue.get(name)||0)<gap)return false;lastCue.set(name,now);return true;}
 
@@ -10,13 +11,29 @@ export function initAudio() {
   if (!AC) return;
   ctx = new AC();
   master = ctx.createGain();
-  master.gain.value = 0.28;
+  master.gain.value = 0.46;
   master.connect(ctx.destination);
 }
 
 export function resumeAudio() {
   initAudio();
-  if (ctx && ctx.state === 'suspended') ctx.resume();
+  if (ctx) {
+    // iOS only unlocks WebAudio while the start tap is still on the call stack.
+    // Starting a one-sample buffer here makes later automatic fire/hit cues reliable.
+    const buffer = ctx.createBuffer(1, 1, 22050);
+    const source = ctx.createBufferSource();
+    source.buffer = buffer; source.connect(master); source.start(0);
+    const ready = ctx.state === 'suspended' ? ctx.resume() : Promise.resolve();
+    Promise.resolve(ready).then(() => {
+      document.documentElement.dataset.sfx = ctx.state;
+      if (!muted && !startCuePlayed) {
+        startCuePlayed = true;
+        tone(150,.055,'triangle',.16,55);
+        setTimeout(()=>tone(245,.07,'triangle',.13,40),65);
+      }
+    });
+    ctx.onstatechange = () => { document.documentElement.dataset.sfx = ctx.state; };
+  }
   startSoundtrack();
 }
 
@@ -54,8 +71,8 @@ function noise(dur, vol = 0.15, hp = 800) {
 }
 
 export const SFX = {
-  shoot() { if(cue('shoot',380))tone(125,0.035,'triangle',0.12,-18); },
-  hit() { if(cue('hit',170))tone(88,0.055,'sine',0.14,-14); },
+  shoot() { if(cue('shoot',380)){tone(310,0.045,'triangle',0.18,-85);noise(.025,.035,1500);} },
+  hit() { if(cue('hit',170)){tone(105,0.06,'sine',0.21,-20);noise(.018,.025,1000);} },
   crit() { if(cue('crit',420))tone(285,0.075,'triangle',0.14,65); },
   kill() { if(cue('kill',220))tone(160,0.10,'triangle',0.16,-48); },
   xp() {},
