@@ -1,5 +1,5 @@
 import * as THREE from './vendor/three.module.js';
-import {createDog,animateDog} from './dog3d.js?v=1.3.0';
+import {createDog,animateDog} from './dog3d.js?v=1.3.1';
 
 const C={road:'#292727',rail:'#171616',cyan:'#b6262d',ink:'#090909'};
 function mat(color,roughness=.8,metalness=0){return new THREE.MeshStandardMaterial({color,roughness,metalness});}

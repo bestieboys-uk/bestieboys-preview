@@ -1,8 +1,8 @@
-import { createWorld } from './world3d.js?v=1.3.0';
-import { initUI } from './ui.js?v=1.3.0';
+import { createWorld } from './world3d.js?v=1.3.1';
+import { initUI } from './ui.js?v=1.3.1';
 import { load, save, resetAll } from './save.js';
 import { getCharacter } from './characters.js';
-import { initAudio, resumeAudio, SFX, setMuted } from './audio.js?v=1.3.0';
+import { initAudio, resumeAudio, SFX, setMuted } from './audio.js?v=1.3.1';
 
 const canvas=document.getElementById('game'), world=createWorld(canvas);
 let data=load();data.bestStage=Math.max(1,data.bestStage||1);data.currentStage=Math.max(1,Math.min(3,data.currentStage||1));setMuted(!!data.muted);
