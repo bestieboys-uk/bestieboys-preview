@@ -1,8 +1,8 @@
-import { createWorld } from './world3d.js?v=1.2.2';
-import { initUI } from './ui.js?v=1.2.2';
+import { createWorld } from './world3d.js?v=1.3.0';
+import { initUI } from './ui.js?v=1.3.0';
 import { load, save, resetAll } from './save.js';
 import { getCharacter } from './characters.js';
-import { initAudio, resumeAudio, SFX, setMuted } from './audio.js?v=1.2.2';
+import { initAudio, resumeAudio, SFX, setMuted } from './audio.js?v=1.3.0';
 
 const canvas=document.getElementById('game'), world=createWorld(canvas);
 let data=load();data.bestStage=Math.max(1,data.bestStage||1);data.currentStage=Math.max(1,Math.min(3,data.currentStage||1));setMuted(!!data.muted);
@@ -52,7 +52,7 @@ function spawnBoss(which=run.cfg.boss){if(run.boss)return;const hp=run.stage===1
 function event([,type,a,b,c]){if(type==='wall')spawnWall();if(type==='wave')spawnWave(a,b,c);if(type==='choice')spawnChoice(a,b);if(type==='blocker')spawnBlocker(a,b);}
 function gate(value){let n=run.squad;if(value==='+1')n+=1+run.gateBonus;if(value==='+3')n+=3+run.gateBonus;if(value==='+5')n+=5+run.gateBonus;if(value==='x2')n*=2;if(value==='x3')n*=3;if(value==='DAMAGE')run.damage*=1.25;if(value==='FIRE RATE')run.fireRate*=1.25;if(value==='SPREAD')run.spread+=2;run.squad=Math.min(100,Math.max(1,Math.round(n)));ui.showEvolve(['DAMAGE','FIRE RATE','SPREAD'].includes(value)?value:run.c.name+' ×'+run.squad);SFX.level();}
 function removeFrom(list,i){world.remove(list[i]);list.splice(i,1);}
-function hitTarget(target,bullet,boss=false){const crit=Math.random()<(run.c.mods.critChance||0),dmg=bullet.damage*(crit?1.8:1)*(target.z<10?(run.c.mods.closeRangeDmg||1):1);target.hp-=dmg;target.damageAcc+=dmg;target.accCd+=.04;if(target.accCd>.23){showDamage(target.x,boss?5.5:target.kind==='blocker'?2.8:2.1,target.z,target.damageAcc,crit);target.damageAcc=0;target.accCd=0;}if(Math.random()<.2)world.impact(bullet.x,bullet.z,boss?'#ffb479':'#bdfcff',boss?7:4);return target.hp<=0;}
+function hitTarget(target,bullet,boss=false){const crit=Math.random()<(run.c.mods.critChance||0),dmg=bullet.damage*(crit?1.8:1)*(target.z<10?(run.c.mods.closeRangeDmg||1):1);target.hp-=dmg;target.damageAcc+=dmg;target.accCd+=.04;if(target.accCd>.23){showDamage(target.x,boss?5.5:target.kind==='blocker'?2.8:2.1,target.z,target.damageAcc,crit);target.damageAcc=0;target.accCd=0;}if(Math.random()<.2)world.impact(bullet.x,bullet.z,boss?'#ffb479':'#bdfcff',boss?7:4);if(Math.random()<.14)SFX.hit();return target.hp<=0;}
 function fire(dt){run.shotCd-=dt;if(run.shotCd>0)return;run.shotCd+=.30/Math.max(.6,run.fireRate);const streams=Math.min(24,Math.max(1,Math.ceil(run.squad*.48))),width=Math.min(8.6,Math.max(.1,Math.sqrt(run.squad)*.75+run.spread*.28));for(let i=0;i<streams;i++){if(run.bullets.length>=340)break;const spread=streams===1?0:(i/(streams-1)-.5)*width;run.bullets.push({x:Math.max(-4.55,Math.min(4.55,run.x+spread)),z:.75+(i%4)*.18,y:.7+(i%3)*.05,speed:(35+(i%3)*2)*(run.c.mods.projectileSpeed||1),damage:run.damage*(1+Math.min(3,run.squad/18)*.11),w:.021,len:.52});}if(Math.random()<.1)SFX.shoot();}
 function bullets(dt){for(let i=run.bullets.length-1;i>=0;i--){const b=run.bullets[i];b.z+=b.speed*dt;let did=false;
  for(let j=run.blockers.length-1;j>=0&&!did;j--){const e=run.blockers[j];if(Math.abs(b.z-e.z)<1.2&&Math.abs(b.x-e.x)<1.45){did=true;if(hitTarget(e,b)){run.scraps+=4;run.score+=100;run.squad=Math.min(100,run.squad+2);world.impact(e.x,e.z,'#ffe0a4',34);removeFrom(run.blockers,j);SFX.kill();ui.showEvolve('BLOCKER BROKEN · +2');}else if(Math.random()<.13)world.setBlockerHp(e,e.hp);}}

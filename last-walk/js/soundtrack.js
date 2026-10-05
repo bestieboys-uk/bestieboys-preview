@@ -12,7 +12,7 @@ function ensurePlayer(){
   const connect=()=>{
     if(!window.SC?.Widget)return;
     widget=window.SC.Widget(frame);
-    widget.bind(window.SC.Widget.Events.READY,()=>{ready=true;frame.dataset.state='ready';widget.setVolume(muted?0:22);if(wanted&&!muted)widget.play();});
+    widget.bind(window.SC.Widget.Events.READY,()=>{ready=true;frame.dataset.state='ready';widget.setVolume(muted?0:12);if(wanted&&!muted)widget.play();});
     widget.bind(window.SC.Widget.Events.PLAY,()=>{frame.dataset.state='playing';});
     widget.bind(window.SC.Widget.Events.PAUSE,()=>{frame.dataset.state='paused';});
     widget.bind(window.SC.Widget.Events.FINISH,()=>{if(!wanted||muted)return;widget.next();setTimeout(()=>widget.play(),120);});
@@ -21,5 +21,5 @@ function ensurePlayer(){
   const script=document.createElement('script');script.src='https://w.soundcloud.com/player/api.js';script.async=true;script.onload=connect;document.head.appendChild(script);
 }
 
-export function startSoundtrack(){wanted=true;ensurePlayer();if(ready&&widget&&!muted){widget.setVolume(22);widget.play();}}
-export function setSoundtrackMuted(value){muted=!!value;if(!widget||!ready)return;widget.setVolume(muted?0:22);if(muted)widget.pause();else if(wanted)widget.play();}
+export function startSoundtrack(){wanted=true;ensurePlayer();if(ready&&widget&&!muted){widget.setVolume(12);widget.play();}}
+export function setSoundtrackMuted(value){muted=!!value;if(!widget||!ready)return;widget.setVolume(muted?0:12);if(muted)widget.pause();else if(wanted)widget.play();}

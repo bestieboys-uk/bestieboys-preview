@@ -1,6 +1,8 @@
 /* BESTIEBOYS: LAST WALK — restrained SFX over The Corpse soundtrack */
-import { startSoundtrack, setSoundtrackMuted } from './soundtrack.js?v=1.2.2';
+import { startSoundtrack, setSoundtrackMuted } from './soundtrack.js?v=1.3.0';
 let ctx = null, master = null, muted = false;
+const lastCue = new Map();
+function cue(name, gap){const now=performance.now();if(now-(lastCue.get(name)||0)<gap)return false;lastCue.set(name,now);return true;}
 
 export function initAudio() {
   if (ctx) return;
@@ -8,7 +10,7 @@ export function initAudio() {
   if (!AC) return;
   ctx = new AC();
   master = ctx.createGain();
-  master.gain.value = 0.14;
+  master.gain.value = 0.11;
   master.connect(ctx.destination);
 }
 
@@ -52,20 +54,20 @@ function noise(dur, vol = 0.15, hp = 800) {
 }
 
 export const SFX = {
-  shoot() {},
-  hit() {},
-  crit() { tone(760, 0.06, 'triangle', 0.045, 100); },
-  kill() { tone(180, 0.08, 'triangle', 0.055, -60); },
+  shoot() { if(cue('shoot',520))tone(105,0.025,'triangle',0.025,-12); },
+  hit() { if(cue('hit',180))tone(76,0.035,'sine',0.035,-10); },
+  crit() { if(cue('crit',420))tone(250,0.055,'triangle',0.04,55); },
+  kill() { if(cue('kill',220))tone(145,0.075,'triangle',0.05,-42); },
   xp() {},
-  level() { tone(330, 0.08, 'sine', 0.07); setTimeout(() => tone(495, 0.10, 'sine', 0.065), 80); },
+  level() { tone(220,0.07,'sine',0.055);setTimeout(()=>tone(330,0.09,'sine',0.05),75); },
   hurt() { tone(92, 0.13, 'triangle', 0.09, -32); },
   nova() { tone(160, 0.16, 'sine', 0.08, -55); },
   lightning() { noise(0.05, 0.04, 1200); },
   missile() { tone(220, 0.09, 'triangle', 0.045, 80); },
   beam() {},
-  boss() { tone(72, 0.28, 'triangle', 0.10, -12); },
+  boss() { if(cue('boss',700))tone(64,0.24,'triangle',0.085,-8); },
   evolve() { tone(392, 0.08, 'sine', 0.06); setTimeout(() => tone(587, 0.12, 'sine', 0.055), 90); },
   buy() { tone(440, 0.06, 'sine', 0.06); tone(660, 0.07, 'sine', 0.05); },
-  ui() { tone(360, 0.025, 'sine', 0.025); },
+  ui() { if(cue('ui',100))tone(230,0.022,'sine',0.022); },
   death() { tone(110, 0.32, 'triangle', 0.10, -60); },
 };
