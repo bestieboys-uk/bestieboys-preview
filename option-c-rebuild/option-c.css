@@ -673,3 +673,171 @@ figure figcaption{
   .footer img{object-position:center;width:230px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Mobile repair v2 — driven by 2026-10-06 iPhone review.
+   Keep Option C editorial; remove oversized boxed/card behaviour. */
+body{padding-bottom:env(safe-area-inset-bottom)}
+
+@media(max-width:620px){
+  .site-header{
+    min-height:86px;
+    padding:9px 14px 10px;
+  }
+  .brand{width:202px}
+  .brand img{height:46px}
+  .menu-button{min-height:36px;padding-inline:10px}
+
+  .section-heading{
+    padding:30px 0 15px;
+    column-gap:12px;
+  }
+  .section-heading .eyebrow{font-size:7px;margin-bottom:3px}
+  .section-heading h2{font-size:46px}
+  .section-heading::after{margin-bottom:5px}
+
+  .more-products{padding:28px 0 38px}
+  .more-heading{
+    display:block;
+    margin-bottom:12px;
+  }
+  .more-heading .eyebrow{font-size:7px;margin-bottom:3px}
+  .more-heading h2{
+    font-size:48px;
+    line-height:.88;
+    max-width:7ch;
+  }
+  .editorial-product,
+  .editorial-product.flip{
+    grid-template-columns:minmax(0,42fr) minmax(0,58fr);
+    gap:14px;
+    min-height:0;
+    padding:17px 0 21px;
+    align-items:center;
+  }
+  .editorial-product.flip figure,
+  .editorial-product.flip>div{order:initial}
+  .editorial-product figure{
+    height:238px;
+    min-height:0;
+    background:
+      radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.035),transparent 56%),
+      transparent;
+    overflow:hidden;
+  }
+  .editorial-product figure img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    filter:drop-shadow(0 13px 16px rgba(0,0,0,.46));
+  }
+  .editorial-product>div{min-width:0}
+  .editorial-product .eyebrow{
+    font-size:7px;
+    letter-spacing:.12em;
+    margin-bottom:5px;
+  }
+  .editorial-product h3{
+    margin:0 0 9px;
+    font-size:30px;
+    line-height:.94;
+    max-width:10ch;
+  }
+  .editorial-product .price{
+    margin-bottom:7px;
+    font-size:15px;
+  }
+  .editorial-product .scope{
+    margin-bottom:8px;
+    font-size:7px;
+    line-height:1.35;
+  }
+  .editorial-product .size-row{
+    gap:3px;
+    margin:8px 0 0;
+  }
+  .editorial-product .size-row span{
+    min-width:27px;
+    min-height:30px;
+    font-size:7px;
+  }
+
+  .proof{padding-bottom:30px}
+  .proof .section-heading{margin-bottom:2px}
+  .proof-row{
+    grid-template-columns:minmax(0,39fr) 18px minmax(0,61fr);
+    gap:7px;
+    min-height:0;
+    padding:18px 0 22px;
+  }
+  .proof-row h3{
+    grid-column:1/-1;
+    margin:0 0 2px;
+    font-size:39px;
+    line-height:.9;
+  }
+  .proof-pet{
+    height:158px;
+    -webkit-mask-image:radial-gradient(ellipse 78% 82% at 50% 50%,#000 55%,rgba(0,0,0,.9) 72%,transparent 100%);
+    mask-image:radial-gradient(ellipse 78% 82% at 50% 50%,#000 55%,rgba(0,0,0,.9) 72%,transparent 100%);
+  }
+  .proof-garment{height:190px}
+  .proof-row figcaption{
+    margin-top:3px;
+    font-size:6px;
+    line-height:1.25;
+    letter-spacing:.08em;
+  }
+  .proof-arrow{font-size:18px}
+  .proof-garment img{
+    filter:drop-shadow(0 12px 13px rgba(0,0,0,.5));
+  }
+
+  .house{padding-bottom:42px}
+  .house-intro{padding:16px 0 10px}
+  .house-intro>p{
+    max-width:42ch;
+    font-size:10px;
+    line-height:1.45;
+  }
+  .house-tabs{
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:5px;
+    margin-top:13px;
+    width:100%;
+  }
+  .house-tabs button{
+    min-width:0;
+    width:100%;
+    height:36px;
+  }
+  .house-stage{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+    padding-top:8px;
+  }
+  .house-item:nth-child(n){
+    grid-column:auto;
+    min-height:0;
+    border:1px solid #292d31;
+    background:
+      radial-gradient(circle at 50% 45%,rgba(255,255,255,.028),transparent 55%),
+      #0b0d0f;
+  }
+  .house-item img{
+    height:166px;
+    padding:8px 7px 0;
+    filter:drop-shadow(0 10px 12px rgba(0,0,0,.45));
+  }
+  .house-item span{
+    min-height:34px;
+    padding:7px 8px 8px;
+    border-top:1px solid #22262a;
+    font-size:7px;
+    letter-spacing:.10em;
+  }
+
+  .custom{
+    padding:38px 0 calc(42px + env(safe-area-inset-bottom));
+  }
+}
