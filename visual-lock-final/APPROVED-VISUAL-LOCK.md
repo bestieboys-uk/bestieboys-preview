@@ -57,3 +57,14 @@ It does NOT authorize:
 - public release
 
 Those remain separate approval gates.
+
+
+## EXACT FILE IDENTIFIERS
+
+Approved corrected full-page mockup SHA-256:
+`1145fc0cb35c105172a1762315bb19a0eab9a64690fc55e6113fedd124b64e9c`
+
+Approved Gerrard hero garment reference SHA-256:
+`01abc47236854f74dc629492039e3c156cca280c6bdc86b841c3cd3df09f92df`
+
+The second hash is the supplied Gerrard garment reference that replaces the prior hero garment in the locked mockup.
