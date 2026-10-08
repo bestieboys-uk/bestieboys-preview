@@ -24,7 +24,7 @@ jobs:
           import struct
           p='assets/site/bestieboys-house-merch-logo-only-20261008.png'
           d=open(p,'rb').read(24)
-          assert d[:8] == b'\\x89PNG\\r\\n\\x1a\\n'
+          assert d[:8].hex() == '89504e470d0a1a0a'
           size=struct.unpack('>II',d[16:24])
           assert size==(1122,290), size
           print('HOUSE_ASSET_VERIFIED',size)
