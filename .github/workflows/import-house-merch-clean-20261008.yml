@@ -21,11 +21,13 @@ jobs:
             -o assets/site/bestieboys-house-merch-logo-only-20261008.png
           echo '72237d477e03bb97eaa0747a496791f27b996aef59a1e56c8ca0d347ea168d45  assets/site/bestieboys-house-merch-logo-only-20261008.png' | sha256sum -c -
           python3 - <<'PY'
-          from PIL import Image
+          import struct
           p='assets/site/bestieboys-house-merch-logo-only-20261008.png'
-          im=Image.open(p)
-          assert im.size==(1122,290), im.size
-          print('HOUSE_ASSET_VERIFIED',im.size)
+          d=open(p,'rb').read(24)
+          assert d[:8] == b'\\x89PNG\\r\\n\\x1a\\n'
+          size=struct.unpack('>II',d[16:24])
+          assert size==(1122,290), size
+          print('HOUSE_ASSET_VERIFIED',size)
           PY
       - name: Commit corrected image only
         shell: bash
