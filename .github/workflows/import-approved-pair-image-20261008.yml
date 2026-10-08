@@ -1,0 +1,48 @@
+name: Import explicitly approved BestieBoys BEFORE-AFTER website image
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/import-approved-pair-image-20261008.yml
+
+permissions:
+  contents: write
+
+jobs:
+  import-approved-image:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download exact user-approved PNG and verify SHA256
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/site
+          curl --fail --location --retry 2 --retry-delay 2 --connect-timeout 15 --max-time 75 \
+            'https://d2ol7oe51mr4n9.cloudfront.net/user_3IwY4mvZv7h5Y9ix1sl5iRJKZ1T/75cb59b5-7079-4416-98eb-d199496bfb57.png' \
+            -o assets/site/bestieboys-before-after-approved-20261008.png
+          echo 'abd9e9654b84d1ce6a625a2277c00719d1ce9c364f547d668c7023bdccc64cf1  assets/site/bestieboys-before-after-approved-20261008.png' | sha256sum --check --status
+          python3 - <<'PY'
+          from pathlib import Path
+          import struct
+          p=Path('assets/site/bestieboys-before-after-approved-20261008.png')
+          d=p.read_bytes()
+          assert d.startswith(b'\x89PNG\r\n\x1a\n')
+          w,h=struct.unpack('>II',d[16:24])
+          assert (w,h)==(1448,1086), (w,h)
+          print(f'APPROVED_IMAGE_VERIFIED bytes={len(d)} size={w}x{h}')
+          PY
+      - name: Commit image file only to existing public BestieBoys asset repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name bestieboys-capture-bot
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/site/bestieboys-before-after-approved-20261008.png
+          if git diff --cached --quiet; then
+            echo 'APPROVED_ASSET_ALREADY_CURRENT'
+          else
+            git commit -m 'assets: lock user-approved website BEFORE AFTER image'
+            git push origin HEAD:main
+          fi
