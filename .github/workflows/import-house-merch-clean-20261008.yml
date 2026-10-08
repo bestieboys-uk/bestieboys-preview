@@ -1,0 +1,40 @@
+name: Import corrected House Merch strip
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/import-house-merch-clean-20261008.yml]
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download exact corrected strip and verify
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/site
+          curl --fail --location --retry 2 --connect-timeout 15 --max-time 75 --silent --show-error \
+            'https://d2ol7oe51mr4n9.cloudfront.net/user_3IwY4mvZv7h5Y9ix1sl5iRJKZ1T/82f72016-bf3a-4327-a41b-91e83e4f9841.png' \
+            -o assets/site/bestieboys-house-merch-logo-only-20261008.png
+          echo '72237d477e03bb97eaa0747a496791f27b996aef59a1e56c8ca0d347ea168d45  assets/site/bestieboys-house-merch-logo-only-20261008.png' | sha256sum -c -
+          python3 - <<'PY'
+          from PIL import Image
+          p='assets/site/bestieboys-house-merch-logo-only-20261008.png'
+          im=Image.open(p)
+          assert im.size==(1122,290), im.size
+          print('HOUSE_ASSET_VERIFIED',im.size)
+          PY
+      - name: Commit corrected image only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name bestieboys-capture-bot
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/site/bestieboys-house-merch-logo-only-20261008.png
+          if git diff --cached --quiet; then echo ALREADY_CURRENT; else
+            git commit -m 'assets: add corrected logo-only House Merch strip'
+            git push origin HEAD:main
+          fi
