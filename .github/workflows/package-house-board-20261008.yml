@@ -1,0 +1,17 @@
+name: Package current House Merch board for repair QA
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/package-house-board-20261008.yml]
+permissions:
+  contents: read
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: current-house-merch-board-20261008
+          path: assets/site/bestieboys-house-merch-logo-only-20261008.png
+          if-no-files-found: error
