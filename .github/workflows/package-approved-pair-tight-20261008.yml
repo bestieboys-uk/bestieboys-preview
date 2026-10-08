@@ -1,0 +1,17 @@
+name: Package current approved pair crop for inspection
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/package-approved-pair-tight-20261008.yml]
+permissions:
+  contents: read
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: current-approved-pair-tight-20261008
+          path: assets/site/bestieboys-before-after-approved-tight-20261008.png
+          if-no-files-found: error
